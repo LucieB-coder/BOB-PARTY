@@ -67,3 +67,13 @@
 > > - [x] Création du GANTT | Mathilde, Thomas
 > - [x] Rédaction du dossier choix des technologies | Alban, Lucie
   
+### Séance 10/10
+
+> - [] Faire les classes | Thomas, Mathilde
+> > - [] Coder les classes 
+> > - [] Coder les tests unitaires
+> - [] Faire la BD | Lilian
+> > - [] MCD MLD
+> > - [] fichier de création des tables
+> - [] Faire les vues et la navigation | Alban Lucie
+> - [] Commencer l'API et la relier aux vues
