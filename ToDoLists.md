@@ -69,11 +69,11 @@
   
 ### Séance 10/10
 
-> - [] Faire les classes | Thomas, Mathilde
-> > - [] Coder les classes 
-> > - [] Coder les tests unitaires
-> - [] Faire la BD | Lilian
-> > - [] MCD MLD
-> > - [] fichier de création des tables
-> - [] Faire les vues et la navigation | Alban Lucie
-> - [] Commencer l'API et la relier aux vues
+> - [ ] Faire la BD | Lilian
+> > - [x] MCD MLD (branche doc)
+> > - [ ] Créer les tables sur MySQL
+> - [x] Continuer les vues et la navigation | Alban (branche navigation)
+> - [x] Commencer de dossier d'architecture de l'application | Lucie (branche doc)
+> - [ ] Commencer les classes | Matihlde+Thomas (problème, peut-être pas besoin avec react native)
+> > - [ ] Tests unitaires
+> > - [x] Déclaration des classes (branche dev)
