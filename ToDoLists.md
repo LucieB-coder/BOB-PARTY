@@ -67,3 +67,13 @@
 > > - [x] Création du GANTT | Mathilde, Thomas
 > - [x] Rédaction du dossier choix des technologies | Alban, Lucie
   
+### Séance 10/10
+
+> - [ ] Faire la BD | Lilian
+> > - [x] MCD MLD (branche doc)
+> > - [ ] Créer les tables sur MySQL
+> - [x] Continuer les vues et la navigation | Alban (branche navigation)
+> - [x] Commencer de dossier d'architecture de l'application | Lucie (branche doc)
+> - [ ] Commencer les classes | Matihlde+Thomas (problème, peut-être pas besoin avec react native)
+> > - [ ] Tests unitaires
+> > - [x] Déclaration des classes (branche dev)
