@@ -77,3 +77,4 @@
 > - [ ] Commencer les classes | Matihlde+Thomas (problème, peut-être pas besoin avec react native)
 > > - [ ] Tests unitaires
 > > - [x] Déclaration des classes (branche dev)
+> [x] Commencer les diagrammes de séquence | Mathilde+Thomas (branche doc)
