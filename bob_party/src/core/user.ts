@@ -21,7 +21,7 @@ export class User{
                     this.CurrentCoins=currentCoins;
                     this.TotalCoins=totalCoins;
                     this.CurrentSkin=currentSkin;
-                    this.TabSkin=tabSkin;
+                    this.TabSkin=[...tabSkin];
                 }
 
     getUsername(){
@@ -93,6 +93,6 @@ export class User{
     }
     
     setTabSkin(tabSkin: Skin[]){
-        this.TabSkin=tabSkin;
+        this.TabSkin=[...tabSkin];
     }
 }
