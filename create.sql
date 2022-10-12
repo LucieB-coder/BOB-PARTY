@@ -1,7 +1,8 @@
 #Drop all the tables
 
 DROP TABLE Battle;
-Drop TABLE Own;
+DROP TABLE Own;
+DROP TABLE Conversation;
 DROP TABLE User;
 DROP TABLE Skin;
 DROP TABLE Game;
