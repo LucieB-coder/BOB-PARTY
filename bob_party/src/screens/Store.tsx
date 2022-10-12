@@ -30,14 +30,12 @@ function Store(props: { navigation: any; }) {
       <View style={styles.body}>
         <Text style={styles.text}>couille</Text>
       </View>
-      <View style={styles.body}>
-        <Text style={styles.text}>couille</Text>
-      </View>
       <BotBar 
           messages={message}
           games={gamepad}
           shop={store}
           style={styles.iconFooter}
+          styleStore={styles.iconStore}
           nav={navigation}
           styleBar={styles.footer}
       />

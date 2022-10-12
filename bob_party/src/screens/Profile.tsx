@@ -29,26 +29,15 @@ function Profile(props: { navigation: any; }) {
       <View style={styles.body}>
         <Text style={styles.text}>couille</Text>
       </View>
-      <View style={styles.footer}>
-        <Pressable onPress={() => navigation.navigate('ChatTab')}>
-          <Image
+      <BotBar 
+          messages={message}
+          games={gamepad}
+          shop={store}
           style={styles.iconFooter}
-          source={message}
-          />
-        </Pressable>
-        <Pressable onPress={() => navigation.navigate('HomeTab')}>
-          <Image
-          style={styles.iconFooter}
-          source={gamepad}
-          />
-        </Pressable>
-        <Pressable onPress={() => navigation.navigate('StoreTab')}>
-          <Image
-          style={styles.iconStore}
-          source={store}
-          />
-        </Pressable>
-      </View>
+          styleStore={styles.iconStore}
+          nav={navigation}
+          styleBar={styles.footer}
+      />
     </View>
   );
 }

@@ -51,6 +51,7 @@ function Home(props: { navigation: any; }) {
           games={gamepad}
           shop={store}
           style={styles.iconFooter}
+          styleStore={styles.iconStore}
           nav={navigation}
           styleBar={styles.footer}
       />

@@ -4,8 +4,8 @@ import React from "react"
 
 
 export const BotBar : 
-FC<{messages:ImageSourcePropType, games: ImageSourcePropType, shop: ImageSourcePropType, style: ImageStyle, nav: any, styleBar : any}> = 
-({messages, games, shop,style, nav,styleBar}) => 
+FC<{messages:ImageSourcePropType, games: ImageSourcePropType, shop: ImageSourcePropType, style: ImageStyle, styleStore: ImageStyle, nav: any, styleBar : any}> = 
+({messages, games, shop,style, styleStore, nav,styleBar}) => 
 {
     return (
     <View style={styleBar}>
@@ -23,7 +23,7 @@ FC<{messages:ImageSourcePropType, games: ImageSourcePropType, shop: ImageSourceP
             </Pressable>
             <Pressable onPress={() => nav.navigate('StoreTab')}>
                 <Image
-                    style={style}
+                    style={styleStore}
                     source={shop}
                 />
             </Pressable>
