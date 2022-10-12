@@ -18,8 +18,8 @@ function Home(props: { navigation: any; }) {
     return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Pressable onPress={() => navigation.navigate('Profile')}>
-          <SkinComponent skin={skinTest} children={styles.avatar} />
+        <Pressable onPress={() => navigation.navigate('ProfileTab')}>
+        <SkinComponent skin={skinTest} children={styles.avatar} />
         </Pressable>
         <Text style={styles.titre}>BOB PARTY</Text>
         <Pressable onPress={() => navigation.navigate('Settings')}>
@@ -40,7 +40,7 @@ function Home(props: { navigation: any; }) {
         />
       </View>
       <View style={styles.footer}>
-        <Pressable onPress={() => navigation.navigate('Chat')}>
+        <Pressable onPress={() => navigation.navigate('ChatTab')}>
           <Image
           style={styles.iconFooter}
           source={message}
@@ -52,7 +52,7 @@ function Home(props: { navigation: any; }) {
           source={gamepad}
           />
         </Pressable>
-        <Pressable onPress={() => navigation.navigate('Store')}>
+        <Pressable onPress={() => navigation.navigate('StoreTab')}>
           <Image
           style={styles.iconStore}
           source={store}
