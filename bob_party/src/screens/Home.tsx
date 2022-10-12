@@ -10,11 +10,17 @@ import { BotBar } from '../components/BotBar';
 
 
 const avatar = require('../../assets/Icons/BobClassic.png');
+let tabSkin:Skin[];
 const skinTest= new Skin("Bob",require('../../assets/Icons/BobClassic.png'));
+const skinTest2= new Skin("wesh",require('../../assets/BobsSkins/BobBlue.png'));
+tabSkin=[skinTest];
+tabSkin.push(skinTest2);
+const UserActu=new User("14", "leBg", "ouioui", "grand", "la", 12222, 123324, skinTest, tabSkin);
 const engrenage = require('../../assets/Icons/UnSelected/Cogs.png');
 const gamepad = require('../../assets/Icons/Selected/SGamepad.png');
 const message = require('../../assets/Icons/UnSelected/Chat.png');
 const store = require('../../assets/Icons/UnSelected/Store.png');
+
 
 function Home(props: { navigation: any; }) {
     const { navigation } = props

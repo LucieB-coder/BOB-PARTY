@@ -1,5 +1,3 @@
-import { ImageURISource } from "react-native";
-
 export class Skin{
     private Name: string;
     private Source: any;
