@@ -1,8 +1,10 @@
+import { ImageURISource } from "react-native";
+
 export class Skin{
     private Name: string;
-    Source: string;
+    private Source: any;
 
-    constructor(name: string, source:string){
+    constructor(name: string, source:any){
         this.Name=name;
         this.Source=source;
     }
@@ -11,7 +13,7 @@ export class Skin{
         this.Name=name;
     }
 
-    setSkinSource(source: string){
+    setSkinSource(source: any){
         this.Source=source;
     }
 

@@ -6,7 +6,7 @@ const avatar = require('../../assets/Icons/BobClassic.png');
 const engrenage = require('../../assets/Icons/UnSelected/Cogs.png');
 const gamepad = require('../../assets/Icons/UnSelected/Gamepad.png');
 const message = require('../../assets/Icons/UnSelected/Chat.png');
-const store = require('../../assets/Icons/Selected/Store.png');
+const store = require('../../assets/Icons/Selected/SStore.png');
 
 function Store(props: { navigation: any; }) {
     const { navigation } = props
