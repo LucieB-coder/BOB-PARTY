@@ -4,7 +4,7 @@ export class Skin{
 
     constructor(name: string, source:string){
         this.Name=name;
-        this.Source=require(source);
+        this.Source=source;
     }
     
     setSkinName(name: string){
