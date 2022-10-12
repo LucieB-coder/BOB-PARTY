@@ -1,14 +1,16 @@
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, View, Text, Alert, Pressable, Image} from 'react-native'
+import React from 'react';
 
-const avatar = require('./src/BobsSkins/BobClassic.png');
-const engrenage = require('./src/Icons/Engrenage.png');
-const gamepad = require('./src/Icons/Gamepad.png');
-const message = require('./src/Icons/Messages.png');
-const store = require('./src/Icons/Store.png');
+const avatar = require('../../assets/Icons/BobClassic.png');
+const engrenage = require('../../assets/Icons/UnSelected/Cogs.png');
+const gamepad = require('../../assets/Icons/Selected/SGamepad.png');
+const message = require('../../assets/Icons/UnSelected/Chat.png');
+const store = require('../../assets/Icons/UnSelected/Store.png');
 
-export default function App() {
-  return (
+function Home(props: { navigation: any; }) {
+    const { navigation } = props
+    return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Pressable onPress={() => Alert.alert('Profil Joueur')}>
@@ -18,14 +20,14 @@ export default function App() {
           />
         </Pressable>
         <Text style={styles.titre}>BOB PARTY</Text>
-        <Pressable onPress={() => Alert.alert('Paramètres')}>
+        <Pressable onPress={() => navigation.navigate('Settings')}>
           <Image
           style={styles.engrenage}
           source={engrenage}
           />
         </Pressable>
       </View>
-      <View style={styles.buttons}>
+      <View style={styles.body}>
         <Button 
         title='Jouer Seul'
         onPress={() => Alert.alert('On Joue seul')}
@@ -36,19 +38,19 @@ export default function App() {
         />
       </View>
       <View style={styles.footer}>
-        <Pressable onPress={() => Alert.alert('Messagerie')}>
+        <Pressable onPress={() => navigation.navigate('Chat')}>
           <Image
           style={styles.iconFooter}
           source={message}
           />
         </Pressable>
-        <Pressable onPress={() => Alert.alert('Menu des jeux')}>
+        <Pressable >
           <Image
           style={styles.iconFooter}
           source={gamepad}
           />
         </Pressable>
-        <Pressable onPress={() => Alert.alert('le magasin')}>
+        <Pressable onPress={() => navigation.navigate('Store')}>
           <Image
           style={styles.iconStore}
           source={store}
@@ -60,7 +62,7 @@ export default function App() {
 }
 
 
-export function Button(props) {
+function Button(props: { onPress: any; title?: any | undefined; }) {
   const { onPress, title = 'Save' } = props;
   return (
     <Pressable style={styles.button} onPress={onPress}>
@@ -98,49 +100,45 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   header: {
+    flex : 0.15,
+    width: '100%',
     flexDirection: 'row',
     backgroundColor: '#2D2C33',
-    flexWrap: 'wrap',
-    width: '100%',
-    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    justifyContent: 'space-around',
   },
   titre: {
-    paddingHorizontal: '10%',
-    paddingTop: 50,
-    paddingBottom: 10,
+    flex: 0.7,
+    flexDirection: 'column',
+    textAlign: 'center',
     fontSize: 30,
     fontFamily: 'Helvetica',
-    lineHeight: 25,
     fontWeight: 'bold',
     letterSpacing: 0.25,
     color: 'white',
   },
   engrenage: {
-    marginTop: 25,
-    marginRight: 10,
+    borderRadius: 50,
     width: 50,
     height: 50,
-    borderRadius: '50%',
   },
   avatar: {
-    marginTop: 25,
-    marginLeft: 10,
+    borderRadius: 50,
     width: 50,
     height: 50,
-    borderRadius: '50%',
   },
-  buttons: {
+  body: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     width: '70%',
   },
   footer: {
+    flex: 0.15,
     flexDirection: 'row',
     backgroundColor: '#2D2C33',
     flexWrap: 'wrap',
     width: '100%',
-    height: 70,
     justifyContent: 'space-evenly',
   },
   iconFooter: {
@@ -159,3 +157,5 @@ const styles = StyleSheet.create({
   },
 
 });
+
+export default Home
