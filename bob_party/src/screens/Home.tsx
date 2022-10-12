@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, View, Text, Alert, Pressable, Image} from 'react-native'
 import React from 'react';
+import { SkinComponent } from '../../components/skinAvatar';
 
 const avatar = require('../../assets/Icons/BobClassic.png');
 const engrenage = require('../../assets/Icons/UnSelected/Cogs.png');

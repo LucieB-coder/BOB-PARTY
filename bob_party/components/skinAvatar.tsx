@@ -1,13 +1,14 @@
 import { FC, ReactNode } from "react"
-import { Button, Image, Text, View } from "react-native"
+import { Button, Image, ImageStyle, Text, View } from "react-native"
 import { Skin } from "../core/Skin"
+import React from "react"
 
-/*
-export const SkinComponent : FC<{skin: Skin, children: ReactNode}> = ({skin, children}) => {
+export const SkinComponent : FC<{skin: Skin, children: ImageStyle}> = ({skin, children}) => {
 
-    return <View>
-        <Image source={{uri: skin.source}}/>
-        <Text>{t}</Text>
+
+    return (
+    <View>
+        <Image source={{uri: skin.Source}} style={children}/>
     </View>
+    )
 }
-*/
