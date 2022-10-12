@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Alert, Pressable, Image} from 'react-native'
 import React from 'react';
 
 const msc = require('../../assets/Icons/FondGris.png');
-const engrenage = require('../../assets/Icons/Cross.png');
+const engrenage = require('../../assets/Icons/UnSelected/Cross.png');
 
 function Store(props: { navigation: any; }) {
     const { navigation } = props

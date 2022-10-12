@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Alert, Pressable, Image} from 'react-native'
 import React from 'react';
 
 const avatar = require('../../assets/Icons/BobClassic.png');
-const engrenage = require('../../assets/Icons/UnSelected/Engrenage.png');
+const engrenage = require('../../assets/Icons/UnSelected/Cogs.png');
 const gamepad = require('../../assets/Icons/Selected/SGamepad.png');
 const message = require('../../assets/Icons/UnSelected/Chat.png');
 const store = require('../../assets/Icons/UnSelected/Store.png');

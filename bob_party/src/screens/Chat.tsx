@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Alert, Pressable, Image} from 'react-native'
 import React from 'react';
 
 const avatar = require('../../assets/Icons/BobClassic.png');
-const engrenage = require('../../assets/Icons/UnSelected/Engrenage.png');
+const engrenage = require('../../assets/Icons/UnSelected/Cogs.png');
 const gamepad = require('../../assets/Icons/UnSelected/Gamepad.png');
 const message = require('../../assets/Icons/Selected/SChat.png');
 const store = require('../../assets/Icons/UnSelected/Store.png');
@@ -118,12 +118,12 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   engrenage: {
-    borderRadius: 10,
+    borderRadius: 50,
     width: 50,
     height: 50,
   },
   avatar: {
-    borderRadius: 10,
+    borderRadius: 50,
     width: 50,
     height: 50,
   },
