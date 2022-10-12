@@ -1,34 +1,41 @@
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, View, Text, Alert, Pressable, Image} from 'react-native'
-import React from 'react';
+import React, { Children } from 'react';
 import { SkinComponent } from '../components/skinAvatar';
 import { User } from '../core/user';
 import { Skin } from '../core/skin';
+import { TopBar } from '../components/TopBar';
+import { BotBar } from '../components/BotBar';
+
 
 
 const avatar = require('../../assets/Icons/BobClassic.png');
+let tabSkin:Skin[];
 const skinTest= new Skin("Bob",require('../../assets/Icons/BobClassic.png'));
+const skinTest2= new Skin("wesh",require('../../assets/BobsSkins/BobBlue.png'));
+tabSkin=[skinTest];
+tabSkin.push(skinTest2);
+const UserActu=new User("14", "leBg", "ouioui", "grand", "la", 12222, 123324, skinTest, tabSkin);
 const engrenage = require('../../assets/Icons/UnSelected/Cogs.png');
 const gamepad = require('../../assets/Icons/Selected/SGamepad.png');
 const message = require('../../assets/Icons/UnSelected/Chat.png');
 const store = require('../../assets/Icons/UnSelected/Store.png');
 
+
 function Home(props: { navigation: any; }) {
     const { navigation } = props
     return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Pressable onPress={() => navigation.navigate('Profile')}>
-          <SkinComponent skin={skinTest} children={styles.avatar} />
-        </Pressable>
-        <Text style={styles.titre}>BOB PARTY</Text>
-        <Pressable onPress={() => navigation.navigate('Settings')}>
-          <Image
-          style={styles.engrenage}
-          source={engrenage}
-          />
-        </Pressable>
-      </View>
+        <TopBar
+          skin={skinTest} 
+          styleAvatar={styles.avatar} 
+          title="BOB PARTY" 
+          rightIcon={engrenage} 
+          styleIcon={styles.engrenage} 
+          nav={navigation} 
+          styleTitle={styles.titre} 
+          styleHeader={styles.header}
+        />
       <View style={styles.body}>
         <Button 
         title='Jouer Seul'
@@ -39,26 +46,14 @@ function Home(props: { navigation: any; }) {
         onPress={() => Alert.alert('On Joue avec les potos')}
         />
       </View>
-      <View style={styles.footer}>
-        <Pressable onPress={() => navigation.navigate('Chat')}>
-          <Image
+      <BotBar 
+          messages={message}
+          games={gamepad}
+          shop={store}
           style={styles.iconFooter}
-          source={message}
-          />
-        </Pressable>
-        <Pressable >
-          <Image
-          style={styles.iconFooter}
-          source={gamepad}
-          />
-        </Pressable>
-        <Pressable onPress={() => navigation.navigate('Store')}>
-          <Image
-          style={styles.iconStore}
-          source={store}
-          />
-        </Pressable>
-      </View>
+          nav={navigation}
+          styleBar={styles.footer}
+      />
     </View>
   );
 }

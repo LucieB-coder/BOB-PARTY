@@ -1,8 +1,15 @@
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, View, Text, Alert, Pressable, Image} from 'react-native'
-import React from 'react';
+import React, { Children } from 'react';
+import { SkinComponent } from '../components/skinAvatar';
+import { User } from '../core/user';
+import { Skin } from '../core/skin';
+import { TopBar } from '../components/TopBar';
+import { BotBar } from '../components/BotBar';
+
 
 const avatar = require('../../assets/Icons/BobClassic.png');
+const skinTest= new Skin("Bob",require('../../assets/Icons/BobClassic.png'));
 const engrenage = require('../../assets/Icons/UnSelected/Cogs.png');
 const gamepad = require('../../assets/Icons/UnSelected/Gamepad.png');
 const message = require('../../assets/Icons/UnSelected/Chat.png');
@@ -12,44 +19,28 @@ function Store(props: { navigation: any; }) {
     const { navigation } = props
     return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Pressable onPress={() => navigation.navigate('Profile')}>
-          <Image
-          style={styles.avatar}
-          source={avatar}
-          />
-        </Pressable>
-        <Text style={styles.titre}>BOB PARTY</Text>
-        <Pressable onPress={() => navigation.navigate('Settings')}>
-          <Image
-          style={styles.engrenage}
-          source={engrenage}
-          />
-        </Pressable>
+        <TopBar
+          skin={skinTest} 
+          styleAvatar={styles.avatar} 
+          title="BOB PARTY" 
+          rightIcon={engrenage} 
+          styleIcon={styles.engrenage} 
+          nav={navigation} styleTitle={styles.titre} styleHeader={styles.header}
+        />
+      <View style={styles.body}>
+        <Text style={styles.text}>couille</Text>
       </View>
       <View style={styles.body}>
         <Text style={styles.text}>couille</Text>
       </View>
-      <View style={styles.footer}>
-        <Pressable onPress={() => navigation.navigate('Chat')}>
-          <Image
+      <BotBar 
+          messages={message}
+          games={gamepad}
+          shop={store}
           style={styles.iconFooter}
-          source={message}
-          />
-        </Pressable>
-        <Pressable onPress={() => navigation.navigate('Home')}>
-          <Image
-          style={styles.iconFooter}
-          source={gamepad}
-          />
-        </Pressable>
-        <Pressable >
-          <Image
-          style={styles.iconStore}
-          source={store}
-          />
-        </Pressable>
-      </View>
+          nav={navigation}
+          styleBar={styles.footer}
+      />
     </View>
   );
 }
