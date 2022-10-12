@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, Alert, Pressable, Image} from 'react-native'
 import React from 'react';
 import { Skin } from '../core/skin';
 import { TopBar } from '../components/TopBar';
+import { BotBar } from '../components/BotBar';
 
 const avatar = require('../../assets/Icons/BobClassic.png');
 const skinTest= new Skin("Bob",require('../../assets/Icons/BobClassic.png'));
@@ -22,7 +23,7 @@ function Chat(props: { navigation: any; }) {
           rightIcon={engrenage} 
           styleIcon={styles.engrenage} 
           nav={navigation} styleTitle={styles.titre} styleHeader={styles.header}
-        />
+          />
       <View style={styles.body}>
         <Text style={styles.text}>couille</Text>
       </View>

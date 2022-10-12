@@ -5,6 +5,7 @@ import { SkinComponent } from '../components/skinAvatar';
 import { User } from '../core/user';
 import { Skin } from '../core/skin';
 import { TopBar } from '../components/TopBar';
+import { BotBar } from '../components/BotBar';
 
 
 
@@ -25,7 +26,9 @@ function Home(props: { navigation: any; }) {
           title="BOB PARTY" 
           rightIcon={engrenage} 
           styleIcon={styles.engrenage} 
-          nav={navigation} styleTitle={styles.titre} styleHeader={styles.header}
+          nav={navigation} 
+          styleTitle={styles.titre} 
+          styleHeader={styles.header}
         />
       <View style={styles.body}>
         <Button 
@@ -37,26 +40,14 @@ function Home(props: { navigation: any; }) {
         onPress={() => Alert.alert('On Joue avec les potos')}
         />
       </View>
-      <View style={styles.footer}>
-        <Pressable onPress={() => navigation.navigate('ChatTab')}>
-          <Image
+      <BotBar 
+          messages={message}
+          games={gamepad}
+          shop={store}
           style={styles.iconFooter}
-          source={message}
-          />
-        </Pressable>
-        <Pressable >
-          <Image
-          style={styles.iconFooter}
-          source={gamepad}
-          />
-        </Pressable>
-        <Pressable onPress={() => navigation.navigate('StoreTab')}>
-          <Image
-          style={styles.iconStore}
-          source={store}
-          />
-        </Pressable>
-      </View>
+          nav={navigation}
+          styleBar={styles.footer}
+      />
     </View>
   );
 }

@@ -5,6 +5,7 @@ import { SkinComponent } from '../components/skinAvatar';
 import { User } from '../core/user';
 import { Skin } from '../core/skin';
 import { TopBar } from '../components/TopBar';
+import { BotBar } from '../components/BotBar';
 
 
 const avatar = require('../../assets/Icons/BobClassic.png');
@@ -13,7 +14,6 @@ const engrenage = require('../../assets/Icons/UnSelected/Cogs.png');
 const gamepad = require('../../assets/Icons/UnSelected/Gamepad.png');
 const message = require('../../assets/Icons/UnSelected/Chat.png');
 const store = require('../../assets/Icons/Selected/SStore.png');
-
 
 function Store(props: { navigation: any; }) {
     const { navigation } = props
@@ -30,26 +30,17 @@ function Store(props: { navigation: any; }) {
       <View style={styles.body}>
         <Text style={styles.text}>couille</Text>
       </View>
-      <View style={styles.footer}>
-        <Pressable onPress={() => navigation.navigate('ChatTab')}>
-          <Image
-          style={styles.iconFooter}
-          source={message}
-          />
-        </Pressable>
-        <Pressable onPress={() => navigation.navigate('HomeTab')}>
-          <Image
-          style={styles.iconFooter}
-          source={gamepad}
-          />
-        </Pressable>
-        <Pressable >
-          <Image
-          style={styles.iconStore}
-          source={store}
-          />
-        </Pressable>
+      <View style={styles.body}>
+        <Text style={styles.text}>couille</Text>
       </View>
+      <BotBar 
+          messages={message}
+          games={gamepad}
+          shop={store}
+          style={styles.iconFooter}
+          nav={navigation}
+          styleBar={styles.footer}
+      />
     </View>
   );
 }

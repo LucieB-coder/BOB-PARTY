@@ -5,8 +5,7 @@ import { SkinComponent } from '../components/skinAvatar';
 import { User } from '../core/user';
 import { Skin } from '../core/skin';
 import { TopBar } from '../components/TopBar';
-
-
+import { BotBar } from '../components/BotBar';
 
 const avatar = require('../../assets/Icons/BobClassic.png');
 const skinTest= new Skin("Bob",require('../../assets/Icons/BobClassic.png'));
@@ -26,7 +25,7 @@ function Profile(props: { navigation: any; }) {
           rightIcon={engrenage} 
           styleIcon={styles.engrenage} 
           nav={navigation} styleTitle={styles.titre} styleHeader={styles.header}
-        />
+          />
       <View style={styles.body}>
         <Text style={styles.text}>couille</Text>
       </View>
