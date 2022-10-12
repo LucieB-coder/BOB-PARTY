@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar'
 import { useState } from 'react';
 import { StyleSheet, View, Text, Alert, Pressable, Image, ImageBackground} from 'react-native'
+import React from 'react';
 import { FlatList } from 'react-native-gesture-handler';
 
 const BobClassic = require('../../assets/BobsSkins/BobClassic.png');
@@ -10,7 +11,7 @@ const BobGreen = require('../../assets/BobsSkins/BobGreen.png');
 
 
 
-function Test(props: { navigation: any; }) {
+function Test(props) {
     const { navigation } = props
 
     const [skin, setSkin] = useState([
@@ -61,8 +62,8 @@ const styles = StyleSheet.create({
         height: "100%",
     },
     container: {
-        flex: 1,
         backgroundColor: '#45444E',
+        flex: 1,
         paddingTop: "50%",
         paddingBottom: "50%",
         alignItems: 'center',

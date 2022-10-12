@@ -4,11 +4,11 @@ import React from 'react';
 
 const avatar = require('../../assets/Icons/BobClassic.png');
 const engrenage = require('../../assets/Icons/UnSelected/Engrenage.png');
-const gamepad = require('../../assets/Icons/Selected/SGamepad.png');
-const message = require('../../assets/Icons/UnSelected/Chat.png');
+const gamepad = require('../../assets/Icons/UnSelected/Gamepad.png');
+const message = require('../../assets/Icons/Selected/SChat.png');
 const store = require('../../assets/Icons/UnSelected/Store.png');
 
-function Home(props: { navigation: any; }) {
+function Store(props) {
     const { navigation } = props
     return (
     <View style={styles.container}>
@@ -28,23 +28,16 @@ function Home(props: { navigation: any; }) {
         </Pressable>
       </View>
       <View style={styles.body}>
-        <Button 
-        title='Jouer Seul'
-        onPress={() => Alert.alert('On Joue seul')}
-        />
-        <Button 
-        title='Défier mes amis'
-        onPress={() => Alert.alert('On Joue avec les potos')}
-        />
+        <Text style={styles.text}>couille</Text>
       </View>
       <View style={styles.footer}>
-        <Pressable onPress={() => navigation.navigate('Chat')}>
+        <Pressable>
           <Image
           style={styles.iconFooter}
           source={message}
           />
         </Pressable>
-        <Pressable >
+        <Pressable onPress={() => navigation.navigate('Home')}>
           <Image
           style={styles.iconFooter}
           source={gamepad}
@@ -73,9 +66,16 @@ function Button(props) {
 
 
 const styles = StyleSheet.create({
-  container: {
+    body: {
+        flex: 1,
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        width: '70%',
+    },
+    
+    container: {
     flex: 1,
-    backgroundColor: '#45444E',
+    backgroundColor: "#45444E",
     flexDirection: "column",
     justifyContent: "flex-start",
     alignItems: "center",
@@ -118,21 +118,16 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   engrenage: {
-    borderRadius: 50,
+    borderRadius: 10,
     width: 50,
     height: 50,
   },
   avatar: {
-    borderRadius: 50,
+    borderRadius: 10,
     width: 50,
     height: 50,
   },
-  body: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '70%',
-  },
+  
   footer: {
     flex: 0.15,
     flexDirection: 'row',
@@ -158,4 +153,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default Home
+export default Store

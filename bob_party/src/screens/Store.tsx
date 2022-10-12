@@ -1,27 +1,28 @@
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, View, Text, Alert, Pressable, Image} from 'react-native'
+import React from 'react';
 
 const avatar = require('../../assets/Icons/BobClassic.png');
-const engrenage = require('../../assets/Icons/Engrenage.png');
-const gamepad = require('../../assets/Icons/Gamepad.png');
-const message = require('../../assets/Icons/Messages.png');
-const store = require('../../assets/Icons/Store.png');
+const engrenage = require('../../assets/Icons/UnSelected/Engrenage.png');
+const gamepad = require('../../assets/Icons/UnSelected/Gamepad.png');
+const message = require('../../assets/Icons/UnSelected/Chat.png');
+const store = require('../../assets/Icons/Selected/SStore.png');
 
-function Store(props: { navigation: any; }) {
+function Store(props) {
     const { navigation } = props
     return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Pressable onPress={() => Alert.alert('Profil Joueur')}>
           <Image
-          //style={styles.avatar}
+          style={styles.avatar}
           source={avatar}
           />
         </Pressable>
         <Text style={styles.titre}>BOB PARTY</Text>
-        <Pressable onPress={() => Alert.alert('Paramètres')}>
+        <Pressable onPress={() => navigation.navigate('Settings')}>
           <Image
-          //style={styles.engrenage}
+          style={styles.engrenage}
           source={engrenage}
           />
         </Pressable>
@@ -30,21 +31,21 @@ function Store(props: { navigation: any; }) {
         <Text style={styles.text}>couille</Text>
       </View>
       <View style={styles.footer}>
-        <Pressable onPress={() => Alert.alert('Messagerie')}>
+        <Pressable onPress={() => navigation.navigate('Chat')}>
           <Image
-          //style={styles.iconFooter}
+          style={styles.iconFooter}
           source={message}
           />
         </Pressable>
         <Pressable onPress={() => navigation.navigate('Home')}>
           <Image
-          //style={styles.iconFooter}
+          style={styles.iconFooter}
           source={gamepad}
           />
         </Pressable>
-        <Pressable onPress={() => Alert.alert('le magasin')}>
+        <Pressable >
           <Image
-          //style={styles.iconStore}
+          style={styles.iconStore}
           source={store}
           />
         </Pressable>
@@ -54,7 +55,7 @@ function Store(props: { navigation: any; }) {
 }
 
 
-function Button(props: { onPress: any; title?: "Save" | undefined; }) {
+function Button(props) {
   const { onPress, title = 'Save' } = props;
   return (
     <Pressable style={styles.button} onPress={onPress}>
@@ -117,7 +118,7 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   engrenage: {
-    borderRadius: 10,
+    borderRadius: 50,
     width: 50,
     height: 50,
   },

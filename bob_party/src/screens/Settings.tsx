@@ -2,25 +2,20 @@ import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, View, Text, Alert, Pressable, Image} from 'react-native'
 import React from 'react';
 
-const avatar = require('../../assets/Icons/BobClassic.png');
-const engrenage = require('../../assets/Icons/UnSelected/Engrenage.png');
-const gamepad = require('../../assets/Icons/Selected/SGamepad.png');
-const message = require('../../assets/Icons/UnSelected/Chat.png');
-const store = require('../../assets/Icons/UnSelected/Store.png');
+const msc = require('../../assets/Icons/FondGris.png');
+const engrenage = require('../../assets/Icons/Cross.png');
 
-function Home(props: { navigation: any; }) {
+function Store(props) {
     const { navigation } = props
     return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Pressable onPress={() => Alert.alert('Profil Joueur')}>
-          <Image
-          style={styles.avatar}
-          source={avatar}
-          />
-        </Pressable>
-        <Text style={styles.titre}>BOB PARTY</Text>
-        <Pressable onPress={() => navigation.navigate('Settings')}>
+        <Image
+          style={styles.engrenage}
+          source={msc}
+        />
+        <Text style={styles.titre}>Paramètres</Text>
+        <Pressable onPress={() => props.navigation.goBack()}>
           <Image
           style={styles.engrenage}
           source={engrenage}
@@ -28,34 +23,7 @@ function Home(props: { navigation: any; }) {
         </Pressable>
       </View>
       <View style={styles.body}>
-        <Button 
-        title='Jouer Seul'
-        onPress={() => Alert.alert('On Joue seul')}
-        />
-        <Button 
-        title='Défier mes amis'
-        onPress={() => Alert.alert('On Joue avec les potos')}
-        />
-      </View>
-      <View style={styles.footer}>
-        <Pressable onPress={() => navigation.navigate('Chat')}>
-          <Image
-          style={styles.iconFooter}
-          source={message}
-          />
-        </Pressable>
-        <Pressable >
-          <Image
-          style={styles.iconFooter}
-          source={gamepad}
-          />
-        </Pressable>
-        <Pressable onPress={() => navigation.navigate('Store')}>
-          <Image
-          style={styles.iconStore}
-          source={store}
-          />
-        </Pressable>
+        <Text style={styles.text}>couille</Text>
       </View>
     </View>
   );
@@ -73,9 +41,16 @@ function Button(props) {
 
 
 const styles = StyleSheet.create({
-  container: {
+    body: {
+        flex: 1,
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        width: '70%',
+    },
+    
+    container: {
     flex: 1,
-    backgroundColor: '#45444E',
+    backgroundColor: "#45444E",
     flexDirection: "column",
     justifyContent: "flex-start",
     alignItems: "center",
@@ -118,21 +93,16 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   engrenage: {
-    borderRadius: 50,
+    borderRadius: 10,
     width: 50,
     height: 50,
   },
   avatar: {
-    borderRadius: 50,
+    borderRadius: 10,
     width: 50,
     height: 50,
   },
-  body: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '70%',
-  },
+  
   footer: {
     flex: 0.15,
     flexDirection: 'row',
@@ -142,13 +112,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
   },
   iconFooter: {
-    marginBot: 25,
+    marginBottom: 25,
     marginTop: 10,
     width: 65,
     height: 50,
   },
   iconStore: {
-    marginBot: 25,
+    marginBottom: 25,
     marginTop: 10,
     marginLeft: 7,
     marginRight: 8,
@@ -158,4 +128,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default Home
+export default Store
