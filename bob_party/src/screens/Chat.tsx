@@ -8,7 +8,7 @@ const gamepad = require('../../assets/Icons/UnSelected/Gamepad.png');
 const message = require('../../assets/Icons/Selected/SChat.png');
 const store = require('../../assets/Icons/UnSelected/Store.png');
 
-function Store(props) {
+function Store(props: { navigation: any; }) {
     const { navigation } = props
     return (
     <View style={styles.container}>
@@ -55,7 +55,7 @@ function Store(props) {
 }
 
 
-function Button(props) {
+function Button(props: { onPress: any; title?: "Save" | undefined; }) {
   const { onPress, title = 'Save' } = props;
   return (
     <Pressable style={styles.button} onPress={onPress}>

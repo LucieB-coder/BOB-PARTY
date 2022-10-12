@@ -11,7 +11,7 @@ const BobGreen = require('../../assets/BobsSkins/BobGreen.png');
 
 
 
-function Test(props) {
+function Test(props: { navigation: any; }) {
     const { navigation } = props
 
     const [skin, setSkin] = useState([

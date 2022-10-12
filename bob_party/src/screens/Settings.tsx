@@ -5,7 +5,7 @@ import React from 'react';
 const msc = require('../../assets/Icons/FondGris.png');
 const engrenage = require('../../assets/Icons/Cross.png');
 
-function Store(props) {
+function Store(props: { navigation: any; }) {
     const { navigation } = props
     return (
     <View style={styles.container}>
@@ -30,7 +30,7 @@ function Store(props) {
 }
 
 
-function Button(props) {
+function Button(props: { onPress: any; title?: any | undefined; }) {
   const { onPress, title = 'Save' } = props;
   return (
     <Pressable style={styles.button} onPress={onPress}>

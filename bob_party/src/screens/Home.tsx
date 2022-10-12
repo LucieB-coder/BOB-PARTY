@@ -62,7 +62,7 @@ function Home(props: { navigation: any; }) {
 }
 
 
-function Button(props) {
+function Button(props: { onPress: any; title?: any | undefined; }) {
   const { onPress, title = 'Save' } = props;
   return (
     <Pressable style={styles.button} onPress={onPress}>
