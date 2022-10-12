@@ -7,6 +7,7 @@ import Home from '../screens/Home'
 import Store from '../screens/Store'
 import Chat from '../screens/Chat'
 import Settings from '../screens/Settings'
+import Profile from '../screens/Profile'
 
 
 import Test from '../screens/Test'
@@ -45,6 +46,17 @@ function ChatStackScreen() {
   );
 }
 
+const ProfileStack = createStackNavigator();
+
+function ProfileStackScreen() {
+  return (
+    <ProfileStack.Navigator screenOptions={{headerShown: false}}>
+      <ProfileStack.Screen name="Profile" component={Profile} />
+      <ProfileStack.Screen name="Settings" component={Settings} />
+    </ProfileStack.Navigator>
+  );
+}
+
 const Tab = createBottomTabNavigator()
 
 function MainTabNavigator() {
@@ -58,6 +70,7 @@ function MainTabNavigator() {
         <Tab.Screen name='Home' component={HomeStackScreen} />
         <Tab.Screen name='Store' component={StoreStackScreen} />
         <Tab.Screen name='Chat' component={ChatStackScreen} />
+        <Tab.Screen name='Profile' component={Profile} />
         <Tab.Screen name='Test' component={Test} />
       </Tab.Navigator>
     </NavigationContainer>

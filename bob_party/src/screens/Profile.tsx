@@ -6,14 +6,14 @@ const avatar = require('../../assets/Icons/BobClassic.png');
 const engrenage = require('../../assets/Icons/UnSelected/Cogs.png');
 const gamepad = require('../../assets/Icons/UnSelected/Gamepad.png');
 const message = require('../../assets/Icons/UnSelected/Chat.png');
-const store = require('../../assets/Icons/Selected/SStore.png');
+const store = require('../../assets/Icons/UnSelected/Store.png');
 
 function Store(props: { navigation: any; }) {
     const { navigation } = props
     return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Pressable onPress={() => navigation.navigate('Profile')}>
+        <Pressable>
           <Image
           style={styles.avatar}
           source={avatar}
@@ -43,7 +43,7 @@ function Store(props: { navigation: any; }) {
           source={gamepad}
           />
         </Pressable>
-        <Pressable >
+        <Pressable onPress={() => navigation.navigate('Store')}>
           <Image
           style={styles.iconStore}
           source={store}
