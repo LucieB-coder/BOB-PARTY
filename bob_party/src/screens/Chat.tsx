@@ -13,7 +13,7 @@ function Store(props: { navigation: any; }) {
     return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Pressable onPress={() => Alert.alert('Profil Joueur')}>
+        <Pressable onPress={() => navigation.navigate('Profile')}>
           <Image
           style={styles.avatar}
           source={avatar}
