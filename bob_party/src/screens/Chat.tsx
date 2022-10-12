@@ -13,7 +13,7 @@ function Store(props: { navigation: any; }) {
     return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Pressable onPress={() => navigation.navigate('Profile')}>
+        <Pressable onPress={() => navigation.navigate('ProfileTab')}>
           <Image
           style={styles.avatar}
           source={avatar}
@@ -37,13 +37,13 @@ function Store(props: { navigation: any; }) {
           source={message}
           />
         </Pressable>
-        <Pressable onPress={() => navigation.navigate('Home')}>
+        <Pressable onPress={() => navigation.navigate('HomeTab')}>
           <Image
           style={styles.iconFooter}
           source={gamepad}
           />
         </Pressable>
-        <Pressable onPress={() => navigation.navigate('Store')}>
+        <Pressable onPress={() => navigation.navigate('StoreTab')}>
           <Image
           style={styles.iconStore}
           source={store}

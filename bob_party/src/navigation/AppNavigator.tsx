@@ -67,10 +67,10 @@ function MainTabNavigator() {
         backBehavior='none'
         screenOptions={{headerShown: false, tabBarStyle: { display: 'none' },}}
         >
-        <Tab.Screen name='Home' component={HomeStackScreen} />
-        <Tab.Screen name='Store' component={StoreStackScreen} />
-        <Tab.Screen name='Chat' component={ChatStackScreen} />
-        <Tab.Screen name='Profile' component={Profile} />
+        <Tab.Screen name='HomeTab' component={HomeStackScreen} />
+        <Tab.Screen name='StoreTab' component={StoreStackScreen} />
+        <Tab.Screen name='ChatTab' component={ChatStackScreen} />
+        <Tab.Screen name='ProfileTab' component={ProfileStackScreen} />
         <Tab.Screen name='Test' component={Test} />
       </Tab.Navigator>
     </NavigationContainer>

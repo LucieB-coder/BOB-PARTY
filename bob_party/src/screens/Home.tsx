@@ -13,7 +13,7 @@ function Home(props: { navigation: any; }) {
     return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Pressable onPress={() => navigation.navigate('Profile')}>
+        <Pressable onPress={() => navigation.navigate('ProfileTab')}>
           <Image
           style={styles.avatar}
           source={avatar}
@@ -38,7 +38,7 @@ function Home(props: { navigation: any; }) {
         />
       </View>
       <View style={styles.footer}>
-        <Pressable onPress={() => navigation.navigate('Chat')}>
+        <Pressable onPress={() => navigation.navigate('ChatTab')}>
           <Image
           style={styles.iconFooter}
           source={message}
@@ -50,7 +50,7 @@ function Home(props: { navigation: any; }) {
           source={gamepad}
           />
         </Pressable>
-        <Pressable onPress={() => navigation.navigate('Store')}>
+        <Pressable onPress={() => navigation.navigate('StoreTab')}>
           <Image
           style={styles.iconStore}
           source={store}

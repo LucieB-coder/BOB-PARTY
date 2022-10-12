@@ -31,19 +31,19 @@ function Store(props: { navigation: any; }) {
         <Text style={styles.text}>couille</Text>
       </View>
       <View style={styles.footer}>
-        <Pressable onPress={() => navigation.navigate('Chat')}>
+        <Pressable onPress={() => navigation.navigate('ChatTab')}>
           <Image
           style={styles.iconFooter}
           source={message}
           />
         </Pressable>
-        <Pressable onPress={() => navigation.navigate('Home')}>
+        <Pressable onPress={() => navigation.navigate('HomeTab')}>
           <Image
           style={styles.iconFooter}
           source={gamepad}
           />
         </Pressable>
-        <Pressable onPress={() => navigation.navigate('Store')}>
+        <Pressable onPress={() => navigation.navigate('StoreTab')}>
           <Image
           style={styles.iconStore}
           source={store}
