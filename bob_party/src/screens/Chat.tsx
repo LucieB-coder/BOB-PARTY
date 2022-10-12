@@ -1,32 +1,28 @@
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, View, Text, Alert, Pressable, Image} from 'react-native'
 import React from 'react';
+import { Skin } from '../core/skin';
+import { TopBar } from '../components/TopBar';
 
 const avatar = require('../../assets/Icons/BobClassic.png');
+const skinTest= new Skin("Bob",require('../../assets/Icons/BobClassic.png'));
 const engrenage = require('../../assets/Icons/UnSelected/Cogs.png');
 const gamepad = require('../../assets/Icons/UnSelected/Gamepad.png');
 const message = require('../../assets/Icons/Selected/SChat.png');
 const store = require('../../assets/Icons/UnSelected/Store.png');
 
-function Store(props: { navigation: any; }) {
+function Chat(props: { navigation: any; }) {
     const { navigation } = props
     return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Pressable onPress={() => navigation.navigate('ProfileTab')}>
-          <Image
-          style={styles.avatar}
-          source={avatar}
-          />
-        </Pressable>
-        <Text style={styles.titre}>BOB PARTY</Text>
-        <Pressable onPress={() => navigation.navigate('Settings')}>
-          <Image
-          style={styles.engrenage}
-          source={engrenage}
-          />
-        </Pressable>
-      </View>
+      <TopBar
+          skin={skinTest} 
+          styleAvatar={styles.avatar} 
+          title="BOB PARTY" 
+          rightIcon={engrenage} 
+          styleIcon={styles.engrenage} 
+          nav={navigation} styleTitle={styles.titre} styleHeader={styles.header}
+        />
       <View style={styles.body}>
         <Text style={styles.text}>couille</Text>
       </View>
@@ -153,4 +149,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default Store
+export default Chat
