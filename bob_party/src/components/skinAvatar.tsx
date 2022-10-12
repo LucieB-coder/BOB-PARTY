@@ -5,7 +5,6 @@ import React from "react"
 
 export const SkinComponent : FC<{skin: Skin, children: ImageStyle}> = ({skin, children}) => {
 
-    console.log(skin.getSkinSource());
     return (
     <View>
         <Image source={ skin.getSkinSource()} style={children}/>
