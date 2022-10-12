@@ -1,6 +1,6 @@
 export class Skin{
     private Name: string;
-    private Source: string;
+    Source: string;
 
     constructor(name: string, source:string){
         this.Name=name;

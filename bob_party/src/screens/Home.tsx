@@ -1,10 +1,15 @@
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, View, Text, Alert, Pressable, Image} from 'react-native'
 import React from 'react';
+import { SkinComponent } from '../../components/skinAvatar';
+import { User } from '../../core/user';
+import { Skin } from '../../core/skin';
+
 
 const avatar = require('../../assets/Icons/BobClassic.png');
+const skinTest= new Skin("Bob", '../../assets/Icons/BobClassic.png');
 const engrenage = require('../../assets/Icons/UnSelected/Cogs.png');
-const gamepad = require('../../assets/Icons/Selected/SGamepad.png');
+const gamepad = require('../../assets/Icons/Selected/Gamepad.png');
 const message = require('../../assets/Icons/UnSelected/Chat.png');
 const store = require('../../assets/Icons/UnSelected/Store.png');
 
@@ -14,10 +19,7 @@ function Home(props: { navigation: any; }) {
     <View style={styles.container}>
       <View style={styles.header}>
         <Pressable onPress={() => navigation.navigate('Profile')}>
-          <Image
-          style={styles.avatar}
-          source={avatar}
-          />
+          <SkinComponent skin={skinTest} children={styles.avatar} childrenTest={<Text>Bite</Text>} />
         </Pressable>
         <Text style={styles.titre}>BOB PARTY</Text>
         <Pressable onPress={() => navigation.navigate('Settings')}>
