@@ -8,7 +8,6 @@ import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
 
 
-const avatar = require('../../assets/Icons/BobClassic.png');
 const skinTest= new Skin("Bob",require('../../assets/Icons/BobClassic.png'));
 const engrenage = require('../../assets/Icons/UnSelected/Cogs.png');
 const gamepad = require('../../assets/Icons/UnSelected/Gamepad.png');
@@ -19,25 +18,16 @@ function Store(props: { navigation: any; }) {
     const { navigation } = props
     return (
     <View style={styles.container}>
-        <TopBar
-          skin={skinTest} 
-          styleAvatar={styles.avatar} 
-          title="BOB PARTY" 
-          rightIcon={engrenage} 
-          styleIcon={styles.engrenage} 
-          nav={navigation} styleTitle={styles.titre} styleHeader={styles.header}
-        />
+      <TopBar
+        skin={skinTest}
+        nav={navigation}
+      />
       <View style={styles.body}>
         <Text style={styles.text}>couille</Text>
       </View>
       <BotBar 
-          messages={message}
-          games={gamepad}
-          shop={store}
-          style={styles.iconFooter}
-          styleStore={styles.iconStore}
           nav={navigation}
-          styleBar={styles.footer}
+          state='Store'
       />
     </View>
   );

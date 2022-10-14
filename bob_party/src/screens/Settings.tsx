@@ -1,27 +1,17 @@
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, View, Text, Alert, Pressable, Image} from 'react-native'
 import React from 'react';
+import { TopBar } from '../components/TopBar';
 
-const msc = require('../../assets/Icons/FondGris.png');
-const engrenage = require('../../assets/Icons/UnSelected/Cross.png');
 
 function Store(props: { navigation: any; }) {
     const { navigation } = props
     return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Image
-          style={styles.engrenage}
-          source={msc}
+      <TopBar
+          nav={navigation}
+          state='settings'
         />
-        <Text style={styles.titre}>Paramètres</Text>
-        <Pressable onPress={() => props.navigation.goBack()}>
-          <Image
-          style={styles.engrenage}
-          source={engrenage}
-          />
-        </Pressable>
-      </View>
       <View style={styles.body}>
         <Text style={styles.text}>couille</Text>
       </View>

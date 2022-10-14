@@ -10,7 +10,6 @@ import { Conversation } from '../core/conversation';
 
 
 
-const avatar = require('../../assets/Icons/BobClassic.png');
 let tabSkin:Skin[];
 const skinTest= new Skin("Bob",require('../../assets/Icons/BobClassic.png'));
 const skinTest2= new Skin("wesh",require('../../assets/BobsSkins/BobBlue.png'));
@@ -18,26 +17,15 @@ tabSkin=[skinTest];
 tabSkin.push(skinTest2);
 let tabConv:Conversation[]=[];
 const UserActu=new User("14", "leBg", "ouioui", "grand", "la", 12222, 123324, skinTest, tabSkin, tabConv);
-const engrenage = require('../../assets/Icons/UnSelected/Cogs.png');
-const gamepad = require('../../assets/Icons/Selected/SGamepad.png');
-const message = require('../../assets/Icons/UnSelected/Chat.png');
-const store = require('../../assets/Icons/UnSelected/Store.png');
-
 
 function Home(props: { navigation: any; }) {
     const { navigation } = props
     return (
     <View style={styles.container}>
-        <TopBar
-          skin={skinTest} 
-          styleAvatar={styles.avatar} 
-          title="BOB PARTY" 
-          rightIcon={engrenage} 
-          styleIcon={styles.engrenage} 
-          nav={navigation} 
-          styleTitle={styles.titre} 
-          styleHeader={styles.header}
-        />
+      <TopBar
+        skin={skinTest} 
+        nav={navigation}
+      />
       <View style={styles.body}>
         <Button 
         title='Jouer Seul'
@@ -49,13 +37,8 @@ function Home(props: { navigation: any; }) {
         />
       </View>
       <BotBar 
-          messages={message}
-          games={gamepad}
-          shop={store}
-          style={styles.iconFooter}
-          styleStore={styles.iconStore}
-          nav={navigation}
-          styleBar={styles.footer}
+        nav={navigation}
+        state='Home'
       />
     </View>
   );
@@ -99,14 +82,6 @@ const styles = StyleSheet.create({
     letterSpacing: 0.25,
     color: 'white',
   },
-  header: {
-    flex : 0.15,
-    width: '100%',
-    flexDirection: 'row',
-    backgroundColor: '#2D2C33',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-  },
   titre: {
     flex: 0.7,
     flexDirection: 'column',
@@ -140,20 +115,6 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     width: '100%',
     justifyContent: 'space-evenly',
-  },
-  iconFooter: {
-    marginBot: 25,
-    marginTop: 10,
-    width: 65,
-    height: 50,
-  },
-  iconStore: {
-    marginBot: 25,
-    marginTop: 10,
-    marginLeft: 7,
-    marginRight: 8,
-    width: 50,
-    height: 50,
   },
 
 });

@@ -19,8 +19,6 @@ FC<{nav: any, state?: String }> =
 {
     var imgLeft=message, imgMid=gamepad, imgRight=store
    
-    console.log(state)
-    
     switch (state) {
         case 'Home':
                 imgMid = sgamepad
