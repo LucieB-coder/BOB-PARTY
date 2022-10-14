@@ -1,13 +1,6 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-    text: {
-        fontSize: 16,
-        lineHeight: 21,
-        fontWeight: 'bold',
-        letterSpacing: 0.25,
-        color: 'white',
-    },
     footer: {
         flex: 0.15,
         flexDirection: 'row',

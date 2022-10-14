@@ -4,32 +4,55 @@ import React from "react"
 import styles from './style/BotBar.style';
 
 
-const gamepad = require('../../assets/Icons/Selected/SGamepad.png');
+const gamepad = require('../../assets/Icons/UnSelected/Gamepad.png');
 const message = require('../../assets/Icons/UnSelected/Chat.png');
 const store = require('../../assets/Icons/UnSelected/Store.png');
 
+const sgamepad = require('../../assets/Icons/Selected/SGamepad.png');
+const smessage = require('../../assets/Icons/Selected/SChat.png');
+const sstore = require('../../assets/Icons/Selected/SStore.png');
+
+
 export const BotBar : 
-FC<{messages:ImageSourcePropType, games: ImageSourcePropType, shop: ImageSourcePropType,  nav: any}> = 
-({nav}) => 
+FC<{nav: any, state?: String }> = 
+({nav, state}) => 
 {
+    var imgLeft=message, imgMid=gamepad, imgRight=store
+   
+    console.log(state)
+    
+    switch (state) {
+        case 'Home':
+                imgMid = sgamepad
+            break;
+        case 'Chat':
+            imgLeft = smessage
+            break;
+        case 'Store':
+            imgRight = sstore
+            break;
+        default:
+            break;
+    }
+
     return (
     <View style={styles.footer}>
             <Pressable onPress={() => nav.navigate('ChatTab')}>
                 <Image
                     style={styles.icon}
-                    source={message}
+                    source={imgLeft}
                 />
             </Pressable>
             <Pressable onPress={()=> nav.navigate('HomeTab')}>
                 <Image
                     style={styles.icon}
-                    source={gamepad}
+                    source={imgMid}
                 />
             </Pressable>
             <Pressable onPress={() => nav.navigate('StoreTab')}>
                 <Image
                     style={styles.icon}
-                    source={store}
+                    source={imgRight}
                 />
             </Pressable>
     </View>
