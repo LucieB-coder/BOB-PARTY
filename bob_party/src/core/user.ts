@@ -1,4 +1,5 @@
 import { Skin } from './Skin'
+import { Conversation } from './conversation';
 
 export class User{
     private Id: string;
@@ -10,9 +11,10 @@ export class User{
     private TotalCoins: number;
     private CurrentSkin: Skin;
     private TabSkin: Skin[];
+    private TabConv: Conversation[];
 
     constructor(id: string, username: string, nationality: string, sexe: string, dateOfBirth: string, currentCoins: number, totalCoins: number,
-                currentSkin: Skin, tabSkin: Skin[] ){
+                currentSkin: Skin, tabSkin: Skin[], tabConv: Conversation[] ){
                     this.Id=id;
                     this.Username=username;
                     this.Nationality=nationality;
@@ -22,6 +24,7 @@ export class User{
                     this.TotalCoins=totalCoins;
                     this.CurrentSkin=currentSkin;
                     this.TabSkin=[...tabSkin];
+                    this.TabConv=[...tabConv]
                 }
 
     getUsername(){
@@ -94,5 +97,13 @@ export class User{
     
     setTabSkin(tabSkin: Skin[]){
         this.TabSkin=[...tabSkin];
+    }
+
+    getTabConv(){
+        return this.TabConv;
+    }
+    
+    setTabConv(tabConv: Conversation[]){
+        this.TabConv=[...tabConv];
     }
 }

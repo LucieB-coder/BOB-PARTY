@@ -2,7 +2,7 @@ import { Message } from "./message"
 import { User } from "./user";
 
 
-export class conversation{
+export class Conversation{
     private TabUser?: User[];
     private TabMessage?: Message[];
     
@@ -19,6 +19,13 @@ export class conversation{
         return this.TabUser;
     }
 
+    ajouterUser(us:User){
+        this.TabUser?.push(us);
+    }
+
+    ajouterMessage(mess:Message){
+        this.TabMessage?.push(mess);
+    }
 
 }
 
