@@ -1,16 +1,18 @@
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, View, Text, Alert, Pressable, Image} from 'react-native'
 import React from 'react';
+import { Game } from '../core/Game';
 import { Skin } from '../core/skin';
 import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
 import { ElementAffichage } from '../components/Element';
 import { GoBackBar } from '../components/GoBackBar';
 
+
 const msc = require('../../assets/Icons/FondGris.png');
 const avatar = require('../../assets/Icons/BobClassic.png');
 const skinTest= new Skin("Bob",require('../../assets/Icons/BobClassic.png'));
-const jeuTest= new Game("SNAKE", require('../../assets/Icons/UnSelected/Gamepad.png',"dublablapourlinstant"))
+const jeuTest= new Game("SNAKE", require('../../assets/Icons/UnSelected/Gamepad.png'),"ouin");
 const cross = require('../../assets/Icons/UnSelected/Cross.png');
 const gamepad = require('../../assets/Icons/Selected/SGamepad.png');
 const message = require('../../assets/Icons/UnSelected/Chat.png');
@@ -30,7 +32,7 @@ function GameChoice(props: { navigation: any; }) {
       />
       <View style={styles.body}>
         <ElementAffichage
-          element={skinTest}
+          element={jeuTest}
           styleImage={styles.imageSkin}
           styleTitle={styles.nomSkin}
           nav={navigation}

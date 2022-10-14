@@ -3,6 +3,7 @@ import { Pressable, Image, ImageStyle, Text, View, Alert, ImageSourcePropType, T
 import React from "react"
 import { Skin } from "../core/skin"
 import { trace } from "console"
+import { Game } from "../core/Game"
 
 export const ElementAffichage : 
 FC<{element: any, styleImage: ImageStyle, styleTitle : TextStyle,nav: any}> = 
@@ -31,6 +32,7 @@ FC<{element: any, styleImage: ImageStyle, styleTitle : TextStyle,nav: any}> =
                             style={styleImage}
                             source={element.getImageSource()}
                         />
+                        <Text style={styleTitle}>{element.getName()}</Text>
                     </Pressable>
                 </View> 
             )
