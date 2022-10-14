@@ -6,14 +6,14 @@ export class User{
     private Username: string;
     private Nationality: string;
     private Sexe: string;
-    private DateOfBirth: string;
+    private DateOfBirth: Date;
     private CurrentCoins: number;
     private TotalCoins: number;
     private CurrentSkin: Skin;
     private TabSkin: Skin[];
     private TabConv: Conversation[];
 
-    constructor(id: string, username: string, nationality: string, sexe: string, dateOfBirth: string, currentCoins: number, totalCoins: number,
+    constructor(id: string, username: string, nationality: string, sexe: string, dateOfBirth: Date, currentCoins: number, totalCoins: number,
                 currentSkin: Skin, tabSkin: Skin[], tabConv: Conversation[] ){
                     this.Id=id;
                     this.Username=username;
@@ -24,7 +24,7 @@ export class User{
                     this.TotalCoins=totalCoins;
                     this.CurrentSkin=currentSkin;
                     this.TabSkin=[...tabSkin];
-                    this.TabConv=[...tabConv]
+                    this.TabConv=[...tabConv];
                 }
 
     getUsername(){
@@ -63,7 +63,7 @@ export class User{
         return this.DateOfBirth;
     }
     
-    setDateOfBirth(dateOfBirth: string){
+    setDateOfBirth(dateOfBirth: Date){
         this.DateOfBirth=dateOfBirth;
     }
 

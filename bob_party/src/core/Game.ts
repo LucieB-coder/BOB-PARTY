@@ -1,4 +1,4 @@
-export class Game{
+export interface Game{
     private Name:String;
     private ImageSource:String;
     private GameSource:String;
