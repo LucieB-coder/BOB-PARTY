@@ -22,12 +22,8 @@ function GameChoice(props: { navigation: any; }) {
     const { navigation } = props
     return (
     <View style={styles.container}>
-      <GoBackBar
-        title="JOUONS !"
-        styleTitle={styles.titre}
-        styleHeader={styles.header}
-        styleIcon={styles.engrenage}
-        rightIcon={cross}
+      <TopBar
+        skin={skinTest}
         nav={navigation}
       />
       <View style={styles.body}>
@@ -39,13 +35,8 @@ function GameChoice(props: { navigation: any; }) {
         />
       </View>
       <BotBar 
-          messages={message}
-          games={gamepad}
-          shop={store}
-          style={styles.iconFooter}
-          styleStore={styles.iconStore}
           nav={navigation}
-          styleBar={styles.footer}
+          state='Game'
       />
     </View>
   );

@@ -21,7 +21,8 @@ FC<{nav: any, state?: String }> =
    
     switch (state) {
         case 'Home':
-                imgMid = sgamepad
+        case 'Game':
+            imgMid = sgamepad
             break;
         case 'Chat':
             imgLeft = smessage
@@ -41,7 +42,12 @@ FC<{nav: any, state?: String }> =
                     source={imgLeft}
                 />
             </Pressable>
-            <Pressable onPress={()=> nav.navigate('HomeTab')}>
+            <Pressable onPress={()=> {
+                if (state==='Game') {
+                    return ( nav.goBack())    
+                } 
+                return (nav.navigate('HomeTab'))
+            }}>
                 <Image
                     style={styles.icon}
                     source={imgMid}
