@@ -1,11 +1,14 @@
-export interface Game{
-    private Name:String;
-    private ImageSource:String;
-    private GameSource:String;
+import { randomBytes } from "crypto";
+import { ImageSourcePropType } from "react-native";
 
-    constructor(name:String, imageSource:String, gameSource:String){
+export class Game{
+    private Name:string;
+    private ImageSource:ImageSourcePropType;
+    private GameSource:string ;
+
+    constructor (name:string, imageSource:ImageSourcePropType, gameSource:string){
         this.Name=name;
-        this.ImageSource=imageSource
+        this.ImageSource=imageSource;
         this.GameSource=gameSource;
     }
 
@@ -13,15 +16,15 @@ export interface Game{
         return this.Name;
     }
 
-    setName(name:String){
+    setName(name:string){
         this.Name=name;
     }
 
-    getImageSource(imageSource:String){
+    getImageSource(){
         return this.ImageSource;
     }
 
-    setImageSource(imageSource:String){
+    setImageSource(imageSource:ImageSourcePropType){
         this.ImageSource=imageSource;
     }
 
@@ -29,7 +32,7 @@ export interface Game{
         return this.GameSource;
     }
 
-    setGameSource(gameSource:String){
+    setGameSource(gameSource:string){
         this.GameSource=gameSource;
     }
 }
