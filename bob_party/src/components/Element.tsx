@@ -22,22 +22,23 @@ FC<{element: any, styleImage: ImageStyle, styleTitle : TextStyle,nav: any}> =
                 </View>
             )
         }
-        return(
-            <View>
-                <Text>Type invalide pour ce composant</Text>
-            </View>
-        )
-        /*else if(element.type()==Game)
+        if(element instanceof Game)
         {
             return (
                 <View>
                     <Pressable onPress={() => Alert.alert("Lancement du jeu")}>
                         <Image
-                            style={style}
+                            style={styleImage}
                             source={element.getImageSource()}
                         />
                     </Pressable>
                 </View> 
             )
-        }*/
+        }
+        return(
+            <View>
+                <Text>Type invalide pour ce composant</Text>
+            </View>
+        )
+        
 }

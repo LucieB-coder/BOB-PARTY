@@ -5,10 +5,13 @@ import { Skin } from '../core/skin';
 import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
 import { ElementAffichage } from '../components/Element';
+import { GoBackBar } from '../components/GoBackBar';
 
+const msc = require('../../assets/Icons/FondGris.png');
 const avatar = require('../../assets/Icons/BobClassic.png');
 const skinTest= new Skin("Bob",require('../../assets/Icons/BobClassic.png'));
-const engrenage = require('../../assets/Icons/UnSelected/Cogs.png');
+const jeuTest= new Game("SNAKE", require('../../assets/Icons/UnSelected/Gamepad.png',"dublablapourlinstant"))
+const cross = require('../../assets/Icons/UnSelected/Cross.png');
 const gamepad = require('../../assets/Icons/Selected/SGamepad.png');
 const message = require('../../assets/Icons/UnSelected/Chat.png');
 const store = require('../../assets/Icons/UnSelected/Store.png');
@@ -17,14 +20,14 @@ function GameChoice(props: { navigation: any; }) {
     const { navigation } = props
     return (
     <View style={styles.container}>
-        <TopBar
-          skin={skinTest} 
-          styleAvatar={styles.avatar} 
-          title="JOUONS !" 
-          rightIcon={engrenage} 
-          styleIcon={styles.engrenage} 
-          nav={navigation} styleTitle={styles.titre} styleHeader={styles.header}
-        />
+      <GoBackBar
+        title="JOUONS !"
+        styleTitle={styles.titre}
+        styleHeader={styles.header}
+        styleIcon={styles.engrenage}
+        rightIcon={cross}
+        nav={navigation}
+      />
       <View style={styles.body}>
         <ElementAffichage
           element={skinTest}
