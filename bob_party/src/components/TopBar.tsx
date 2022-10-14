@@ -7,7 +7,9 @@ import MainTabNavigator from "../navigation/AppNavigator"
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs"
 
 
-export const TopBar : FC<{skin: Skin, styleAvatar: ImageStyle, title: String, rightIcon: ImageSourcePropType, styleIcon: ImageStyle,nav: any, styleTitle: TextStyle, styleHeader : any}> = ({skin, styleAvatar, title, rightIcon,styleIcon, nav, styleTitle, styleHeader}) => 
+export const TopBar : 
+FC<{skin: Skin, styleAvatar: ImageStyle, title: String, rightIcon: ImageSourcePropType, styleIcon: ImageStyle,nav: any, styleTitle: TextStyle, styleHeader : any}> = 
+({skin, styleAvatar, title, rightIcon, styleIcon, nav, styleTitle, styleHeader}) => 
 {
     return (
     <View style={styleHeader}>

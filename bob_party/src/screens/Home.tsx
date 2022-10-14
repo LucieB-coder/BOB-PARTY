@@ -39,11 +39,11 @@ function Home(props: { navigation: any; }) {
       <View style={styles.body}>
         <Button 
         title='Jouer Seul'
-        onPress={() => Alert.alert('On Joue seul')}
+        onPress={() => navigation.navigate('GameChoice')}
         />
         <Button 
         title='Défier mes amis'
-        onPress={() => Alert.alert('On Joue avec les potos')}
+        onPress={() => navigation.navigate('GameChoice')}
         />
       </View>
       <BotBar 

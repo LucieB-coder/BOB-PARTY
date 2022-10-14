@@ -19,7 +19,7 @@ function Chat(props: { navigation: any; }) {
       <TopBar
           skin={skinTest} 
           styleAvatar={styles.avatar} 
-          title="BOB PARTY" 
+          title="CHAT" 
           rightIcon={engrenage} 
           styleIcon={styles.engrenage} 
           nav={navigation} styleTitle={styles.titre} styleHeader={styles.header}

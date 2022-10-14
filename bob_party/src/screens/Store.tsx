@@ -6,6 +6,7 @@ import { User } from '../core/user';
 import { Skin } from '../core/skin';
 import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
+import { ElementAffichage } from '../components/Element';
 
 
 const avatar = require('../../assets/Icons/BobClassic.png');
@@ -22,13 +23,18 @@ function Store(props: { navigation: any; }) {
         <TopBar
           skin={skinTest} 
           styleAvatar={styles.avatar} 
-          title="BOB PARTY" 
+          title="BOUTIQUE" 
           rightIcon={engrenage} 
           styleIcon={styles.engrenage} 
           nav={navigation} styleTitle={styles.titre} styleHeader={styles.header}
         />
       <View style={styles.body}>
-        <Text style={styles.text}>couille</Text>
+        <ElementAffichage
+          element={skinTest}
+          styleImage={styles.imageSkin}
+          styleTitle={styles.nomSkin}
+          nav={navigation}
+        />
       </View>
       <BotBar 
           messages={message}
@@ -138,6 +144,21 @@ const styles = StyleSheet.create({
     marginRight: 8,
     width: 50,
     height: 50,
+  },
+  imageSkin : {
+    borderRadius: 15,
+    marginTop: 15,
+    marginRight: 15,
+    width: 100,
+    height: 100,
+  },
+  nomSkin :{
+    textAlign: 'center',
+    fontSize: 15,
+    fontFamily: 'Helvetica',
+    fontWeight: 'bold',
+    letterSpacing: 0.25,
+    color: 'white',
   },
 
 });

@@ -1,33 +1,37 @@
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, View, Text, Alert, Pressable, Image} from 'react-native'
-import React, { Children } from 'react';
-import { SkinComponent } from '../components/skinAvatar';
-import { User } from '../core/user';
+import React from 'react';
 import { Skin } from '../core/skin';
 import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
+import { ElementAffichage } from '../components/Element';
 
 const avatar = require('../../assets/Icons/BobClassic.png');
 const skinTest= new Skin("Bob",require('../../assets/Icons/BobClassic.png'));
 const engrenage = require('../../assets/Icons/UnSelected/Cogs.png');
-const gamepad = require('../../assets/Icons/UnSelected/Gamepad.png');
+const gamepad = require('../../assets/Icons/Selected/SGamepad.png');
 const message = require('../../assets/Icons/UnSelected/Chat.png');
 const store = require('../../assets/Icons/UnSelected/Store.png');
 
-function Profile(props: { navigation: any; }) {
+function GameChoice(props: { navigation: any; }) {
     const { navigation } = props
     return (
     <View style={styles.container}>
         <TopBar
           skin={skinTest} 
           styleAvatar={styles.avatar} 
-          title="NomUser(à changer)" 
+          title="JOUONS !" 
           rightIcon={engrenage} 
           styleIcon={styles.engrenage} 
           nav={navigation} styleTitle={styles.titre} styleHeader={styles.header}
-          />
+        />
       <View style={styles.body}>
-        <Text style={styles.text}>couille</Text>
+        <ElementAffichage
+          element={skinTest}
+          styleImage={styles.imageSkin}
+          styleTitle={styles.nomSkin}
+          nav={navigation}
+        />
       </View>
       <BotBar 
           messages={message}
@@ -138,7 +142,22 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
   },
+  imageSkin : {
+    borderRadius: 15,
+    marginTop: 15,
+    marginRight: 15,
+    width: 100,
+    height: 100,
+  },
+  nomSkin :{
+    textAlign: 'center',
+    fontSize: 15,
+    fontFamily: 'Helvetica',
+    fontWeight: 'bold',
+    letterSpacing: 0.25,
+    color: 'white',
+  },
 
 });
 
-export default Profile
+export default GameChoice
