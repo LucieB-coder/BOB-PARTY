@@ -1,23 +1,41 @@
 import { FC, ReactNode } from "react"
-import { Pressable, Image, ImageStyle, Text, View, Alert, ImageSourcePropType, TextStyle } from "react-native"
+import { Pressable, Image, ImageStyle, Text, View, Alert, ImageSourcePropType, TextStyle, Settings } from "react-native"
 import { Skin } from "../core/Skin"
 import React from "react"
 import { SkinComponent } from "./skinAvatar"
-import MainTabNavigator from "../navigation/AppNavigator"
-import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs"
+import styles from './style/TopBar.style';
 
 
-export const TopBar : FC<{skin: Skin, styleAvatar: ImageStyle, title: String, rightIcon: ImageSourcePropType, styleIcon: ImageStyle,nav: any, styleTitle: TextStyle, styleHeader : any}> = ({skin, styleAvatar, title, rightIcon,styleIcon, nav, styleTitle, styleHeader}) => 
+const engrenage = require('../../assets/Icons/UnSelected/Cogs.png');
+const cross = require('../../assets/Icons/UnSelected/Cross.png');
+const msc = require('../../assets/Icons/FondGris.png');
+
+export const TopBar : FC<{skin?: Skin, nav: any, state?: string}> = ({skin, nav, state}) => 
 {
-    return (
-    <View style={styleHeader}>
-        <Pressable onPress={() => nav.navigate('ProfileTab')}>
-                <SkinComponent skin={skin} children={styleAvatar} />
-            </Pressable>
-            <Text style={styleTitle}>{title}</Text>
-            <Pressable onPress={() => nav.navigate('Settings')}>
-                <Image source={rightIcon} style={styleIcon}/>
-            </Pressable>
-    </View>
-    )
+    switch (state) {
+        case 'settings':
+            return (
+                <View style={styles.header}>
+                    <Pressable>
+                        <Image source={msc} style={styles.icon}/>
+                    </Pressable>
+                    <Text style={styles.titre}>BOB PARTY</Text>
+                    <Pressable onPress={() => nav.goBack()}>
+                        <Image source={cross} style={styles.icon}/>
+                    </Pressable>
+                </View>
+            )
+        default:
+            return (
+                <View style={styles.header}>
+                    <Pressable onPress={() => nav.navigate('ProfileTab')}>
+                            <SkinComponent skin={skin} children={styles.avatar} />
+                        </Pressable>
+                        <Text style={styles.titre}>BOB PARTY</Text>
+                        <Pressable onPress={() => nav.navigate('Settings')}>
+                            <Image source={engrenage} style={styles.icon}/>
+                        </Pressable>
+                </View>
+            )
+    }
 }
