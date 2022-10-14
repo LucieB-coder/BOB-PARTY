@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, View, Text, Alert, Pressable, Image} from 'react-native'
+import { StyleSheet, View, Text, Alert, Pressable, Image, ImageSourcePropType} from 'react-native'
 import React, { Children } from 'react';
 import { SkinComponent } from '../components/skinAvatar';
 import { User } from '../core/user';
@@ -11,6 +11,11 @@ import { Conversation } from '../core/conversation';
 
 
 const avatar = require('../../assets/Icons/BobClassic.png');
+
+let test:ImageSourcePropType;
+const test2:string="('../../assets/Icons/BobClassic.png')";
+
+test = test2 as ImageSourcePropType;
 let tabSkin:Skin[];
 const skinTest= new Skin("Bob",require('../../assets/Icons/BobClassic.png'));
 const skinTest2= new Skin("wesh",require('../../assets/BobsSkins/BobBlue.png'));
