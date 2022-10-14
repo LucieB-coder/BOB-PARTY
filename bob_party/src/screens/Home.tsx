@@ -6,6 +6,7 @@ import { User } from '../core/user';
 import { Skin } from '../core/skin';
 import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
+import { Conversation } from '../core/conversation';
 
 
 
@@ -15,7 +16,8 @@ const skinTest= new Skin("Bob",require('../../assets/Icons/BobClassic.png'));
 const skinTest2= new Skin("wesh",require('../../assets/BobsSkins/BobBlue.png'));
 tabSkin=[skinTest];
 tabSkin.push(skinTest2);
-const UserActu=new User("14", "leBg", "ouioui", "grand", "la", 12222, 123324, skinTest, tabSkin);
+let tabConv:Conversation[]=[];
+const UserActu=new User("14", "leBg", "ouioui", "grand", "la", 12222, 123324, skinTest, tabSkin, tabConv);
 const engrenage = require('../../assets/Icons/UnSelected/Cogs.png');
 const gamepad = require('../../assets/Icons/Selected/SGamepad.png');
 const message = require('../../assets/Icons/UnSelected/Chat.png');
