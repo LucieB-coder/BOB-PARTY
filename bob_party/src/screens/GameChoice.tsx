@@ -1,39 +1,51 @@
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, View, Text, Alert, Pressable, Image} from 'react-native'
-import React, { Children } from 'react';
-import { SkinComponent } from '../components/skinAvatar';
-import { User } from '../core/user';
+import React from 'react';
+import { Game } from '../core/Game';
 import { Skin } from '../core/skin';
 import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
 import { ElementAffichage } from '../components/Element';
+import { GoBackBar } from '../components/GoBackBar';
 
 
+const msc = require('../../assets/Icons/FondGris.png');
+const avatar = require('../../assets/Icons/BobClassic.png');
 const skinTest= new Skin("Bob",require('../../assets/Icons/BobClassic.png'));
-const engrenage = require('../../assets/Icons/UnSelected/Cogs.png');
-const gamepad = require('../../assets/Icons/UnSelected/Gamepad.png');
+const jeuTest= new Game("SNAKE", require('../../assets/Icons/UnSelected/Gamepad.png'),"ouin");
+const cross = require('../../assets/Icons/UnSelected/Cross.png');
+const gamepad = require('../../assets/Icons/Selected/SGamepad.png');
 const message = require('../../assets/Icons/UnSelected/Chat.png');
-const store = require('../../assets/Icons/Selected/SStore.png');
+const store = require('../../assets/Icons/UnSelected/Store.png');
 
-function Store(props: { navigation: any; }) {
+function GameChoice(props: { navigation: any; }) {
     const { navigation } = props
     return (
     <View style={styles.container}>
-      <TopBar
-        skin={skinTest}
+      <GoBackBar
+        title="JOUONS !"
+        styleTitle={styles.titre}
+        styleHeader={styles.header}
+        styleIcon={styles.engrenage}
+        rightIcon={cross}
         nav={navigation}
       />
       <View style={styles.body}>
         <ElementAffichage
-          element={skinTest}
+          element={jeuTest}
           styleImage={styles.imageSkin}
           styleTitle={styles.nomSkin}
           nav={navigation}
         />
       </View>
       <BotBar 
+          messages={message}
+          games={gamepad}
+          shop={store}
+          style={styles.iconFooter}
+          styleStore={styles.iconStore}
           nav={navigation}
-          state='Store'
+          styleBar={styles.footer}
       />
     </View>
   );
@@ -153,4 +165,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default Store
+export default GameChoice

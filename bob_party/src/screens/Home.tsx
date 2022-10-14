@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, View, Text, Alert, Pressable, Image} from 'react-native'
+import { StyleSheet, View, Text, Alert, Pressable, Image, ImageSourcePropType} from 'react-native'
 import React, { Children } from 'react';
 import { SkinComponent } from '../components/skinAvatar';
 import { User } from '../core/user';
@@ -10,13 +10,20 @@ import { Conversation } from '../core/conversation';
 
 
 
+const avatar = require('../../assets/Icons/BobClassic.png');
+
+let test:ImageSourcePropType;
+const test2:string="('../../assets/Icons/BobClassic.png')";
+
+test = test2 as ImageSourcePropType;
+
 let tabSkin:Skin[];
 const skinTest= new Skin("Bob",require('../../assets/Icons/BobClassic.png'));
 const skinTest2= new Skin("wesh",require('../../assets/BobsSkins/BobBlue.png'));
 tabSkin=[skinTest];
 tabSkin.push(skinTest2);
 let tabConv:Conversation[]=[];
-const UserActu=new User("14", "leBg", "ouioui", "grand", "la", 12222, 123324, skinTest, tabSkin, tabConv);
+const UserActu=new User("14", "leBg", "ouioui", "grand", new Date(2022,12,12), 12222, 123324, skinTest, tabSkin, tabConv);
 
 function Home(props: { navigation: any; }) {
     const { navigation } = props
@@ -29,11 +36,11 @@ function Home(props: { navigation: any; }) {
       <View style={styles.body}>
         <Button 
         title='Jouer Seul'
-        onPress={() => Alert.alert('On Joue seul')}
+        onPress={() => navigation.navigate('GameChoice')}
         />
         <Button 
         title='Défier mes amis'
-        onPress={() => Alert.alert('On Joue avec les potos')}
+        onPress={() => navigation.navigate('GameChoice')}
         />
       </View>
       <BotBar 

@@ -8,6 +8,7 @@ import Store from '../screens/Store'
 import Chat from '../screens/Chat'
 import Settings from '../screens/Settings'
 import Profile from '../screens/Profile'
+import GameChoice from '../screens/GameChoice'
 
 
 import Test from '../screens/Test'
@@ -20,6 +21,7 @@ function HomeStackScreen() {
     <HomeStack.Navigator screenOptions={{headerShown: false}}>
       <HomeStack.Screen name="Home" component={Home} />
       <HomeStack.Screen name="Settings" component={Settings} />
+      <HomeStack.Screen name='GameChoice' component={GameChoice} />
     </HomeStack.Navigator>
   );
 }
