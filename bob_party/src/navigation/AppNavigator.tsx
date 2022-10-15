@@ -18,10 +18,10 @@ const HomeStack = createStackNavigator();
 
 function HomeStackScreen() {
   return (
-    <HomeStack.Navigator screenOptions={{headerShown: false}}>
-      <HomeStack.Screen name="Home" component={Home} />
+    <HomeStack.Navigator screenOptions={{ headerShown: false}}>
+      <HomeStack.Screen name="Home" component={Home} options={{animationEnabled: false,}}/>
       <HomeStack.Screen name="Settings" component={Settings} />
-      <HomeStack.Screen name='GameChoice' component={GameChoice} />
+      <HomeStack.Screen name='GameChoice' component={GameChoice} options={{animationEnabled: false,}}/>
     </HomeStack.Navigator>
   );
 }
@@ -65,7 +65,6 @@ function MainTabNavigator() {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        initialRouteName='Home'
         backBehavior='none'
         screenOptions={{headerShown: false, tabBarStyle: { display: 'none' },}}
         >
