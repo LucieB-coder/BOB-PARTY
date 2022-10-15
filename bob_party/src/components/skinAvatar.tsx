@@ -1,5 +1,5 @@
-import { FC, ReactNode } from "react"
-import { Button, Image, ImageStyle, Text, View } from "react-native"
+import { FC} from "react"
+import {Image, ImageStyle, View } from "react-native"
 import { Skin } from "../core/Skin"
 import React from "react"
 

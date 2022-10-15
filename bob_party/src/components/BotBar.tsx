@@ -1,5 +1,5 @@
 import { FC, ReactNode } from "react"
-import { Pressable, Image, ImageStyle, Text, View, Alert, ImageSourcePropType, TextStyle } from "react-native"
+import { Pressable, Image, View} from "react-native"
 import React from "react"
 import styles from './style/BotBar.style';
 

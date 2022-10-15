@@ -37,6 +37,7 @@ FC<{element: any, styleImage: ImageStyle, styleTitle : TextStyle,nav: any}> =
                 </View> 
             )
         }
+        console.log('Type invalide pour ce composant')
         return(
             <View>
                 <Text>Type invalide pour ce composant</Text>

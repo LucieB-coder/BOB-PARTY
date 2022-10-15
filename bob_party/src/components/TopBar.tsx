@@ -1,5 +1,5 @@
 import { FC, ReactNode } from "react"
-import { Pressable, Image, ImageStyle, Text, View, Alert, ImageSourcePropType, TextStyle, Settings } from "react-native"
+import { Pressable, Image, Text, View} from "react-native"
 import { Skin } from "../core/Skin"
 import React from "react"
 import { SkinComponent } from "./skinAvatar"
