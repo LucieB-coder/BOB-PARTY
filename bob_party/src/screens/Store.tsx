@@ -1,8 +1,6 @@
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, View, Text, Alert, Pressable, Image} from 'react-native'
-import React, { Children } from 'react';
-import { SkinComponent } from '../components/skinAvatar';
-import { User } from '../core/user';
+import { StyleSheet, View} from 'react-native'
+import React from 'react';
 import { Skin } from '../core/skin';
 import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
@@ -10,10 +8,6 @@ import { ElementAffichage } from '../components/Element';
 
 
 const skinTest= new Skin("Bob",require('../../assets/Icons/BobClassic.png'));
-const engrenage = require('../../assets/Icons/UnSelected/Cogs.png');
-const gamepad = require('../../assets/Icons/UnSelected/Gamepad.png');
-const message = require('../../assets/Icons/UnSelected/Chat.png');
-const store = require('../../assets/Icons/Selected/SStore.png');
 
 function Store(props: { navigation: any; }) {
     const { navigation } = props

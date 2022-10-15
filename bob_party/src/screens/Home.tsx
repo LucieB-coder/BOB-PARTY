@@ -1,7 +1,6 @@
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, View, Text, Alert, Pressable, Image, ImageSourcePropType} from 'react-native'
-import React, { Children } from 'react';
-import { SkinComponent } from '../components/skinAvatar';
+import { StyleSheet, View, ImageSourcePropType} from 'react-native'
+import React from 'react';
 import { User } from '../core/user';
 import { Skin } from '../core/skin';
 import { TopBar } from '../components/TopBar';
@@ -10,8 +9,6 @@ import { Conversation } from '../core/conversation';
 import { ButtonGameChoice } from '../components/ButtonGameChoice';
 
 
-
-const avatar = require('../../assets/Icons/BobClassic.png');
 
 let test:ImageSourcePropType;
 const test2:string="('../../assets/Icons/BobClassic.png')";

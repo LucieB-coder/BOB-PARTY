@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, View, Text, Alert, Pressable, Image} from 'react-native'
+import { StyleSheet, View, Text} from 'react-native'
 import React from 'react';
 import { TopBar } from '../components/TopBar';
 
