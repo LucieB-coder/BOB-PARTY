@@ -7,7 +7,7 @@ import { Skin } from '../core/skin';
 import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
 import { Conversation } from '../core/conversation';
-import { ButtonGameChoice } from '../components/ButtonGameChoice';
+import { ButtonGameTypeChoice } from '../components/ButtonGameTypeChoice';
 
 
 
@@ -33,11 +33,11 @@ function Home(props: { navigation: any; }) {
         nav={navigation}
       />
       <View style={styles.body}>
-        <ButtonGameChoice
+        <ButtonGameTypeChoice
         title='Jouer Seul'
         onPress={() => navigation.navigate('GameChoice')}
         />
-        <ButtonGameChoice
+        <ButtonGameTypeChoice
         title='Défier mes amis'
         onPress={() => navigation.navigate('GameChoice')}
         />

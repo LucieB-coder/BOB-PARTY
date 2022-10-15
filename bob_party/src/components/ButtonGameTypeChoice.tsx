@@ -1,9 +1,9 @@
 import { FC} from "react"
 import { Pressable, Text} from "react-native"
 import React from "react"
-import styles from "./style/ButtonGameChoice.style"
+import styles from "./style/ButtonGameTypeChoice.style"
 
-export const ButtonGameChoice:
+export const ButtonGameTypeChoice:
 FC<{ onPress: any; title?: any | undefined; }>
 =
 ({onPress,title}) =>
