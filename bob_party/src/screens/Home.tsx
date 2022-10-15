@@ -60,31 +60,12 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
   },
-  engrenage: {
-    borderRadius: 50,
-    width: 50,
-    height: 50,
-  },
-  avatar: {
-    borderRadius: 50,
-    width: 50,
-    height: 50,
-  },
   body: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     width: '70%',
   },
-  footer: {
-    flex: 0.15,
-    flexDirection: 'row',
-    backgroundColor: '#2D2C33',
-    flexWrap: 'wrap',
-    width: '100%',
-    justifyContent: 'space-evenly',
-  },
-
 });
 
 export default Home
