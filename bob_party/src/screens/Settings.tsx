@@ -1,13 +1,14 @@
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, View, Text} from 'react-native'
 import React from 'react';
+import stylesScreen from './style/screens.style'
 import { TopBar } from '../components/TopBar';
 
 
 function Store(props: { navigation: any; }) {
     const { navigation } = props
     return (
-    <View style={styles.container}>
+    <View style={stylesScreen.container}>
       <TopBar
           nav={navigation}
           state='settings'
@@ -25,13 +26,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'flex-start',
     width: '70%',
-  },
-  container: {
-    flex: 1,
-    backgroundColor: "#45444E",
-    flexDirection: "column",
-    justifyContent: "flex-start",
-    alignItems: "center",
   },
 });
 

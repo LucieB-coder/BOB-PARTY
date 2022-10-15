@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, View, Text} from 'react-native'
 import React from 'react';
+import stylesScreen from './style/screens.style'
 import { Skin } from '../core/skin';
 import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
@@ -10,7 +11,7 @@ const skinTest= new Skin("Bob",require('../../assets/Icons/BobClassic.png'));
 function Profile(props: { navigation: any; }) {
     const { navigation } = props
     return (
-    <View style={styles.container}>
+    <View style={stylesScreen.container}>
         <TopBar
           skin={skinTest} 
           nav={navigation}
@@ -31,13 +32,6 @@ const styles = StyleSheet.create({
       flexDirection: 'column',
       alignItems: 'flex-start',
       width: '70%',
-  },
-  container: {
-    flex: 1,
-    backgroundColor: "#45444E",
-    flexDirection: "column",
-    justifyContent: "flex-start",
-    alignItems: "center",
   },
 });
 

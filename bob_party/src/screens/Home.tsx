@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, View, ImageSourcePropType} from 'react-native'
 import React from 'react';
+import stylesScreen from './style/screens.style'
 import { User } from '../core/user';
 import { Skin } from '../core/skin';
 import { TopBar } from '../components/TopBar';
@@ -26,7 +27,7 @@ const UserActu=new User("14", "leBg", "ouioui", "grand", new Date(2022,12,12), 1
 function Home(props: { navigation: any; }) {
     const { navigation } = props
     return (
-    <View style={styles.container}>
+    <View style={stylesScreen.container}>
       <TopBar
         skin={skinTest} 
         nav={navigation}
@@ -50,13 +51,6 @@ function Home(props: { navigation: any; }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#45444E',
-    flexDirection: "column",
-    justifyContent: "flex-start",
-    alignItems: "center",
-  },
   body: {
     flex: 1,
     alignItems: 'center',
