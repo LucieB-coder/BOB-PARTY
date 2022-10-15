@@ -19,17 +19,6 @@ function Store(props: { navigation: any; }) {
   );
 }
 
-
-function Button(props: { onPress: any; title?: any | undefined; }) {
-  const { onPress, title = 'Save' } = props;
-  return (
-    <Pressable style={styles.button} onPress={onPress}>
-      <Text style={styles.text}>{title}</Text>
-    </Pressable>
-  );
-}
-
-
 const styles = StyleSheet.create({
   body: {
     flex: 1,
