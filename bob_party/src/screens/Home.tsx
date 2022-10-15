@@ -7,6 +7,7 @@ import { Skin } from '../core/skin';
 import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
 import { Conversation } from '../core/conversation';
+import { ButtonGameChoice } from '../components/ButtonGameChoice';
 
 
 
@@ -34,11 +35,11 @@ function Home(props: { navigation: any; }) {
         nav={navigation}
       />
       <View style={styles.body}>
-        <Button 
+        <ButtonGameChoice
         title='Jouer Seul'
         onPress={() => navigation.navigate('GameChoice')}
         />
-        <Button 
+        <ButtonGameChoice
         title='Défier mes amis'
         onPress={() => navigation.navigate('GameChoice')}
         />
@@ -51,17 +52,6 @@ function Home(props: { navigation: any; }) {
   );
 }
 
-
-function Button(props: { onPress: any; title?: any | undefined; }) {
-  const { onPress, title = 'Save' } = props;
-  return (
-    <Pressable style={styles.button} onPress={onPress}>
-      <Text style={styles.text}>{title}</Text>
-    </Pressable>
-  );
-}
-
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -69,35 +59,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "flex-start",
     alignItems: "center",
-  },
-  button: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '30%',
-    width: '100%',
-    marginTop: '10%',
-    paddingVertical: 12,
-    paddingHorizontal: 32,
-    borderRadius: 10,
-    elevation: 3,
-    backgroundColor: '#0085FF',
-  },
-  text: {
-    fontSize: 16,
-    lineHeight: 21,
-    fontWeight: 'bold',
-    letterSpacing: 0.25,
-    color: 'white',
-  },
-  titre: {
-    flex: 0.7,
-    flexDirection: 'column',
-    textAlign: 'center',
-    fontSize: 30,
-    fontFamily: 'Helvetica',
-    fontWeight: 'bold',
-    letterSpacing: 0.25,
-    color: 'white',
   },
   engrenage: {
     borderRadius: 50,
