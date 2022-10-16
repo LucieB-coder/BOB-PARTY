@@ -28,7 +28,7 @@ export const TopBar : FC<{skin?: skin, nav: any, state?: string}> = ({skin, nav,
         default:
             return (
                 <View style={styles.header}>
-                    <Pressable onPress={() => nav.navigate('ProfileTab')}>
+                    <Pressable onPress={() => nav.navigate('ProfileTab', {screen: 'Profile'})}>
                             <SkinComponent skin={skin} state='icon' />
                         </Pressable>
                         <Text style={styles.titre}>BOB PARTY</Text>

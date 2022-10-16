@@ -42,7 +42,7 @@ FC<{nav: any, state?: String }> =
                     source={imgLeft}
                 />
             </Pressable>
-            <Pressable onPress={()=> {return (nav.navigate('Home'))}}>
+            <Pressable onPress={()=> {nav.navigate('HomeTab', {screen: 'Home'})}}>
                 <Image
                     style={styles.icon}
                     source={imgMid}
