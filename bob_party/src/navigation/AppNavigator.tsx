@@ -8,6 +8,7 @@ import Store from '../screens/Store'
 import Chat from '../screens/Chat'
 import Settings from '../screens/Settings'
 import Profile from '../screens/Profile'
+import SkinList from '../screens/SkinList'
 import GameChoice from '../screens/GameChoice'
 
 
@@ -55,6 +56,7 @@ function ProfileStackScreen() {
     <ProfileStack.Navigator screenOptions={{headerShown: false}}>
       <ProfileStack.Screen name="Profile" component={Profile} />
       <ProfileStack.Screen name="Settings" component={Settings} />
+      <ProfileStack.Screen name="SkinList" component={SkinList} />
     </ProfileStack.Navigator>
   );
 }
