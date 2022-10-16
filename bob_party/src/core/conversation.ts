@@ -41,7 +41,7 @@ export class Conversation{
 
     getLastMessage(){
         this.sortMessageDesc();
-        return this.TabMessage[0];
+        return this.TabMessage[0].getMessageContent();
     }
 
     sortMessageDesc(){
