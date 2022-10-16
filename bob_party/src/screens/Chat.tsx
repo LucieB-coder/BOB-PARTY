@@ -6,7 +6,7 @@ import { Skin } from '../core/skin';
 import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
 
-const skinTest= new Skin("S0001", "Bob",require('../../assets/Icons/BobClassic.png'));
+const skinTest= new Skin("S0001", "Bob",require('../../assets/Icons/BobClassic.png'),100);
 
 function Chat(props: { navigation: any; }) {
     const { navigation } = props
