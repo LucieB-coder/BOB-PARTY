@@ -4,11 +4,13 @@ export class Skin{
     readonly Id: string;
     private Name: string;
     private Source: ImageSourcePropType;
+    private Cost:number;
 
-    constructor(id:string, name: string, source:ImageSourcePropType){
+    constructor(id:string, name: string, source:ImageSourcePropType, Cost:number){
         this.Id=id;
         this.Name=name;
         this.Source=source;
+        this.Cost=Cost;
     }
     
     setSkinName(name: string){
@@ -29,5 +31,13 @@ export class Skin{
 
     getSkinId(){
         return this.Id;
+    }
+
+    getSkinCost(){
+        return this.Cost;
+    }
+
+    setSkinCost(cost:number){
+        this.Cost=cost;
     }
 }
