@@ -1,34 +1,37 @@
 import { Skin } from './Skin'
 import { Conversation } from './conversation';
+import { sign } from 'crypto';
 
 export class User{
-    private Id: string;
+    readonly Id: string;
     private Username: string;
     private Nationality: string;
     private Sexe: string;
     private DateOfBirth: Date;
     private CurrentCoins: number;
     private TotalCoins: number;
+    private NbGamePlayed: number;
     private CurrentSkin: Skin;
     private TabSkin: Skin[];
     private TabConv?: Conversation[];
 
     /* Consturctor of the class */
     constructor(id: string, username: string, nationality: string, sexe: string, dateOfBirth: Date, currentCoins: number, totalCoins: number,
-    currentSkin: Skin, tabSkin: Skin[], tabConv?: Conversation[] ){
-        this.Id=id;
-        this.Username=username;
-        this.Nationality=nationality;
-        this.Sexe=sexe;
-        this.DateOfBirth=dateOfBirth;
-        this.CurrentCoins=currentCoins;
-        this.TotalCoins=totalCoins;
-        this.CurrentSkin=currentSkin;
-        this.TabSkin=[...tabSkin];
-        tabConv?.forEach(conv => {
-            this.TabConv?.push(conv);
-        });
-    }
+                nbGamePlayed:number, currentSkin: Skin, tabSkin: Skin[], tabConv?: Conversation[] ){
+                    this.Id=id;
+                    this.Username=username;
+                    this.Nationality=nationality;
+                    this.Sexe=sexe;
+                    this.DateOfBirth=dateOfBirth;
+                    this.NbGamePlayed=nbGamePlayed;
+                    this.CurrentCoins=currentCoins;
+                    this.TotalCoins=totalCoins;
+                    this.CurrentSkin=currentSkin;
+                    this.TabSkin=[...tabSkin];
+                    tabConv?.forEach(conv => {
+                        this.TabConv?.push(conv);
+                    });
+                }
 
     /* Brief : Function getting the name of an user */
     getUsername(){
@@ -43,11 +46,6 @@ export class User{
     /* Brief : Function getting the id of an user */
     getId(){
         return this.Id;
-    }
-    
-    /* Brief : Function setting the id of an user */
-    setId(id: string){
-        this.Id=id;
     }
 
     /* Brief : Function getting the current number of coins of an user */
@@ -100,7 +98,20 @@ export class User{
         this.TotalCoins=totalCoins;
     }
 
-    /* Brief : Function getting the current skin of an user */
+    /* Brief : Function getting the current number of game played by an user */
+
+    getGamePlayed(){
+        return this.NbGamePlayed;
+    }
+    
+    /* Brief : Function setting the current number of game played by an user */
+
+    setGamePlayed(nb: number){
+        this.NbGamePlayed=nb;
+    }
+
+     /* Brief : Function getting the current skin of an user */
+
     getCurrentSkin(){
         return this.CurrentSkin;
     }
@@ -130,5 +141,21 @@ export class User{
         tabConv?.forEach(conv => {
             this.TabConv?.push(conv);
         });
+    }
+
+
+    changeUserCoins(coin:number){
+        this.CurrentCoins+=coin;
+        if (coin>0){
+            this.TotalCoins+=coin;
+        }
+    }
+
+    changerCurrentSkin(skin:Skin){
+        this.CurrentSkin=skin;
+    }
+
+    ajouterSkin(skin:Skin){
+        this.TabSkin.push(skin);
     }
 }

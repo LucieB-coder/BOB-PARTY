@@ -14,7 +14,7 @@ let tabConv:Conversation[]=[];
 
 const msc = require('../../assets/Icons/FondGris.png');
 
-const UserActu=new User("14", "leBg", "ouioui", "grand", new Date(2022,12,12), 12222, 123324, tabSkinApp[0], tabSkinApp, tabConv);
+const UserActu=new User("14", "leBg", "ouioui", "grand", new Date(2022,12,12), 12222, 123324, 12, tabSkinApp[0], tabSkinApp, tabConv);
 const jeuTest= new Game("SNAKE", require('../../assets/Icons/UnSelected/Gamepad.png'),"ouin");
 function GameChoice(props: { navigation: any; }) {
     const { navigation } = props
