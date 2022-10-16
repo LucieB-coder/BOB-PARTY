@@ -3,15 +3,33 @@ import { Pressable, Image, Text, View} from "react-native"
 import { Skin } from "../core/Skin"
 import React from "react"
 import { SkinComponent } from "./Skin"
+
+/*
+    Import the correct stylesheet
+*/
 import styles from './style/TopBar.style';
 
-
+/* 
+    Images required
+*/
 const engrenage = require('../../assets/Icons/UnSelected/Cogs.png');
 const cross = require('../../assets/Icons/UnSelected/Cross.png');
 const msc = require('../../assets/Icons/FondGris.png');
 
-export const TopBar : FC<{skin?: skin, nav: any, state?: string}> = ({skin, nav, state}) => 
+export const TopBar : 
+/* Parameters: 
+    * skin : optional skin to display
+    * nav : tool needed to allow the navigation between the screens
+    * state :  optional parameter that indicates from which screen the component has been called
+        (the string must be the name of the screen)
+*/
+FC<{skin?: Skin, nav: any, state?: string}> = 
+({skin, nav, state}) => 
 {
+    /* The display of this component depends of the screen from where it has been called:
+        * From the Settings (icon) : Name of the page + cross button
+        * From other : skin + Title + parameters icon
+    */
     switch (state) {
         case 'settings':
             return (

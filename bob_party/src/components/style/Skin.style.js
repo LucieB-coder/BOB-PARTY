@@ -1,5 +1,9 @@
 import { StyleSheet } from "react-native";
 
+/*
+    Stylesheet for the Skin component
+*/
+
 export default StyleSheet.create({
   icon: {
       width: 50,
