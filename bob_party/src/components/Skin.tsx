@@ -27,9 +27,19 @@ FC<{skin: Skin, state: String}> =
                     <Text style={styles.nomSkin}>100€</Text>
                 </Pressable>
             )
-        case 'profile':
+        case 'liste':
             return(
                 <Pressable onPress={() => Alert.alert("Achat du skin")} style={styles.imageWrapper}>
+                    <Text style={styles.nomSkin}>{skin.getSkinName()}</Text>
+                    <Image
+                        style={styles.imageSkin}
+                        source={skin.getSkinSource()}
+                    />
+                </Pressable>
+            )
+        case 'profile':
+            return(
+                <Pressable onPress={() => Alert.alert("Achat du skin")} style={styles.imageWrapperProfil}>
                     <Text style={styles.nomSkin}>{skin.getSkinName()}</Text>
                     <Image
                         style={styles.imageSkin}
