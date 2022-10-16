@@ -9,28 +9,19 @@ import { FlatList } from 'react-native-gesture-handler';
 import { SkinComponent } from '../components/Skin';
 import { ElementAffichage } from '../components/Element';
 
-
-const skinTest = new Skin("S0001","Bob",require('../../assets/BobsSkins/BobClassic.png'));
-const skinBleu = new Skin("S0002","Bob Bleu", require('../../assets/BobsSkins/BobBlue.png'))
-const skinBW = new Skin("S0003","Bob BW", require('../../assets/BobsSkins/BobBW.png'))
-const skinGreen = new Skin("S0004","Bob Vert", require('../../assets/BobsSkins/BobGreen.png'))
-const skinPT = new Skin("S0005","Bob R&T", require('../../assets/BobsSkins/BobPinkTurquoise.png'))
-
-let listSkin: Array<Skin> = [skinTest, skinBleu, skinBW, skinGreen, skinPT]
-
-
+import tabSkinApp from '../constSkin';
 
 function Store(props: { navigation: any; }) {
     const { navigation } = props
     return (
     <View style={stylesScreen.container}>
       <TopBar
-        skin={skinTest}
+        skin={tabSkinApp[0]}
         nav={navigation}
       />
       <View style={styles.body}>
         <FlatList 
-          data={listSkin}
+          data={tabSkinApp}
           numColumns={2}
           columnWrapperStyle={{ flex: 1, justifyContent: "space-around"}}
           keyExtractor={item =>item.getSkinName()}
