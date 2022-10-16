@@ -8,11 +8,14 @@ import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
 import { Conversation } from '../core/conversation';
 import { ButtonGameTypeChoice } from '../components/ButtonGameTypeChoice';
-import tabSkinApp from '../const';
+
+
+import tabSkinApp from '../constSkin';
+import { GameSolo } from '../core/gameSolo';
 
 
 
-const avatar = require('../../assets/Icons/BobClassic.png');
+//const test= new GameSolo("test", require('bob_party/assets/ImagesJeux/BatailleNavale.jpeg'), "test", );
 let tabConv:Conversation[]=[];
 const UserActu=new User("14", "leBg", "ouioui", "grand", new Date(2022,12,12), 12222, 123324, tabSkinApp[0], tabSkinApp, tabConv);
 

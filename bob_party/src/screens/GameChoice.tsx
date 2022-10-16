@@ -6,18 +6,22 @@ import { Skin } from '../core/skin';
 import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
 import { ElementAffichage } from '../components/Element';
+import { User } from '../core/user';
+import tabSkinApp from '../constSkin';
+import { Conversation } from '../core/conversation';
+let tabConv:Conversation[]=[];
 
 
 const msc = require('../../assets/Icons/FondGris.png');
-const avatar = require('../../assets/Icons/BobClassic.png');
-const skinTest= new Skin("S0001", "Bob",require('../../assets/Icons/BobClassic.png'));
+
+const UserActu=new User("14", "leBg", "ouioui", "grand", new Date(2022,12,12), 12222, 123324, tabSkinApp[0], tabSkinApp, tabConv);
 const jeuTest= new Game("SNAKE", require('../../assets/Icons/UnSelected/Gamepad.png'),"ouin");
 function GameChoice(props: { navigation: any; }) {
     const { navigation } = props
     return (
     <View style={styles.container}>
       <TopBar
-        skin={skinTest}
+        skin={UserActu.getCurrentSkin()}
         nav={navigation}
       />
       <View style={styles.body}>

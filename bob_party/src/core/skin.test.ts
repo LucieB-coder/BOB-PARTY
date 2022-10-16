@@ -1,5 +1,5 @@
 import { Skin } from './Skin';
-
+/*
 let classique = new Skin('Classique', 'wouhou');
 
 test('skin Name : Classique', () => {
@@ -22,4 +22,4 @@ describe('Set tests', () => {
     it('should return The wouhou', () => {
         expect(classique.setSkinSource('The wouhou')).toBe('The wouhou');
     })
-})
+})*/
