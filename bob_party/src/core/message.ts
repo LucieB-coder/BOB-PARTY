@@ -16,11 +16,11 @@ export class Message{
         this.Content=content;
     }
 
-    setSMessageSender(sender: User){
+    setMessageSender(sender: User){
         this.Sender=sender;
     }
 
-    setSMessageDate(dateEnvoie: Date){
+    setMessageDate(dateEnvoie: Date){
         this.DateEnvoie=dateEnvoie;
     }
 
