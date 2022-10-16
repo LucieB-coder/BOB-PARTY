@@ -7,7 +7,6 @@ import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
 import { FlatList } from 'react-native-gesture-handler';
 import { SkinComponent } from '../components/Skin';
-import { ElementAffichage } from '../components/Element';
 
 import tabSkinApp from '../constSkin';
 

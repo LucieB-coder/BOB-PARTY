@@ -16,6 +16,9 @@ import Test from '../screens/Test'
 
 const HomeStack = createStackNavigator();
 
+/*
+  Stack of screens for home and game choice
+*/
 function HomeStackScreen() {
   return (
     <HomeStack.Navigator screenOptions={{ headerShown: false}}>
@@ -27,7 +30,9 @@ function HomeStackScreen() {
 }
 
 const StoreStack = createStackNavigator();
-
+/*
+  Stack of screens for the store and the purshase of new skins
+*/
 function StoreStackScreen() {
   return (
     <StoreStack.Navigator screenOptions={{headerShown: false}}>
@@ -38,7 +43,9 @@ function StoreStackScreen() {
 }
 
 const ChatStack = createStackNavigator();
-
+/*
+  Stack of screens for conversations 
+*/
 function ChatStackScreen() {
   return (
     <ChatStack.Navigator screenOptions={{headerShown: false}}>
@@ -49,7 +56,9 @@ function ChatStackScreen() {
 }
 
 const ProfileStack = createStackNavigator();
-
+/*
+  Stack of screens for the profile and the changement of informations
+*/
 function ProfileStackScreen() {
   return (
     <ProfileStack.Navigator screenOptions={{headerShown: false}}>
@@ -60,7 +69,9 @@ function ProfileStackScreen() {
 }
 
 const Tab = createBottomTabNavigator()
-
+/*
+  Tab navigator to navigate between the stacks
+*/
 function MainTabNavigator() {
   return (
     <NavigationContainer>

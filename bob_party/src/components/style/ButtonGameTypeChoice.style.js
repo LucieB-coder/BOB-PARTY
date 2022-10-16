@@ -1,5 +1,9 @@
 import { StyleSheet } from 'react-native';
 
+/*
+    Stylesheet for the ButtonGameTypeChoice component
+*/
+
 export default StyleSheet.create({
     button: {
         alignItems: 'center',

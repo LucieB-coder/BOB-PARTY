@@ -1,5 +1,9 @@
 import { StyleSheet } from 'react-native';
 
+/*
+    Stylesheet for the TopBar component
+*/
+
 export default StyleSheet.create({
     header: {
         flex: 0.15,

@@ -1,5 +1,9 @@
 import { StyleSheet } from 'react-native';
 
+/*
+    Stylesheet for the BotBar component
+*/
+
 export default StyleSheet.create({
     footer: {
         flex: 0.15,
