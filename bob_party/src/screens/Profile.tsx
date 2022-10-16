@@ -5,8 +5,17 @@ import stylesScreen from './style/screens.style'
 import { Skin } from '../core/skin';
 import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
+import { FlatList } from 'react-native-gesture-handler';
+import { SkinComponent } from '../components/Skin';
 
-const skinTest= new Skin("Bob",require('../../assets/Icons/BobClassic.png'));
+const skinTest = new Skin("Bob",require('../../assets/BobsSkins/BobClassic.png'));
+const skinBleu = new Skin("Bob Bleu", require('../../assets/BobsSkins/BobBlue.png'))
+const skinBW = new Skin("Bob BW", require('../../assets/BobsSkins/BobBW.png'))
+const skinGreen = new Skin("Bob Vert", require('../../assets/BobsSkins/BobGreen.png'))
+const skinPT = new Skin("Bob R&T", require('../../assets/BobsSkins/BobPinkTurquoise.png'))
+
+let listSkin: Array<Skin> = [skinTest, skinBleu, skinBW, skinGreen, skinPT]
+
 
 function Profile(props: { navigation: any; }) {
     const { navigation } = props
@@ -17,7 +26,12 @@ function Profile(props: { navigation: any; }) {
           nav={navigation}
           />
       <View style={styles.body}>
-        <Text>couille</Text>
+        <FlatList 
+          data={listSkin}
+          numColumns={2}
+          columnWrapperStyle={{ flex: 1, justifyContent: "space-around"}}
+          keyExtractor={item =>item.getSkinName()}
+          renderItem={({item}) => <SkinComponent skin={item} state='profile'/>} />
       </View>
       <BotBar
           nav={navigation}
@@ -30,8 +44,7 @@ const styles = StyleSheet.create({
   body: {
       flex: 1,
       flexDirection: 'column',
-      alignItems: 'flex-start',
-      width: '70%',
+      width: '100%',
   },
 });
 
