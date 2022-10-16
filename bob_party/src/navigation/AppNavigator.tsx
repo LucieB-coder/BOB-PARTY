@@ -63,9 +63,9 @@ const ProfileStack = createStackNavigator();
 function ProfileStackScreen() {
   return (
     <ProfileStack.Navigator screenOptions={{headerShown: false}}>
-      <ProfileStack.Screen name="Profile" component={Profile} />
+      <ProfileStack.Screen name="Profile" component={Profile} options={{animationEnabled: false,}}/>
       <ProfileStack.Screen name="Settings" component={Settings} />
-      <ProfileStack.Screen name="SkinList" component={SkinList} />
+      <ProfileStack.Screen name="SkinList" component={SkinList} options={{animationEnabled: false,}}/>
     </ProfileStack.Navigator>
   );
 }
