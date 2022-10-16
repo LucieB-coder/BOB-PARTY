@@ -1,10 +1,12 @@
 import { ImageSourcePropType } from "react-native";
 
 export class Skin{
+    readonly Id: string;
     private Name: string;
     private Source: ImageSourcePropType;
 
-    constructor(name: string, source:ImageSourcePropType){
+    constructor(id:string, name: string, source:ImageSourcePropType){
+        this.Id=id;
         this.Name=name;
         this.Source=source;
     }
@@ -23,5 +25,9 @@ export class Skin{
 
     getSkinName(){
         return this.Name;
+    }
+
+    getSkinId(){
+        return this.Id;
     }
 }
