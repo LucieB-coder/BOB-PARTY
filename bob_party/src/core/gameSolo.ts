@@ -1,5 +1,5 @@
 import { Game } from './game'
 
 export class GameSolo extends Game{
-    private 
+    readonly [index:number]:number;
 }
