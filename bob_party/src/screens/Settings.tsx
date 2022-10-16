@@ -13,20 +13,12 @@ function Store(props: { navigation: any; }) {
           nav={navigation}
           state='settings'
         />
-      <View style={styles.body}>
+      <View style={stylesScreen.bodyStart}>
         <Text>couille</Text>
       </View>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  body: {
-    flex: 1,
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    width: '70%',
-  },
-});
 
 export default Store

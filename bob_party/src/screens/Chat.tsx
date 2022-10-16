@@ -16,7 +16,7 @@ function Chat(props: { navigation: any; }) {
           skin={skinTest}
           nav={navigation}
           />
-      <View style={styles.body}>
+      <View style={stylesScreen.bodyStart}>
         <Text >couille</Text>
       </View>
       <BotBar 
@@ -26,14 +26,5 @@ function Chat(props: { navigation: any; }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  body: {
-    flex: 1,
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    width: '70%',
-  },
-});
 
 export default Chat

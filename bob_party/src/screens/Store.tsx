@@ -8,7 +8,7 @@ import { BotBar } from '../components/BotBar';
 import { FlatList } from 'react-native-gesture-handler';
 import { SkinComponent } from '../components/Skin';
 import { ElementAffichage } from '../components/Element';
-
+import { ScreenIndicator } from '../components/ScreenIndicator';
 import tabSkinApp from '../constSkin';
 
 function Store(props: { navigation: any; }) {
@@ -19,7 +19,8 @@ function Store(props: { navigation: any; }) {
         skin={tabSkinApp[0]}
         nav={navigation}
       />
-      <View style={styles.body}>
+      <View style={stylesScreen.bodyStart}>
+        <ScreenIndicator title='Store'/>
         <FlatList 
           data={tabSkinApp}
           numColumns={2}
@@ -34,29 +35,5 @@ function Store(props: { navigation: any; }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  body: {
-    flex: 1,
-    flexDirection: 'column',
-    width: '100%',
-  },
-  imageSkin : {
-    borderRadius: 15,
-    marginTop: 15,
-    marginRight: 15,
-    width: 100,
-    height: 100,
-  },
-  nomSkin :{
-    textAlign: 'center',
-    fontSize: 15,
-    fontFamily: 'Helvetica',
-    fontWeight: 'bold',
-    letterSpacing: 0.25,
-    color: 'white',
-  },
-
-});
 
 export default Store

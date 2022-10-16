@@ -8,6 +8,7 @@ import { BotBar } from '../components/BotBar';
 import { FlatList } from 'react-native-gesture-handler';
 import { SkinComponent } from '../components/Skin';
 import tabSkinApp from '../constSkin';
+import { ScreenIndicator } from '../components/ScreenIndicator';
 
 
 function SkinList(props: { navigation: any; }) {
@@ -18,13 +19,14 @@ function SkinList(props: { navigation: any; }) {
           skin={tabSkinApp[0]} 
           nav={navigation}
           />
-      <View style={styles.body}>
+      <View style={stylesScreen.bodyStart}>
+        <ScreenIndicator title='Mes Skins'/>
         <FlatList 
           data={tabSkinApp}
           numColumns={2}
           columnWrapperStyle={{ flex: 1, justifyContent: "space-around"}}
           keyExtractor={item =>item.getSkinName()}
-          renderItem={({item}) => <SkinComponent skin={item} state='profile'/>} />
+          renderItem={({item}) => <SkinComponent skin={item} state='liste'/>} />
       </View>
       <BotBar
           nav={navigation}
@@ -32,13 +34,5 @@ function SkinList(props: { navigation: any; }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  body: {
-      flex: 1,
-      flexDirection: 'column',
-      width: '100%',
-  },
-});
 
 export default SkinList

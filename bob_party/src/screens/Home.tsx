@@ -27,7 +27,7 @@ function Home(props: { navigation: any; }) {
         skin={UserActu.getCurrentSkin()} 
         nav={navigation}
       />
-      <View style={styles.body}>
+      <View style={stylesScreen.bodyCenter}>
         <ButtonGameTypeChoice
         title='Jouer Seul'
         onPress={() => navigation.navigate('GameChoice')}
@@ -44,14 +44,5 @@ function Home(props: { navigation: any; }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  body: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '70%',
-  },
-});
 
 export default Home

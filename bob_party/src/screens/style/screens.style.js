@@ -8,4 +8,15 @@ export default StyleSheet.create({
         justifyContent: "flex-start",
         alignItems: "center",
     },
+    bodyStart: {
+        flex: 1,
+        flexDirection: 'column',
+        width: '100%',
+      },
+    bodyCenter: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+      },
   });
