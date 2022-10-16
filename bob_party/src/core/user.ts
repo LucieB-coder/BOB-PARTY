@@ -11,10 +11,10 @@ export class User{
     private TotalCoins: number;
     private CurrentSkin: Skin;
     private TabSkin: Skin[];
-    private TabConv: Conversation[];
+    private TabConv?: Conversation[];
 
     constructor(id: string, username: string, nationality: string, sexe: string, dateOfBirth: Date, currentCoins: number, totalCoins: number,
-                currentSkin: Skin, tabSkin: Skin[], tabConv: Conversation[] ){
+                currentSkin: Skin, tabSkin: Skin[], tabConv?: Conversation[] ){
                     this.Id=id;
                     this.Username=username;
                     this.Nationality=nationality;
@@ -24,7 +24,9 @@ export class User{
                     this.TotalCoins=totalCoins;
                     this.CurrentSkin=currentSkin;
                     this.TabSkin=[...tabSkin];
-                    this.TabConv=[...tabConv];
+                    tabConv?.forEach(conv => {
+                        this.TabConv?.push(conv);
+                    });
                 }
 
     getUsername(){
@@ -103,7 +105,9 @@ export class User{
         return this.TabConv;
     }
     
-    setTabConv(tabConv: Conversation[]){
-        this.TabConv=[...tabConv];
+    setTabConv(tabConv?: Conversation[]){
+        tabConv?.forEach(conv => {
+            this.TabConv?.push(conv);
+        });
     }
 }
