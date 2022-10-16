@@ -10,7 +10,7 @@ import { ElementAffichage } from '../components/Element';
 
 const msc = require('../../assets/Icons/FondGris.png');
 const avatar = require('../../assets/Icons/BobClassic.png');
-const skinTest= new Skin("Bob",require('../../assets/Icons/BobClassic.png'));
+const skinTest= new Skin("S0001", "Bob",require('../../assets/Icons/BobClassic.png'));
 const jeuTest= new Game("SNAKE", require('../../assets/Icons/UnSelected/Gamepad.png'),"ouin");
 function GameChoice(props: { navigation: any; }) {
     const { navigation } = props

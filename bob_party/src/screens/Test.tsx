@@ -6,11 +6,11 @@ import { FlatList } from 'react-native-gesture-handler';
 import { SkinComponent } from '../components/Skin';
 import { Skin } from '../core/skin';
 
-const skinTest = new Skin("Bob",require('../../assets/BobsSkins/BobClassic.png'));
-const skinBleu = new Skin("Bob Bleu", require('../../assets/BobsSkins/BobBlue.png'))
-const skinBW = new Skin("Bob BW", require('../../assets/BobsSkins/BobBW.png'))
-const skinGreen = new Skin("Bob Vert", require('../../assets/BobsSkins/BobGreen.png'))
-const skinPT = new Skin("Bob R&T", require('../../assets/BobsSkins/BobPinkTurquoise.png'))
+const skinTest = new Skin("S0001","Bob",require('../../assets/BobsSkins/BobClassic.png'));
+const skinBleu = new Skin("S0001","Bob Bleu", require('../../assets/BobsSkins/BobBlue.png'))
+const skinBW = new Skin("S0001","Bob BW", require('../../assets/BobsSkins/BobBW.png'))
+const skinGreen = new Skin("S0001","Bob Vert", require('../../assets/BobsSkins/BobGreen.png'))
+const skinPT = new Skin("S0001","Bob R&T", require('../../assets/BobsSkins/BobPinkTurquoise.png'))
 
 let listSkin: Array<Skin> = [skinTest, skinBleu, skinBW, skinGreen, skinPT]
 
