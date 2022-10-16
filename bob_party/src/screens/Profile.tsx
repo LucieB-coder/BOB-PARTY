@@ -14,7 +14,7 @@ import { ScreenIndicator } from '../components/ScreenIndicator';
 
 const coin = require('../../assets/Icons/Coin.png')
 
-const UserActu=new User("14", "leBg", "ouioui", "grand", new Date(2022,12,12), 12222, 123324, tabSkinApp[0], tabSkinApp, tabConv);
+const UserActu=new User("14", "leBg", "ouioui", "grand", new Date(2022,12,12), 12222, 123324, 12, tabSkinApp[0], tabSkinApp, tabConv);
 
 function Profile(props: { navigation: any; }) {
     const { navigation } = props
