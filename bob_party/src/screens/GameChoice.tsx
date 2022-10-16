@@ -32,7 +32,7 @@ function GameChoice(props: { navigation: any; }) {
       </View>
       <BotBar 
           nav={navigation}
-          state='Game'
+          state='Home'
       />
     </View>
   );

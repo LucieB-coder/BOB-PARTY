@@ -26,6 +26,7 @@ function Home(props: { navigation: any; }) {
       <TopBar
         skin={UserActu.getCurrentSkin()} 
         nav={navigation}
+        state= 'Home'
       />
       <View style={stylesScreen.bodyCenter}>
         <ButtonGameTypeChoice

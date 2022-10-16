@@ -47,7 +47,7 @@ FC<{nav: any, state?: String}> =
              the icon of the messages must switch to the blue one)
     */
     switch (state) {
-        case 'Game':
+        case 'Home':
             imgMid = sgamepad
             break;
         case 'Chat':
