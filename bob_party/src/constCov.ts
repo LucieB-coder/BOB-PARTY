@@ -18,6 +18,8 @@ let tabUS:User[]=[UserActu, UserTest];
 
 let conv = new Conversation(tabUS, tabMessageTest, "le super nom");
 
-export default conv;
+let tabConv:Conversation[]=[conv];
+
+export default tabConv;
 
 
