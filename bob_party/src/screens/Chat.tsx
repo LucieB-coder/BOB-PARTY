@@ -5,19 +5,30 @@ import stylesScreen from './style/screens.style'
 import { Skin } from '../core/skin';
 import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
+import { ScreenIndicator } from '../components/ScreenIndicator';
+import { User } from '../core/user';
+import { FlatList } from 'react-native-gesture-handler';
+import { ConversationComponent } from '../components/ConversationComponent';
 
-const skinTest= new Skin("S0001", "Bob",require('../../assets/Icons/BobClassic.png'),100);
+import tabSkinApp from '../constSkin';
+import tabConv from '../constCov';
+
+
+const UserActu=new User("14", "leBg", "ouioui", "grand", new Date(2022,12,12), 12222, 123324, 12,  tabSkinApp[0], tabSkinApp, tabConv);
 
 function Chat(props: { navigation: any; }) {
     const { navigation } = props
     return (
     <View style={stylesScreen.container}>
       <TopBar
-          skin={skinTest}
+          skin={UserActu.getCurrentSkin()}
           nav={navigation}
           />
       <View style={stylesScreen.bodyStart}>
-        <Text >couille</Text>
+        <FlatList 
+          data={tabConv}
+          renderItem={({item}) => <ConversationComponent conv={item} state='Preview'/>} 
+        />
       </View>
       <BotBar 
           nav={navigation}
