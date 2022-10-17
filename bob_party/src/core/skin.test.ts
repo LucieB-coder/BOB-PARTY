@@ -1,25 +1,31 @@
 import { Skin } from './Skin';
 
+// Instance
 let classique = new Skin('Classique', 'wouhou');
 
-test('skin Name : Classique', () => {
-    expect(classique.getSkinName).toBe('Classique');
-});
 
-describe('Get tests', () => {
+// Tests des get
+describe('Skin get tests', () => {
     it('should return Classique', () => {
-        expect(classique.getSkinName).toBe('Classique');
+        expect(classique.getSkinName()).toBe('Classique');
     })
     it('should return wouhou', () => {
-        expect(classique.getSkinSource).toBe('wouhou');
+        expect(classique.getSkinSource()).toBe('wouhou');
     })
 })
 
-describe('Set tests', () => {
+
+// Set de nouvelles valeurs
+classique.setSkinName('The Classique');
+classique.setSkinSource('The wouhou');
+
+
+// Tests de set
+describe('Skin set tests', () => {
     it('should return The Classique', () => {
-        expect(classique.setSkinName('The Classique')).toBe('The Classique');
+        expect(classique.getSkinName()).toBe('The Classique');
     })
     it('should return The wouhou', () => {
-        expect(classique.setSkinSource('The wouhou')).toBe('The wouhou');
+        expect(classique.getSkinSource()).toBe('The wouhou');
     })
 })
