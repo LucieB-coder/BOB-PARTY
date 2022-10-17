@@ -7,6 +7,6 @@ let myMap = new Map<number, number>([
     [150, 6]
 ]);
 
-let game=new GameSolo("bo jeu", require('bob_party/assets/ImagesJeux/blackjack.jpg'), "super jeu", myMap);
+let game=new GameSolo("bo jeu", require('bob_party/assets/ImagesJeux/blackjack.jpg'), "super jeu", 1, myMap);
 
 export default game;
