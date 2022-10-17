@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, View, Text, Alert, Pressable, Image} from 'react-native'
 import React from 'react';
-import { Game } from '../core/Game';
+import { Game } from '../core/game';
 import { Skin } from '../core/skin';
 import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
@@ -14,7 +14,7 @@ let tabConv:Conversation[]=[];
 
 const msc = require('../../assets/Icons/FondGris.png');
 
-const UserActu=new User("14", "leBg", "ouioui", "grand", new Date(2022,12,12), 12222, 123324, 12, tabSkinApp[0], tabSkinApp, tabConv);
+const UserActu=new User("14", "leBg", "MdpDeOuf", "ouioui", "grand",  new Date(2022,12,12), 12222, 123324, 12, tabSkinApp[0], tabSkinApp, tabConv);
 const jeuTest= new Game("SNAKE", require('../../assets/Icons/UnSelected/Gamepad.png'),"ouin");
 function GameChoice(props: { navigation: any; }) {
     const { navigation } = props

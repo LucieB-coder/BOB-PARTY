@@ -5,6 +5,7 @@ import { sign } from 'crypto';
 export class User{
     readonly Id: string;
     private Username: string;
+    private Password: string;
     private Nationality: string;
     private Sexe: string;
     private DateOfBirth: Date;
@@ -16,10 +17,11 @@ export class User{
     private TabConv?: Conversation[];
 
     /* Consturctor of the class */
-    constructor(id: string, username: string, nationality: string, sexe: string, dateOfBirth: Date, currentCoins: number, totalCoins: number,
+    constructor(id: string, username: string, password:string, nationality: string, sexe: string, dateOfBirth: Date, currentCoins: number, totalCoins: number,
                 nbGamePlayed:number, currentSkin: Skin, tabSkin: Skin[], tabConv?: Conversation[] ){
                     this.Id=id;
                     this.Username=username;
+                    this.Password=password;
                     this.Nationality=nationality;
                     this.Sexe=sexe;
                     this.DateOfBirth=dateOfBirth;
@@ -46,6 +48,14 @@ export class User{
     /* Brief : Function getting the id of an user */
     getId(){
         return this.Id;
+    }
+
+    getPassword(){
+        return this.Password;
+    }
+
+    setPassword(password:string){
+        this.Password=password;
     }
 
     /* Brief : Function getting the current number of coins of an user */
@@ -157,5 +167,12 @@ export class User{
 
     ajouterSkin(skin:Skin){
         this.TabSkin.push(skin);
+    }
+
+    canConnect(username:string, mdp:string){
+        if (this.Username==username){
+            return this.Password==mdp;
+        }
+        return false;
     }
 }

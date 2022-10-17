@@ -14,7 +14,7 @@ import tabSkinApp from '../constSkin';
 import tabConv from '../constCov';
 
 
-const UserActu=new User("14", "leBg", "ouioui", "grand", new Date(2022,12,12), 12222, 123324, 12,  tabSkinApp[0], tabSkinApp, tabConv);
+const UserActu=new User("14", "leBg", "MdpDeOuf", "ouioui", "grand", new Date(2022,12,12), 12222, 123324, 12,  tabSkinApp[0], tabSkinApp, tabConv);
 
 function Chat(props: { navigation: any; }) {
     const { navigation } = props

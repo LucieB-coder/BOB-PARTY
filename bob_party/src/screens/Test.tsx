@@ -6,6 +6,7 @@ import { FlatList } from 'react-native-gesture-handler';
 import { SkinComponent } from '../components/Skin';
 import { Skin } from '../core/skin';
 
+/*
 const skinTest = new Skin("S0001","Bob",require('../../assets/BobsSkins/BobClassic.png'));
 const skinBleu = new Skin("S0001","Bob Bleu", require('../../assets/BobsSkins/BobBlue.png'))
 const skinBW = new Skin("S0001","Bob BW", require('../../assets/BobsSkins/BobBW.png'))
@@ -36,3 +37,4 @@ function Test(props: { navigation: any; }) {
 }
 
 export default Test
+*/

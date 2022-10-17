@@ -12,8 +12,6 @@ import SkinList from '../screens/SkinList'
 import GameChoice from '../screens/GameChoice'
 
 
-import Test from '../screens/Test'
-
 
 const HomeStack = createStackNavigator();
 
@@ -85,7 +83,6 @@ function MainTabNavigator() {
         <Tab.Screen name='StoreTab' component={StoreStackScreen} />
         <Tab.Screen name='ChatTab' component={ChatStackScreen} />
         <Tab.Screen name='ProfileTab' component={ProfileStackScreen} />
-        <Tab.Screen name='Test' component={Test} />
       </Tab.Navigator>
     </NavigationContainer>
   )
