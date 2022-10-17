@@ -1,35 +1,45 @@
-export interface Game{
-    private Name:String;
-    private ImageSource:String;
-    private GameSource:String;
+import { randomBytes } from "crypto";
+import { ImageSourcePropType } from "react-native";
 
-    constructor(name:String, imageSource:String, gameSource:String){
+export class Game{
+    private Name:string;
+    private ImageSource:ImageSourcePropType;
+    private GameSource:string ;
+
+    /* Constructor of the class */
+    constructor (name:string, imageSource:ImageSourcePropType, gameSource:string){
         this.Name=name;
-        this.ImageSource=imageSource
+        this.ImageSource=imageSource;
         this.GameSource=gameSource;
     }
 
+    /* Brief : Function getting the name of a game */
     getName(){
         return this.Name;
     }
 
-    setName(name:String){
+    /* Brief : Function setting the name of a game */
+    setName(name:string){
         this.Name=name;
     }
 
-    getImageSource(imageSource:String){
+    /* Brief : Function getting the image of a game */
+    getImageSource(){
         return this.ImageSource;
     }
 
-    setImageSource(imageSource:String){
+    /* Brief : Function setting the image of a game */
+    setImageSource(imageSource:ImageSourcePropType){
         this.ImageSource=imageSource;
     }
 
+    /* Brief : Function getting the source of a game */
     getGameSource(){
         return this.GameSource;
     }
 
-    setGameSource(gameSource:String){
+    /* Brief : Function getting the source of a game */
+    setGameSource(gameSource:string){
         this.GameSource=gameSource;
     }
 }

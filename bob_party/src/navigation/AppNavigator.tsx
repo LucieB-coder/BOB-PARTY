@@ -8,6 +8,8 @@ import Store from '../screens/Store'
 import Chat from '../screens/Chat'
 import Settings from '../screens/Settings'
 import Profile from '../screens/Profile'
+import SkinList from '../screens/SkinList'
+import GameChoice from '../screens/GameChoice'
 
 
 import Test from '../screens/Test'
@@ -15,17 +17,23 @@ import Test from '../screens/Test'
 
 const HomeStack = createStackNavigator();
 
+/*
+  Stack of screens for home and game choice
+*/
 function HomeStackScreen() {
   return (
-    <HomeStack.Navigator screenOptions={{headerShown: false}}>
-      <HomeStack.Screen name="Home" component={Home} />
+    <HomeStack.Navigator screenOptions={{ headerShown: false}}>
+      <HomeStack.Screen name="Home" component={Home} options={{animationEnabled: false,}}/>
       <HomeStack.Screen name="Settings" component={Settings} />
+      <HomeStack.Screen name='GameChoice' component={GameChoice} options={{animationEnabled: false,}}/>
     </HomeStack.Navigator>
   );
 }
 
 const StoreStack = createStackNavigator();
-
+/*
+  Stack of screens for the store and the purshase of new skins
+*/
 function StoreStackScreen() {
   return (
     <StoreStack.Navigator screenOptions={{headerShown: false}}>
@@ -36,7 +44,9 @@ function StoreStackScreen() {
 }
 
 const ChatStack = createStackNavigator();
-
+/*
+  Stack of screens for conversations 
+*/
 function ChatStackScreen() {
   return (
     <ChatStack.Navigator screenOptions={{headerShown: false}}>
@@ -47,23 +57,27 @@ function ChatStackScreen() {
 }
 
 const ProfileStack = createStackNavigator();
-
+/*
+  Stack of screens for the profile and the changement of informations
+*/
 function ProfileStackScreen() {
   return (
     <ProfileStack.Navigator screenOptions={{headerShown: false}}>
-      <ProfileStack.Screen name="Profile" component={Profile} />
+      <ProfileStack.Screen name="Profile" component={Profile} options={{animationEnabled: false,}}/>
       <ProfileStack.Screen name="Settings" component={Settings} />
+      <ProfileStack.Screen name="SkinList" component={SkinList} options={{animationEnabled: false,}}/>
     </ProfileStack.Navigator>
   );
 }
 
 const Tab = createBottomTabNavigator()
-
+/*
+  Tab navigator to navigate between the stacks
+*/
 function MainTabNavigator() {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        initialRouteName='Home'
         backBehavior='none'
         screenOptions={{headerShown: false, tabBarStyle: { display: 'none' },}}
         >

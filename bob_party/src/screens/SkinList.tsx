@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, View} from 'react-native'
+import { StyleSheet, View, Text} from 'react-native'
 import React from 'react';
 import stylesScreen from './style/screens.style'
 import { Skin } from '../core/skin';
@@ -7,33 +7,32 @@ import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
 import { FlatList } from 'react-native-gesture-handler';
 import { SkinComponent } from '../components/Skin';
+import tabSkinApp from '../constSkin';
 import { ScreenIndicator } from '../components/ScreenIndicator';
 
-import tabSkinApp from '../constSkin';
 
-function Store(props: { navigation: any; }) {
+function SkinList(props: { navigation: any; }) {
     const { navigation } = props
     return (
     <View style={stylesScreen.container}>
-      <TopBar
-        skin={tabSkinApp[0]}
-        nav={navigation}
-      />
+        <TopBar
+          skin={tabSkinApp[0]} 
+          nav={navigation}
+          />
       <View style={stylesScreen.bodyStart}>
-        <ScreenIndicator title='Store'/>
+        <ScreenIndicator title='Mes Skins'/>
         <FlatList 
           data={tabSkinApp}
           numColumns={2}
           columnWrapperStyle={{ flex: 1, justifyContent: "space-around"}}
           keyExtractor={item =>item.getSkinName()}
-          renderItem={({item}) => <SkinComponent skin={item} state='shop'/>} />
+          renderItem={({item}) => <SkinComponent skin={item} state='liste'/>} />
       </View>
-      <BotBar 
+      <BotBar
           nav={navigation}
-          state='Store'
       />
     </View>
   );
 }
 
-export default Store
+export default SkinList
