@@ -13,6 +13,11 @@ export default StyleSheet.create({
         flexDirection: 'column',
         width: '100%',
       },
+    bodyStartCenter: {
+        flex: 1,
+        alignItems: 'center',
+        width: '100%',
+    },
     bodyCenter: {
         flex: 1,
         alignItems: 'center',
