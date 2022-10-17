@@ -9,7 +9,7 @@ import { SkinComponent } from '../components/Skin';
 import { User } from '../core/user';
 import tabSkinApp from '../constSkin';
 import tabConv from '../constCov'
-import { ButtonChangeSkin } from '../components/ButtonChangeSkin';
+import { ButtonGreySmall } from '../components/ButtonGreySmall';
 import { ScreenIndicator } from '../components/ScreenIndicator';
 
 const coin = require('../../assets/Icons/Coin.png')
@@ -36,7 +36,7 @@ function Profile(props: { navigation: any; }) {
             </View>
             <View style={styles.skinView}>
                 <SkinComponent skin={UserActu.getCurrentSkin()} state='profile'/>
-                <ButtonChangeSkin onPress={() => navigation.navigate('SkinList')}/>
+                <ButtonGreySmall onPress={() => navigation.navigate('SkinList')} title='Changer de skin' state='Profile'/>
             </View>
         </View>
         <View style={styles.infoView}>
