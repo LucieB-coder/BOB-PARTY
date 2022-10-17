@@ -4,8 +4,8 @@ import { Game } from './game'
 export class GameMulti extends Game{
     readonly RankToCoins:Map<number,number>
 
-    constructor(name:string, imageSource:ImageSourcePropType, gameSource:string, rankToCoins:Map<number,number>){
-        super(name, imageSource, gameSource);
+    constructor(name:string, imageSource:ImageSourcePropType, gameSource:string, nbPlayer:number, rankToCoins:Map<number,number>){
+        super(name, imageSource, gameSource, nbPlayer);
         this.RankToCoins=rankToCoins;
     }
 

@@ -4,13 +4,15 @@ import { ImageSourcePropType } from "react-native";
 export class Game{
     private Name:string;
     private ImageSource:ImageSourcePropType;
-    private GameSource:string ;
+    private GameSource:string;
+    private NbPlayer: number;
 
     /* Constructor of the class */
-    constructor (name:string, imageSource:ImageSourcePropType, gameSource:string){
+    constructor (name:string, imageSource:ImageSourcePropType, gameSource:string, nbPlayer:number){
         this.Name=name;
         this.ImageSource=imageSource;
         this.GameSource=gameSource;
+        this.NbPlayer=nbPlayer;
     }
 
     /* Brief : Function getting the name of a game */
@@ -38,8 +40,18 @@ export class Game{
         return this.GameSource;
     }
 
-    /* Brief : Function getting the source of a game */
+    /* Brief : Function setting the source of a game */
     setGameSource(gameSource:string){
         this.GameSource=gameSource;
+    }
+
+    /* Brief : Function getting the number of player */
+    getNbPlayer(){
+        return this.NbPlayer;
+    }
+
+    /* Brief : Function setting the number of player*/
+    setNbPlayer(nbPlayer:number){
+        this.NbPlayer=nbPlayer;
     }
 }
