@@ -4,8 +4,8 @@ import { Game } from './game'
 export class GameSolo extends Game{
     readonly PtsToCoins:Map<number,number>
 
-    constructor(name:string, imageSource:ImageSourcePropType, gameSource:string, ptsToCoins:Map<number,number>){
-        super(name, imageSource, gameSource);
+    constructor(name:string, imageSource:ImageSourcePropType, gameSource:string, nbPlayer:number, ptsToCoins:Map<number,number>){
+        super(name, imageSource, gameSource, nbPlayer);
         this.PtsToCoins=ptsToCoins;
     }
 

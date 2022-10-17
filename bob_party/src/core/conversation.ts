@@ -5,10 +5,10 @@ import { User } from "./user";
 export class Conversation{
     private TabUser: User[];
     private TabMessage: Message[];
-    private Name?: string;
+    private Name: string;
     
     /* Constructor of the class */
-    constructor(tabUser: User[], tabMessage:Message[], name?:string){
+    constructor(tabUser: User[], tabMessage:Message[], name:string){
         this.TabUser=[...tabUser];
         this.TabMessage=[...tabMessage];
         this.Name=name;

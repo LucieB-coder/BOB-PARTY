@@ -4,8 +4,8 @@ import { Game } from './game'
 export class GameCasino extends Game{
     readonly Coef:number;
 
-    constructor(name:string, imageSource:ImageSourcePropType, gameSource:string, coef:number){
-        super(name, imageSource, gameSource);
+    constructor(name:string, imageSource:ImageSourcePropType, gameSource:string, nbPlayer:number, coef:number){
+        super(name, imageSource, gameSource, nbPlayer);
         this.Coef=coef;
     }
 
