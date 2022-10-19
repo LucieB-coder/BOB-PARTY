@@ -1,7 +1,7 @@
 import { randomBytes } from "crypto";
 import { ImageSourcePropType } from "react-native";
 
-export class Game{
+export abstract class Game{
     private Name:string;
     private ImageSource:ImageSourcePropType;
     private GameSource:string;

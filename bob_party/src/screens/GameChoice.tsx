@@ -9,13 +9,14 @@ import { GameComponent } from '../components/GameComponent';
 import { User } from '../core/user';
 import tabSkinApp from '../constSkin';
 import { Conversation } from '../core/conversation';
+import { GameSolo } from '../core/gameSolo';
 let tabConv:Conversation[]=[];
 
 
 const msc = require('../../assets/Icons/FondGris.png');
 
 const UserActu=new User("14", "leBg", "MdpDeOuf", "ouioui", "grand",  new Date(2022,12,12), 12222, 123324, 12, tabSkinApp[0], tabSkinApp, tabConv);
-const jeuTest= new Game("SNAKE", require('../../assets/Icons/UnSelected/Gamepad.png'),"ouin", 1);
+const jeuTest= new GameSolo("SNAKE", require('../../assets/Icons/UnSelected/Gamepad.png'),"ouin", 1, new Map<number,number>);
 function GameChoice(props: { navigation: any; }) {
     const { navigation } = props
     return (
