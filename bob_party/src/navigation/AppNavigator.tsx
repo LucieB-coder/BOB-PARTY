@@ -10,6 +10,8 @@ import Settings from '../screens/Settings'
 import Profile from '../screens/Profile'
 import SkinList from '../screens/SkinList'
 import GameChoice from '../screens/GameChoice'
+import SignIn from '../screens/SignIn'
+import SignUp from '../screens/SignUp'
 
 
 
@@ -76,6 +78,7 @@ function MainTabNavigator() {
   return (
     <NavigationContainer>
       <Tab.Navigator
+        initialRouteName='SignIn'
         backBehavior='none'
         screenOptions={{headerShown: false, tabBarStyle: { display: 'none' },}}
         >
@@ -83,6 +86,8 @@ function MainTabNavigator() {
         <Tab.Screen name='StoreTab' component={StoreStackScreen} />
         <Tab.Screen name='ChatTab' component={ChatStackScreen} />
         <Tab.Screen name='ProfileTab' component={ProfileStackScreen} />
+        <Tab.Screen name='SignIn' component={SignIn} />
+        <Tab.Screen name='SignUp' component={SignUp} />
       </Tab.Navigator>
     </NavigationContainer>
   )
