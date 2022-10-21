@@ -1,5 +1,5 @@
 # database container deployment  
-  - name: docker-BDD   
+  - name: deploy-docker-BDD   
     image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest    
     environment:        
       IMAGENAME: mysql:10        
