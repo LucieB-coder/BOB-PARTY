@@ -5,7 +5,7 @@ import { User } from "./core/User/user";
 
 
 let UserActu:User=new User("14", "leBg", "MdpDeOuf", "ouioui", "grand", new Date(2022,12,12), 12222, 123324, 12, tabSkinApp[0], tabSkinApp, undefined);
-let UserTest:User=new User("48", "Wesh Wesh", "MdpDeOuf", "ouioui", "grand", new Date(2022,12,12), 12222, 123324, 12, tabSkinApp[1], tabSkinApp, undefined);
+let UserTest:User=new User("48", "Wesh Wesh", "MdpDeOuf", "ouioui", "grand", new Date(2022,12,12), 12222, 123324, 12, tabSkinApp[5], tabSkinApp, undefined);
 
 let tabMessageTest:Message[]=[
     new Message("Salut", UserActu, new Date(2022,12,12,11,30,40)),

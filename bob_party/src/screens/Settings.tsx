@@ -1,23 +1,34 @@
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, View, Text, Alert} from 'react-native'
-import React from 'react';
+import { View, Text } from 'react-native'
+import React, { useState } from 'react';
 import stylesScreen from './style/screens.style';
 import styles from './style/Settings.style';
 import { TopBar } from '../components/TopBar';
-import { User } from '../core/user';
-
-import tabSkinApp from '../constSkin';
-import tabConv from '../constCov';
 import { ButtonGreySmall } from '../components/ButtonGreySmall';
-import { title } from 'process';
-import { info } from 'console';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
+import DialogInput from "react-native-dialog-input";
+import { updatePseudo, updatePassword, updateNationality, updateSex } from "../redux/features/currentUserSlice";
+import Dialog from "react-native-dialog"
+import RNPickerSelect from "react-native-picker-select";
+import tabNat from '../constNat';
+import tabSex from '../constSex';
 
-
-const UserActu=new User("14", "leBg", "MdpDeOuf", "ouioui", "grand", new Date(2022,12,12), 12222, 123324, 12,  tabSkinApp[0], tabSkinApp, tabConv);
-
-
-function Store(props: { navigation: any; }) {
+function Settings(props: { navigation: any; }) {
     const { navigation } = props
+
+    const currentUser = useSelector((state: RootState) => state.currentUser.value)[0];
+
+    const [dialogPseudoVisible, setDialogPseudoVisible] = useState(false);
+    const [dialogPasswordVisible, setDialogPasswordVisible] = useState(false);
+    const [dialogNationalityVisible, setDialogNationalityVisible] = useState(false);
+    const [dialogSexVisible, setDialogSexVisible] = useState(false);
+
+    const [selectedSex, setSelectedSex] = useState("");
+    const [selectedNationality, setSelectedNationality] = useState("");
+
+    const dispatch=useDispatch();
+
     return (
     <View style={stylesScreen.container}>
       <TopBar
@@ -30,28 +41,71 @@ function Store(props: { navigation: any; }) {
           <View style={{flexDirection: 'row', justifyContent: 'space-between',}}>
             <View>
               <View>
-                <Text style={styles.text}>Pseudo: {UserActu.getUsername()}</Text>
-                <ButtonGreySmall onPress={UserActu.setUsername} title='Changer le pseudo'/>
+                <Text style={styles.text}>Pseudo: {currentUser.getUsername()}</Text>
+                <ButtonGreySmall onPress={() => setDialogPseudoVisible(true)} title='Changer le pseudo'/>
               </View>
               <View>
-                <Text style={styles.text}>Mot de passe: {UserActu.getPassword()}</Text>
-                <ButtonGreySmall onPress={() => console.log('changer mdp')} title='Changer le mot de passe'/>
+                <Text style={styles.text}>Mot de passe: {currentUser.getPassword()}</Text>
+                <ButtonGreySmall onPress={() => setDialogPasswordVisible(true)} title='Changer le mot de passe'/>
               </View>
               <View>
-                <Text style={styles.text}>Nationalité: {UserActu.getNationality()}</Text>
-                <ButtonGreySmall onPress={() => console.log('changer nat')} title='Changer la nationnalité'/>
+                <Text style={styles.text}>Nationalité: {currentUser.getNationality()}</Text>
+                <ButtonGreySmall onPress={() => setDialogNationalityVisible(true)} title='Changer la nationnalité'/>
               </View>
               <View>
-                <Text style={styles.text}>Sexe: {UserActu.getSexe()}</Text>
-                <ButtonGreySmall onPress={() => console.log('changer sexe')} title='Changer le sexe'/>
+                <Text style={styles.text}>Sexe: {currentUser.getSexe()}</Text>
+                <ButtonGreySmall onPress={() => setDialogSexVisible(true)} title='Changer le sexe'/>
               </View>
             </View>
-            <Text style={styles.textID}>ID: {UserActu.getId()}</Text>
+            <Text style={styles.textID}>ID: {currentUser.getId()}</Text>
           </View>
         </View>
       </View>
+
+      <DialogInput
+        isDialogVisible={dialogPseudoVisible}
+        title="Inserer le nouveau pseudo"
+        hintInput ="Pseudo"
+        submitInput={ (inputText: string) => {dispatch(updatePseudo(inputText)); setDialogPseudoVisible(false)} }
+        closeDialog={ () => {setDialogPseudoVisible(false)}}>
+      </DialogInput>
+
+      <DialogInput 
+        isDialogVisible={dialogPasswordVisible}
+        title="Inserer le nouveau mot de passe"
+        hintInput ="Mot de passe"
+        submitInput={ (inputText: string) => {dispatch(updatePassword(inputText)); setDialogPasswordVisible(false)} }
+        closeDialog={ () => {setDialogPasswordVisible(false)}}>
+      </DialogInput>
+
+      <Dialog.Container visible={dialogNationalityVisible}>
+        <Dialog.Title>Changer de nationalité</Dialog.Title>
+        <View style={styles.RNPView}>
+          <RNPickerSelect
+            placeholder={{label:"Cliquez pour changer", value: null}}
+            onValueChange={(value:string) => setSelectedNationality(value)}
+            items={tabNat}
+          />
+        </View>  
+        <Dialog.Button label="Cancel" onPress={() => setDialogNationalityVisible(false)} />
+        <Dialog.Button label="Valider" onPress={() => {dispatch(updateNationality(selectedNationality)); setDialogNationalityVisible(false)}} />
+      </Dialog.Container>
+
+      <Dialog.Container visible={dialogSexVisible}>
+        <Dialog.Title>Changer de sexe</Dialog.Title>
+        <View style={styles.RNPView}>
+          <RNPickerSelect
+            placeholder={{label:"Cliquez pour changer", value: null}}
+            onValueChange={(value:string) => setSelectedSex(value)}
+            items={tabSex}
+          />
+        </View>  
+        <Dialog.Button label="Cancel" onPress={() => setDialogSexVisible(false)} />
+        <Dialog.Button label="Valider" onPress={() => {dispatch(updateSex(selectedSex)); setDialogSexVisible(false)}} />
+      </Dialog.Container>
+
     </View>
   );
 }
 
-export default Store
+export default Settings
