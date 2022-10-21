@@ -23,7 +23,6 @@ function Profile(props: { navigation: any; }) {
     return (
     <View style={stylesScreen.container}>
         <TopBar
-          skin={currentUser.getCurrentSkin()} 
           nav={navigation}
           />
       <View style={stylesScreen.bodyStart}>
@@ -38,7 +37,7 @@ function Profile(props: { navigation: any; }) {
                 <Text style={styles.coinText}>{currentUser.getCurrentCoins()}</Text>
             </View>
             <View style={styles.skinView}>
-                <SkinComponent skin={currentUser.getCurrentSkin()} state='profile' nav={navigation} />
+                <SkinComponent skin={currentUser.getCurrentSkin()} state='profile' />
                 <ButtonGreySmall onPress={() => navigation.navigate('SkinList')} title='Changer de skin' state='Profile'/>
             </View>
         </View>

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { Skin } from "../../core/Skin";
-import { User } from "../../core/user";
+import { User } from "../../core/User/user";
 
 interface currentUserState {
     value: User[]

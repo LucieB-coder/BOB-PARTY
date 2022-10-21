@@ -3,7 +3,7 @@ import { Pressable, Image, Text, View} from "react-native"
 import { Skin } from "../core/Skin"
 import React from "react"
 import { SkinComponent } from "./Skin"
-import { User } from "../core/user"
+import { User } from "../core/User/user"
 
 /*
     Import the correct stylesheet

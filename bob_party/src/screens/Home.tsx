@@ -22,7 +22,6 @@ function Home(props: { navigation: any; }) {
     return ( 
       <View style={stylesScreen.container}>
         <TopBar
-          skin={currentUser.getCurrentSkin()} 
           nav={navigation}
           state= 'Home'
         />

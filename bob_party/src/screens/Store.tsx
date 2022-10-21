@@ -18,7 +18,6 @@ function Store(props: { navigation: any; }) {
   return (
     <View style={stylesScreen.container}>
       <TopBar
-        skin={currentUser.getCurrentSkin()}
         nav={navigation}
       />
       <View style={stylesScreen.bodyStart}>
