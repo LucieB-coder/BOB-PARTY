@@ -7,6 +7,8 @@ import { Skin } from "../core/skin"
     Importing the correct stylesheet
 */
 import styles from "./style/Skin.style"
+import { useDispatch } from "react-redux"
+import { updateSkin } from "../redux/features/currentUserSlice"
 
 export const SkinComponent :
 /* Parameters : 
@@ -16,6 +18,8 @@ export const SkinComponent :
 FC<{skin: Skin, state: String}> = 
 ({skin, state}) => 
 {
+    const dispatch=useDispatch();
+
     /* The display of this component depends of the screen from where it has been called:
         * From the TopBar (icon) : Small image in a circle
         * From the shop (shop) : Image + Name + Price, Pressable => Buy the skin
@@ -25,7 +29,7 @@ FC<{skin: Skin, state: String}> =
         case 'icon':
             return (
                 <View>
-                    <Image source={ skin.getSkinSource()} style={styles.icon}/>
+                    <Image source={skin.getSkinSource()} style={styles.icon}/>
                 </View>
             )
         
@@ -42,7 +46,7 @@ FC<{skin: Skin, state: String}> =
             )
         case 'liste':
             return(
-                <Pressable onPress={() => Alert.alert("Changement du skin")} style={styles.imageWrapper}>
+                <Pressable onPress={() => dispatch(updateSkin(skin))} style={styles.imageWrapper}>
                     <Text style={styles.nomSkin}>{skin.getSkinName()}</Text>
                     <Image
                         style={styles.imageSkin}
@@ -61,6 +65,11 @@ FC<{skin: Skin, state: String}> =
                 </Pressable>
             )
         default:
-            break;
+            return(
+                <Image
+                        style={styles.imageSkin}
+                        source={skin.getSkinSource()}
+                />
+            )
     }
 }
