@@ -1,16 +1,11 @@
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, View, ImageSourcePropType, Pressable, Text} from 'react-native'
+import { View, Pressable, Text} from 'react-native'
 import React, { useState } from 'react';
 import stylesScreen from './style/screens.style'
 import { TextInput } from 'react-native-gesture-handler';
-import { CustomTextInput } from '../components/CustomTextInput';
-import { ButtonGameTypeChoice } from '../components/ButtonGameTypeChoice';
-import { User } from "../core/user";
 import tabUS from "../constUser";
-
 import styles from "./style/SignIn.style"
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
+import { useDispatch, } from 'react-redux';
 import { loginUser } from '../redux/features/currentUserSlice';
 
 
