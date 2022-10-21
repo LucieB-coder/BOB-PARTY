@@ -27,5 +27,10 @@ export default StyleSheet.create({
          borderWidth: 2,
         width: '90%',
         margin: 15,
-        padding: 15,}
+        padding: 15,
+    },
+    RNPView: {
+        alignSelf: 'center',
+        padding: 20,
+    }
 });
