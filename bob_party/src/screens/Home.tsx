@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, View, ImageSourcePropType} from 'react-native'
 import React from 'react';
 import stylesScreen from './style/screens.style'
-import { User } from '../core/user';
+import { User } from '../core/User/user';
 import { Skin } from '../core/skin';
 import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';

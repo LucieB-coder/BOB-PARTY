@@ -1,4 +1,4 @@
-import { User } from '../User';
+import { User } from '../User/user';
 import { Skin } from '../Skin';
 import { Conversation } from '../Conversation';
 

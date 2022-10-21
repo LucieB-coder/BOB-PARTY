@@ -1,12 +1,12 @@
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, View, Text, Alert, Pressable, Image} from 'react-native'
 import React from 'react';
-import { Game } from '../core/Game';
+import { Game } from '../core/game';
 import { Skin } from '../core/skin';
 import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
 import { GameComponent } from '../components/GameComponent';
-import { User } from '../core/user';
+import { User } from '../core/User/user';
 import tabSkinApp from '../constSkin';
 import { Conversation } from '../core/conversation';
 import { GameSolo } from '../core/gameSolo';
