@@ -1,7 +1,7 @@
 import { Message } from "./core/message"
 import { Conversation } from "./core/conversation"
 import tabSkinApp from './constSkin'
-import { User } from "./core/user";
+import { User } from "./core/User/user";
 import tabConv from "./constCov";
 
 
