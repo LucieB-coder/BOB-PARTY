@@ -12,12 +12,13 @@ steps:
         # OVERWRITE: false
         PRIVATE: true
         CODEFIRST_CLIENTDRONE_ENV_MARIADB_ROOT_PASSWORD:
-          from_secret: db_root_password
+          from_secret: P@s$w0rd123
         CODEFIRST_CLIENTDRONE_ENV_MARIADB_DATABASE:
-          from_secret: db_database
+          from_secret: BDBOB
         CODEFIRST_CLIENTDRONE_ENV_MARIADB_USER:
-          from_secret: db_user
+          from_secret: bob
         CODEFIRST_CLIENTDRONE_ENV_MARIADB_PASSWORD:
-          from_secret: db_password
+          from_secret: P@s$w0rd123
     commands:
-      - mysql -u root
+      - GRANT ALL PRIVILEGES ON *.* TO 'CODEFIRST_CLIENTDRONE_ENV_MARIADB_USER'@'localhost' IDENTIFIED BY 'CODEFIRST_CLIENTDRONE_ENV_MARIADB_PASSWORD';
+      
