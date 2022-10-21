@@ -3,7 +3,6 @@
 // import React from 'react';
 // import stylesScreen from './style/screens.style'
 // import { TextInput } from 'react-native-gesture-handler';
-// import { CustomTextInput } from '../components/CustomTextInput';
 // import { ButtonGameTypeChoice } from '../components/ButtonGameTypeChoice';
 
 // import styles from "./style/SignIn.style"
