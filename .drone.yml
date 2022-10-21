@@ -1,4 +1,4 @@
-# database container deployment  
+# database container deployment
   - name: deploy-docker-BDD
     image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
     environment:
