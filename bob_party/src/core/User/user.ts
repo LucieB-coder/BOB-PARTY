@@ -19,22 +19,22 @@ export class User{
     /* Consturctor of the class */
     constructor(id: string, username: string, password:string, nationality: string, sexe: string, dateOfBirth: Date, currentCoins: number, totalCoins: number,
                 nbGamePlayed:number, currentSkin: Skin, tabSkin: Skin[], tabConv?: Conversation[] ){
-                    this.Id=id;
-                    this.Username=username;
-                    this.Password=password;
-                    this.Nationality=nationality;
-                    this.Sexe=sexe;
-                    this.DateOfBirth=dateOfBirth;
-                    this.NbGamePlayed=nbGamePlayed;
-                    this.CurrentCoins=currentCoins;
-                    this.TotalCoins=totalCoins;
-                    this.CurrentSkin=currentSkin;
-                    this.TabSkin=[...tabSkin];
+                    this.id=id;
+                    this.username=username;
+                    this.password=password;
+                    this.nationality=nationality;
+                    this.sexe=sexe;
+                    this.dateOfBirth=dateOfBirth;
+                    this.nbGamePlayed=nbGamePlayed;
+                    this.currentCoins=currentCoins;
+                    this.totalCoins=totalCoins;
+                    this.currentSkin=currentSkin;
+                    this.tabSkin=[...tabSkin];
                     if(tabConv!==undefined){
-                        this.TabConv=[...tabConv];
+                        this.tabConv=[...tabConv];
                     }
                     else{
-                        this.TabConv=tabConv;
+                        this.tabConv=tabConv;
                     }
                 }
 
