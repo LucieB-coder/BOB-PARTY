@@ -30,9 +30,12 @@ export class User{
                     this.TotalCoins=totalCoins;
                     this.CurrentSkin=currentSkin;
                     this.TabSkin=[...tabSkin];
-                    tabConv?.forEach(conv => {
-                        this.TabConv?.push(conv);
-                    });
+                    if(tabConv!==undefined){
+                        this.TabConv=[...tabConv];
+                    }
+                    else{
+                        this.TabConv=tabConv;
+                    }
                 }
 
     /* Brief : Function getting the name of an user */
