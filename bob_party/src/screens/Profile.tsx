@@ -1,46 +1,49 @@
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, View, Text, Image} from 'react-native'
+import { View, Text, Image} from 'react-native'
 import React from 'react';
 import stylesScreen from './style/screens.style'
 import styles from './style/Profile.style'
 import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
 import { SkinComponent } from '../components/Skin';
-import { User } from '../core/user';
-import tabSkinApp from '../constSkin';
-import tabConv from '../constCov'
 import { ButtonGreySmall } from '../components/ButtonGreySmall';
 import { ScreenIndicator } from '../components/ScreenIndicator';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
 
 const coin = require('../../assets/Icons/Coin.png')
 
-const UserActu=new User("14", "leBg","MdpDeOuf", "ouioui", "grand", new Date(2022,12,12), 12222, 123324, 12, tabSkinApp[0], tabSkinApp, tabConv);
+
 
 function Profile(props: { navigation: any; }) {
     const { navigation } = props
+
+    const currentUser = useSelector((state: RootState) => state.currentUser.value)[0];
+
     return (
     <View style={stylesScreen.container}>
         <TopBar
-          skin={UserActu.getCurrentSkin()} 
+          skin={currentUser.getCurrentSkin()} 
           nav={navigation}
           />
       <View style={stylesScreen.bodyStart}>
         <ScreenIndicator title='Profil'/>
+        <Text style={styles.pseudoText}>{currentUser.getUsername()}</Text>
         <View style={styles.coinSkinView}>
             <View style={styles.coinView}>
                 <Image 
                     style={styles.coin}
                     source={coin}
                 />
-                <Text style={styles.coinText}>{UserActu.getCurrentCoins()}</Text>
+                <Text style={styles.coinText}>{currentUser.getCurrentCoins()}</Text>
             </View>
             <View style={styles.skinView}>
-                <SkinComponent skin={UserActu.getCurrentSkin()} state='profile'/>
+                <SkinComponent skin={currentUser.getCurrentSkin()} state='profile' nav={navigation} />
                 <ButtonGreySmall onPress={() => navigation.navigate('SkinList')} title='Changer de skin' state='Profile'/>
             </View>
         </View>
         <View style={styles.infoView}>
-            <Text style={styles.infoText}>Total de BobCoin gagnés: {UserActu.getTotalCoins()}</Text>
+            <Text style={styles.infoText}>Total de BobCoin gagnés: {currentUser.getTotalCoins()}</Text>
         </View>
       </View>
       <BotBar

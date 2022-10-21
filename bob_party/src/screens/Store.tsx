@@ -1,28 +1,30 @@
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, View} from 'react-native'
+import { View } from 'react-native'
 import React from 'react';
-import stylesScreen from './style/screens.style'
-import { Skin } from '../core/skin';
+import stylesScreen from './style/screens.style';
 import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
 import { FlatList } from 'react-native-gesture-handler';
 import { SkinComponent } from '../components/Skin';
 import { ScreenIndicator } from '../components/ScreenIndicator';
-
-import tabSkinApp from '../constSkin';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
 
 function Store(props: { navigation: any; }) {
-    const { navigation } = props
-    return (
+  const { navigation } = props
+
+  const currentUser = useSelector((state: RootState) => state.currentUser.value[0]);
+
+  return (
     <View style={stylesScreen.container}>
       <TopBar
-        skin={tabSkinApp[0]}
+        skin={currentUser.getCurrentSkin()}
         nav={navigation}
       />
       <View style={stylesScreen.bodyStart}>
         <ScreenIndicator title='Store'/>
         <FlatList 
-          data={tabSkinApp}
+          data={currentUser.getTabSkin()}
           numColumns={2}
           columnWrapperStyle={{ flex: 1, justifyContent: "space-around"}}
           keyExtractor={item =>item.getSkinName()}

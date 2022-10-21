@@ -1,32 +1,28 @@
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, View, Text} from 'react-native'
+import {View} from 'react-native'
 import React from 'react';
-import stylesScreen from './style/screens.style'
-import { Skin } from '../core/skin';
+import stylesScreen from './style/screens.style';
 import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
-import { ScreenIndicator } from '../components/ScreenIndicator';
-import { User } from '../core/user';
 import { FlatList } from 'react-native-gesture-handler';
 import { ConversationComponent } from '../components/ConversationComponent';
-
-import tabSkinApp from '../constSkin';
-import tabConv from '../constCov';
-
-
-const UserActu=new User("14", "leBg", "MdpDeOuf", "ouioui", "grand", new Date(2022,12,12), 12222, 123324, 12,  tabSkinApp[0], tabSkinApp, tabConv);
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
 
 function Chat(props: { navigation: any; }) {
     const { navigation } = props
-    return (
+
+    const currentUser = useSelector((state: RootState) => state.currentUser.value[0]);
+    
+    return (  
     <View style={stylesScreen.container}>
       <TopBar
-          skin={UserActu.getCurrentSkin()}
+          skin={currentUser.getCurrentSkin()}
           nav={navigation}
           />
       <View style={stylesScreen.bodyStart}>
         <FlatList 
-          data={tabConv}
+          data={currentUser.getTabConv()}
           renderItem={({item}) => <ConversationComponent conv={item} state='Preview'/>} 
         />
       </View>
