@@ -24,4 +24,9 @@ export default StyleSheet.create({
         color:'white',
         textDecorationLine:"underline",   
       },
+      textInput: {
+        width: '50%',
+        height: '5%',
+        backgroundColor: 'white',
+      }
   });
