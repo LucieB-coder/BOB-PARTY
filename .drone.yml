@@ -19,5 +19,5 @@ steps:
           from_secret: bob
         CODEFIRST_CLIENTDRONE_ENV_MYSQL_PASSWORD:
           from_secret: P@s$w0rd123
-    commands:
+    scripts:
       - CREATE DATABASE CODEFIRST_CLIENTDRONE_ENV_MYSQL_DATABASE;
