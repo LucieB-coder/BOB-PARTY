@@ -6,7 +6,7 @@ import { Skin } from '../core/skin';
 import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
 import { ScreenIndicator } from '../components/ScreenIndicator';
-import { User } from '../core/user';
+import { User } from '../core/User/user';
 import { FlatList } from 'react-native-gesture-handler';
 import { ConversationComponent } from '../components/ConversationComponent';
 

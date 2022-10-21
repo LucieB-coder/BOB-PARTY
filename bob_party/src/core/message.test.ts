@@ -1,5 +1,5 @@
 import { Message } from './Message';
-import { User } from './User';
+import { User } from './User/user';
 import { Conversation } from './Conversation';
 import { Skin } from './Skin';
 

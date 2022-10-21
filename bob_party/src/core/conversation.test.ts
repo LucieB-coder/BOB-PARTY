@@ -1,7 +1,8 @@
 import { Conversation } from './Conversation';
 import { Message } from './Message';
-import { User } from './User';
 import { Skin } from './Skin';
+
+import { User } from './User/user';
 
 
 // Instances

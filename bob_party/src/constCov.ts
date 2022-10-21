@@ -1,7 +1,7 @@
 import { Message } from "./core/message"
 import { Conversation } from "./core/conversation"
 import tabSkinApp from './constSkin'
-import { User } from "./core/user";
+import { User } from "./core/User/user";
 
 
 let UserActu:User=new User("14", "leBg", "MdpDeOuf", "ouioui", "grand", new Date(2022,12,12), 12222, 123324, 12, tabSkinApp[0], tabSkinApp, undefined);

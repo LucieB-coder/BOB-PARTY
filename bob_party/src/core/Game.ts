@@ -2,56 +2,68 @@ import { randomBytes } from "crypto";
 import { ImageSourcePropType } from "react-native";
 
 export abstract class Game{
-    private Name:string;
-    private ImageSource:ImageSourcePropType;
-    private GameSource:string;
-    private NbPlayer: number;
+    private name:string;
+    private imageSource:ImageSourcePropType;
+    private gameSource:string;
+    private nbPlayerMin: number;
+    private nbPlayerMax:number;
 
     /* Constructor of the class */
-    constructor (name:string, imageSource:ImageSourcePropType, gameSource:string, nbPlayer:number){
-        this.Name=name;
-        this.ImageSource=imageSource;
-        this.GameSource=gameSource;
-        this.NbPlayer=nbPlayer;
+    constructor (name:string, imageSource:ImageSourcePropType, gameSource:string, nbPlayerMin:number, nbPlayerMax:number){
+        this.name=name;
+        this.imageSource=imageSource;
+        this.gameSource=gameSource;
+        this.nbPlayerMin=nbPlayerMin;
+        this.nbPlayerMax=nbPlayerMax;
     }
 
     /* Brief : Function getting the name of a game */
     getName(){
-        return this.Name;
+        return this.name;
     }
 
     /* Brief : Function setting the name of a game */
     setName(name:string){
-        this.Name=name;
+        this.name=name;
     }
 
     /* Brief : Function getting the image of a game */
     getImageSource(){
-        return this.ImageSource;
+        return this.imageSource;
     }
 
     /* Brief : Function setting the image of a game */
     setImageSource(imageSource:ImageSourcePropType){
-        this.ImageSource=imageSource;
+        this.imageSource=imageSource;
     }
 
     /* Brief : Function getting the source of a game */
     getGameSource(){
-        return this.GameSource;
+        return this.gameSource;
     }
 
     /* Brief : Function setting the source of a game */
     setGameSource(gameSource:string){
-        this.GameSource=gameSource;
+        this.gameSource=gameSource;
     }
 
     /* Brief : Function getting the number of player */
-    getNbPlayer(){
-        return this.NbPlayer;
+    getNbPlayerMin(){
+        return this.nbPlayerMin;
     }
 
     /* Brief : Function setting the number of player*/
-    setNbPlayer(nbPlayer:number){
-        this.NbPlayer=nbPlayer;
+    setNbPlayerMin(nbPlayerMin:number){
+        this.nbPlayerMin=nbPlayerMin;
+    }
+
+    /* Brief : Function getting the number of player */
+    getNbPlayerMax(){
+        return this.nbPlayerMax;
+    }
+
+    /* Brief : Function setting the number of player*/
+    setNbPlayerMax(nbPlayerMax:number){
+        this.nbPlayerMax=nbPlayerMax;
     }
 }

@@ -6,7 +6,7 @@ import styles from './style/Profile.style'
 import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
 import { SkinComponent } from '../components/Skin';
-import { User } from '../core/user';
+import { User } from '../core/User/user';
 import tabSkinApp from '../constSkin';
 import tabConv from '../constCov'
 import { ButtonChangeSkin } from '../components/ButtonChangeSkin';

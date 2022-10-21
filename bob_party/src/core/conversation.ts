@@ -1,5 +1,5 @@
 import { Message } from "./message"
-import { User } from "./user";
+import { User } from "./User/user";
 
 
 export class Conversation{
@@ -15,13 +15,14 @@ export class Conversation{
     }
 
     /* Brief : function returning the messages of a conversation */
-    gettabMessage(){
+    getTabMessage(){
         this.sortMessageDesc();
         return this.tabMessage;
     }
 
     /* Brief : function returning the users of a conversation */
-    gettabUser(){
+
+    getTabUser(){
         return this.tabUser;
     }
 
@@ -37,12 +38,14 @@ export class Conversation{
     }
 
     /* Brief : function returning the name to a conversation */
-    getname(){
+    getName(){
+
         return this.name;
     }
 
     /* Brief : function setting the name to a conversation */
-    setname(name:string){
+
+    setName(name:string){
         this.name=name;
     }
 
