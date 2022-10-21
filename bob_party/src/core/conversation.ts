@@ -3,58 +3,58 @@ import { User } from "./user";
 
 
 export class Conversation{
-    private TabUser: User[];
-    private TabMessage: Message[];
-    private Name: string;
+    private tabUser: User[];
+    private tabMessage: Message[];
+    private name: string;
     
     /* Constructor of the class */
     constructor(tabUser: User[], tabMessage:Message[], name:string){
-        this.TabUser=[...tabUser];
-        this.TabMessage=[...tabMessage];
-        this.Name=name;
+        this.tabUser=[...tabUser];
+        this.tabMessage=[...tabMessage];
+        this.name=name;
     }
 
     /* Brief : function returning the messages of a conversation */
-    getTabMessage(){
+    gettabMessage(){
         this.sortMessageDesc();
-        return this.TabMessage;
+        return this.tabMessage;
     }
 
     /* Brief : function returning the users of a conversation */
-    getTabUser(){
-        return this.TabUser;
+    gettabUser(){
+        return this.tabUser;
     }
 
     /* Brief : function adding an user to a conversation */
     ajouterUser(us:User){
-        this.TabUser?.push(us);
+        this.tabUser?.push(us);
     }
 
     /* Brief : function adding a message to a conversation */
     ajouterMessage(mess:Message){
-        this.TabMessage?.push(mess);
+        this.tabMessage?.push(mess);
         this.sortMessageDesc();
     }
 
     /* Brief : function returning the name to a conversation */
-    getName(){
-        return this.Name;
+    getname(){
+        return this.name;
     }
 
     /* Brief : function setting the name to a conversation */
-    setName(name:string){
-        this.Name=name;
+    setname(name:string){
+        this.name=name;
     }
 
     /* Brief : function returning the last message of a conversation */
     getLastMessage(){
         this.sortMessageDesc();
-        return this.TabMessage[0].getMessageContent();
+        return this.tabMessage[0].getMessageContent();
     }
 
     /* Brief : function sorting the messages of a conversation to be in the discussion order */
     sortMessageDesc(){
-        this.TabMessage.sort(
+        this.tabMessage.sort(
             (objA, objB) => objB.getMessageDate().getTime() - objA.getMessageDate().getTime(),
         );
     }

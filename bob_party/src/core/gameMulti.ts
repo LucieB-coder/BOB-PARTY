@@ -19,7 +19,7 @@ export class GameMulti extends Game{
         let coins;
         for (let key of this.RankToCoins.keys()){
             coins = this.RankToCoins.get(key);
-            if (rank==key ){
+            if (rank==key){
                 return coins;
             }
         }

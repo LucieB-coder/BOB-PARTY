@@ -14,12 +14,12 @@ export class GameSolo extends Game{
         return this.PtsToCoins;
     }
 
-    //Returns the gained depending on the number of points
+    //Returns the gain depending on the number of points
     CoinsWithPoints(nbPoints:number){
         let coins;
         for (let key of this.PtsToCoins.keys()){
             coins = this.PtsToCoins.get(key);
-            if (nbPoints<key ){
+            if (nbPoints<key){
                 return coins;
             }
         }

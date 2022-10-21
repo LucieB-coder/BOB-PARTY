@@ -1,41 +1,68 @@
 import { Conversation } from './Conversation';
 import { Message } from './Message';
 import { User } from './User';
+import { Skin } from './Skin';
 
 
-// Instance
+// Instances
+let conv:Conversation[] = [];
+let tab:Skin[] = [];
+let classique = new Skin("S0001", "Bob", require('bob_party/assets/BobsSkins/BobClassic.png'), 0);
+let dateBirth = new Date(2010,0o3,0o7);
+let usr = new User('00001', 'Killyan', 'password', 'France', 'M', dateBirth, 0, 0, 0, classique, tab, conv);
+let usr2 = new User('00002', 'Karina', '1234', 'France', 'F', dateBirth, 5, 6, 8, classique, tab, conv);
+let theDate = new Date(2022,10,14);
+let theDate2 = new Date(2022,10,13);
+let theDate3 = new Date(2022,10,15);
+let mess = new Message('Bob Party est le meilleur projet', usr, theDate2);
+let tabU:User[] = [usr, usr2];
+let mess2 = new Message('Oui tout à fait', usr2, theDate);
+let mess3 = new Message('Mais oui trop de ouf', usr, theDate3);
+let tabM:Message[] = [mess, mess2];
+let convo = new Conversation(tabU, tabM, 'the conv');
+let usr3 = new User('00003', 'wow', 'password', 'France', 'M', dateBirth, 0, 0, 0, classique, tab, conv);
 
 
-
-// Tests des get
-describe('Message get tests', () => {
-    it('should return Bob Party est le meilleur projet', () => {
-        expect(mess.getMessageContent()).toBe('Bob Party est le meilleur projet');
+// Get tests
+describe('Conversation get tests', () => {
+    it('should return tabU [usr, usr2] (users)', () => {
+        expect(convo.getTabUser()).toBe(tabU);
     })
-    it('should return usr', () => {
-        expect(mess.getMessageSender()).toBe(usr);
+    it('should return tabM [mess, mess2] (messages)', () => {
+        expect(convo.getTabMessage()).toBe(tabM);
     })
-    it('should return wouhou', () => {
-        expect(mess.getMessageDate()).toBe(theDate);
+    it('should return the conv', () => {
+        expect(convo.getName()).toBe('the conv');
+    })
+    it('should return Oui tout à fait (mess2)', () => {
+        expect(convo.getLastMessage()).toBe('Oui tout à fait');
     })
 })
 
 
-// Set de nouvelles valeurs
-mess.setMessageContent('Vive Bob Party');
-mess.setSMessageSender(usr2);
-mess.setSMessageDate(theDate2);
+// Setting new value
+convo.setName('THE conv');
 
 
-// Tests de set
-describe('Message set tests', () => {
-    it('should return Vive Bob Party', () => {
-        expect(mess.getMessageContent()).toBe('Vive Bob Party');
+// Set test
+describe('Conversation set test', () => {
+    it('should return THE conv', () => {
+        expect(convo.setName).toBe('THE conv');
     })
-    it('should return usr2', () => {
-        expect(mess.getMessageSender()).toBe(usr2);
+})
+
+
+// Adding new values
+convo.ajouterUser(usr3);
+convo.ajouterMessage(mess3);
+
+
+// Add tests
+describe('Add test', () => {
+    it('should return [usr, usr2, usr3] (users)', () => {
+        expect(convo.getTabUser).toBe([usr, usr2, usr3]);
     })
-    it('should return theDate2', () => {
-        expect(mess.getMessageDate()).toBe(theDate2);
+    it('should return Mais oui trop de ouf (mess3)', () => {
+        expect(convo.getLastMessage()).toBe('Mais oui trop de ouf');
     })
 })
