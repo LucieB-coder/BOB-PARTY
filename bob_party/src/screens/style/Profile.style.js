@@ -39,5 +39,14 @@ export default StyleSheet.create({
       letterSpacing: 0.25,
       color: 'white',
       marginVertical: (infoGap/2),
+    },
+    pseudoText: {
+      fontSize: 24,
+      lineHeight: 21,
+      fontWeight: 'bold',
+      letterSpacing: 0.25,
+      color: 'white',
+      marginTop :25,
+      alignSelf: 'center',
     }
 });
