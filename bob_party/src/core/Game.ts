@@ -2,6 +2,7 @@ import { randomBytes } from "crypto";
 import { ImageSourcePropType } from "react-native";
 
 export abstract class Game{
+    readonly id:string;
     private name:string;
     private imageSource:ImageSourcePropType;
     private gameSource:string;
@@ -9,12 +10,18 @@ export abstract class Game{
     private nbPlayerMax:number;
 
     /* Constructor of the class */
-    constructor (name:string, imageSource:ImageSourcePropType, gameSource:string, nbPlayerMin:number, nbPlayerMax:number){
+    constructor (id:string, name:string, imageSource:ImageSourcePropType, gameSource:string, nbPlayerMin:number, nbPlayerMax:number){
+        this.id=id;
         this.name=name;
         this.imageSource=imageSource;
         this.gameSource=gameSource;
         this.nbPlayerMin=nbPlayerMin;
         this.nbPlayerMax=nbPlayerMax;
+    }
+
+    /* Brief : Function getting the id of a game */
+    getId(){
+        return this.id;
     }
 
     /* Brief : Function getting the name of a game */

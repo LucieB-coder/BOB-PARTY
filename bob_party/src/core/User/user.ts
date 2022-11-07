@@ -11,21 +11,21 @@ export class User{
     private dateOfBirth: Date;
     private currentCoins: number;
     private totalCoins: number;
-    private nbGamePlayed: number;
+    private nbGamesPlayed: number;
     private currentSkin: Skin;
     private tabSkin: Skin[];
     private tabConv?: Conversation[];
 
     /* Consturctor of the class */
     constructor(id: string, username: string, password:string, nationality: string, sexe: string, dateOfBirth: Date, currentCoins: number, totalCoins: number,
-                nbGamePlayed:number, currentSkin: Skin, tabSkin: Skin[], tabConv?: Conversation[] ){
+                nbGamesPlayed:number, currentSkin: Skin, tabSkin: Skin[], tabConv?: Conversation[] ){
                     this.id=id;
                     this.username=username;
                     this.password=password;
                     this.nationality=nationality;
                     this.sexe=sexe;
                     this.dateOfBirth=dateOfBirth;
-                    this.nbGamePlayed=nbGamePlayed;
+                    this.nbGamesPlayed=nbGamesPlayed;
                     this.currentCoins=currentCoins;
                     this.totalCoins=totalCoins;
                     this.currentSkin=currentSkin;
@@ -37,6 +37,7 @@ export class User{
                         this.tabConv=tabConv;
                     }
                 }
+
 
     /* Brief : Function getting the name of an user */
     getUsername(){
@@ -111,16 +112,16 @@ export class User{
         this.totalCoins=totalCoins;
     }
 
-    /* Brief : Function getting the current number of game played by an user */
+    /* Brief : Function getting the current number of games played by an user */
 
-    getGamePlayed(){
-        return this.nbGamePlayed;
+    getGamesPlayed(){
+        return this.nbGamesPlayed;
     }
     
-    /* Brief : Function setting the current number of game played by an user */
+    /* Brief : Function setting the current number of games played by an user */
 
-    setGamePlayed(nb: number){
-        this.nbGamePlayed=nb;
+    setGamesPlayed(nb: number){
+        this.nbGamesPlayed=nb;
     }
 
      /* Brief : Function getting the current skin of an user */
@@ -156,31 +157,8 @@ export class User{
         });
     }
 
-    /*
-    changeUserCoins(coin:number){
-        this.CurrentCoins+=coin;
-        if (coin>0){
-            this.TotalCoins+=coin;
-        }
+    addSkin(skin:Skin){
+        this.tabSkin.push(skin);
     }
 
-    changerCurrentSkin(skin:Skin){
-        this.CurrentSkin=skin;
-    }
-
-    ajouterSkin(skin:Skin){
-        this.TabSkin.push(skin);
-    }
-
-    canConnect(username:string, mdp:string){
-        if (this.Username==username){
-            return this.Password==mdp;
-        }
-        return false;
-    }
-
-    usrPasswordEquals(username:string, password:string){
-        return this.Password==password && this.Username==username;
-    }
-    */
 }
