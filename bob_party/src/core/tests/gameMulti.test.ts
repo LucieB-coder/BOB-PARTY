@@ -1,4 +1,7 @@
-import { GameMulti } from '../gameMulti';
+import { Game } from '../game';
+import { GameSolo } from '../GameSolo';
+import { GameMulti } from '../GameMulti';
+import { GameCasino } from '../GameCasino';
 
 
 // Instances

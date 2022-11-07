@@ -1,6 +1,5 @@
 import { GameSolo } from '../GameSolo';
 
-
 // Instances
 let myMap = new Map<number, number>([
     [50, 3],
