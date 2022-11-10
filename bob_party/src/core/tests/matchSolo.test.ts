@@ -21,7 +21,7 @@ let myMap = new Map<number, number>([
     [150, 6]
 ]);
 let game=new GameSolo("bo jeu", require('bob_party/assets/ImagesJeux/blackjack.jpg'), "super jeu", 1, 1, myMap);
-let match = new MatchSolo("machin", tabU, game);
+let match = new MatchSolo("machin", false, tabU, game);
 let tabU2:User[] = [];
 let game2 = new GameSolo("jeu magnifique", require('bob_party/assets/ImagesJeux/blackjack.jpg'), "wow jeu", 1, 1, myMap)
 
@@ -30,6 +30,9 @@ let game2 = new GameSolo("jeu magnifique", require('bob_party/assets/ImagesJeux/
 describe('Match get tests', () => {
     it('should return machin', () => {
         expect(match.getCode()).toBe('machin');
+    })
+    it('should return false', () => {
+        expect(match.getInGame()).toBe(false);
     })
     it('should return tabU [usr] (users)', () => {
         expect(match.getTabUsers()).toBe(tabU);
@@ -42,6 +45,7 @@ describe('Match get tests', () => {
 
 // Setting new values
 match.setGame(game2);
+match.setInGame(true);
 match.setTabUser(tabU2);
 
 
@@ -49,6 +53,9 @@ match.setTabUser(tabU2);
 describe('Match set tests', () => {
     it('should return tabU2 [] (users)', () => {
         expect(match.getTabUsers()).toBe(tabU2);
+    })
+    it('should return true', () => {
+        expect(match.getInGame()).toBe(true);
     })
     it('should return game2', () => {
         expect(match.getGame).toBe(game2);

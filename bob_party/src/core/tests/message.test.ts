@@ -23,7 +23,7 @@ describe('Message get tests', () => {
     it('should return usr', () => {
         expect(mess.getMessageSender()).toBe(usr);
     })
-    it('should return wouhou', () => {
+    it('should return theDate', () => {
         expect(mess.getMessageDate()).toBe(theDate);
     })
 })
