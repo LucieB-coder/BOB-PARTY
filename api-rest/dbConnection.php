@@ -1,57 +1,24 @@
 <?php
-/*
-  $db_dsn="mysql:dbname=bobParty;host=127.0.0.1;port=8889";
-  //$db_host = '127.0.0.1';
-  $db_user = 'root';
-  $db_password = 'root';
-  //$db_db = 'bobParty';
-  //$db_port = 8889;
 
-  $mysqli = new mysqli(
-    $db_host,
-    $db_user,
-    $db_password,
-    $db_db,
-	$db_port
-  );
-	
-  if ($mysqli->connect_error) {
-    echo 'Errno: '.$mysqli->connect_errno;
-    echo '<br>';
-    echo 'Error: '.$mysqli->connect_error;
-    exit();
-  }
-
-  
-  echo '<br>';
-  echo 'Host information: '.$mysqli->host_info;
-  echo '<br>';
-  echo 'Protocol version: '.$mysqli->protocol_version;
-
-  $mysqli->close();
-  
-  try{
-        $dbh = new PDO($db_dsn,$db_user,$db_password);
-        $dbh->exec("set names utf8");
-        echo 'Success: A proper connection to MySQL was made.';
-    }catch(PDOException $exception){
-        echo "Connection error : " . $exception->getMessage();
-    }
-    */
-    class Database{
-        public $connection;
+    class DatabaseConnection extends PDO{
+        private $stmt;
     
-        public function establishConnection(){
-            $this->connection=null;
-    
-            try{
-                $this->connection = new PDO("mysql:dbname=bobParty;host=127.0.0.1;port=8889", "root", "root");
-                $this->connection->exec("set names utf8");
-            }catch(PDOException $exception){
-                echo "Connection error : " . $exception->getMessage();
+        public function __construct(string $dsn, string $username, string $password){
+            parent::__construct($dsn,$username,$password);
+            $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } 
+
+        public function execQuery(string $query, array $parameters=[]) :bool{
+            $this->stmt = parent::prepare($query);
+            foreach($parameters as $name => $value){
+                $this->stmt->bindValue($name, $value[0], $value[1]);
             }
-            
-            return $this->connection;
+            return $this->stmt->execute();
+        }
+    
+        public function getRes():array{
+            return $this->stmt->fetchall();
         }
     }
+
 ?>
