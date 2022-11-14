@@ -70,19 +70,6 @@ export abstract class Match{
     }
 
 
-    /*
-    convertMechanismToCoins(){
-        if (this.TheGame instanceof GameSolo){
-            return this.TheGame.CoinsWithPoints(this.GainingMechanism);
-        }
-        else if (this.TheGame instanceof GameMulti){
-            return this.TheGame.CoinsWithRank(this.GainingMechanism);
-        }
-        else if (this.TheGame instanceof GameCasino){
-            return this.TheGame.betToCoins(this.GainingMechanism);
-        }
-        return -1;
-    }
-    */
+    abstract updatePostMatch(user:User, coins:number):void;
 
 }

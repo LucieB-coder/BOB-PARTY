@@ -1,5 +1,6 @@
 import { randomBytes } from "crypto";
 import { ImageSourcePropType } from "react-native";
+import internal from "stream";
 
 export abstract class Game{
     readonly id:string;
@@ -73,4 +74,6 @@ export abstract class Game{
     setNbPlayerMax(nbPlayerMax:number){
         this.nbPlayerMax=nbPlayerMax;
     }
+
+    abstract coinsCalculator(points: number): number;
 }
