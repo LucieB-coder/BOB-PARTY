@@ -18,4 +18,4 @@ steps:
         CODEFIRST_CLIENTDRONE_ENV_MYSQL_USER:
           from_secret: bob
         CODEFIRST_CLIENTDRONE_ENV_MYSQL_PASSWORD:
-          from_secret: P@s$w0rd12
+          from_secret: P@s$w0rd123
