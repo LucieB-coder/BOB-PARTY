@@ -4,9 +4,9 @@ name: BD
 
 steps:  
   - name: deploy-container-mysql
-    image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
+    image: mysql/mysql-cluster:7.5
     environment:
-        IMAGENAME: mysql:10
+        IMAGENAME: mysql-cluster:7.5
         CONTAINERNAME: mysql
         COMMAND: create
         # OVERWRITE: false
