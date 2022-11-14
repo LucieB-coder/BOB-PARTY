@@ -11,11 +11,11 @@ steps:
         COMMAND: create
         # OVERWRITE: false
         PRIVATE: true
-        CODEFIRST_CLIENTDRONE_ENV_MYSQL_ROOT_PASSWORD:
+        MYSQL_ROOT_PASSWORD:
           from_secret: P@s$w0rd123
-        CODEFIRST_CLIENTDRONE_ENV_MYSQL_DATABASE:
+        MYSQL_DATABASE:
           from_secret: BDBOB
-        CODEFIRST_CLIENTDRONE_ENV_MYSQL_USER:
+        MYSQL_USER:
           from_secret: bob
-        CODEFIRST_CLIENTDRONE_ENV_MYSQL_PASSWORD:
+        YSQL_PASSWORD:
           from_secret: P@s$w0rd123
