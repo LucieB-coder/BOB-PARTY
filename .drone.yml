@@ -5,17 +5,19 @@ name: BD
 steps:  
   - name: deploy-container-mysql
     image: mysql
-    
-    services:
-    - name: database
-      image: mysql
-      environment:
-        MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
-        MYSQL_ROOT_PASSWORD:
-          from_secret: P@s$w0rd123
-        MYSQL_DATABASE:
-          from_secret: BDBOB
-        MYSQL_USER:
-          from_secret: bob
-        MYSQL_PASSWORD:
-          from_secret: P@s$w0rd123
+commands:
+  - sleep 10
+
+services:
+  - name: database
+    image: mysql
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_ROOT_PASSWORD:
+        from_secret: P@s$w0rd123
+      MYSQL_DATABASE:
+        from_secret: BDBOB
+      MYSQL_USER:
+        from_secret: bob
+      MYSQL_PASSWORD:
+        from_secret: P@s$w0rd123
