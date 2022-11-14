@@ -4,7 +4,7 @@ name: BD
 
 steps:  
   - name: deploy-container-mysql
-    image: mysql/mysql-cluster:7.5
+    image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
     environment:
         IMAGENAME: mysql-cluster:7.5
         CONTAINERNAME: mysql
