@@ -11,7 +11,7 @@ steps:
         COMMAND: create
         # OVERWRITE: false
         PRIVATE: true
-        MYSQL_ROOT_PASSWORD:
+        ENV MYSQL_ROOT_PASSWORD:
           from_secret: P@s$w0rd123
         MYSQL_DATABASE:
           from_secret: BDBOB
