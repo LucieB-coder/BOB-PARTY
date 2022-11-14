@@ -11,12 +11,11 @@ steps:
         COMMAND: create
         # OVERWRITE: false
         PRIVATE: true
-        environment:
-          MYSQL_ROOT_PASSWORD:
-            from_secret: P@s$w0rd123
-          MYSQL_DATABASE:
-            from_secret: BDBOB
-          MYSQL_USER:
-            from_secret: bob
-          MYSQL_PASSWORD:
-            from_secret: P@s$w0rd123
+        MYSQL_ROOT_PASSWORD:
+          from_secret: P@s$w0rd123
+        MYSQL_DATABASE:
+          from_secret: BDBOB
+        MYSQL_USER:
+          from_secret: bob
+        MYSQL_PASSWORD:
+          from_secret: P@s$w0rd123
