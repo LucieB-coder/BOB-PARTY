@@ -4,20 +4,18 @@ name: BD
 
 steps:  
   - name: deploy-container-mysql
-    image: mysql
-commands:
-  - sleep 10
-
-services:
-  - name: database
-    image: mysql
+    image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
-      MYSQL_ROOT_PASSWORD:
-        from_secret: P@s$w0rd123
-      MYSQL_DATABASE:
-        from_secret: BDBOB
-      MYSQL_USER:
-        from_secret: bob
-      MYSQL_PASSWORD:
-        from_secret: P@s$w0rd123
+      IMAGENAME: 
+      CONTAINERNAME: mysql
+      COMMAND: create
+      # OVERWRITE: false
+      PRIVATE: true
+      CODEFIRST_CLIENTDRONE_ENV_MARIADB_ROOT_PASSWORD:          
+        from_secret: db_root_password        
+      CODEFIRST_CLIENTDRONE_ENV_MARIADB_DATABASE:          
+        from_secret: db_database        
+      CODEFIRST_CLIENTDRONE_ENV_MARIADB_USER:          
+        from_secret: db_user        
+      CODEFIRST_CLIENTDRONE_ENV_MARIADB_PASSWORD:          
+        from_secret: db_password
