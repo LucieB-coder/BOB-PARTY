@@ -30,8 +30,8 @@ export class User{
                     this.currentCoins=currentCoins;
                     this.totalCoins=totalCoins;
                     this.currentSkin=currentSkin;
-                    this.tabSkin=[...tabSkin];
-                    this.tabConv=[...tabConv];
+                    this.tabSkin=tabSkin.copyWithin(tabSkin.length, 0);
+                    this.tabConv=tabConv.copyWithin(tabConv.length, 0);
                 }
 
 
@@ -161,6 +161,13 @@ export class User{
     /* Brief : Function adding a conversation to a user */
     addConversation(conv:Conversation){
         this.tabConv.push(conv);
+    }
+
+    isEqual(u:User){
+        if (u.getId()==this.id){
+            return true;
+        }
+        return false;
     }
 
 }

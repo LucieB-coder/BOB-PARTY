@@ -1,6 +1,6 @@
 import { ImageSourcePropType } from 'react-native';
 import { Game } from './game'
-/*
+
 export class GameSolo extends Game{
     readonly ptsToCoins:Map<number,number>
 
@@ -29,4 +29,4 @@ export class GameSolo extends Game{
         }
         return coins;
     }
-}*/
+}
