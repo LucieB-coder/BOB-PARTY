@@ -1,6 +1,6 @@
 # database container deployment
 kind: pipeline
-name: BD
+name: Dockers_Builder
 
 steps:  
   - name: deploy-mysql-container
