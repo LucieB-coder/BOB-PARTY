@@ -12,10 +12,10 @@ steps:
       # OVERWRITE: false
       PRIVATE: true
       CODEFIRST_CLIENTDRONE_ENV_MYSQL_ROOT_PASSWORD:          
-        from_secret: db_root_password        
+        from_secret: R00tPassw0rd*        
       CODEFIRST_CLIENTDRONE_ENV_MYSQL_DATABASE:          
-        from_secret: db_database        
+        from_secret: DataBob       
       CODEFIRST_CLIENTDRONE_ENV_MYSQL_USER:          
-        from_secret: db_user        
+        from_secret: bob       
       CODEFIRST_CLIENTDRONE_ENV_MYSQL_PASSWORD:          
-        from_secret: db_password
+        from_secret: B0bPassw0rd*
