@@ -22,9 +22,9 @@ steps:
 
 
   - name: deploy-container
-    image: https://hub.docker.com/r/reactnativecommunity/react-native-android
+    image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
     environment:
-      IMAGENAME: react-native-android:latest
+      IMAGENAME: hub.docker.com/r/reactnativecommunity/react-native-android:latest
       CONTAINERNAME: container_react
       COMMAND: create
       PRIVATE: true
