@@ -21,10 +21,10 @@ steps:
         from_secret: B0bPassw0rd*
 
 
-   - name: deploy-container
-     image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
-     environment:
-        IMAGENAME: hub.docker.com/r/reactnativecommunity/react-native-android:latest
-        CONTAINERNAME: container_react
-        COMMAND: create
-        OVERWRITE: true
+  - name: deploy-container
+    image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
+    environment:
+      IMAGENAME: hub.docker.com/r/reactnativecommunity/react-native-android:latest
+      CONTAINERNAME: container_react
+      COMMAND: create
+      OVERWRITE: true
