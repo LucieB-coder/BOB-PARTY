@@ -3,7 +3,7 @@ kind: pipeline
 name: BD
 
 steps:  
-  - name: deploy-container-mysql
+  - name: deploy-mysql-container
     image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
     environment:
       IMAGENAME: mysql:8.0
