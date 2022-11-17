@@ -24,8 +24,8 @@ steps:
   - name: docker-build-and-push
     image: plugins/docker
     settings:
-       dockerfile: Sources/Dockerfile
-       context: Sources/
+       dockerfile: /Dockerfile
+       context: /
        registry: hub.codefirst.iut.uca.fr
        repo: hub.codefirst.iut.uca.fr/BOB_PARTEAM/BOB_PARTY
        username:
