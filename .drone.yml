@@ -24,7 +24,7 @@ steps:
   - name: deploy-container
     image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
     environment:
-      IMAGENAME: hub.docker.com/r/reactnativecommunity/react-native-android:latest
+      IMAGENAME: reactnativecommunity/react-native-android:2.1
       CONTAINERNAME: container_react
       COMMAND: create
       PRIVATE: true
