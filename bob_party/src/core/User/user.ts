@@ -15,11 +15,10 @@ export class User{
     private nbGamesPlayed: number;
     private currentSkin: Skin;
     private tabSkin: Skin[];
-    private tabConv: Conversation[];
 
     /* Consturctor of the class */
     constructor(id: string, username: string, password:string, nationality: string, sexe: string, dateOfBirth: Date, currentCoins: number, totalCoins: number,
-                nbGamesPlayed:number, currentSkin: Skin, tabSkin: Skin[], tabConv: Conversation[] ){
+                nbGamesPlayed:number, currentSkin: Skin, tabSkin: Skin[]){
                     this.id=id;
                     this.username=username;
                     this.password=password;
@@ -31,7 +30,6 @@ export class User{
                     this.totalCoins=totalCoins;
                     this.currentSkin=currentSkin;
                     this.tabSkin=tabSkin.copyWithin(tabSkin.length, 0);
-                    this.tabConv=tabConv.copyWithin(tabConv.length, 0);
                 }
 
 
@@ -142,25 +140,10 @@ export class User{
     setTabSkin(tabSkin: Skin[]){
         this.tabSkin=[...tabSkin];
     }
-
-    /* Brief : Function getting the conversations of a user */
-    getTabConv(){
-        return this.tabConv;
-    }
-    
-    /* Brief : Function setting the conversations of a user */
-    setTabConv(tabConv: Conversation[]){
-        this.tabConv=[...tabConv]
-    }
     
     /* Brief : Function adding a skin to a user */
     addSkin(skin:Skin){
         this.tabSkin.push(skin);
-    }
-
-    /* Brief : Function adding a conversation to a user */
-    addConversation(conv:Conversation){
-        this.tabConv.push(conv);
     }
 
     isEqual(u:User){

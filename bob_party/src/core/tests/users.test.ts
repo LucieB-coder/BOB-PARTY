@@ -10,9 +10,7 @@ let tab:Skin[] = [];
 let tab2:Skin[] = [classique, blue];
 let dateBirth = new Date(2010,0o3,0o7);
 let dateBirth2 = new Date(2009,0o3,0o7);
-let conv:Conversation[] = [];
-let conv2:Conversation[] = [];
-let usr = new User('00001', 'Killyan', 'password', 'France', 'M', dateBirth, 0, 0, 0, classique, tab, conv);
+let usr = new User('00001', 'Killyan', 'password', 'France', 'M', dateBirth, 0, 0, 0, classique, tab);
 
 
 // Tests des get
@@ -42,16 +40,13 @@ describe('User get tests', () => {
         expect(usr.getTotalCoins()).toBe(0);
     })
     it('should return 0', () => {
-        expect(usr.getGamePlayed()).toBe(0);
+        expect(usr.getGamesPlayed()).toBe(0);
     })
     it('should return classique', () => {
         expect(usr.getCurrentSkin()).toBe(classique);
     })
     it('should return tab', () => {
         expect(usr.getTabSkin()).toBe(tab);
-    })
-    it('should return conv', () => {
-        expect(usr.getTabConv()).toBe(conv);
     })
 })
 
@@ -64,10 +59,9 @@ usr.setSexe('F');
 usr.setDateOfBirth(dateBirth2);
 usr.setCurrentCoins(2);
 usr.setTotalCoins(2);
-usr.setGamePlayed(4);
+usr.setGamesPlayed(4);
 usr.setCurrentSkin(blue);
 usr.setTabSkin(tab2);
-usr.setTabConv(conv2);
 
 
 // Tests des set
@@ -94,15 +88,12 @@ describe('User get tests', () => {
         expect(usr.getTotalCoins()).toBe(2);
     })
     it('should return 4', () => {
-        expect(usr.getGamePlayed()).toBe(4);
+        expect(usr.getGamesPlayed()).toBe(4);
     })
     it('should return kikou', () => {
         expect(usr.getCurrentSkin()).toBe(blue);
     })
     it('should return tab2', () => {
         expect(usr.getTabSkin()).toBe(tab2);
-    })
-    it('should return conv2', () => {
-        expect(usr.getTabConv()).toBe(conv2);
     })
 })
