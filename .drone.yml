@@ -22,7 +22,7 @@ steps:
 
 
   - name: deploy-container
-    image: hub.docker.com/r/reactnativecommunity/react-native-android:latest
+    image: hub.docker.com/r/reactnativecommunity/react-native-android
     environment:
       IMAGENAME: react-native-android:latest
       CONTAINERNAME: container_react
