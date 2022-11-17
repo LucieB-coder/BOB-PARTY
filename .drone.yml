@@ -27,4 +27,5 @@ steps:
       IMAGENAME: hub.docker.com/r/reactnativecommunity/react-native-android:latest
       CONTAINERNAME: container_react
       COMMAND: create
+      PRIVATE: true
       OVERWRITE: true
