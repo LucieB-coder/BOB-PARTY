@@ -12,7 +12,7 @@ let blue = new Skin("S0002", "Bob Blue", require('bob_party/assets/BobsSkins/Bob
 let tab:Skin[] = [classique, blue];
 let dateBirth = new Date(2010,0o3,0o7);
 let conv:Conversation[] = [];
-let usr = new User('00001', 'Killyan', 'password', 'France', 'M', dateBirth, 0, 0, 0, classique, tab, conv);
+let usr = new User('00001', 'Killyan', 'password', 'France', 'M', dateBirth, 0, 0, 0, classique, tab);
 let tabU:User[] = [usr];
 let myMap = new Map<number, number>([
     [50, 3],
@@ -20,10 +20,10 @@ let myMap = new Map<number, number>([
     [100, 5],
     [150, 6]
 ]);
-let game=new GameSolo("bo jeu", require('bob_party/assets/ImagesJeux/blackjack.jpg'), "super jeu", 1, 1, myMap);
+let game=new GameSolo("G0001", "bo jeu", require('bob_party/assets/ImagesJeux/blackjack.jpg'), "super jeu", 1, 1, myMap);
 let match = new MatchSolo("machin", false, tabU, game);
 let tabU2:User[] = [];
-let game2 = new GameSolo("jeu magnifique", require('bob_party/assets/ImagesJeux/blackjack.jpg'), "wow jeu", 1, 1, myMap)
+let game2 = new GameSolo("G0002", "jeu magnifique", require('bob_party/assets/ImagesJeux/blackjack.jpg'), "wow jeu", 1, 1, myMap)
 
 
 // Get tests

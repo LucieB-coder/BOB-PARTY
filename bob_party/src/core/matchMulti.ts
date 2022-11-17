@@ -6,8 +6,8 @@ import { ManagerCoinsUser } from "./User/managerCoinsUser";
 
 export class MatchMulti extends Match{
 
-    constructor(code:string, tabUser:User[], game:GameMulti){
-        super(code, tabUser, game);
+    constructor(code:string, inGame:Boolean, tabUser:User[], game:GameMulti){
+        super(code, inGame, tabUser, game);
     }
 
     updatePostMatch(user:User, coins: number): void {
