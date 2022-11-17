@@ -19,3 +19,16 @@ steps:
         from_secret: bob       
       CODEFIRST_CLIENTDRONE_ENV_MYSQL_PASSWORD:          
         from_secret: B0bPassw0rd*
+
+
+  - name: docker-build-and-push
+    image: plugins/docker
+    settings:
+       dockerfile: Sources/Dockerfile
+       context: Sources/
+       registry: hub.codefirst.iut.uca.fr
+       repo: hub.codefirst.iut.uca.fr/BOB_PARTEAM/BOB_PARTY
+       username:
+         from_secret: SECRET_REGISTRY_USERNAME
+       password:
+         from_secret: SECRET_REGISTRY_PASSWORD
