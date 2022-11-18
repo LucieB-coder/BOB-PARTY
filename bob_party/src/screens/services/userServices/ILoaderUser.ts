@@ -8,21 +8,21 @@ export default interface ILoaderUser{
      * loadAllUser methode that load every user from the data management system
      * return an array of User
      */
-    loadAllUser(): User[];
+    loadAllUser(): Promise<User[]>;
 
     /**
      * loadByID methode that load a user from the data management system by his id
      * id the id we want to search
      * return a User if found, if not null
      */
-    loadByID(id:string): User | null;
+    loadByID(id:string): Promise<User | null>;
 
     /**
      * loadByUsername methode that load a user from the data management system by his username
      * username the username we want to search
      * return a User if found, if not null
      */
-    loadByUsername(username:string): User | null;
+    loadByUsername(username:string): Promise<User | null>;
 
     /**
      * loadByUsernamePassword methode that load a user from the data management system by his username and his password
@@ -30,17 +30,17 @@ export default interface ILoaderUser{
      * password the password we want to search
      * return a User if found, if not null
      */
-    loadByUsernamePassword(username:string, password:string): User | null;
+    loadByUsernamePassword(username:string, password:string): Promise<User | null>;
 
     /**
      * loadUserByMatch methode that load every user in a game
      * return an array of User
      */
-    loadUserByMatch(m:Match): User[];
+    loadUserByMatch(m:Match): Promise<User[]>;
 
     /**
      * laodUserByConversation methode that load every user in a Conversation
      * return an array of User
      */
-    laodUserByConversation(c:Conversation): User[];
+    loadUserByConversation(c:Conversation): Promise<User[]>;
 }

@@ -13,10 +13,10 @@ export default class StubUser implements ILoaderUser{
         new User("17", "Fefe63", "jesuishm", "ouioui", "homme", new Date(2022,12,12), 12222, 123324, 12, new Skin("S0001", "Bob",require('bob_party/assets/BobsSkins/BobClassic.png'), 0), [new Skin("S0001", "Bob",require('bob_party/assets/BobsSkins/BobClassic.png'), 0)]),
     ];
 
-    loadAllUser(): User[] {
+    async loadAllUser(): Promise<User[]> {
         return this.tabUS;
     }
-    loadByID(id: string): User | null {
+    async loadByID(id: string): Promise<User | null> {
         for(let u of this.tabUS){
             if (u.getId()==id){
                 return u;
@@ -24,7 +24,7 @@ export default class StubUser implements ILoaderUser{
         }
         return null;
     }
-    loadByUsername(username: string): User | null {
+    async loadByUsername(username: string): Promise<User | null> {
         for(let u of this.tabUS){
             if (u.getUsername()==username){
                 return u;
@@ -32,7 +32,7 @@ export default class StubUser implements ILoaderUser{
         }
         return null;
     }
-    loadByUsernamePassword(username: string, password: string): User | null {
+    async loadByUsernamePassword(username: string, password: string): Promise<User | null> {
         for(let u of this.tabUS){
             if (u.getUsername()==username && u.getPassword()==password){
                 return u;
@@ -41,14 +41,14 @@ export default class StubUser implements ILoaderUser{
         return null;
     }
 
-    loadUserByMatch(m: Match): User[] {
+    async loadUserByMatch(m: Match): Promise<User[]> {
         let tabUser:User[]=[];
         m.getTabUsers().forEach(u => {
             tabUser.push(u);
         });
         return tabUser;
     }
-    laodUserByConversation(c: Conversation): User[] {
+    async loadUserByConversation(c: Conversation): Promise<User[]> {
         let tabUser:User[]=[];
         c.getTabUser().forEach(u => {
             tabUser.push(u);

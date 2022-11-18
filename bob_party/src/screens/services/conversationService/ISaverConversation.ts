@@ -7,17 +7,17 @@ export default interface ISaverConversation{
      * c the Conversation we want to save
      */
 
-    saveConversation(c:Conversation): void;
+    saveConversation(c:Conversation): Promise<void>;
 
     /**
      * deleteConversation methode that delete a Conversation in the data management system
      * c the Conversation we want to delete
      */
-    deleteConversation(c:Conversation):void;
+    deleteConversation(c:Conversation): Promise<void>;
 
     /**
      * updateConversation methode that update a Conversation in the data management system
      * c the Conversation we want to update
      */
-    updateConversation(c:Conversation): void;
+    updateConversation(c:Conversation): Promise<void>;
 }

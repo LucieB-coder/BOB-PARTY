@@ -7,17 +7,17 @@ export default interface ISaverMatch{
      * m the Match we want to save
      */
 
-    saveMatch(m:Match): void;
+    saveMatch(m:Match): Promise<void>;
 
     /**
      * deleteMatch methode that delete a Match in the data management system
      * m the Match we want to delete
      */
-    deleteMatch(m:Match):void;
+    deleteMatch(m:Match): Promise<void>;
 
     /**
      * updateMatch methode that update a Match in the data management system
      * m the Match we want to update
      */
-    updateMatch(m:Match): void;
+    updateMatch(m:Match): Promise<void>;
 }

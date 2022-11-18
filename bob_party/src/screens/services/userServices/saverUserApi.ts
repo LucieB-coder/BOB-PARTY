@@ -4,13 +4,13 @@ import ISaverUser from "./ISaverUser";
 
 export default class SaverUserApi implements ISaverUser{
 
-    saveUser(u: User): void {
+    async saveUser(u: User): Promise<void> {
         throw new Error("Method not implemented.");
     }
-    deleteUser(u: User): void {
+    async deleteUser(u: User): Promise<void> {
         throw new Error("Method not implemented.");
     }
-    updateUser(u: User): void {
+    async updateUser(u: User): Promise<void> {
         throw new Error("Method not implemented.");
     }
 

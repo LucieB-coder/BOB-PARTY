@@ -5,22 +5,22 @@ import ILoaderUser from "./ILoaderUser";
 
 export default class LoaderUserApi implements ILoaderUser{
 
-    loadAllUser(): User[] {
+    async loadAllUser(): Promise<User[]> {
         throw new Error("Method not implemented.");
     }
-    loadByID(id: string): User | null {
+    async loadByID(id: string): Promise<User | null> {
         throw new Error("Method not implemented.");
     }
-    loadByUsername(username: string): User | null {
+    async loadByUsername(username: string): Promise<User | null> {
         throw new Error("Method not implemented.");
     }
-    loadByUsernamePassword(username: string, password: string): User | null {
+    async loadByUsernamePassword(username: string, password: string): Promise<User | null> {
         throw new Error("Method not implemented.");
     }
-    loadUserByMatch(m: Match): User[] {
+    async loadUserByMatch(m: Match): Promise<User[]> {
         throw new Error("Method not implemented.");
     }
-    laodUserByConversation(c: Conversation): User[] {
+    async loadUserByConversation(c: Conversation): Promise<User[]> {
         throw new Error("Method not implemented.");
     }
 

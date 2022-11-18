@@ -7,6 +7,6 @@ export default interface ISaverMessage{
      * m the Message we want to save
      */
 
-    saveMessage(m:Message): void;
+    saveMessage(m:Message): Promise<void>;
 
 }
