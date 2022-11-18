@@ -1,8 +1,46 @@
+import { Conversation } from "../../../core/conversation";
+import { Match } from "../../../core/match";
 import { User } from "../../../core/User/user";
 
 export default interface ILoaderUser{
 
+    /**
+     * loadAllUser methode that load every user from the data management system
+     * return an array of User
+     */
+    loadAllUser(): User[];
+
+    /**
+     * loadByID methode that load a user from the data management system by his id
+     * id the id we want to search
+     * return a User if found, if not null
+     */
     loadByID(id:string): User | null;
+
+    /**
+     * loadByUsername methode that load a user from the data management system by his username
+     * username the username we want to search
+     * return a User if found, if not null
+     */
     loadByUsername(username:string): User | null;
+
+    /**
+     * loadByUsernamePassword methode that load a user from the data management system by his username and his password
+     * username the username we want to search
+     * password the password we want to search
+     * return a User if found, if not null
+     */
     loadByUsernamePassword(username:string, password:string): User | null;
+
+    /**
+     * loadUserByMatch methode that load every user in a game
+     * return an array of User
+     */
+    loadUserByMatch(m:Match): User[];
+
+    /**
+     * laodUserByConversation methode that load every user in a Conversation
+     * return an array of User
+     */
+    laodUserByConversation(c:Conversation): User[];
 }
