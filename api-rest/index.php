@@ -1,7 +1,8 @@
 
  <?php 
-    include ("./dbConnection.php");
-    include ("./gateways/userGateway.php");
+    include ('dbConnection.php');
+    include ('gateways/userGateway.php');
+    include ('gateways/matchGateway.php');
 
     // Connection to database
     // A changer quand la base de données sera hébergée, comment masquer les var?
@@ -9,19 +10,25 @@
     $username="root";
     $password="root";   
 
+    // Initializing Database
     $database = new DatabaseConnection($dsn,$username,$password);
     
+    // Initializing Gateways
     $usergw = new UserGateway($database);
+    $matchgw = new MatchGateway($database);
+    
+    // Testing get method on matches
 
-    // test postUser
-    $usr = new User("U0004","billy","bulbe","francais","F","2023-03-12",10,10,2);
-    $usergw->deleteUser($usr);
-    $res=$usergw->getUsers();
+    $res=$matchgw->getMatch("M0001");
+    
     echo json_encode($res);
-    // Managing request and routing
 
+    // Managing request, routing and sending responses
+    /*
     $requestMethod = $_SERVER['REQUEST_METHOD'];
     $requestName = $_REQUEST['fname'];
+
+    
     if(empty($requestName)){
         header("HTTP/1.0 400 Request Name Empty");
         http_response_code(400);
@@ -62,9 +69,7 @@
             case 'POST':
                 switch ($requestName){
                     case 'postUser':
-                       // rcreate a new user
-                       $res= $usergw->postUser();
-                       echo json_encode($res);
+                       // create a new user and add it in database
                         break;
                     case 'postMatch':
 
@@ -86,9 +91,9 @@
                     case 'putMatch':
 
                         break;
-                   /* case 'putMessage':
+                    case 'putMessage':
 
-                        break;   */
+                        break;
                     case 'putConversation ':
 
                         break;
@@ -103,9 +108,9 @@
                     case 'delMatch':
 
                         break;
-                /*  case 'delMessage':
+                    case 'delMessage':
 
-                        break;  */
+                        break;
                     case 'delConversation ':
 
                         break;
@@ -119,6 +124,6 @@
         }
             
     }
-    
+    */
     
  ?>

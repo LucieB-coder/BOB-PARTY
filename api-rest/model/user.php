@@ -23,7 +23,6 @@ class User {
         $this->currentBobCoins=$_currentBobCoins;
         $this->totalBobCoins=$_totalBobCoins;
         $this->nbGamesPlayed=$_nbGamesPlayed;
-
     }
     
 }

@@ -32,7 +32,6 @@ class UserGateway{
             $usr = new User ($row['id'],$row['username'],$row['password'],$row['nationality'],$row['sex'],$row['dateOfBirth'],$row['currentBobCoins'],$row['totalBobCoins'],$row['nbGamesPlayed']);
         }
         return $usr;
-        
     }
 
     // execute get method to find one user by his username in database
