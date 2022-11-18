@@ -10,8 +10,8 @@ export class MatchSolo extends Match{
         super(code, inGame, tabUser, game);
     }
 
-    updatePostMatch(user:User, coins: number): void {
+    updatePostMatch(user:User, points: number): void {
         const manage= new ManagerCoinsUser();
-        manage.addCoins(user, this.getGame().coinsCalculator(coins));
+        manage.addCoins(user, this.getGame().coinsCalculator(points));
     }
 }

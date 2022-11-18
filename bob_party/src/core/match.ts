@@ -67,6 +67,6 @@ export abstract class Match{
     }
 
 
-    abstract updatePostMatch(user:User, coins:number):void;
+    abstract updatePostMatch(user:User, points:number):void;
 
 }

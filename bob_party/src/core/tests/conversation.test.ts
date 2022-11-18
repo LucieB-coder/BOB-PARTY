@@ -1,3 +1,4 @@
+import exp from 'constants';
 import { Conversation } from '../Conversation';
 import { Message } from '../Message';
 import { Skin } from '../Skin';
@@ -42,11 +43,22 @@ describe('Conversation get tests', () => {
 
 // Setting new value
 convo.setName('THE conv');
+convo.ajouterUser(usr3);
+convo.ajouterMessage(mess3);
 
 
 // Set test
 describe('Conversation set test', () => {
     it('should return THE conv', () => {
         expect(convo.setName).toBe('THE conv');
+    })
+    it('should return tabU [usr, usr2, usr3] (users)', () => {
+        expect(convo.getTabUser()).toBe(tabU);
+    })
+    it('should return tabM [mess, mess2, mess3] (messages)', () => {
+        expect(convo.getTabMessage()).toBe(tabM);
+    })
+    it('should return Mais oui trop de ouf (mess3)', () => {
+        expect(convo.getLastMessage()).toBe('Mais oui trop de ouf');
     })
 })
