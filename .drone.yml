@@ -1,7 +1,9 @@
-# database container deployment
+# This file creates our 2 docker containers
 kind: pipeline
 name: Dockers_Builder
 
+
+# Creation of the DB docker
 steps:  
   - name: deploy-mysql-container
     image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
@@ -21,6 +23,7 @@ steps:
         from_secret: B0bPassw0rd*
 
 
+# Creation of a hosting docker for our application
   - name: deploy-container
     image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
     environment:
