@@ -16,12 +16,6 @@
     // Initializing Gateways
     $usergw = new UserGateway($database);
     $matchgw = new MatchGateway($database);
-    
-    // Testing get method on matches
-
-    $res=$matchgw->getMatch("M0001");
-    
-    echo json_encode($res);
 
     // Managing request, routing and sending responses
     /*

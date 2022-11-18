@@ -10,20 +10,36 @@ class UserGateway{
         $this->connection=$con;
     }
 
-    // execute get method to find all users in database
-    public function getUsers(){
+    /* Functions implemented to manage user's data from database
+
+        * getUsers : returning an array of users containing all the user stored in database
+        * getUserById : returning an user found in database with his id
+        * getUserByUsername : returning an user found in database with his username
+        * getUserForConnection : returning an user if there is a correspondance between 
+            the username and the password, used for connection
+        * postUser : adding a NEW user in database
+        * putUser : modifying an EXISTING user in database
+        * deleteUser : deleting an user from database
+
+    */
+
+/// Brief : Returning an array of users containing all the user stored in database
+    public function getUsers():array{
+        $tabUser=NULL;
         $query= "SELECT * FROM User";
         $this->connection->execQuery($query,[]);
         $res=$this->connection->getRes();
         foreach($res as $row){
             $tabUser[] = new User ($row['id'],$row['username'],$row['password'],$row['nationality'],$row['sex'],$row['dateOfBirth'],$row['currentBobCoins'],$row['totalBobCoins'],$row['nbGamesPlayed']);
         }
+        
         return $tabUser;
     }
 
-    // execute get method to find one user by his id in database
-    public function getUserById(string $id):array{
-        
+/// Brief : Returning an user found in database with his id
+/// Parameters : * $id (string): identifier of the user we are looking for
+    public function getUserById(string $id):?User{
+        $usr=NULL;
         $query= "SELECT * FROM User U WHERE id = :id ";
         $arg= array('id'=> array($id,PDO::PARAM_STR));
         $this->connection->execQuery($query,$arg);
@@ -34,8 +50,10 @@ class UserGateway{
         return $usr;
     }
 
-    // execute get method to find one user by his username in database
+/// Brief : Returning an user found in database with his username
+/// Parameters : * $username (string): username of the user we are looking for
     public function getUserByUsername(string $username):?User{
+        $usr=NULL;
         $query= "SELECT * FROM User U WHERE username = :username ";
         $arg = array('username'=>array($username,PDO::PARAM_STR));
         $this->connection->execQuery($query,$arg);
@@ -46,8 +64,13 @@ class UserGateway{
         return $usr;
     }
 
-    // execute get method to find one user by his username and password for his connection in database
+/// Brief : Returning an user if there is a correspondance between the username and the password, used for connection
+/// Parameters : * $username (string): username of the user we are looking for
+///              * $password (string): password of the user we are looking for
+/// Comment : this function returns an user if it finds a match between an username and password,
+/// if it doesn't, it means there are no corresponding user
     public function getUserForConnection(string $username, string $password):?User{
+        $usr=NULL;
         $query= "SELECT * FROM User U WHERE username = :username AND password = :password";
         $arg = array('username'=>array($username,PDO::PARAM_STR),'password'=>array($password,PDO::PARAM_STR));
         $this->connection->execQuery($query,$arg);
@@ -58,7 +81,8 @@ class UserGateway{
         return $usr;
     }
 
-    // execute put method to create a new user in database
+/// Brief : Adding a NEW user in database
+/// Parameters : * $u (User): user we want to insert in database
     public function postUser(User $u): void{
         if ($u->currentBobCoins != 0 | $u->totalBobCoins != 0| $u->nbGamesPlayed !=0){
             echo "new user, can't have any coin or games played";
@@ -69,14 +93,16 @@ class UserGateway{
         $this->connection->execQuery($query, $arg);
     }
 
-    // executing put method to update an user (by his id) in database
+/// Brief : Modifying an EXISTING user in database
+/// Parameters : * $u (User): user we want to update in database
     public function putUser(User $u){
         $query="UPDATE User SET username = :username, password=:password, sex=:sex, nationality=:nationality, currentBobCoins=:currentBobCoins, totalBobCoins=:totalBobCoins, nbGamesPlayed=:nbGamesPlayed WHERE id=:id";
         $arg=array(':id' => array($u->id, PDO::PARAM_STR), ':username' => array($u->username, PDO::PARAM_STR), ':password' => array($u->password, PDO::PARAM_STR),':nationality' => array($u->nationality, PDO::PARAM_STR), ':sex' => array($u->sex, PDO::PARAM_STR),':currentBobCoins' => array($u->currentBobCoins, PDO::PARAM_INT),':totalBobCoins' => array($u->totalBobCoins, PDO::PARAM_INT), ':nbGamesPlayed' => array($u->nbGamesPlayed, PDO::PARAM_INT));
         $this->connection->execQuery($query, $arg);
     } 
 
-    // exectuing delete method to delete an user in database
+/// Brief : Deleting an user from database
+/// Parameters : * $u (User): user we want to delete from database
     public function deleteUser(User $u): void{
         $query = "DELETE from User WHERE id = :id";
         $arg=array(':id' => array($u->id, PDO::PARAM_STR));
