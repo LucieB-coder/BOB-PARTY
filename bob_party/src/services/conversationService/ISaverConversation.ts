@@ -1,4 +1,4 @@
-import { Conversation } from "../../../core/conversation";
+import { Conversation } from "../../core/conversation";
 
 export default interface ISaverConversation{
 

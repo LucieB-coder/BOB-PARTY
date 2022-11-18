@@ -1,5 +1,5 @@
-import { Conversation } from "../../../core/conversation";
-import { Message } from "../../../core/message";
+import { Conversation } from "../../core/conversation";
+import { Message } from "../../core/message";
 
 export default interface ILoaderMessage{
 

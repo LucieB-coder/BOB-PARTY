@@ -1,6 +1,6 @@
-import { Conversation } from "../../../core/conversation";
-import { Match } from "../../../core/match";
-import { User } from "../../../core/User/user";
+import { Conversation } from "../../core/conversation";
+import { Match } from "../../core/match";
+import { User } from "../../core/User/user";
 
 export default interface ILoaderUser{
 

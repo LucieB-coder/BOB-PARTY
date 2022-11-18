@@ -1,7 +1,7 @@
-import { Conversation } from "../../../core/conversation";
-import { Match } from "../../../core/match";
-import { Skin } from "../../../core/skin";
-import { User } from "../../../core/User/user";
+import { Conversation } from "../../core/conversation";
+import { Match } from "../../core/match";
+import { Skin } from "../../core/skin";
+import { User } from "../../core/User/user";
 import ILoaderUser from "./ILoaderUser";
 
 export default class StubUser implements ILoaderUser{

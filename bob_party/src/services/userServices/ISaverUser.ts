@@ -1,4 +1,4 @@
-import { User } from "../../../core/User/user";
+import { User } from "../../core/User/user";
 
 export default interface ISaverUser{
 
