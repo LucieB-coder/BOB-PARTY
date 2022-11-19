@@ -1,5 +1,9 @@
+ <?php
+ 
+    /// Good to know :
+    /// All the values must be cleaned on the application side before using this API
+    ///
 
- <?php 
     include ('dbConnection.php');
     include ('gateways/userGateway.php');
     include ('gateways/matchGateway.php');

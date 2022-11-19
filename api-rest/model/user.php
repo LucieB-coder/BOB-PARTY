@@ -12,8 +12,10 @@ class User {
     public int $currentBobCoins;
     public int $totalBobCoins;
     public int $nbGamesPlayed;
+    public string $currentIdSkin;
+    public $listIdSkin;
 
-    public function __construct(string $_id,string $_username,string $_password, string $_nationality,string $_sex, string $_dateOfBirth, int $_currentBobCoins, int $_totalBobCoins, int $_nbGamesPlayed){
+    public function __construct(string $_id,string $_username,string $_password, string $_nationality,string $_sex, string $_dateOfBirth, int $_currentBobCoins, int $_totalBobCoins, int $_nbGamesPlayed, string $_currentIdSkin, $_listIdSkin){
         $this->id=$_id;
         $this->username=$_username;
         $this->password=$_password;
@@ -23,6 +25,8 @@ class User {
         $this->currentBobCoins=$_currentBobCoins;
         $this->totalBobCoins=$_totalBobCoins;
         $this->nbGamesPlayed=$_nbGamesPlayed;
+        $this->currentIdSkin=$_currentIdSkin;
+        $this->listIdSkin=$_listIdSkin;
     }
     
 }
