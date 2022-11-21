@@ -14,7 +14,7 @@ class Matchs{
         $this->id=$_id;
         $this->inGame=$_inGame;
         $this->idGame=$_idGame;
-        // Only one user at the moment of the creation
+        // Only one user at creation
         $this->listIdUsers=$_listIdUsers;
     }
 }

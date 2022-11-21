@@ -1,10 +1,9 @@
 <?php
 
-include('model/match.php');
+require_once('model/match.php');
 
 class MatchGateway{
 
-    // Object Attributes
     private $connection;
 
     // Constructor
@@ -14,7 +13,7 @@ class MatchGateway{
 
     /* Functions implemented to manage matches' data from database
 
-        * getMatch : returning a match found in database with his id
+        * getMatch : returning a match found in database with its id
         * postMatch : adding a NEW user in database
         * putMatch : modifying an EXISTING user in database
         * deleteMatch : deleting an user from database

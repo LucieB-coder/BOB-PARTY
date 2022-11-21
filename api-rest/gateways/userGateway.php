@@ -17,27 +17,12 @@ class UserGateway{
         * getUserByUsername : returning an user found in database with his username
         * getUserForConnection : returning an user if there is a correspondance between 
             the username and the password, used for connection
+        * getLastId : returning the last Id of the users
         * postUser : adding a NEW user in database
         * putUser : modifying an EXISTING user in database
         * deleteUser : deleting an user from database
 
     */
-
-/*
-/// Brief : Returning an array of users containing all the user stored in database
-    public function getUsers():array{
-        $tabUser=NULL;
-        $query1= "SELECT * FROM User";
-        $query2="SELECT idSkin FROM HasSkin WHERE idUser=:idUser";
-        $this->connection->execQuery($query,[]);
-        $res=$this->connection->getRes();
-        foreach($res as $row){
-            $tabUser[] = new User ($row['id'],$row['username'],$row['password'],$row['nationality'],$row['sex'],$row['dateOfBirth'],$row['currentBobCoins'],$row['totalBobCoins'],$row['nbGamesPlayed'],$row['currentIdSkin']);
-        }
-        
-        return $tabUser;
-    }
-*/
 
 /// Brief : Returning an user found in database with his id
 /// Parameters : * $id (string): identifier of the user we are looking for
@@ -105,6 +90,17 @@ class UserGateway{
         }
         $usr->listIdSkin=$tabSkin;
         return $usr;
+    }
+
+/// Brief : Returning the last Id of the users
+    public function getLastId():string{
+        $query = "SELECT id FROM User WHERE id >= ALL (SELECT max(id) FROM User)";
+        $this->connection->execQuery($query,[]);
+        $res=$this->connection->getRes();
+        foreach($res as $row){
+            $lastId=$row['id'];
+        }
+        return $lastId;
     }
 
 /// Brief : Adding a NEW user in database

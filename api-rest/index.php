@@ -7,6 +7,7 @@
     include ('dbConnection.php');
     include ('gateways/userGateway.php');
     include ('gateways/matchGateway.php');
+    include ('gateways/conversationGataway.php');
 
     // Connection to database
     // A changer quand la base de données sera hébergée, comment masquer les var?
@@ -20,6 +21,14 @@
     // Initializing Gateways
     $usergw = new UserGateway($database);
     $matchgw = new MatchGateway($database);
+    $conversationgw = new ConversationGateway($database); 
+
+    // Testing conversation/messages methods
+    $listUser=array("U0001","U0004","U0005");
+    $listMessages= array(new Message("ME005","coucou","U0001"), new Message("ME006","ca va","U0004"), new Message("ME007","bien et toi?","U0001"));
+    $newConv = new Conversation("C0006","yémen",$listMessages,$listUser);
+    $conversationgw->deleteConversation($newConv);
+
 
     // Managing request, routing and sending responses
     /*
@@ -47,9 +56,7 @@
                             $res=$usergw->getUserByUsername($username);
                         }
                         else{
-                            // read all users
-                            $res= $usergw->getUsers();
-                            echo json_encode($res);
+                            
                         }
                         break;
                     case 'getMatch':
