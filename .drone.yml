@@ -32,3 +32,18 @@ steps:
       COMMAND: create
       PRIVATE: true
       OVERWRITE: true
+
+
+
+# docker image build
+  - name: docker-build-and-push
+    image: plugins/docker
+    settings:
+       dockerfile: Sources/Dockerfile
+       context: Sources/
+       registry: hub.codefirst.iut.uca.fr
+       repo: hub.codefirst.iut.uca.fr/lilian.breton/BobParty
+       username:
+         from_secret: SECRET_REGISTRY_USERNAME
+       password:
+         from_secret: SECRET_REGISTRY_PASSWORD
