@@ -3,12 +3,14 @@ import { User } from "./User/user";
 
 
 export class Conversation{
+    private Id: string;
     private tabUser: User[];
     private tabMessage: Message[];
     private name: string;
     
     /* Constructor of the class */
-    constructor(tabUser: User[], tabMessage:Message[], name:string){
+    constructor(id: string, tabUser: User[], tabMessage:Message[], name:string){
+        this.Id=id;
         this.tabUser=[...tabUser];
         this.tabMessage=[...tabMessage];
         this.name=name;
@@ -34,6 +36,11 @@ export class Conversation{
     ajouterMessage(mess:Message){
         this.tabMessage?.push(mess);
         this.sortMessageDesc();
+    }
+
+    /* Brief : function returning the id of a conversation */
+    getId(){
+        return this.Id;
     }
 
     /* Brief : function returning the name to a conversation */

@@ -2,12 +2,14 @@ import { User } from './User/user'
 
 
 export class Message{
+    private Id: string;
     private Content: string;
     private Sender: User;
     private DateEnvoie: Date;
 
     /* Constructor of the class */
-    constructor(content: string, sender:User, dateEnvoie:Date){
+    constructor(id: string, content: string, sender:User, dateEnvoie:Date){
+        this.Id=id;
         this.Content=content;
         this.Sender=sender;
         this.DateEnvoie=dateEnvoie;
@@ -26,6 +28,11 @@ export class Message{
     /* Brief : Function setting the date of a message */
     setMessageDate(dateEnvoie: Date){
         this.DateEnvoie=dateEnvoie;
+    }
+
+    /* Brief : Function getting the id of a message */
+    getMessageId(){
+        return this.Id;
     }
 
     /* Brief : Function getting the content of a message */
