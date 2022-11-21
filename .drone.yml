@@ -14,13 +14,13 @@ steps:
       # OVERWRITE: false
       PRIVATE: true
       CODEFIRST_CLIENTDRONE_ENV_MYSQL_ROOT_PASSWORD:          
-        from_secret: R00tPassw0rd*        
+        from_secret: MYSQL_ROOT_PASSWORD        
       CODEFIRST_CLIENTDRONE_ENV_MYSQL_DATABASE:          
-        from_secret: DataBob       
+        from_secret: MYSQL_DATABASE       
       CODEFIRST_CLIENTDRONE_ENV_MYSQL_USER:          
-        from_secret: bob       
+        from_secret: MYSQL_USER       
       CODEFIRST_CLIENTDRONE_ENV_MYSQL_PASSWORD:          
-        from_secret: B0bPassw0rd*
+        from_secret: MYSQL_PASSWORD
 
 
 # Creation of a hosting docker for our application
