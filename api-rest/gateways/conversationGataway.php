@@ -33,8 +33,8 @@ class ConversationGateway{
         $tabIdMessages=NULL;
         $tabMessages=NULL;
 
-        $query1 = "SELECT idConversation FROM InConversation WHERE idUser=:idUser";
-        $query2 = "SELECT idUser FROM InConversation WHERE idConversation=:idConv";
+        $query1 = "SELECT idConversation FROM Use WHERE idUser=:idUser";
+        $query2 = "SELECT idUser FROM Use WHERE idConversation=:idConv";
         $query3 = "SELECT idMessage FROM Have WHERE idConversation=:idConv";
         $query4 = "SELECT id, message, idSender FROM Message WHERE id=:id";
         $query5 = "SELECT id, nom FROM Conversation WHERE id=:idConv";
@@ -88,7 +88,7 @@ class ConversationGateway{
 /// Parameters : * $c (Conversation): conversation we want to insert in database
     public function postConversation(Conversation $c): void{
         $query1 = "INSERT INTO Conversation VALUES(:idConv,:name)";
-        $query2 = "INSERT INTO InConversation VALUES(:idUser,:idConv)";
+        $query2 = "INSERT INTO Use VALUES(:idUser,:idConv)";
 
         $arg1 = array('idConv'=>array($c->id,PDO::PARAM_STR),
                     'name'=>array($c->name, PDO::PARAM_STR));
@@ -108,11 +108,11 @@ class ConversationGateway{
         $query7 = "SELECT idMessage FROM Have WHERE idConversation=:idConv";
         $query8 = "DELETE FROM Message WHERE id = :id";
         $query1 = "DELETE FROM Have WHERE idConversation = :idConv";
-        $query2 = "DELETE FROM InConversation WHERE idConversation = :idConv";
+        $query2 = "DELETE FROM Use WHERE idConversation = :idConv";
         $query3 = "UPDATE Conversation SET nom=:nom WHERE id=:id";
         $query4 = "INSERT INTO Have VALUES (:idConv,:idMessage)";
         $query5 = "INSERT INTO Message VALUES(:id,:message,:idSender)";
-        $query6 = "INSERT INTO InConversation VALUES(:idUsr,:idConv)";
+        $query6 = "INSERT INTO Use VALUES(:idUsr,:idConv)";
         
 
         $arg1 = array('idConv'=>array($c->id,PDO::PARAM_STR));
@@ -152,7 +152,7 @@ class ConversationGateway{
     public function deleteConversation(Conversation $c):void{
         $query1 = "DELETE FROM Message WHERE id=:id";
         $query2 = "DELETE FROM Have WHERE idConversation = :idConv";
-        $query3 = "DELETE FROM InConversation WHERE idConversation = :idConv";
+        $query3 = "DELETE FROM Use WHERE idConversation = :idConv";
         $query4 = "DELETE FROM Conversation WHERE id = :idConv";
 
         foreach($c->listMessages as $msg){

@@ -13,8 +13,8 @@ class UserGateway{
     /* Functions implemented to manage user's data from database
 
         * getUsers : returning an array of users containing all the user stored in database
-        * getUserById : returning an user found in database with his id
-        * getUserByUsername : returning an user found in database with his username
+        * getUserById : returning an user found in database with its id
+        * getUserByUsername : returning an user found in database with its username
         * getUserForConnection : returning an user if there is a correspondance between 
             the username and the password, used for connection
         * getLastId : returning the last Id of the users
@@ -29,7 +29,7 @@ class UserGateway{
     public function getUserById(string $id):?User{
         $usr=NULL;
         $query= "SELECT * FROM User U WHERE id = :id ";
-        $query2="SELECT idSkin FROM HasSkin WHERE idUser=:id";
+        $query2="SELECT idSkin FROM Own WHERE idUser=:id";
         $arg= array('id'=> array($id,PDO::PARAM_STR));
         $this->connection->execQuery($query2,$arg);
         $res=$this->connection->getRes();
@@ -39,7 +39,7 @@ class UserGateway{
         $this->connection->execQuery($query,$arg);
         $res=$this->connection->getRes();
         foreach($res as $row){
-            $usr = new User ($row['id'],$row['username'],$row['password'],$row['nationality'],$row['sex'],$row['dateOfBirth'],$row['currentBobCoins'],$row['totalBobCoins'],$row['nbGamesPlayed'],$row['currentIdSkin'],$tabSkin);
+            $usr = new User ($row['id'],$row['username'],$row['password'],$row['nationality'],$row['sex'],$row['dateOfBirth'],$row['currentBobCoins'],$row['totalBobCoins'],$row['nbGamesPlayed'],$row['currentSkin'],$tabSkin);
         }
         return $usr;
     }
@@ -50,12 +50,12 @@ class UserGateway{
         $usr=NULL;
         
         $query= "SELECT * FROM User U WHERE username = :username ";
-        $query2="SELECT idSkin FROM HasSkin WHERE idUser=:id";
+        $query2="SELECT idSkin FROM Own WHERE idUser=:id";
         $arg = array('username'=>array($username,PDO::PARAM_STR));
         $this->connection->execQuery($query,$arg);
         $res=$this->connection->getRes();
         foreach($res as $row){
-            $usr = new User ($row['id'],$row['username'],$row['password'],$row['nationality'],$row['sex'],$row['dateOfBirth'],$row['currentBobCoins'],$row['totalBobCoins'],$row['nbGamesPlayed'],$row['currentIdSkin'],null);
+            $usr = new User ($row['id'],$row['username'],$row['password'],$row['nationality'],$row['sex'],$row['dateOfBirth'],$row['currentBobCoins'],$row['totalBobCoins'],$row['nbGamesPlayed'],$row['currentSkin'],null);
         }
         $arg2=array('id'=>array($usr->id, PDO::PARAM_STR));
         $this->connection->execQuery($query2,$arg2);
@@ -75,12 +75,12 @@ class UserGateway{
     public function getUserForConnection(string $username, string $password):?User{
         $usr=NULL;
         $query= "SELECT * FROM User U WHERE username = :username AND password = :password";
-        $query2="SELECT idSkin FROM HasSkin WHERE idUser=:id";
+        $query2="SELECT idSkin FROM Own WHERE idUser=:id";
         $arg = array('username'=>array($username,PDO::PARAM_STR),'password'=>array($password,PDO::PARAM_STR));
         $this->connection->execQuery($query,$arg);
         $res=$this->connection->getRes();
         foreach($res as $row){
-            $usr = new User ($row['id'],$row['username'],$row['password'],$row['nationality'],$row['sex'],$row['dateOfBirth'],$row['currentBobCoins'],$row['totalBobCoins'],$row['nbGamesPlayed'],$row['currentIdSkin'],null);
+            $usr = new User ($row['id'],$row['username'],$row['password'],$row['nationality'],$row['sex'],$row['dateOfBirth'],$row['currentBobCoins'],$row['totalBobCoins'],$row['nbGamesPlayed'],$row['currentSkin'],null);
         }
         $arg2=array('id'=>array($usr->id, PDO::PARAM_STR));
         $this->connection->execQuery($query2,$arg2);
@@ -111,7 +111,7 @@ class UserGateway{
             return;
         }
         $query = "INSERT INTO User VALUES (:id, :username, :password, :nationality, :sex, :dateOfBirth, 0, 0, 0, 'S0001')";
-        $query2 = "INSERT INTO HasSkin VALUES(:id,'S0001')";
+        $query2 = "INSERT INTO Own VALUES(:id,'S0001')";
         $arg=array('id' => array($u->id, PDO::PARAM_STR), 
                    'username' => array($u->username, PDO::PARAM_STR), 
                    'password' => array($u->password, PDO::PARAM_STR),
@@ -126,9 +126,9 @@ class UserGateway{
 /// Brief : Modifying an EXISTING user in database
 /// Parameters : * $u (User): user we want to update in database
     public function putUser(User $u){
-        $query="UPDATE User SET username = :username, password=:password, sex=:sex, nationality=:nationality, currentBobCoins=:currentBobCoins, totalBobCoins=:totalBobCoins, nbGamesPlayed=:nbGamesPlayed, currentIdSkin=:currentIdSkin WHERE id=:id";
-        $query2="DELETE FROM HasSkin WHERE idUser=:id";
-        $query3="INSERT INTO HasSkin VALUES(:idUsr,:idSkin)";
+        $query="UPDATE User SET username = :username, password=:password, sex=:sex, nationality=:nationality, currentBobCoins=:currentBobCoins, totalBobCoins=:totalBobCoins, nbGamesPlayed=:nbGamesPlayed, currentSkin=:currentSkin WHERE id=:id";
+        $query2="DELETE FROM Own WHERE idUser=:id";
+        $query3="INSERT INTO Own VALUES(:idUsr,:idSkin)";
         $arg=array(':id' => array($u->id, PDO::PARAM_STR), 
                    ':username' => array($u->username, PDO::PARAM_STR), 
                    ':password' => array($u->password, PDO::PARAM_STR),
@@ -137,7 +137,7 @@ class UserGateway{
                    ':currentBobCoins' => array($u->currentBobCoins, PDO::PARAM_INT),
                    ':totalBobCoins' => array($u->totalBobCoins, PDO::PARAM_INT), 
                    ':nbGamesPlayed' => array($u->nbGamesPlayed, PDO::PARAM_INT),
-                   ':currentIdSkin'=> array($u->currentIdSkin, PDO::PARAM_STR));
+                   ':currentSkin'=> array($u->currentSkin, PDO::PARAM_STR));
         $arg2=array('id'=>array($u->id,PDO::PARAM_STR));
         $this->connection->execQuery($query, $arg);
         $this->connection->execQuery($query2,$arg2);

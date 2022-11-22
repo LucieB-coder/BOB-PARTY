@@ -8,6 +8,8 @@
     include ('gateways/userGateway.php');
     include ('gateways/matchGateway.php');
     include ('gateways/conversationGataway.php');
+    include ('gateways/gameGateway.php');
+    include ('gateways/skinGateway.php');
 
     // Connection to database
     // A changer quand la base de données sera hébergée, comment masquer les var?
@@ -22,20 +24,25 @@
     $usergw = new UserGateway($database);
     $matchgw = new MatchGateway($database);
     $conversationgw = new ConversationGateway($database); 
+    $gamegw = new GameGateway($database);
+    $skingw = new SkinGateway($database);
 
-    // Testing conversation/messages methods
-    $listUser=array("U0001","U0004","U0005");
-    $listMessages= array(new Message("ME005","coucou","U0001"), new Message("ME006","ca va","U0004"), new Message("ME007","bien et toi?","U0001"));
-    $newConv = new Conversation("C0006","yémen",$listMessages,$listUser);
-    $conversationgw->deleteConversation($newConv);
+    // Testing 
+    $res=$gamegw->getGames();
+    echo json_encode($res);
+    $res=$gamegw->getGameById("G0002");
+    echo json_encode($res);
 
+    $res=$skingw->getSkins();
+    echo json_encode($res);
+    $res=$skingw->getSkinById("S0001");
+    echo json_encode($res);
 
     // Managing request, routing and sending responses
     /*
     $requestMethod = $_SERVER['REQUEST_METHOD'];
     $requestName = $_REQUEST['fname'];
 
-    
     if(empty($requestName)){
         header("HTTP/1.0 400 Request Name Empty");
         http_response_code(400);

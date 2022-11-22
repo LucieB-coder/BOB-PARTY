@@ -25,7 +25,7 @@ class MatchGateway{
     public function getMatch(string $matchId):?Matchs{
         $match=NULL;
         $query1="SELECT id, inGame, idGame FROM Matchs WHERE id = :id";
-        $query2="SELECT idUser FROM InMatch WHERE idMatch=:id";
+        $query2="SELECT idUser FROM Play WHERE idMatch=:id";
         $arg=array('id' => array($matchId, PDO::PARAM_STR));
         $this->connection->execQuery($query2, $arg);
         $res=$this->connection->getRes();
@@ -45,7 +45,7 @@ class MatchGateway{
 /// Parameters : * $u (Matchs): match we want to insert in database
     public function postMatch(Matchs $m){
         $query1="INSERT INTO Matchs VALUES(:idMatch,0,:idGame)";
-        $query2="INSERT INTO InMatch VALUES(:idMatch,:idUser)";
+        $query2="INSERT INTO Play VALUES(:idMatch,:idUser)";
         $arg1=array('idMatch'=>array($m->id, PDO::PARAM_STR),
                     'idGame'=>array($m->idGame, PDO::PARAM_STR));
         $this->connection->execQuery($query1,$arg1);
@@ -62,8 +62,8 @@ class MatchGateway{
     public function putMatch(Matchs $m){
         $query1="UPDATE Matchs SET inGame= :inGame WHERE id=:id";
         //Peut-etre la possibilité de faire mieux???
-        $query2="DELETE FROM InMatch WHERE idMatch=:idMatch"; 
-        $query3="INSERT INTO InMatch VALUES(:idMatch,:idUser)";
+        $query2="DELETE FROM Play WHERE idMatch=:idMatch"; 
+        $query3="INSERT INTO Play VALUES(:idMatch,:idUser)";
         $arg1=array('inGame'=>array($m->inGame, PDO::PARAM_BOOL),
                     'id'=>array($m->id,PDO::PARAM_STR));
         $arg2=array('idMatch'=>array($m->id,PDO::PARAM_STR));
@@ -80,7 +80,7 @@ class MatchGateway{
 /// Brief : Deleting a match from database
 /// Parameters : * $u (Matchs): match we want to delete from database
     public function deleteMatch(Matchs $m){
-        $query1="DELETE FROM InMatch WHERE idMatch=:id";
+        $query1="DELETE FROM Play WHERE idMatch=:id";
         $query2="DELETE FROM Matchs WHERE id=:id";
         $arg=array('id'=>array($m->id, PDO::PARAM_STR));
         $this->connection->execQuery($query1,$arg);
