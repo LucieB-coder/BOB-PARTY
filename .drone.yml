@@ -57,7 +57,7 @@ steps:
         COMMAND: create
         OVERWRITE: true
 
-  - name: sonar
+  - name: sonar-test
     CODEFIRST_CLIENTDRONE_ENV_SONAR_TOKEN: 
       from_secret: SONAR_TOKEN
     image: sonarqube:9.7.1-community
