@@ -8,7 +8,6 @@ import React, { useCallback } from 'react';
 import { useUserStore } from './userContext';
 
 
-
 export const MANAGER_USER = new ManagerUser(new LoaderUserApi, new FakeSaverUser);  
 
   
@@ -52,5 +51,4 @@ export const MANAGER_USER = new ManagerUser(new LoaderUserApi, new FakeSaverUser
     );
   }
   
-
-
+  
