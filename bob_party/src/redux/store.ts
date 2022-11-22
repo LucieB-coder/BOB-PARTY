@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-import currentUserReducer from "./features/currentUserSlice";
 import { getDefaultMiddleware } from '@reduxjs/toolkit';
 
 const customizedMiddleware = getDefaultMiddleware({
@@ -8,7 +7,6 @@ const customizedMiddleware = getDefaultMiddleware({
 
 const store = configureStore({
     reducer: {
-        currentUser: currentUserReducer,
     },
     middleware: (getDefaultMiddleware) => customizedMiddleware,
 })

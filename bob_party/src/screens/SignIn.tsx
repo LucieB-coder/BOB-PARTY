@@ -5,16 +5,15 @@ import stylesScreen from './style/screens.style'
 import { TextInput } from 'react-native-gesture-handler';
 import tabUS from "../constUser";
 import styles from "./style/SignIn.style"
-import { useDispatch, } from 'react-redux';
-import { loginUser } from '../redux/features/currentUserSlice';
 
 
 
 
 
 function SignIn(props: { navigation: any; }) {
-    const { navigation } = props
 
+    const { navigation } = props
+    {/*
     const [pseudo, setPseudo] = useState('');
     const [password, setPassword] = useState('');
     
@@ -29,15 +28,18 @@ function SignIn(props: { navigation: any; }) {
             }
         }
     }
+*/}
 
     return (
     <View style={stylesScreen.container}>
         <View style={stylesScreen.bodyCenter}>
+            {/*
             <TextInput style={styles.textInput} placeholder='Login' onChangeText={(val) => setPseudo(val)} autoCapitalize='none' />
             <TextInput style={styles.textInput} placeholder='Password' onChangeText={(val) => setPassword(val)} autoCapitalize='none' />
             <Pressable style={styles.button} onPress={() => userVerif(pseudo, password, navigation)}>
                 <Text style={styles.text}>Se connecter</Text>
             </Pressable>
+    */}
             <Pressable onPress={() => navigation.navigate('SignUp')}>
                 <Text style={styles.signup}>Pas de compte? Inscrivez vous !</Text>
             </Pressable>

@@ -7,12 +7,11 @@ import { TopBar } from '../components/TopBar';
 import { ButtonGreySmall } from '../components/ButtonGreySmall';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
-import DialogInput from "react-native-dialog-input";
-import { updatePseudo, updatePassword, updateNationality, updateSex } from "../redux/features/currentUserSlice";
 import Dialog from "react-native-dialog"
 import RNPickerSelect from "react-native-picker-select";
 import tabNat from '../constNat';
 import tabSex from '../constSex';
+import DialogInput from 'react-native-dialog/lib/Input';
 
 function Settings(props: { navigation: any; }) {
     const { navigation } = props
@@ -66,7 +65,7 @@ function Settings(props: { navigation: any; }) {
         isDialogVisible={dialogPseudoVisible}
         title="Inserer le nouveau pseudo"
         hintInput ="Pseudo"
-        submitInput={ (inputText: string) => {dispatch(updatePseudo(inputText)); setDialogPseudoVisible(false)} }
+        submitInput={ (inputText: string) => { setDialogPseudoVisible(false)} }
         closeDialog={ () => {setDialogPseudoVisible(false)}}>
       </DialogInput>
 
@@ -74,7 +73,7 @@ function Settings(props: { navigation: any; }) {
         isDialogVisible={dialogPasswordVisible}
         title="Inserer le nouveau mot de passe"
         hintInput ="Mot de passe"
-        submitInput={ (inputText: string) => {dispatch(updatePassword(inputText)); setDialogPasswordVisible(false)} }
+        submitInput={ (inputText: string) => {setDialogPasswordVisible(false)} }
         closeDialog={ () => {setDialogPasswordVisible(false)}}>
       </DialogInput>
 
@@ -88,7 +87,7 @@ function Settings(props: { navigation: any; }) {
           />
         </View>  
         <Dialog.Button label="Cancel" onPress={() => setDialogNationalityVisible(false)} />
-        <Dialog.Button label="Valider" onPress={() => {dispatch(updateNationality(selectedNationality)); setDialogNationalityVisible(false)}} />
+        <Dialog.Button label="Valider" onPress={() => { setDialogNationalityVisible(false)}} />
       </Dialog.Container>
 
       <Dialog.Container visible={dialogSexVisible}>
@@ -101,7 +100,7 @@ function Settings(props: { navigation: any; }) {
           />
         </View>  
         <Dialog.Button label="Cancel" onPress={() => setDialogSexVisible(false)} />
-        <Dialog.Button label="Valider" onPress={() => {dispatch(updateSex(selectedSex)); setDialogSexVisible(false)}} />
+        <Dialog.Button label="Valider" onPress={() => { setDialogSexVisible(false)}} />
       </Dialog.Container>
 
     </View>
