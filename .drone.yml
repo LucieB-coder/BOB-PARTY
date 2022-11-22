@@ -62,4 +62,8 @@ steps:
       from_secret: SONAR_TOKEN
     image: sonarqube:9.7.1-community
     commands:
-      - sonar-scanner   -Dsonar.projectKey=BOB-PARTY   -Dsonar.sources=.   -Dsonar.host.url=https://codefirst.iut.uca.fr/sonar   -Dsonar.login=$[SONAR_TOKEN]
+      - sonar-scanner \
+      -Dsonar.projectKey=BOB-PARTY \
+      -Dsonar.sources=. \
+      -Dsonar.host.url=https://codefirst.iut.uca.fr/sonar \
+      -Dsonar.login=$[SONAR_TOKEN]
