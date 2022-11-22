@@ -3,7 +3,7 @@ import { GameCasino } from '../GameCasino';
 
 
 // Instances
-let game = new GameCasino("bo jeu", require('bob_party/assets/ImagesJeux/blackjack.jpg'), "super jeu", 1, 5);
+let game = new GameCasino("GC001", "bo jeu", require('bob_party/assets/ImagesJeux/blackjack.jpg'), "super jeu", 1, 5);
 
 
 // Get tests
@@ -51,3 +51,12 @@ describe('GameCasino set tests', () => {
     it('should return 4', () => {
         expect(game.getNbPlayerMin()).toBe(4);
     })
+})
+
+
+// Coins Calculator Tests 
+describe('Coins calculator tests', () => {
+    it('should return 200', () => {
+        expect(game.coinsCalculator(200)).toBe(200);
+    })
+})

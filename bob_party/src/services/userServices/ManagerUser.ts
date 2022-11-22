@@ -1,4 +1,3 @@
-import tabSkinApp from "../../constSkin";
 import { User } from "../../core/User/user";
 import ILoaderUser from "./ILoaderUser";
 import ISaverUser from "./ISaverUser";

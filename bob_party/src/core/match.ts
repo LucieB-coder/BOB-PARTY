@@ -9,7 +9,7 @@ export abstract class Match{
     private tabUsers:User[];
     private theGame:Game;
 
-    constructor(code:string, tabUser:User[], game:Game){
+    constructor(code:string, inGame:Boolean, tabUser:User[], game:Game){
         this.code=code;
         this.inGame=false;
         this.tabUsers=[...tabUser];
@@ -67,6 +67,6 @@ export abstract class Match{
     }
 
 
-    abstract updatePostMatch(user:User, coins:number):void;
+    abstract updatePostMatch(user:User, points:number):void;
 
 }

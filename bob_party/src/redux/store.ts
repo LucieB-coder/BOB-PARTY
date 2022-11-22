@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import credentialErrorsSlice from "./features/credentialErrorsSlice";
 import { getDefaultMiddleware } from '@reduxjs/toolkit';
 
 const customizedMiddleware = getDefaultMiddleware({
@@ -7,6 +8,7 @@ const customizedMiddleware = getDefaultMiddleware({
 
 const store = configureStore({
     reducer: {
+        credentialErrors: credentialErrorsSlice,
     },
     middleware: (getDefaultMiddleware) => customizedMiddleware,
 })

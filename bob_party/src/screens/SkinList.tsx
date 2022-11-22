@@ -14,7 +14,6 @@ import { ScreenIndicator } from '../components/ScreenIndicator';
 function SkinList(props: { navigation: any; }) {
     const { navigation } = props
 
-
     return (
     <View style={stylesScreen.container}>
         <TopBar
