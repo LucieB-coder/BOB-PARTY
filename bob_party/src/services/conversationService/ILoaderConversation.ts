@@ -1,5 +1,5 @@
-import { Conversation } from "../../../core/conversation";
-import { User } from "../../../core/User/user";
+import { Conversation } from "../../core/conversation";
+import { User } from "../../core/User/user";
 
 export default interface ILoaderConversation{
 

@@ -4,6 +4,7 @@ import { sign } from 'crypto';
 import { TextBase } from 'react-native';
 
 export class User{
+
     readonly id: string;
     private username: string;
     private password: string;

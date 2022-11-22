@@ -1,17 +1,17 @@
-import { User } from "../../../core/User/user";
+import tabSkinApp from "../../constSkin";
+import { User } from "../../core/User/user";
 import ILoaderUser from "./ILoaderUser";
 import ISaverUser from "./ISaverUser";
 
 export default class ManagerUser{
 
-    private currentUser: User | null;
+    private currentUser: User | null=null;
 
     private loaderUser: ILoaderUser;
 
     private saverUser: ISaverUser;
 
     constructor(loader:ILoaderUser, saver:ISaverUser){
-        this.currentUser=null;
         this.loaderUser=loader;
         this.saverUser=saver;
     }
@@ -20,7 +20,7 @@ export default class ManagerUser{
         return this.currentUser;
     }
 
-    setCurrentUser(u:User){
+    setCurrentUser(u:User | null){
         this.currentUser=u;
     }
 

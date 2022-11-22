@@ -1,7 +1,7 @@
-import { Conversation } from "../../../core/conversation";
-import { Match } from "../../../core/match";
-import { Skin } from "../../../core/skin";
-import { User } from "../../../core/User/user";
+import { Conversation } from "../../core/conversation";
+import { Match } from "../../core/match";
+import { Skin } from "../../core/skin";
+import { User } from "../../core/User/user";
 import ILoaderUser from "./ILoaderUser";
 
 export default class StubUser implements ILoaderUser{
@@ -48,12 +48,17 @@ export default class StubUser implements ILoaderUser{
         });
         return tabUser;
     }
+
     async loadUserByConversation(c: Conversation): Promise<User[]> {
         let tabUser:User[]=[];
         c.getTabUser().forEach(u => {
             tabUser.push(u);
         });
         return tabUser;
+    }
+
+    async loadLastId(): Promise<string> {
+        throw new Error("Method not implemented.");
     }
     
 }

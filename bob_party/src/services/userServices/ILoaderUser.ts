@@ -1,6 +1,6 @@
-import { Conversation } from "../../../core/conversation";
-import { Match } from "../../../core/match";
-import { User } from "../../../core/User/user";
+import { Conversation } from "../../core/conversation";
+import { Match } from "../../core/match";
+import { User } from "../../core/User/user";
 
 export default interface ILoaderUser{
 
@@ -43,4 +43,10 @@ export default interface ILoaderUser{
      * return an array of User
      */
     loadUserByConversation(c:Conversation): Promise<User[]>;
+
+    /**
+     * loadLastId methode that load the last id used to create a user
+     * return a String
+     */
+    loadLastId(): Promise<string>;
 }
