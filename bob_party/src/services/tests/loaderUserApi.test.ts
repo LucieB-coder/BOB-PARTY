@@ -4,6 +4,7 @@ import { Match } from '../../core/match';
 import { MatchSolo } from '../../core/matchSolo';
 import { GameSolo } from '../../core/gameSolo';
 import tabUS from '../../constUser';
+import { Conversation } from '../../core/conversation';
 
 // Instances
 let loader:ILoaderUser = new LoaderUserApi();
@@ -15,10 +16,19 @@ let map = new Map<number, number>([
 ]);
 let game:GameSolo = new GameSolo('G0001', 'SuperJeu', require('id'), 'source', 1, 1, map);
 let match:Match = new MatchSolo('M0001', tabUS, game);
+let convo:Conversation = new Conversation(tabUS, [], 'superConvo');
+
 
 // Tests
 describe('LoaderUserApi tests', () => {
-    describe('loadById Tests', () => {
+    /*
+    describe('loadAllUser tests', () => {
+        it('should return tabUS [UserTest, Alban, UserActu, Fefe63]', () => {
+            expect(loader.loadAllUser()).toEqual(tabUS);
+        })
+    })
+    */
+    describe('loadById tests', () => {
         it('should return UserTest (id: 48)', () => {
             expect(loader.loadByID('48')).toEqual(tabUS[0]);
         })
@@ -46,5 +56,20 @@ describe('LoaderUserApi tests', () => {
         it('should return UserTest', () => {
             expect(loader.loadUserByMatch(match)).toEqual(tabUS[0]);
         })
+        it('should return null', () => {
+            expect(loader.loadByUsernamePassword('jExistePas', 'jExistePas')).toEqual(null);
+        })
     })
+    describe('loadUserByConversation tests', () => {
+        it('should return tabUS', () => {
+            expect(loader.loadUserByConversation(convo)).toEqual(tabUS);
+        })
+    })
+    /*
+    describe('loadLastId', () => {
+        it('should return U0004', () => {
+            expect(loader.loadLastId()).toBe('U0004');
+        })
+    })
+    */
 })
