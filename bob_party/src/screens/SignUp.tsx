@@ -10,8 +10,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { checkNewUserValidity } from '../core/Auth/newUser';
 import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import RNPickerSelect from "react-native-picker-select";
-import tabSex from '../constSex';
-import tabNat from '../constNat';
 import { PickerGreySmall } from '../components/PickerGreySmall';
 import { loginUser } from '../redux/features/currentUserSlice';
 import { RootState } from '../redux/store';
@@ -121,12 +119,12 @@ function SignUp(props: { navigation: any; }) {
             <View style={{width: '60%', alignItems: 'center'}}>
                 <Text style={styles.text}>Nationalité</Text>
                 <PickerGreySmall title='Choisir la Nationalité' valueChange={(value:string) => 
-                setSelectedNationality(value)} values={tabNat} />
+                setSelectedNationality(value)} values={["Français", "Anglais"]} />
             </View>
 
             <View style={{width: '60%', alignItems: 'center'}}>
                 <Text style={styles.text}>Sexe</Text>
-                <PickerGreySmall title='Choisir le sexe' valueChange={(value:string) => setSelectedSex(value)} values={tabSex} />
+                <PickerGreySmall title='Choisir le sexe' valueChange={(value:string) => setSelectedSex(value)} values={["Homme","Femme", "Autre"]} />
             </View>
             <Pressable style={styles.button} onPress={() => checkNewUserValidity(pseudo,password,date,selectedNationality,selectedSex, dispatch, navigation)}>
                 <Text style={styles.text}>S'inscrire</Text>

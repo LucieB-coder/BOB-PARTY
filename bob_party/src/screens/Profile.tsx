@@ -10,6 +10,7 @@ import { ButtonGreySmall } from '../components/ButtonGreySmall';
 import { ScreenIndicator } from '../components/ScreenIndicator';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
+import { MANAGER_USER } from '../../App';
 
 const coin = require('../../assets/Icons/Coin.png')
 
@@ -18,7 +19,6 @@ const coin = require('../../assets/Icons/Coin.png')
 function Profile(props: { navigation: any; }) {
     const { navigation } = props
 
-    const currentUser = useSelector((state: RootState) => state.currentUserManager.currentUser);
     return (
     <View style={stylesScreen.container}>
         <TopBar
@@ -26,22 +26,22 @@ function Profile(props: { navigation: any; }) {
           />
       <View style={stylesScreen.bodyStart}>
         <ScreenIndicator title='Profil'/>
-        <Text style={styles.pseudoText}>{currentUser.getUsername()}</Text>
+        <Text style={styles.pseudoText}>{MANAGER_USER.getCurrentUser().getUsername()}</Text>
         <View style={styles.coinSkinView}>
             <View style={styles.coinView}>
                 <Image 
                     style={styles.coin}
                     source={coin}
                 />
-                <Text style={styles.coinText}>{currentUser.getCurrentCoins()}</Text>
+                <Text style={styles.coinText}>{MANAGER_USER.getCurrentUser().getCurrentCoins()}</Text>
             </View>
             <View style={styles.skinView}>
-                <SkinComponent skin={currentUser.getCurrentSkin()} state='profile' />
+                <SkinComponent skin={MANAGER_USER.getCurrentUser().getCurrentSkin()} state='profile' />
                 <ButtonGreySmall onPress={() => navigation.navigate('SkinList')} title='Changer de skin' state='Profile'/>
             </View>
         </View>
         <View style={styles.infoView}>
-            <Text style={styles.infoText}>Total de BobCoin gagnés: {currentUser.getTotalCoins()}</Text>
+            <Text style={styles.infoText}>Total de BobCoin gagnés: {MANAGER_USER.getCurrentUser().getTotalCoins()}</Text>
         </View>
       </View>
       <BotBar

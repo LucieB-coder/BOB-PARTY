@@ -14,7 +14,7 @@ import StubUser from './src/services/userServices/stub';
 
 
 
-export const MANAGER_USER = new ManagerUser(new StubUser, new FakeSaverUser);  
+export const MANAGER_USER = new ManagerUser(new LoaderUserApi, new FakeSaverUser);  
 
   
   export default function App() {
