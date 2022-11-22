@@ -58,7 +58,7 @@ steps:
         OVERWRITE: true
 
 
-CODEFIRST_CLIENTDRONE_ENV_SONAR_TOKEN: sqp_8276da170682406ce11243607e0c60bf17391b11
+CODEFIRST_CLIENTDRONE_ENV_SONAR_TOKEN: sqp_8937a8c406e06dbd27c9bf869d444b251f5451a6
   sonar-scanner \
   -Dsonar.projectKey=BOB-PARTY \
   -Dsonar.sources=. \
