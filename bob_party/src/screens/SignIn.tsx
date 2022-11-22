@@ -20,8 +20,8 @@ function SignIn(props: { navigation: any; }) {
     const setUser = useUserStore((state) => state.setUser);
 
     const errorList = useSelector((state: RootState) => state.credentialErrors.loginErrorList);
+
     
-    {/*
     const [pseudo, setPseudo] = useState('');
     const [password, setPassword] = useState('');
     const dispatch=useDispatch();
@@ -30,7 +30,7 @@ function SignIn(props: { navigation: any; }) {
             Alert.alert("Pseudo ou Mot de passe incorrect");
             dispatch(updateIncorrectCredentials(true));
     }
-*/}
+
 
 
     const handleUserConnect = useCallback(async (pseudo: string, password: string) => {
@@ -48,20 +48,17 @@ function SignIn(props: { navigation: any; }) {
 
       }, []);
     
-    function dispatch(arg0: { payload: boolean; type: string; }): void {
-        throw new Error('Function not implemented.');
-    }
 
     return (
     <View style={stylesScreen.container}>
         <View style={stylesScreen.bodyCenter}>
-            {/*
+            
             <TextInput style={styles.textInput} placeholder='Login' onChangeText={(val) => setPseudo(val)} autoCapitalize='none' />
             <TextInput style={styles.textInput} placeholder='Password' onChangeText={(val) => setPassword(val)} autoCapitalize='none' secureTextEntry={true}/>
             <Pressable style={styles.button} onPress={() => handleUserConnect(pseudo, password)}>
                 <Text style={styles.text}>Se connecter</Text>
             </Pressable>
-    */}
+    
             <Pressable onPress={() => navigation.navigate('SignUp')}>
                 <Text style={styles.textLink}>Pas de compte? Inscrivez vous !</Text>
             </Pressable>
