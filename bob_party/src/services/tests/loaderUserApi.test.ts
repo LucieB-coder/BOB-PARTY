@@ -53,8 +53,8 @@ describe('LoaderUserApi tests', () => {
         })
     })
     describe('loadUserByMatch tests', () => {
-        it('should return UserTest', () => {
-            expect(loader.loadUserByMatch(match)).toEqual(tabUS[0]);
+        it('should return tabUS', () => {
+            expect(loader.loadUserByMatch(match)).toEqual(tabUS);
         })
         it('should return null', () => {
             expect(loader.loadByUsernamePassword('jExistePas', 'jExistePas')).toEqual(null);
