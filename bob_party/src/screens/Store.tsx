@@ -7,6 +7,8 @@ import { BotBar } from '../components/BotBar';
 import { FlatList } from 'react-native-gesture-handler';
 import { SkinComponent } from '../components/Skin';
 import { ScreenIndicator } from '../components/ScreenIndicator';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
 import { MANAGER_USER } from '../../App';
 
 function Store(props: { navigation: any; }) {

@@ -1,13 +1,20 @@
 import { StyleSheet } from "react-native";
 
+
 export default StyleSheet.create({
-    button: {
+    textInput: {
+        width: '100%',
+        height: '5%',
+        backgroundColor: 'white',
+        padding: 10,
+        marginTop: 10,
+      },
+      button: {
         alignItems: 'center',
         justifyContent: 'center',
         height: 50,
         width: 225,
-        marginTop: '15%',
-        margin:'5%',
+        margin:'10%',
         borderRadius: 10,
         elevation: 3,
         backgroundColor: '#0085FF',
@@ -24,11 +31,5 @@ export default StyleSheet.create({
         color:'white',
         textDecorationLine:"underline",   
       },
-      textInput: {
-        width: '80%',
-        height: '5%',
-        backgroundColor: 'white',
-        padding: 10,
-        marginVertical: 10,
-      }
-  });
+})
+

@@ -1,6 +1,7 @@
 import tabSkinApp from "../../constSkin";
 import { Conversation } from "../../core/conversation";
 import { Match } from "../../core/match";
+import { Skin } from "../../core/skin";
 import { User } from "../../core/User/user";
 import ILoaderUser from "./ILoaderUser";
 
@@ -90,31 +91,21 @@ export default class LoaderUserApi implements ILoaderUser{
         return null;
     }
 
-
-    async loadByUsernamePassword(username: string, password: string): Promise<User | null> {
-        let test = new Test(true, 0, "wesh", 0);
-        try{
-            await this.axios({
-                method: 'get',
-                url: 'https://jsonplaceholder.typicode.com/todos/1',
-                params: {
-                    name: "getUserForConnection",
-                    username: username,
-                    password: password,
-                    //Les params genre nom de la fonction en php
-                }
-            })
-                .then(function (response: any) {
-                    console.log(response.data);
-                    Object.assign(test, response.data);
-                    console.log(test.id);
-                });
-        }catch (error) {
-            console.error(error);
-        }
-        return null;
+    async loadByUsernamePassword(username: string, password: string): Promise<User | null>{
+        let user:User | null=null;
+        await this.axios({
+            method: 'get',
+            url: 'https://jsonplaceholder.typicode.com/todos/1',
+            params: {
+                name: "getAllUser",
+                //Les params genre nom de la fonction en php
+              }
+         })
+         .then(function (response: any) {
+            user=new User("U0001", username, password, "ouioui", "homme", new Date(2022,12,12), 12222, 123324, 12, new Skin("S0001", "Bob",require('bob_party/assets/BobsSkins/BobClassic.png'), 0), [new Skin("S0001", "Bob",require('bob_party/assets/BobsSkins/BobClassic.png'), 0)]);
+        });
+        return user;
     }
-
 
     async loadUserByMatch(m: Match): Promise<User[]> {
         throw new Error("Method not implemented.");
