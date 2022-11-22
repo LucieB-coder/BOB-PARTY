@@ -1,13 +1,16 @@
 import { StatusBar } from 'expo-status-bar'
-import { View, Pressable, Text} from 'react-native'
+import { View, Pressable, Text, Alert} from 'react-native'
 import React, { useState } from 'react';
 import stylesScreen from './style/screens.style'
 import { TextInput } from 'react-native-gesture-handler';
-import tabUS from "../constUser";
-import styles from "./style/SignIn.style"
-import { useDispatch, } from 'react-redux';
+import styles from "./style/SignIn.style";
+import { useDispatch, useSelector } from 'react-redux';
+import tabUS from '../constUser';
 import { loginUser } from '../redux/features/currentUserSlice';
-
+import { checkCredentials } from '../core/Auth/login';
+import { RootState } from '../redux/store';
+import { updateIncorrectCredentials } from '../redux/features/credentialErrorsSlice';
+import Dialog from "react-native-dialog";
 
 
 
@@ -15,34 +18,39 @@ import { loginUser } from '../redux/features/currentUserSlice';
 function SignIn(props: { navigation: any; }) {
     const { navigation } = props
 
+    const errorList = useSelector((state: RootState) => state.credentialErrors.loginErrorList);
+
     const [pseudo, setPseudo] = useState('');
     const [password, setPassword] = useState('');
-    
     const dispatch=useDispatch();
 
-    function userVerif(login: string, password: string, nav: any){
-        if((tabUS.map((User) => User.getUsername()).indexOf(login)) !== -1){
-            let id = (tabUS.map((User) => User.getUsername()).indexOf(login))
-            if ((tabUS.map((User) => User.getUsername()).indexOf(login) === id) && ( tabUS[id].getPassword() === password) ){
-                dispatch(loginUser(tabUS[id]));
-                nav.navigate('HomeTab');
-            }
-        }
+   if (errorList.incorrectCredentials){
+            Alert.alert("Pseudo ou Mot de passe incorrect");
+            dispatch(updateIncorrectCredentials(true));
     }
-
+    
     return (
     <View style={stylesScreen.container}>
         <View style={stylesScreen.bodyCenter}>
             <TextInput style={styles.textInput} placeholder='Login' onChangeText={(val) => setPseudo(val)} autoCapitalize='none' />
-            <TextInput style={styles.textInput} placeholder='Password' onChangeText={(val) => setPassword(val)} autoCapitalize='none' />
-            <Pressable style={styles.button} onPress={() => userVerif(pseudo, password, navigation)}>
+            <TextInput style={styles.textInput} placeholder='Password' onChangeText={(val) => setPassword(val)} autoCapitalize='none' secureTextEntry={true}/>
+            <Pressable style={styles.button} onPress={() => checkCredentials(pseudo, password, dispatch, navigation)}>
                 <Text style={styles.text}>Se connecter</Text>
             </Pressable>
             <Pressable onPress={() => navigation.navigate('SignUp')}>
-                <Text style={styles.signup}>Pas de compte? Inscrivez vous !</Text>
+                <Text style={styles.textLink}>Pas de compte? Inscrivez vous !</Text>
             </Pressable>
         </View>
+        <Dialog.Container visible={false}>
+            <Dialog.Title>Ce pseudo n'exsite pas</Dialog.Title>
+            <Dialog.Button label="Fermer" onPress={() => dispatch(updateIncorrectCredentials(false))} />
+        </Dialog.Container>
+        <Dialog.Container visible={false}>
+            <Dialog.Title>Mot de passe incorrect</Dialog.Title>
+            <Dialog.Button label="Fermer" onPress={() => dispatch(updateIncorrectCredentials(false))} />
+        </Dialog.Container>
     </View>
+    
   );
 }
 

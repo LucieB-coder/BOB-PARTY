@@ -37,7 +37,6 @@ describe('GameSolo get tests', () => {
 
 
 // Setting new values
-game.setId('newId');
 game.setGameSource('trop cool le jeu');
 game.setImageSource(require('bob_party/assets/ImagesJeux/JeuDeDame.jpg'));
 game.setName('beau jeu');
@@ -47,9 +46,6 @@ game.setNbPlayerMax(3);
 
 // Set tests
 describe('GameSolo set tests', () => {
-    it('should return newId', () => {
-        expect(game.getId()).toBe('newId');
-    })
     it('should return beau jeu', () => {
         expect(game.getName()).toBe('beau jeu');
     })

@@ -13,7 +13,7 @@ import { RootState } from '../redux/store';
 function Store(props: { navigation: any; }) {
   const { navigation } = props
 
-  const currentUser = useSelector((state: RootState) => state.currentUser.value[0]);
+  const currentUser = useSelector((state: RootState) => state.currentUserManager.currentUser);
 
   return (
     <View style={stylesScreen.container}>

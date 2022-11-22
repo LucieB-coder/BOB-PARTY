@@ -1,3 +1,6 @@
+import MainTabNavigator from './src/navigation/AppNavigator'
+import store from './src/redux/store'
+import { Provider } from 'react-redux'
 import LoaderUserApi from './src/services/userServices/loaderUserApi'
 import ManagerUser from './src/services/userServices/ManagerUser'
 import FakeSaverUser from './src/services/userServices/fakeSaverUser'
@@ -6,7 +9,6 @@ import React, { useCallback } from 'react';
 import { useUserStore } from './userContext';
 import stylesScreen from './src/screens/style/screens.style'
 import { User } from './src/core/User/user';
-import tabSkinApp from './src/constSkin';
 import { stat } from 'fs';
 import StubUser from './src/services/userServices/stub';
 
@@ -57,12 +59,9 @@ export const MANAGER_USER = new ManagerUser(new StubUser, new FakeSaverUser);
     
 
     return (
-      <View style={stylesScreen.bodyCenter}>
-        <AUser />
-        <Button onPress={handleUserConnect} title="Connect"></Button>
-        <Button onPress={handleUserLogout} title="Logout"></Button>
-        <Button onPress={handleUserChange} title="testChangement"></Button>
-      </View>
+      <Provider store={store}>
+        <MainTabNavigator/>
+      </Provider>
     );
   }
   
@@ -79,5 +78,3 @@ export const MANAGER_USER = new ManagerUser(new StubUser, new FakeSaverUser);
       </View>
     );
   };
-
-

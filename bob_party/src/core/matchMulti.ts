@@ -6,12 +6,12 @@ import { ManagerCoinsUser } from "./User/userCoinsModifier";
 
 export class MatchMulti extends Match{
 
-    constructor(code:string, tabUser:User[], game:GameMulti){
-        super(code, tabUser, game);
+    constructor(code:string, inGame:Boolean, tabUser:User[], game:GameMulti){
+        super(code, inGame, tabUser, game);
     }
 
-    updatePostMatch(user:User, coins: number): void {
+    updatePostMatch(user:User, points: number): void {
         const manage= new ManagerCoinsUser();
-        manage.addCoins(user, this.getGame().coinsCalculator(coins));
+        manage.addCoins(user, this.getGame().coinsCalculator(points));
     }
 }

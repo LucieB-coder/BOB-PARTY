@@ -19,7 +19,6 @@ function Home(props: { navigation: any; }) {
     
 
     const { navigation } = props
-    
     return ( 
       <View style={stylesScreen.container}>
         <TopBar
