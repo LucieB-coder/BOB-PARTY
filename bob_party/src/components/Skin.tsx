@@ -11,16 +11,34 @@ import { useDispatch, useSelector } from "react-redux"
 import { loginUser } from "../redux/features/currentUserSlice"
 import { RootState } from "../redux/store"
 import { MANAGER_USER } from "../../App"
+import { useUserStore } from "../../userContext"
+
+
+
 
 export const SkinComponent :
+
+
+
 /* Parameters : 
     * skin : Skin to be displayed
     * state : Indicates from wich screen the component has been called
 */ 
-FC<{skin: Skin, state: String}> = 
-({skin, state}) => 
+FC<{nav : any, skin: Skin, state: String}> = 
+({nav, skin, state}) => 
 {
+
+    console.log(nav);
+
     const dispatch=useDispatch();
+
+    const setUser = useUserStore((state) => state.setUser);
+
+    function changerSkin(skin:Skin) {
+        MANAGER_USER.getCurrentUser()?.setCurrentSkin(skin);
+        setUser(MANAGER_USER.getCurrentUser());
+        MANAGER_USER.getsaverUser().updateUser(MANAGER_USER.getCurrentUser());
+    }
     
 
     /* The display of this component depends of the screen from where it has been called:
@@ -49,7 +67,7 @@ FC<{skin: Skin, state: String}> =
             )
         case 'liste':
             return(
-                <Pressable onPress={() => {MANAGER_USER.getCurrentUser().setCurrentSkin(skin)}} style={styles.imageWrapper}>
+                <Pressable onPress={() => {changerSkin(skin); nav.navigate('ProfileTab', {screen: 'Profile'})}} style={styles.imageWrapper}>
                     <Text style={styles.nomSkin}>{skin.getSkinName()}</Text>
                     <Image
                         style={styles.imageSkin}

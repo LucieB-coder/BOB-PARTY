@@ -12,6 +12,7 @@ import styles from './style/TopBar.style';
 import { useSelector } from "react-redux"
 import { RootState } from "../redux/store"
 import { MANAGER_USER } from "../../App"
+import { useUserStore } from "../../userContext"
 
 /* 
     Images required
@@ -31,6 +32,7 @@ FC<{nav: any, state?: string}> =
 ({nav, state}) => 
 {
 
+    
     /* The display of this component depends of the screen from where it has been called:
         * From the Settings (icon) : Name of the page + cross button
         * From other : skin + Title + parameters icon
@@ -49,10 +51,11 @@ FC<{nav: any, state?: string}> =
                 </View>
             )
         default:
+
             return (
                 <View style={styles.header}>
                     <Pressable onPress={() => nav.navigate('ProfileTab', {screen: 'Profile'})}>
-                            <SkinComponent skin={MANAGER_USER.getCurrentUser().getCurrentSkin()} state='icon' />
+                            <SkinComponent skin={MANAGER_USER.getCurrentUser().getCurrentSkin()} state='icon' nav={nav} />
                         </Pressable>
                         <Text style={styles.titre}>BOB PARTY</Text>
                         <Pressable onPress={() => nav.navigate('Settings')}>
