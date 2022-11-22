@@ -61,6 +61,7 @@ steps:
 # sonar setup
   - name: sonar
     CODEFIRST_CLIENTDRONE_ENV_SONAR_TOKEN: sqp_8276da170682406ce11243607e0c60bf17391b11
+    image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-sonar:latest
     commands: 
       - sonar-scanner \
         -Dsonar.projectKey=BOB-PARTY \
