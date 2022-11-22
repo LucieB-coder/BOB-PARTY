@@ -1,3 +1,4 @@
+import tabSkinApp from "../../constSkin";
 import { Conversation } from "../../core/conversation";
 import { Match } from "../../core/match";
 import { Skin } from "../../core/skin";
@@ -23,21 +24,23 @@ export default class LoaderUserApi implements ILoaderUser{
     private axios = require('axios').default;
 
     async loadAllUser() : Promise<User[]> {
-        let test = new Test(true, 0, "wesh", 0);
+        let us:User[]=[];
+        let test=new Test(false, 1, "a", 1);
         await this.axios({
             method: 'get',
-            url: 'https://jsonplaceholder.typicode.com/todos/1',
+            url: 'https://jsonplaceholder.typicode.com/todos',
             params: {
                 name: "getAllUser",
                 //Les params genre nom de la fonction en php
               }
          })
          .then(function (response: any) {
-            console.log(response.data);
+            if (response.data != null && response.data != undefined){
                 Object.assign(test, response.data);
-                console.log(test.id);
-            });
-    return [];
+                us.push(new User("17", "Fefe63", "jesuishm", "ouioui", "homme", new Date(2022,12,12), 12222, 123324, 12, tabSkinApp[6], tabSkinApp));
+            }
+        });
+    return us;
     }
 
     
@@ -61,7 +64,7 @@ export default class LoaderUserApi implements ILoaderUser{
         }catch (error) {
             console.error(error);
         }
-        return null;
+        return new User("17", "Bite", "jesuishm", "ouioui", "homme", new Date(2022,12,12), 123, 123324, 12, tabSkinApp[6], tabSkinApp);
     }
 
 

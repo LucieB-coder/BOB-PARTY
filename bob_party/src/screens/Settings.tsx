@@ -7,13 +7,13 @@ import { TopBar } from '../components/TopBar';
 import { ButtonGreySmall } from '../components/ButtonGreySmall';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
-import DialogInput from "react-native-dialog-input";
-import { updatePseudo, updatePassword, updateNationality, updateSex } from "../redux/features/currentUserSlice";
 import Dialog from "react-native-dialog"
 import RNPickerSelect from "react-native-picker-select";
 import { PickerGreySmall } from '../components/PickerGreySmall';
 import { MANAGER_USER } from '../../App';
 import { useUserStore } from '../../userContext';
+import DialogInput from 'react-native-dialog/lib/Input';
+
 
 function Settings(props: { navigation: any; }) {
     const { navigation } = props
@@ -82,6 +82,7 @@ function Settings(props: { navigation: any; }) {
         title="Inserer le nouveau pseudo"
         hintInput ="Pseudo"
         submitInput={ (inputText: string) => { changeUsername(inputText); setDialogPseudoVisible(false)} }
+
         closeDialog={ () => {setDialogPseudoVisible(false)}}>
       </DialogInput>
 

@@ -8,8 +8,7 @@ import { BotBar } from '../components/BotBar';
 import { SkinComponent } from '../components/Skin';
 import { ButtonGreySmall } from '../components/ButtonGreySmall';
 import { ScreenIndicator } from '../components/ScreenIndicator';
-import { useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
+
 import { MANAGER_USER } from '../../App';
 
 const coin = require('../../assets/Icons/Coin.png')
@@ -18,6 +17,7 @@ const coin = require('../../assets/Icons/Coin.png')
 
 function Profile(props: { navigation: any; }) {
     const { navigation } = props
+
 
     return (
     <View style={stylesScreen.container}>
@@ -42,6 +42,7 @@ function Profile(props: { navigation: any; }) {
         </View>
         <View style={styles.infoView}>
             <Text style={styles.infoText}>Total de BobCoin gagnés: {MANAGER_USER.getCurrentUser().getTotalCoins()}</Text>
+            <Text style={styles.infoText}>Total de BobCoin gagnés: </Text>
         </View>
       </View>
       <BotBar
