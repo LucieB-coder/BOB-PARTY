@@ -12,7 +12,7 @@ import RNPickerSelect from "react-native-picker-select";
 import { PickerGreySmall } from '../components/PickerGreySmall';
 import { MANAGER_USER } from '../../App';
 import { useUserStore } from '../../userContext';
-import DialogInput from 'react-native-dialog/lib/Input';
+import DialogInput from 'react-native-dialog-input';
 
 
 function Settings(props: { navigation: any; }) {
