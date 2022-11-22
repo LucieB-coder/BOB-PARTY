@@ -57,9 +57,8 @@ steps:
         COMMAND: create
         OVERWRITE: true
 
-
-CODEFIRST_CLIENTDRONE_ENV_SONAR_TOKEN: sqp_8937a8c406e06dbd27c9bf869d444b251f5451a6
-  sonar-scanner \
-  -Dsonar.projectKey=BOB-PARTY \
-  -Dsonar.sources=. \
-  -Dsonar.host.url=https://codefirst.iut.uca.fr/sonar
+  -name: sonar
+    CODEFIRST_CLIENTDRONE_ENV_SONAR_TOKEN: 
+      from_secret: SONAR_TOKEN
+    commands:
+      - sonar-scanner   -Dsonar.projectKey=BOB-PARTY   -Dsonar.sources=.   -Dsonar.host.url=https://codefirst.iut.uca.fr/sonar
