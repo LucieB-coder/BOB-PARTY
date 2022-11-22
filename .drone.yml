@@ -62,7 +62,7 @@ steps:
   - name: sonar-setup
     CODEFIRST_CLIENTDRONE_ENV_SONAR_TOKEN: sqp_8276da170682406ce11243607e0c60bf17391b11
     commands:
-    sonar-scanner \
-    -Dsonar.projectKey=BOB-PARTY \
-    -Dsonar.sources=. \
-    -Dsonar.host.url=https://codefirst.iut.uca.fr/sonar
+    - sonar-scanner \
+      -Dsonar.projectKey=BOB-PARTY \
+      -Dsonar.sources=. \
+      -Dsonar.host.url=https://codefirst.iut.uca.fr/sonar
