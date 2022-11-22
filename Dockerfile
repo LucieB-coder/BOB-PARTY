@@ -9,4 +9,4 @@ RUN npm install --production
 
 COPY . .
 
-CMD [ "node", "bob_party/App.tsx" ]
+CMD [ "npm", "start" ]
