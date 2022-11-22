@@ -12,7 +12,7 @@ steps:
       CONTAINERNAME: mysql
       COMMAND: create
       # OVERWRITE: false
-      PRIVATE: true
+      PRIVATE: false
       CODEFIRST_CLIENTDRONE_ENV_MYSQL_ROOT_PASSWORD:          
         from_secret: MYSQL_ROOT_PASSWORD        
       CODEFIRST_CLIENTDRONE_ENV_MYSQL_DATABASE:          
@@ -30,7 +30,7 @@ steps:
       IMAGENAME: reactnativecommunity/react-native-android:2.1
       CONTAINERNAME: container_react
       COMMAND: create
-      PRIVATE: true
+      PRIVATE: false
       OVERWRITE: true
 
 
