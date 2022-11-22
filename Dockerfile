@@ -2,8 +2,6 @@ FROM node:17-alpine
 
 WORKDIR /app
 
-COPY pakage.json .
-
 RUN npm install
 
 COPY . .
