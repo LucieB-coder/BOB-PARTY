@@ -9,6 +9,7 @@ import { SkinComponent } from '../components/Skin';
 import { ButtonGreySmall } from '../components/ButtonGreySmall';
 import { ScreenIndicator } from '../components/ScreenIndicator';
 import { MANAGER_USER } from '../../App';
+import { useUserStore } from '../../userContext';
 
 const coin = require('../../assets/Icons/Coin.png')
 
@@ -24,22 +25,22 @@ function Profile(props: { navigation: any; }) {
           />
       <View style={stylesScreen.bodyStart}>
         <ScreenIndicator title='Profil'/>
-        <Text style={styles.pseudoText}>{MANAGER_USER.getCurrentUser().getUsername()}</Text>
+        <Text style={styles.pseudoText}>{useUserStore().user?.getUsername()}</Text>
         <View style={styles.coinSkinView}>
             <View style={styles.coinView}>
                 <Image 
                     style={styles.coin}
                     source={coin}
                 />
-                <Text style={styles.coinText}>{MANAGER_USER.getCurrentUser().getCurrentCoins()}</Text>
+                <Text style={styles.coinText}>{useUserStore().user?.getCurrentCoins()}</Text>
             </View>
             <View style={styles.skinView}>
-                <SkinComponent skin={MANAGER_USER.getCurrentUser().getCurrentSkin()} state='profile' />
+                <SkinComponent skin={useUserStore().user?.getCurrentSkin()} state='profile' />
                 <ButtonGreySmall onPress={() => navigation.navigate('SkinList')} title='Changer de skin' state='Profile'/>
             </View>
         </View>
         <View style={styles.infoView}>
-            <Text style={styles.infoText}>Total de BobCoin gagnés: {MANAGER_USER.getCurrentUser().getTotalCoins()}</Text>
+            <Text style={styles.infoText}>Total de BobCoin gagnés: {useUserStore().user?.getTotalCoins()}</Text>
             <Text style={styles.infoText}>Total de BobCoin gagnés: </Text>
         </View>
       </View>

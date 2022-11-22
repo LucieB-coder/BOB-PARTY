@@ -8,6 +8,7 @@ import { FlatList } from 'react-native-gesture-handler';
 import { SkinComponent } from '../components/Skin';
 import { ScreenIndicator } from '../components/ScreenIndicator';
 import { MANAGER_USER } from '../../App';
+import { useUserStore } from '../../userContext';
 
 function Store(props: { navigation: any; }) {
   const { navigation } = props
@@ -21,7 +22,7 @@ function Store(props: { navigation: any; }) {
       <View style={stylesScreen.bodyStart}>
         <ScreenIndicator title='Store'/>
         <FlatList 
-          data={MANAGER_USER.getCurrentUser().getTabSkin()}
+          data={useUserStore().user?.getTabSkin()}
           numColumns={2}
           columnWrapperStyle={{ flex: 1, justifyContent: "space-around"}}
           keyExtractor={item =>item.getSkinName()}
