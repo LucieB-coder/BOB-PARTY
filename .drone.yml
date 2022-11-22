@@ -35,7 +35,7 @@ steps:
 
 
 
-# docker image build
+# docker image build (at least I'm trying)
   - name: docker-build-and-push
     image: plugins/docker
     settings:
