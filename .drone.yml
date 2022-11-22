@@ -49,10 +49,10 @@ steps:
          from_secret: SECRET_REGISTRY_PASSWORD
 
 # container deployment
-- name: deploy-bob_party-container
-  image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
-  environment:
-      IMAGENAME: hub.codefirst.iut.uca.fr/lilian.breton/bobparty:latest
-      CONTAINERNAME: bob_party_container
-      COMMAND: create
-      OVERWRITE: true
+  - name: deploy-bob_party-container
+    image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
+    environment:
+        IMAGENAME: hub.codefirst.iut.uca.fr/lilian.breton/bobparty:latest
+        CONTAINERNAME: bob_party_container
+        COMMAND: create
+        OVERWRITE: true
