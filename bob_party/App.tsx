@@ -6,7 +6,6 @@ import ManagerUser from './src/services/userServices/ManagerUser'
 import FakeSaverUser from './src/services/userServices/fakeSaverUser'
 import React, { useCallback } from 'react';
 import { useUserStore } from './userContext';
-import MainTabNavigator from './src/navigation/AppNavigator';
 
 
 
@@ -47,7 +46,9 @@ export const MANAGER_USER = new ManagerUser(new LoaderUserApi, new FakeSaverUser
     }, []);
 
     return (
-      <MainTabNavigator/>
+      <Provider store={store}>
+        <MainTabNavigator/>
+      </Provider>
     );
   }
   

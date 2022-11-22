@@ -12,6 +12,7 @@ import RNPickerSelect from "react-native-picker-select";
 import { PickerGreySmall } from '../components/PickerGreySmall';
 import { MANAGER_USER } from '../../App';
 import { useUserStore } from '../../userContext';
+import DialogInput from 'react-native-dialog-input';
 
 function Settings(props: { navigation: any; }) {
     const { navigation } = props
@@ -55,7 +56,8 @@ function Settings(props: { navigation: any; }) {
             <View>
               <View>
                 <Text style={styles.text}>Pseudo: {MANAGER_USER.getCurrentUser().getUsername()}</Text>
-                <ButtonGreySmall onPress={() => setDialogPseudoVisible(true)} title='Changer le pseudo'/>
+                <ButtonGreySmall onPress={() => {console.log(dialogPseudoVisible);
+                ;setDialogPseudoVisible(true)}} title='Changer le pseudo'/>
               </View>
               <View>
                 <Text style={styles.text}>Mot de passe: {MANAGER_USER.getCurrentUser().getPassword()}</Text>
@@ -92,31 +94,6 @@ function Settings(props: { navigation: any; }) {
           
       </DialogInput>
 
-      <Dialog.Container visible={dialogNationalityVisible}>
-        <Dialog.Title>Changer de nationalité</Dialog.Title>
-        <View style={styles.RNPView}>
-          <RNPickerSelect
-            placeholder={{label:"Cliquez pour changer", value: null}}
-            onValueChange={(value:string) => setSelectedNationality(value)}
-            items={tabNat}
-          />
-        </View>  
-        <Dialog.Button label="Cancel" onPress={() => setDialogNationalityVisible(false)} />
-        <Dialog.Button label="Valider" onPress={() => { setDialogNationalityVisible(false)}} />
-      </Dialog.Container>
-
-      <Dialog.Container visible={dialogSexVisible}>
-        <Dialog.Title>Changer de sexe</Dialog.Title>
-        <View style={styles.RNPView}>
-          <RNPickerSelect
-            placeholder={{label:"Cliquez pour changer", value: null}}
-            onValueChange={(value:string) => setSelectedSex(value)}
-            items={tabSex}
-          />
-        </View>  
-        <Dialog.Button label="Cancel" onPress={() => setDialogSexVisible(false)} />
-        <Dialog.Button label="Valider" onPress={() => { setDialogSexVisible(false)}} />
-      </Dialog.Container>
 
     </View>
   );
