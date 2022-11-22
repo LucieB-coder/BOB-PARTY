@@ -8,15 +8,12 @@ import { FlatList } from 'react-native-gesture-handler';
 import { SkinComponent } from '../components/Skin';
 import tabSkinApp from '../constSkin';
 import { ScreenIndicator } from '../components/ScreenIndicator';
-import { useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
 
 
 
 function SkinList(props: { navigation: any; }) {
     const { navigation } = props
 
-    const currentUser = useSelector((state: RootState) => state.currentUser.value[0]);
 
     return (
     <View style={stylesScreen.container}>
