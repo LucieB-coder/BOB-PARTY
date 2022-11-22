@@ -7,8 +7,9 @@ import { Skin } from "../core/skin"
     Importing the correct stylesheet
 */
 import styles from "./style/Skin.style"
-import { useDispatch } from "react-redux"
-import { updateSkin } from "../redux/features/currentUserSlice"
+import { useDispatch, useSelector } from "react-redux"
+import { loginUser } from "../redux/features/currentUserSlice"
+import { RootState } from "../redux/store"
 
 export const SkinComponent :
 /* Parameters : 
@@ -19,6 +20,8 @@ FC<{skin: Skin, state: String}> =
 ({skin, state}) => 
 {
     const dispatch=useDispatch();
+    
+    const currentUser = useSelector((state: RootState) => state.currentUserManager.currentUser);
 
     /* The display of this component depends of the screen from where it has been called:
         * From the TopBar (icon) : Small image in a circle
@@ -46,7 +49,7 @@ FC<{skin: Skin, state: String}> =
             )
         case 'liste':
             return(
-                <Pressable onPress={() => dispatch(updateSkin(skin))} style={styles.imageWrapper}>
+                <Pressable onPress={() => {currentUser.setCurrentSkin(skin); dispatch(loginUser(currentUser))}} style={styles.imageWrapper}>
                     <Text style={styles.nomSkin}>{skin.getSkinName()}</Text>
                     <Image
                         style={styles.imageSkin}

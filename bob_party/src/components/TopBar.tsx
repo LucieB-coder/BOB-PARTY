@@ -30,7 +30,7 @@ FC<{nav: any, state?: string}> =
 ({nav, state}) => 
 {
 
-    const currentUser = useSelector((state: RootState) => state.currentUser.value)[0];
+    const currentUser = useSelector((state: RootState) => state.currentUserManager.currentUser);
 
     /* The display of this component depends of the screen from where it has been called:
         * From the Settings (icon) : Name of the page + cross button

@@ -18,8 +18,7 @@ const coin = require('../../assets/Icons/Coin.png')
 function Profile(props: { navigation: any; }) {
     const { navigation } = props
 
-    const currentUser = useSelector((state: RootState) => state.currentUser.value)[0];
-
+    const currentUser = useSelector((state: RootState) => state.currentUserManager.currentUser);
     return (
     <View style={stylesScreen.container}>
         <TopBar

@@ -16,8 +16,6 @@ import { RootState } from '../redux/store';
 function SkinList(props: { navigation: any; }) {
     const { navigation } = props
 
-    const currentUser = useSelector((state: RootState) => state.currentUser.value[0]);
-
     return (
     <View style={stylesScreen.container}>
         <TopBar

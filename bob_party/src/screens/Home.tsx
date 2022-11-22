@@ -17,8 +17,6 @@ let tabConv:Conversation[]=[];
 function Home(props: { navigation: any; }) {
     const { navigation } = props
 
-    const currentUser = useSelector((state: RootState) => state.currentUser.value[0]);
-    
     return ( 
       <View style={stylesScreen.container}>
         <TopBar
