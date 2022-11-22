@@ -30,7 +30,7 @@ export class User{
                     this.currentCoins=currentCoins;
                     this.totalCoins=totalCoins;
                     this.currentSkin=currentSkin;
-                    this.tabSkin=tabSkin.copyWithin(tabSkin.length, 0);
+                    this.tabSkin=[];
                 }
 
 

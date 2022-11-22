@@ -11,20 +11,29 @@ import DialogInput from "react-native-dialog-input";
 import { updatePseudo, updatePassword, updateNationality, updateSex } from "../redux/features/currentUserSlice";
 import Dialog from "react-native-dialog"
 import RNPickerSelect from "react-native-picker-select";
-import tabNat from '../constNat';
-import tabSex from '../constSex';
 import { PickerGreySmall } from '../components/PickerGreySmall';
+import { MANAGER_USER } from '../../App';
+import { useUserStore } from '../../userContext';
 
 function Settings(props: { navigation: any; }) {
     const { navigation } = props
+    const setUser = useUserStore((state) => state.setUser);
 
-    const currentUser = useSelector((state: RootState) => state.currentUserManager.currentUser);
+
 
     const [dialogPseudoVisible, setDialogPseudoVisible] = useState(false);
     const [dialogPasswordVisible, setDialogPasswordVisible] = useState(false);
 
     const [selectedSex, setSelectedSex] = useState("");
     const [selectedNationality, setSelectedNationality] = useState("");
+
+
+    function changeUsername(username:string){
+      MANAGER_USER.getCurrentUser()?.setUsername(username);
+      console.log(MANAGER_USER.getCurrentUser()?.getUsername());
+      setUser(MANAGER_USER.getCurrentUser());
+      MANAGER_USER.getsaverUser().updateUser(MANAGER_USER.getCurrentUser());
+    }
 
     const dispatch=useDispatch();
 
@@ -40,23 +49,23 @@ function Settings(props: { navigation: any; }) {
           <View style={{flexDirection: 'row', justifyContent: 'space-between',}}>
             <View>
               <View>
-                <Text style={styles.text}>Pseudo: {currentUser.getUsername()}</Text>
+                <Text style={styles.text}>Pseudo: {MANAGER_USER.getCurrentUser().getUsername()}</Text>
                 <ButtonGreySmall onPress={() => setDialogPseudoVisible(true)} title='Changer le pseudo'/>
               </View>
               <View>
-                <Text style={styles.text}>Mot de passe: {currentUser.getPassword()}</Text>
-                <ButtonGreySmall onPress={() => setDialogPasswordVisible(true)} title='Changer le mot de passe'/>
+                <Text style={styles.text}>Mot de passe: {MANAGER_USER.getCurrentUser().getPassword()}</Text>
+                <ButtonGreySmall onPress={() => setDialogPasswordVisible(true) } title='Changer le mot de passe'/>
               </View>
               <View>
-                <Text style={styles.text}>Nationalité: {currentUser.getNationality()}</Text>
-                <PickerGreySmall title='Changer la nationalité' valueChange={(value:string) => setSelectedNationality(value)} donePress={() => dispatch(updateNationality(selectedNationality))} values={tabNat} />
+                <Text style={styles.text}>Nationalité: {MANAGER_USER.getCurrentUser().getNationality()}</Text>
+                <PickerGreySmall title='Changer la nationalité' valueChange={(value:string) => setSelectedNationality(value)} donePress={() => dispatch(updateNationality(selectedNationality))} values={["Francais", "Anglais"]} />
               </View>
               <View>
-                <Text style={styles.text}>Sexe: {currentUser.getSexe()}</Text>
-                <PickerGreySmall title='Changer le sexe' valueChange={(value:string) => setSelectedSex(value)} donePress={() => dispatch(updateSex(selectedSex))} values={tabSex} />
+                <Text style={styles.text}>Sexe: {MANAGER_USER.getCurrentUser().getSexe()}</Text>
+                <PickerGreySmall title='Changer le sexe' valueChange={(value:string) => setSelectedSex(value)} donePress={() => dispatch(updateSex(selectedSex))} values={["Homme", "Femme", "Autre"]} />
               </View>
             </View>
-            <Text style={styles.textID}>ID: {currentUser.getId()}</Text>
+            <Text style={styles.textID}>ID: {MANAGER_USER.getCurrentUser().getId()}</Text>
           </View>
         </View>
       </View>
@@ -65,7 +74,7 @@ function Settings(props: { navigation: any; }) {
         isDialogVisible={dialogPseudoVisible}
         title="Inserer le nouveau pseudo"
         hintInput ="Pseudo"
-        submitInput={ (inputText: string) => {dispatch(updatePseudo(inputText)); setDialogPseudoVisible(false)} }
+        submitInput={ (inputText: string) => { changeUsername(inputText); setDialogPseudoVisible(false)} }
         closeDialog={ () => {setDialogPseudoVisible(false)}}>
       </DialogInput>
 
@@ -73,8 +82,9 @@ function Settings(props: { navigation: any; }) {
         isDialogVisible={dialogPasswordVisible}
         title="Inserer le nouveau mot de passe"
         hintInput ="Mot de passe"
-        submitInput={ (inputText: string) => {dispatch(updatePassword(inputText)); setDialogPasswordVisible(false)} }
+        submitInput={ (inputText: string) => { setDialogPasswordVisible(false)} }
         closeDialog={ () => {setDialogPasswordVisible(false)}}>
+          
       </DialogInput>
 
     </View>

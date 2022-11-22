@@ -8,11 +8,11 @@ import { FlatList } from 'react-native-gesture-handler';
 import { ConversationComponent } from '../components/ConversationComponent';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
+import { MANAGER_USER } from '../../App';
 
 function Chat(props: { navigation: any; }) {
     const { navigation } = props
 
-    const currentUser = useSelector((state: RootState) => state.currentUserManager.currentUser);
     
     return (  
     <View style={stylesScreen.container}>
@@ -20,10 +20,12 @@ function Chat(props: { navigation: any; }) {
           nav={navigation}
           />
       <View style={stylesScreen.bodyStart}>
+        {/*
         <FlatList 
-          data={currentUser.getTabConv()}
+          data={MANAGER_USER.getCurrentUser().getTabConv()}
           renderItem={({item}) => <ConversationComponent conv={item} state='Preview'/>} 
         />
+    */}
       </View>
       <BotBar 
           nav={navigation}

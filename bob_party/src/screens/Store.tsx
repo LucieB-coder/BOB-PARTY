@@ -9,11 +9,11 @@ import { SkinComponent } from '../components/Skin';
 import { ScreenIndicator } from '../components/ScreenIndicator';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
+import { MANAGER_USER } from '../../App';
 
 function Store(props: { navigation: any; }) {
   const { navigation } = props
 
-  const currentUser = useSelector((state: RootState) => state.currentUserManager.currentUser);
 
   return (
     <View style={stylesScreen.container}>
@@ -23,7 +23,7 @@ function Store(props: { navigation: any; }) {
       <View style={stylesScreen.bodyStart}>
         <ScreenIndicator title='Store'/>
         <FlatList 
-          data={currentUser.getTabSkin()}
+          data={MANAGER_USER.getCurrentUser().getTabSkin()}
           numColumns={2}
           columnWrapperStyle={{ flex: 1, justifyContent: "space-around"}}
           keyExtractor={item =>item.getSkinName()}
