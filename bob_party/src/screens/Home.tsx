@@ -10,11 +10,13 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 
 
+
 //const test= new GameSolo("test", require('bob_party/assets/ImagesJeux/BatailleNavale.jpeg'), "test", );
 let tabConv:Conversation[]=[];
 
-
 function Home(props: { navigation: any; }) {
+
+
     const { navigation } = props
 
     return ( 

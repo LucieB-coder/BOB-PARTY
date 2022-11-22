@@ -1,18 +1,24 @@
-import { GameMulti } from '../gameMulti';
+import { Game } from '../game';
+import { GameSolo } from '../GameSolo';
+import { GameMulti } from '../GameMulti';
+import { GameCasino } from '../GameCasino';
 
 
 // Instances
 let myMap = new Map<number, number>([
-    [50, 3],
-    [75, 4],
-    [100, 5],
-    [150, 6]
+    [4, 1],
+    [3, 3],
+    [2, 5],
+    [1, 10]
 ]);
-let game = new GameMulti("bo jeu", require('bob_party/assets/ImagesJeux/blackjack.jpg'), "super jeu", 1, 5, myMap);
+let game = new GameMulti("GM001", "bo jeu", require('bob_party/assets/ImagesJeux/blackjack.jpg'), "super jeu", 1, 5, myMap);
 
 
 // Get tests
 describe('GameMuti get tests', () => {
+    it('should return GM001', () => {
+        expect(game.getId()).toBe('GM001');
+    })
     it('should return bo jeu', () => {
         expect(game.getName()).toBe('bo jeu');
     })
@@ -58,5 +64,22 @@ describe('GameMulti set tests', () => {
     })
     it('should return 4', () => {
         expect(game.getNbPlayerMin()).toBe(4);
+    })
+})
+
+
+// Coins Calculator tests
+describe('Coins calculator tests', () => {
+    it('should return 1', () => {
+        expect(game.coinsCalculator(4)).toBe(1);
+    })
+    it('should return 3', () => {
+        expect(game.coinsCalculator(3)).toBe(3);
+    })
+    it('should return 5', () => {
+        expect(game.coinsCalculator(2)).toBe(5);
+    })
+    it('should return 10', () => {
+        expect(game.coinsCalculator(1)).toBe(10);
     })
 })

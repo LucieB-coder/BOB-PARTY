@@ -1,5 +1,5 @@
+import exp from 'constants';
 import { GameSolo } from '../GameSolo';
-
 
 // Instances
 let myMap = new Map<number, number>([
@@ -8,11 +8,14 @@ let myMap = new Map<number, number>([
     [100, 5],
     [150, 6]
 ]);
-let game=new GameSolo("bo jeu", require('bob_party/assets/ImagesJeux/blackjack.jpg'), "super jeu", 1, 1, myMap);
+let game=new GameSolo("G0001", "bo jeu", require('bob_party/assets/ImagesJeux/blackjack.jpg'), "super jeu", 1, 1, myMap);
 
 
 // Get tests
 describe('GameSolo get tests', () => {
+    it('should return G0001', () => {
+        expect(game.getId()).toBe('G0001');
+    })
     it('should return bo jeu', () => {
         expect(game.getName()).toBe('bo jeu');
     })
@@ -58,5 +61,22 @@ describe('GameSolo set tests', () => {
     })
     it('should return 3', () => {
         expect(game.getNbPlayerMax()).toBe(3);
+    })
+})
+
+
+// Coins Calculator tests
+describe('Coins calculator tests', () => {
+    it('should return 3', () => {
+        expect(game.coinsCalculator(50)).toBe(3);
+    })
+    it('should return 4', () => {
+        expect(game.coinsCalculator(75)).toBe(4);
+    })
+    it('should return 5', () => {
+        expect(game.coinsCalculator(100)).toBe(5);
+    })
+    it('should return 6', () => {
+        expect(game.coinsCalculator(150)).toBe(6);
     })
 })

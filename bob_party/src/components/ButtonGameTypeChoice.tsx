@@ -1,4 +1,4 @@
-import { FC} from "react"
+import { FC } from "react"
 import { Pressable, Text} from "react-native"
 import React from "react"
 /*

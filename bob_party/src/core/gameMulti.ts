@@ -4,8 +4,8 @@ import { Game } from './game'
 export class GameMulti extends Game{
     readonly rankToCoins:Map<number,number>
 
-    constructor(name:string, imageSource:ImageSourcePropType, gameSource:string, nbPlayerMin:number, nbPlayerMax:number, rankToCoins:Map<number,number>){
-        super(name, imageSource, gameSource, nbPlayerMin, nbPlayerMax);
+    constructor(id:string, name:string, imageSource:ImageSourcePropType, gameSource:string, nbPlayerMin:number, nbPlayerMax:number, rankToCoins:Map<number,number>){
+        super(id, name, imageSource, gameSource, nbPlayerMin, nbPlayerMax);
         this.rankToCoins=rankToCoins;
     }
 
@@ -15,11 +15,15 @@ export class GameMulti extends Game{
     }
 
     //Returns the coins gained depending on the rank
-    CoinsWithRank(rank:number){
-        let coins;
+    coinsCalculator(points:number): number{
+        let coins=0;
+        let test;
         for (let key of this.rankToCoins.keys()){
-            coins = this.rankToCoins.get(key);
-            if (rank==key ){
+            test = this.rankToCoins.get(key);
+            if (test != undefined){
+                coins=test;
+            }
+            if (points==key ){
                 return coins;
             }
         }
