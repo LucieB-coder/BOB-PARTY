@@ -35,6 +35,13 @@ function Settings(props: { navigation: any; }) {
       MANAGER_USER.getsaverUser().updateUser(MANAGER_USER.getCurrentUser());
     }
 
+    function changePassword(password:string){
+      MANAGER_USER.getCurrentUser()?.setPassword(password);
+      console.log(MANAGER_USER.getCurrentUser()?.getPassword());
+      setUser(MANAGER_USER.getCurrentUser());
+      MANAGER_USER.getsaverUser().updateUser(MANAGER_USER.getCurrentUser());
+    }
+
     const dispatch=useDispatch();
 
     return (
@@ -82,7 +89,7 @@ function Settings(props: { navigation: any; }) {
         isDialogVisible={dialogPasswordVisible}
         title="Inserer le nouveau mot de passe"
         hintInput ="Mot de passe"
-        submitInput={ (inputText: string) => { setDialogPasswordVisible(false)} }
+        submitInput={ (inputText: string) => { changePassword(inputText); setDialogPasswordVisible(false)} }
         closeDialog={ () => {setDialogPasswordVisible(false)}}>
           
       </DialogInput>
