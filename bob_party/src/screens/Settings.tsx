@@ -94,7 +94,6 @@ function Settings(props: { navigation: any; }) {
           
       </DialogInput>
 
-
     </View>
   );
 }
