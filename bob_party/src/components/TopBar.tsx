@@ -12,7 +12,7 @@ import styles from './style/TopBar.style';
 import { useSelector } from "react-redux"
 import { RootState } from "../redux/store"
 import { MANAGER_USER } from "../../App"
-import { useUserStore } from "../../userContext"
+import { useUserStore } from "../context/userContext"
 
 /* 
     Images required
@@ -31,7 +31,6 @@ export const TopBar :
 FC<{nav: any, state?: string}> = 
 ({nav, state}) => 
 {
-
     
     /* The display of this component depends of the screen from where it has been called:
         * From the Settings (icon) : Name of the page + cross button

@@ -11,8 +11,9 @@ import Dialog from "react-native-dialog"
 import RNPickerSelect from "react-native-picker-select";
 import { PickerGreySmall } from '../components/PickerGreySmall';
 import { MANAGER_USER } from '../../App';
-import { useUserStore } from '../../userContext';
+import { useUserStore } from '../context/userContext';
 import DialogInput from 'react-native-dialog-input';
+import UserModificationManager from '../core/User/userModificationManager';
 
 function Settings(props: { navigation: any; }) {
     const { navigation } = props
@@ -27,16 +28,24 @@ function Settings(props: { navigation: any; }) {
     const [selectedNationality, setSelectedNationality] = useState("");
 
 
-    function changeUsername(username:string){
-      MANAGER_USER.getCurrentUser()?.setUsername(username);
-      setUser(MANAGER_USER.getCurrentUser());
-      MANAGER_USER.getsaverUser().updateUser(MANAGER_USER.getCurrentUser());
+    async function changeUsername(username:string){
+      const m = new UserModificationManager();
+      let tmp=MANAGER_USER.getCurrentUser();
+      if (tmp!=null){
+        await m.changeUsername(tmp, username);
+        setUser(tmp);
+        MANAGER_USER.setCurrentUser(tmp);
+      }
     }
 
-    function changePassword(password:string){
-      MANAGER_USER.getCurrentUser()?.setPassword(password);
-      setUser(MANAGER_USER.getCurrentUser());
-      MANAGER_USER.getsaverUser().updateUser(MANAGER_USER.getCurrentUser());
+    async function changePassword(password:string){
+      const m = new UserModificationManager();
+      let tmp=MANAGER_USER.getCurrentUser();
+      if (tmp!=null){
+        await m.changePassword(tmp, password);
+        setUser(tmp);
+        MANAGER_USER.setCurrentUser(tmp);
+      }
     }
 
     const dispatch=useDispatch();

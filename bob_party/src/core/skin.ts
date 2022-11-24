@@ -48,4 +48,8 @@ export class Skin{
     setSkinCost(cost:number){
         this.cost=cost;
     }
+
+    isEqual(s:Skin){
+        return this.id==s.id;
+    }
 }

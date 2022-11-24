@@ -5,7 +5,7 @@ import LoaderUserApi from './src/services/userServices/loaderUserApi'
 import ManagerUser from './src/services/userServices/ManagerUser'
 import FakeSaverUser from './src/services/userServices/fakeSaverUser'
 import React, { useCallback } from 'react';
-import { useUserStore } from './userContext';
+import { useUserStore } from './src/context/userContext';
 
 
 export const MANAGER_USER = new ManagerUser(new LoaderUserApi, new FakeSaverUser);  
@@ -32,10 +32,6 @@ export const MANAGER_USER = new ManagerUser(new LoaderUserApi, new FakeSaverUser
       resetUser();
     }, []);
 
-    const handleUserChange = useCallback(async () => {
-      MANAGER_USER.getCurrentUser()?.setCurrentCoins(MANAGER_USER.getCurrentUser()?.getCurrentCoins()+100);
-      setUser(MANAGER_USER.getCurrentUser());
-    }, []);
     
 
     const test = useCallback(async () => {

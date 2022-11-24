@@ -9,7 +9,7 @@ import { SkinComponent } from '../components/Skin';
 import { ButtonGreySmall } from '../components/ButtonGreySmall';
 import { ScreenIndicator } from '../components/ScreenIndicator';
 import { MANAGER_USER } from '../../App';
-import { useUserStore } from '../../userContext';
+import { useUserStore } from '../context/userContext';
 
 const coin = require('../../assets/Icons/Coin.png')
 
@@ -35,8 +35,8 @@ function Profile(props: { navigation: any; }) {
                 <Text style={styles.coinText}>{useUserStore().user?.getCurrentCoins()}</Text>
             </View>
             <View style={styles.skinView}>
-                <SkinComponent skin={useUserStore().user?.getCurrentSkin()} state='profile' />
-                <ButtonGreySmall onPress={() => navigation.navigate('SkinList')} title='Changer de skin' state='Profile'/>
+                <SkinComponent skin={useUserStore().user?.getCurrentSkin()} state='profile' nav={navigation}/>
+                <ButtonGreySmall onPress={() => {navigation.navigate('SkinList');}} title='Changer de skin' state='Profile'/>
             </View>
         </View>
         <View style={styles.infoView}>

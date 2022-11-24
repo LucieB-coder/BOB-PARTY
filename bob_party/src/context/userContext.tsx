@@ -1,6 +1,6 @@
 import React from "react";
 import create from "zustand";
-import { User } from "./src/core/User/user";
+import { User } from "../core/User/user";
 
 
 // Define store types

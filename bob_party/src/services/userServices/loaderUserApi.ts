@@ -102,7 +102,8 @@ export default class LoaderUserApi implements ILoaderUser{
               }
          })
          .then(function (response: any) {
-            user=new User("U0001", username, password, "ouioui", "homme", new Date(2022,12,12), 12222, 123324, 12, new Skin("S0001", "Bob",require('bob_party/assets/BobsSkins/BobClassic.png'), 0), [new Skin("S0001", "Bob",require('bob_party/assets/BobsSkins/BobClassic.png'), 0)]);
+            const tabTest=[new Skin("S0001", "Bob",require('bob_party/assets/BobsSkins/BobClassic.png'), 0),     new Skin("S0002", "Bob Blue",require('bob_party/assets/BobsSkins/BobBlue.png'), 100)];
+            user=new User("U0001", username, password, "ouioui", "homme", new Date(2022,12,12), 200, 123324, 12, new Skin("S0001", "Bob",require('bob_party/assets/BobsSkins/BobClassic.png'), 0), tabTest);
         });
         return user;
     }

@@ -10,7 +10,7 @@ import { RootState } from '../redux/store';
 import { updateIncorrectCredentials } from '../redux/features/credentialErrorsSlice';
 import Dialog from "react-native-dialog";
 import { MANAGER_USER } from '../../App';
-import { useUserStore } from '../../userContext';
+import { useUserStore } from '../context/userContext';
 
 
 
@@ -35,8 +35,8 @@ function SignIn(props: { navigation: any; }) {
         const us =await MANAGER_USER.getLoaderUser().loadByUsernamePassword(pseudo, password).then((res) => {      
             if (res!=null){
                 MANAGER_USER.setCurrentUser(res);
-                navigation.navigate('HomeTab');
                 setUser(MANAGER_USER.getCurrentUser());
+                navigation.navigate('HomeTab');
             }
             else{
                 console.log("wesh c'est null");
