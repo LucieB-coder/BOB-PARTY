@@ -1,5 +1,5 @@
 import { MANAGER_USER } from "../../../App";
-import ManagerUser from "../../services/userServices/ManagerUser";
+import ManagerUser from "../../services/userServices/managerUser";
 import { User } from "./user";
 
 export class ManagerCoinsUser{

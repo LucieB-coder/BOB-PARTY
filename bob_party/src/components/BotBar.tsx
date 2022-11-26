@@ -7,8 +7,9 @@ import React from "react"
 */
 import styles from './style/BotBar.style';
 import { useStoreStore } from "../context/storeContext";
-import { MANAGER_USER } from "../../App";
+import { MANAGER_CONVERSATION, MANAGER_USER } from "../../App";
 import tabSkinApp from "../constSkin";
+import { useConversationStore } from "../context/conversationContext";
 
 /* 
     Images that are required to create a bottom bar
@@ -40,7 +41,7 @@ FC<{nav: any, state?: String}> =
 {
 
     const setTabSkin = useStoreStore((state) => state.setTabSkin);
-        
+    const setTabConv = useConversationStore((state) => state.setTabConv);
 
     const handleStoreChange = useCallback(async () => {
   
@@ -57,6 +58,17 @@ FC<{nav: any, state?: String}> =
           setTabSkin(tabSkinStore);
       }
       }, []);
+
+      const handleConversationChange = useCallback(async () => {
+        let tmp=MANAGER_USER.getCurrentUser();
+        if (tmp!=undefined){
+          await MANAGER_CONVERSATION.getLoaderConversation().loadByUser(tmp).then((res) => {      
+            MANAGER_CONVERSATION.setCurrentTabConv(res);
+            setTabConv(res);
+        });
+      }
+  
+    }, []);
   
     /* 
         By default, all the images are the white ones
@@ -89,7 +101,7 @@ FC<{nav: any, state?: String}> =
         */
     return (
     <View style={styles.footer}>
-            <Pressable onPress={() => nav.navigate('ChatTab')}>
+            <Pressable onPress={() => {handleConversationChange() ;nav.navigate('ChatTab')}}>
                 <Image
                     style={styles.icon}
                     source={imgLeft}

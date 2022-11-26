@@ -32,7 +32,7 @@ function SignIn(props: { navigation: any; }) {
 
     const handleUserConnect = useCallback(async (pseudo: string, password: string) => {
         
-        const us =await MANAGER_USER.getLoaderUser().loadByUsernamePassword(pseudo, password).then((res) => {      
+        await MANAGER_USER.getLoaderUser().loadByUsernamePassword(pseudo, password).then((res) => {      
             if (res!=null){
                 MANAGER_USER.setCurrentUser(res);
                 setUser(MANAGER_USER.getCurrentUser());
@@ -41,9 +41,9 @@ function SignIn(props: { navigation: any; }) {
             else{
                 console.log("wesh c'est null");
             }
-          });
+        });
 
-      }, []);
+    }, []);
     
 
     return (

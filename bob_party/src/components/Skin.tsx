@@ -13,7 +13,7 @@ import { RootState } from "../redux/store"
 import { MANAGER_USER } from "../../App"
 import { useUserStore } from "../context/userContext"
 import { ManagerCoinsUser } from "../core/User/userCoinsModifier"
-import ManagerUser from "../services/userServices/ManagerUser"
+import ManagerUser from "../services/userServices/managerUser"
 import UserSkinModifier from "../core/User/userSkinModifier"
 import { useStoreStore } from "../context/storeContext"
 import tabSkinApp from "../constSkin"
@@ -68,7 +68,7 @@ FC<{nav : any, skin: Skin, state: String}> =
         }
            
     
-        }, []);
+    }, []);
 
     async function buySkin(skin:Skin) {
         const mSkin=new UserSkinModifier();

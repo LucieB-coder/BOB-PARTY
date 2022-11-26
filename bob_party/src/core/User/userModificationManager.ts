@@ -9,7 +9,7 @@ export default class UserModificationManager{
     }
 
     async changeUsername(user:User, username:string){
-        user.setPassword(username);
+        user.setUsername(username);
         await MANAGER_USER.getsaverUser().updateUser(user);
     }
 

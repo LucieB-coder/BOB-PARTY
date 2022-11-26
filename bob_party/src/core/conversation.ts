@@ -56,7 +56,7 @@ export class Conversation{
     /* Brief : function returning the last message of a conversation */
     getLastMessage(){
         this.sortMessageDesc();
-        return this.tabMessage[0].getMessageContent();
+        return this.tabMessage[0];
     }
 
     /* Brief : function sorting the messages of a conversation to be in the discussion order */
