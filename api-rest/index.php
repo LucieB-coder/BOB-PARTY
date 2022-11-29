@@ -13,14 +13,24 @@
 
     // Connection to database
     // A changer quand la base de données sera hébergée, comment masquer les var?
-    $dsn ="mysql:dbname=bobParty;host=127.0.0.1;port=8889";
-    $username="root";
-    $password="root";   
+    // ------
+    // A mettre dans un fichier et .htaccess
+    // ------
+    require('config.php');  
 
     // Initializing Database
-    $database = new DatabaseConnection($dsn,$username,$password);
+    try{
+        $database = new DatabaseConnection($dsn,$username,$password);
+    } catch (PDOException $e) {
+        header("HTTP/1.0 ".$e->getMessage());
+        http_response_code(600); // Quel code pour les erreurs PDO?
+    }
+    
     
     // Initializing Gateways
+    // ------
+    // Passer en mode objet ou rester en mode comportemental mais assumé ???
+    // ------
     $usergw = new UserGateway($database);
     $matchgw = new MatchGateway($database);
     $conversationgw = new ConversationGateway($database); 
@@ -33,7 +43,7 @@
     // ------
     
     $requestMethod = $_SERVER['REQUEST_METHOD'];
-    $requestName = $_REQUEST['fname'];
+    $requestName = $_REQUEST['fname']; 
 
     if(empty($requestName)){
         header("HTTP/1.0 400 Request Name Empty");
@@ -142,8 +152,22 @@
                                 http_response_code(600); // Quel code pour les erreurs PDO?
                             }
                         }
+                        else{
+                            header("HTTP/1.0 405 Missing user to create");
+                            http_response_code(405);
+                        }
                         break;
                     case 'postMatch':
+                        if(!empty($_POST["id"])){
+                            $match = new Match($_POST["id"],false,$_POST["idGame"],$_POST["idUsr"]);
+                            try{
+                                $matchgw->postMatch($match);
+                                http_response_code(200);
+                            } catch (PDOException $e) {
+                                header("HTTP/1.0 ".$e->getMessage());
+                                http_response_code(600); // Quel code pour les erreurs PDO?
+                            }
+                        }
 
                         break;
                     case 'postMessage':
