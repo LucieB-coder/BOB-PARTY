@@ -27,19 +27,11 @@
     $gamegw = new GameGateway($database);
     $skingw = new SkinGateway($database);
 
-    // Testing 
-    $res=$gamegw->getGames();
-    echo json_encode($res);
-    $res=$gamegw->getGameById("G0002");
-    echo json_encode($res);
-
-    $res=$skingw->getSkins();
-    echo json_encode($res);
-    $res=$skingw->getSkinById("S0001");
-    echo json_encode($res);
-
-    // Managing request, routing and sending responses
-    /*
+    // Managing request, routing and sending 
+    // ------
+    // RAPPEL POUR MOI MÊME : NE PAS OUBLIER DE FAIRE DES TRY CATCH !!!!!!!
+    // ------
+    
     $requestMethod = $_SERVER['REQUEST_METHOD'];
     $requestName = $_REQUEST['fname'];
 
@@ -53,27 +45,86 @@
                 switch ($requestName){
                     case 'getUser':
                         if (!empty($_GET["id"])){
-                            //read an user by his id
+                            //read an user by its id
                             $id = intval($_GET["id"]);
-                            $res=$usergw->getUserById($id);
+                            try{
+                                $res=$usergw->getUserById($id);
+                                //retourner le résultat
+                            } catch (PDOException $e){
+                                header("HTTP/1.0 ".$e->getMessage());
+                                http_response_code(600); // Quel code pour les erreurs PDO?
+                            }
                         }
                         elseif (!empty($_GET["username"])){
                             // read an user by his username
                             $username = intval($_GET["username"]);
-                            $res=$usergw->getUserByUsername($username);
+                            try{
+                                $res=$usergw->getUserByUsername($username);
+                                //retourner le résultat
+                            } catch (PDOException $e){
+                                header("HTTP/1.0 ".$e->getMessage());
+                                http_response_code(600); // Quel code pour les erreurs PDO?
+                            }
                         }
                         else{
-                            
+                            header("HTTP/1.0 405 Missing argument id or username");
+                            http_response_code(405);
+                        }
+                    case 'getMatch':
+                        if(!empty($_GET["id"])){
+                            //read a match by its id
+                            $id = intval($_GET["id"]);
+                            try{
+                                $res=$matchgw->getMatchById($id);
+                                //retourner le résultat
+                            } catch (PDOException $e) {
+                                header("HTTP/1.0 ".$e->getMessage());
+                                http_response_code(600); // Quel code pour les erreurs PDO?
+                            }
+                        }
+                        else{
+                            header("HTTP/1.0 405 Missing argument id");
+                            http_response_code(405);
                         }
                         break;
-                    case 'getMatch':
-
+                    case 'getConversation':
+                        if(!emptyempty($_GET["id"])){
+                            // read conversations by the id of a user
+                            $idUsr = intval($_GET["id"]);
+                            try{
+                                $res=$conversationgw->getConversations($idUsr);
+                                // retourner le résultat
+                            } catch (PDOException $e) {
+                                header("HTTP/1.0 ".$e->getMessage());
+                                http_response_code(600); // Quel code pour les erreurs PDO?
+                            }
+                        }
+                        else{
+                            header("HTTP/1.0 405 Missing argument idUsr");
+                            http_response_code(405);
+                        }
                         break;
-                    case 'getMessage':
-
+                    case 'getSkin':
+                        try{
+                            $res = $skingw->getSkins();
+                            //retourner le résultat
+                        } catch (PDOException $e) {
+                            header("HTTP/1.0 ".$e->getMessage());
+                            http_response_code(600); // Quel code pour les erreurs PDO?
+                        }
                         break;
-                    case 'getConversation ':
-
+                    case 'getGames':
+                        try{
+                            $res = $gamegw->getGames();
+                            //retourner le résultat
+                        } catch (PDOException $e) {
+                            header("HTTP/1.0 ".$e->getMessage());
+                            http_response_code(600); // Quel code pour les erreurs PDO?
+                        }
+                        break;
+                    default:
+                        header("HTTP/1.0 406 unknown method");
+                        http_response_code(406); // Le bon code ?
                         break;
                 }
                 break;
@@ -81,7 +132,16 @@
             case 'POST':
                 switch ($requestName){
                     case 'postUser':
-                       // create a new user and add it in database
+                        if(!empty($_POST["id"])){
+                            $usr = new User($_POST["id"],$_POST["username"],$_POST["password"],$_POST["nationality"],$_POST["sex"],$_POST["dateOfBirth"],0,0,0,"S0001",[]);
+                            try{
+                                $usergw->postUser($usr);
+                                http_response_code(200);
+                            } catch (PDOException $e) {
+                                header("HTTP/1.0 ".$e->getMessage());
+                                http_response_code(600); // Quel code pour les erreurs PDO?
+                            }
+                        }
                         break;
                     case 'postMatch':
 
@@ -136,6 +196,5 @@
         }
             
     }
-    */
     
  ?>
