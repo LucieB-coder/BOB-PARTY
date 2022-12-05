@@ -19,7 +19,7 @@ FC<{game: Game, nav: any}> =
 {      
     return (
         <View>
-            <Pressable onPress={() => Alert.alert("Lancement du jeu")}>
+            <Pressable onPress={() => nav.navigate('')}>
                 <Image
                     style={styles.image}
                     source={game.getImageSource()}
