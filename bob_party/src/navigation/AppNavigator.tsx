@@ -12,7 +12,8 @@ import SkinList from '../screens/SkinList'
 import GameChoice from '../screens/GameChoice'
 import SignIn from '../screens/SignIn'
 import SignUp from '../screens/SignUp'
-
+import LobbySolo from '../screens/LobbySolo'
+import CookieClicker from '../Games/CookieClicker/cookieClicker'
 
 
 const HomeStack = createStackNavigator();
@@ -25,7 +26,7 @@ function HomeStackScreen() {
     <HomeStack.Navigator screenOptions={{ headerShown: false}}>
       <HomeStack.Screen name="Home" component={Home} options={{animationEnabled: false,}}/>
       <HomeStack.Screen name="Settings" component={Settings} />
-      <HomeStack.Screen name='GameChoice' component={GameChoice} options={{animationEnabled: false,}}/>
+      <HomeStack.Screen name='GameChoiceTab' component={GameChoiceStackScreen} options={{animationEnabled: false,}}/>
     </HomeStack.Navigator>
   );
 }
@@ -67,6 +68,34 @@ function ProfileStackScreen() {
       <ProfileStack.Screen name="Settings" component={Settings} />
       <ProfileStack.Screen name="SkinList" component={SkinList} options={{animationEnabled: false,}}/>
     </ProfileStack.Navigator>
+  );
+}
+
+const GameChoiceStack = createStackNavigator();
+
+/*
+  Stack of screens for the profile and the changement of informations
+*/
+function GameChoiceStackScreen() {
+  return (
+    <GameChoiceStack.Navigator screenOptions={{headerShown: false}}>
+      <GameChoiceStack.Screen name='GameChoice' component={GameChoice} options={{animationEnabled: false,}}/>
+      <GameChoiceStack.Screen name='GameSolo' component={GameSoloStackScreen} options={{animationEnabled: false,}}/>
+    </GameChoiceStack.Navigator>
+  );
+}
+
+const GameSoloStack = createStackNavigator();
+
+/*
+  Stack of screens for the profile and the changement of informations
+*/
+function GameSoloStackScreen() {
+  return (
+    <GameSoloStack.Navigator screenOptions={{headerShown: false}}>
+      <GameSoloStack.Screen name='LobbySolo' component={LobbySolo} options={{animationEnabled: false,}}/>
+      <GameSoloStack.Screen name='CookieClicker' component={CookieClicker} />
+    </GameSoloStack.Navigator>
   );
 }
 

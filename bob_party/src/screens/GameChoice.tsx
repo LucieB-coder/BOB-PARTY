@@ -13,12 +13,17 @@ import { GameSolo } from '../core/gameSolo';
 let tabConv:Conversation[]=[];
 
 
-const msc = require('../../assets/Icons/FondGris.png');
+const cookieClicker= new GameSolo(1, "Cookie Clicker", "https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/typescript/bob_party/assets/ImagesJeux/Pong.png", "/Games/CookieClicker/cookieClicker.tsx", 1, 1, new Map([
+  [100, 100],
+  [1000, 300],
+  [10000, 400]
+]));
 
-//const UserActu=new User("14", "leBg", "MdpDeOuf", "ouioui", "grand",  new Date(2022,12,12), 12222, 123324, 12, tabSkinApp[0], tabSkinApp, tabConv);
-const jeuTest= new GameSolo("1", "SNAKE", require('../../assets/Icons/UnSelected/Gamepad.png'),"ouin", 1, 1, new Map<number,number>);
+
 function GameChoice(props: { navigation: any; }) {
     const { navigation } = props
+    
+    
     return (
     <View style={styles.container}>
       <TopBar
@@ -26,7 +31,7 @@ function GameChoice(props: { navigation: any; }) {
       />
       <View style={styles.body}>
         <GameComponent
-          game={jeuTest}
+          game={cookieClicker}
           nav={navigation}
         />
       </View>

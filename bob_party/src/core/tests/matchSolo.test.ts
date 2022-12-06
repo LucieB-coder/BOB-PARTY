@@ -1,4 +1,5 @@
-import { MatchSolo } from '../MatchSolo';
+import { MatchSolo } from '../Match/matchSolo';
+import { Conversation } from '../Conversation';
 import { Skin } from '../Skin';
 import { User } from '../User/user';
 import { GameSolo } from '../GameSolo';

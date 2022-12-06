@@ -1,4 +1,6 @@
-import { Match } from "../../core/match";
+import { Game } from "../../core/game";
+import { Match } from "../../core/Match/match";
+import { User } from "../../core/User/user";
 
 export default interface ISaverMatch{
 
@@ -7,7 +9,7 @@ export default interface ISaverMatch{
      * m the Match we want to save
      */
 
-    saveMatch(m:Match): Promise<void>;
+    saveMatch(u:User, g:Game): Promise<Match>;
 
     /**
      * deleteMatch methode that delete a Match in the data management system

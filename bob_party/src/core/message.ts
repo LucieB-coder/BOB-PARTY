@@ -2,52 +2,52 @@ import { User } from './User/user'
 
 
 export class Message{
-    private Id: string;
-    private Content: string;
-    private Sender: User;
-    private DateEnvoie: Date;
+    private id: number;
+    private content: string;
+    private sender: User;
+    private dateEnvoie: Date;
 
     /* Constructor of the class */
-    constructor(id: string, content: string, sender:User, dateEnvoie:Date){
-        this.Id=id;
-        this.Content=content;
-        this.Sender=sender;
-        this.DateEnvoie=dateEnvoie;
+    constructor(id: number, content: string, sender:User, dateEnvoie:Date){
+        this.id=id;
+        this.content=content;
+        this.sender=sender;
+        this.dateEnvoie=dateEnvoie;
     }
     
     /* Brief : Function setting the content of a message */
     setMessageContent(content: string){
-        this.Content=content;
+        this.content=content;
     }
 
     /* Brief : Function setting the sender of a message */
     setMessageSender(sender: User){
-        this.Sender=sender;
+        this.sender=sender;
     }
 
     /* Brief : Function setting the date of a message */
     setMessageDate(dateEnvoie: Date){
-        this.DateEnvoie=dateEnvoie;
+        this.dateEnvoie=dateEnvoie;
     }
 
     /* Brief : Function getting the id of a message */
     getMessageId(){
-        return this.Id;
+        return this.id;
     }
 
     /* Brief : Function getting the content of a message */
     getMessageContent(){
-        return this.Content;
+        return this.content;
     }
 
     /* Brief : Function getting the sender of a message */
     getMessageSender(){
-        return this.Sender;
+        return this.sender;
     }
 
     /* Brief : Function getting the date of a message */
     getMessageDate(){
-        return this.DateEnvoie;
+        return this.dateEnvoie;
     }
 
 

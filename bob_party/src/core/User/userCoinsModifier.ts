@@ -1,5 +1,5 @@
 import { MANAGER_USER } from "../../../App";
-import ManagerUser from "../../services/userServices/ManagerUser";
+import ManagerUser from "../../services/userServices/managerUser";
 import { User } from "./user";
 
 export class ManagerCoinsUser{
@@ -11,9 +11,13 @@ export class ManagerCoinsUser{
         await MANAGER_USER.getsaverUser().updateUser(u);
     }
 
-    async removeCoins(u:User, coins:number){
-        u.setCurrentCoins(u.getCurrentCoins()-coins);
-        await MANAGER_USER.getsaverUser().updateUser(u);
+    async removeCoins(u:User, coins:number): Promise<boolean>{
+        if (u.getCurrentCoins()>=coins){
+            u.setCurrentCoins(u.getCurrentCoins()-coins);
+            await MANAGER_USER.getsaverUser().updateUser(u);
+            return true;
+        }
+        return false;
     }
 
     async changeCurrentCoins(u:User, coins:number){

@@ -11,8 +11,9 @@ import Dialog from "react-native-dialog"
 import RNPickerSelect from "react-native-picker-select";
 import { PickerGreySmall } from '../components/PickerGreySmall';
 import { MANAGER_USER } from '../../App';
-import { useUserStore } from '../../userContext';
+import { useUserStore } from '../context/userContext';
 import DialogInput from 'react-native-dialog-input';
+import UserModificationManager from '../core/User/userModificationManager';
 
 function Settings(props: { navigation: any; }) {
     const { navigation } = props
@@ -27,18 +28,24 @@ function Settings(props: { navigation: any; }) {
     const [selectedNationality, setSelectedNationality] = useState("");
 
 
-    function changeUsername(username:string){
-      MANAGER_USER.getCurrentUser()?.setUsername(username);
-      console.log(MANAGER_USER.getCurrentUser()?.getUsername());
-      setUser(MANAGER_USER.getCurrentUser());
-      MANAGER_USER.getsaverUser().updateUser(MANAGER_USER.getCurrentUser());
+    async function changeUsername(username:string){
+      const m = new UserModificationManager();
+      let tmp=MANAGER_USER.getCurrentUser();
+      if (tmp!=null){
+        await m.changeUsername(tmp, username);
+        setUser(tmp);
+        MANAGER_USER.setCurrentUser(tmp);
+      }
     }
 
-    function changePassword(password:string){
-      MANAGER_USER.getCurrentUser()?.setPassword(password);
-      console.log(MANAGER_USER.getCurrentUser()?.getPassword());
-      setUser(MANAGER_USER.getCurrentUser());
-      MANAGER_USER.getsaverUser().updateUser(MANAGER_USER.getCurrentUser());
+    async function changePassword(password:string){
+      const m = new UserModificationManager();
+      let tmp=MANAGER_USER.getCurrentUser();
+      if (tmp!=null){
+        await m.changePassword(tmp, password);
+        setUser(tmp);
+        MANAGER_USER.setCurrentUser(tmp);
+      }
     }
 
     const dispatch=useDispatch();
@@ -55,24 +62,24 @@ function Settings(props: { navigation: any; }) {
           <View style={{flexDirection: 'row', justifyContent: 'space-between',}}>
             <View>
               <View>
-                <Text style={styles.text}>Pseudo: {MANAGER_USER.getCurrentUser().getUsername()}</Text>
+                <Text style={styles.text}>Pseudo: {useUserStore().user?.getUsername()}</Text>
                 <ButtonGreySmall onPress={() => {console.log(dialogPseudoVisible);
                 ;setDialogPseudoVisible(true)}} title='Changer le pseudo'/>
               </View>
               <View>
-                <Text style={styles.text}>Mot de passe: {MANAGER_USER.getCurrentUser().getPassword()}</Text>
+                <Text style={styles.text}>Mot de passe: {useUserStore().user?.getPassword()}</Text>
                 <ButtonGreySmall onPress={() => setDialogPasswordVisible(true) } title='Changer le mot de passe'/>
               </View>
               <View>
-                <Text style={styles.text}>Nationalité: {MANAGER_USER.getCurrentUser().getNationality()}</Text>
+                <Text style={styles.text}>Nationalité: {useUserStore().user?.getNationality()}</Text>
                 <PickerGreySmall title='Changer la nationalité' valueChange={(value:string) => setSelectedNationality(value)} donePress={() => dispatch(updateNationality(selectedNationality))} values={["Francais", "Anglais"]} />
               </View>
               <View>
-                <Text style={styles.text}>Sexe: {MANAGER_USER.getCurrentUser().getSexe()}</Text>
+                <Text style={styles.text}>Sexe: {useUserStore().user?.getSexe()}</Text>
                 <PickerGreySmall title='Changer le sexe' valueChange={(value:string) => setSelectedSex(value)} donePress={() => dispatch(updateSex(selectedSex))} values={["Homme", "Femme", "Autre"]} />
               </View>
             </View>
-            <Text style={styles.textID}>ID: {MANAGER_USER.getCurrentUser().getId()}</Text>
+            <Text style={styles.textID}>ID: {useUserStore().user?.getId()}</Text>
           </View>
         </View>
       </View>

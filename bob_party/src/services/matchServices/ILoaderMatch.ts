@@ -1,4 +1,4 @@
-import { Match } from "../../core/match";
+import { Match } from "../../core/Match/match";
 
 export default interface ILoaderMatch{
 

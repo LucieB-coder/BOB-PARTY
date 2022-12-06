@@ -3,7 +3,7 @@ import { ImageSourcePropType } from "react-native";
 import internal from "stream";
 
 export abstract class Game{
-    readonly id:string;
+    readonly id:number;
     private name:string;
     private imageSource:string;
     private gameSource:string;
@@ -11,7 +11,7 @@ export abstract class Game{
     private nbPlayerMax:number;
 
     /* Constructor of the class */
-    constructor (id:string, name:string, imageSource:string, gameSource:string, nbPlayerMin:number, nbPlayerMax:number){
+    constructor (id:number, name:string, imageSource:string, gameSource:string, nbPlayerMin:number, nbPlayerMax:number){
         this.id=id;
         this.name=name;
         this.imageSource=imageSource;
