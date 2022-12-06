@@ -14,5 +14,5 @@ interface UserState {
 export const useUserStore = create<UserState>()((set, get) => ({
     user: null,
     setUser: (user) => set((state) => ({ user: user })),
-    resetUser: () => set((state) => ({ user: undefined })),
+    resetUser: () => set((state) => ({ user: null })),
 }));

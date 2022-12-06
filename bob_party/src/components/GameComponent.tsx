@@ -11,9 +11,11 @@ import styles from './style/Game.style';
 import LobbySolo from "../screens/LobbySolo"
 import ManagerMatch from "../services/matchServices/managerMatch"
 import MatchCreator from "../core/Match/matchCreator"
-import { MANAGER_USER } from "../../App"
+import { MANAGER_MATCH, MANAGER_USER } from "../../App"
+import { useMatchStore } from "../context/matchContext"
 
 export const GameComponent : 
+
 /*
     * game : Game that must be displayed
     * nav : tool needed to allow the navigation between the screens
@@ -21,25 +23,33 @@ export const GameComponent :
 FC<{game: Game, nav: any}> = 
 ({game, nav}) => 
 {      
+
+    const setMatch = useMatchStore((state) => state.setMatch);
+
+    async function createNewMatchSolo(game : Game, nav: any) {
+        const m=new MatchCreator();
+        let tmp=MANAGER_USER.getCurrentUser();
+        if (tmp!=null){
+            let match=await m.createMatch(tmp, game);
+            MANAGER_MATCH.setCurrentMatch(match);
+            setMatch(match);
+            nav.navigate("LobbySolo");
+        }
+    }
+
     
     return (
         <View>
             <Pressable onPress={() => createNewMatchSolo(game, nav)}>
                 <Image
                     style={styles.image}
-                    source={{uri: game.getImageSource()}}
+                    source={{uri: useMatchStore().match?.getGame().getImageSource()}}
                 />
                 <Text style={styles.name}>{game.getName()}</Text>
             </Pressable>
         </View> 
-    )       
+    )    
+    
+
 }
 
-function createNewMatchSolo(game : Game, nav: any) {
-    const m=new MatchCreator();
-    let tmp=MANAGER_USER.getCurrentUser();
-    if (tmp!=null){
-        let match=m.createMatch(tmp, game);
-        nav.navigate("LobbySolo");
-    }
-}
