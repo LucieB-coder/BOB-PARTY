@@ -21,8 +21,8 @@ steps:
         from_secret: MYSQL_USER       
       CODEFIRST_CLIENTDRONE_ENV_MYSQL_PASSWORD:          
         from_secret: MYSQL_PASSWORD
-      ports:
-        - 3306
+    ports:
+      - 3306
 
 
 # Creation of a hosting docker for our application
