@@ -6,6 +6,8 @@ import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
 import { Conversation } from '../core/conversation';
 import { ButtonGameTypeChoice } from '../components/ButtonGameTypeChoice';
+import { MANAGER_MATCH } from '../../App';
+import { useMatchStore } from '../context/matchContext';
 
 
 
@@ -15,6 +17,7 @@ function LobbySolo(props: { navigation: any; }) {
 
     const { navigation } = props
 
+    const match = useMatchStore().match;
 
     return ( 
         <View style={stylesScreen.container}>
@@ -24,6 +27,10 @@ function LobbySolo(props: { navigation: any; }) {
                 onPress={() => navigation.navigate('GameChoice')}
             />
             </View>
+
+            <Image
+                    source={{uri: match.getGame().getImageSource()}}
+                />
         </View>
     );
 }
