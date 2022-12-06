@@ -88,7 +88,7 @@ class MatchGateway{
 /// Brief : Deleting a match from database
 /// Parameters : * $u (Matchs): match we want to delete from database
     public function deleteMatch(int $id){
-        $query="DELETE FROM T_J_PLAY_MATCH_PLM WHERE PK_ID=:id";
+        $query="DELETE FROM T_E_MATCH_MTC WHERE PK_ID=:id";
         $arg=array('id'=>array($id, PDO::PARAM_INT));
         $this->connection->execQuery($query,$arg);
     }

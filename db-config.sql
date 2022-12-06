@@ -143,10 +143,6 @@ CREATE TRIGGER before_delete_conversation
     BEFORE DELETE
     ON T_H_CONVERSATION_COV
 FOR EACH ROW
-    r record;
-    FOR r in (SELECT c.PK_ID
-              FROM T_H_MESSAGE_MSG m, T_J_CONTAIN_MESSAGE c
-              WHERE m.PK_ID = c.FK_MESSAGE
-                AND c.FK_CONVERSATION=NEW.PK_ID) LOOP
-        DELETE FROM T_H_MESSAGE_MSG WHERE PK_ID = r.PK_ID;
-    END LOOP;
+   DELETE FROM T_H_MESSAGE_MSG WHERE PK_ID = (SELECT FK_MESSAGE
+             								  FROM T_J_CONTAIN_MESSAGE_CMG
+                                              WHERE FK_CONVERSATION=OLD.PK_ID);
