@@ -19,10 +19,8 @@ export class GameSolo extends Game{
         let test;
         for (let key of this.ptsToCoins.keys()){
             test = this.ptsToCoins.get(key);
-            if (test != undefined){
-                coins=test;
-            }
-            if (points<key ){
+            coins=key;
+            if (test != undefined && test>=points){
                 return coins;
             }
         }

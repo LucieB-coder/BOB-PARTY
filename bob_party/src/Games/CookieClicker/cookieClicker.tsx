@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react'
+import React, { Component, useCallback, useEffect, useState } from 'react'
 import {
   StyleSheet,
   TouchableOpacity,
@@ -9,24 +9,23 @@ import {
   TouchableHighlight,
   Alert,
 } from 'react-native'
-import { MANAGER_USER } from '../../../App';
+import { MANAGER_MATCH, MANAGER_USER } from '../../../App';
 import { useMatchStore } from '../../context/matchContext';
 import { useUserStore } from '../../context/userContext';
 import { Match } from '../../core/Match/match';
 import { User } from '../../core/User/user';
 
 
+let points=0;
+
 function CookieClicker(props: { navigation: any}){
   const { navigation } = props
 
-
-
-  const GAMING_TIME=15;
+  const GAMING_TIME=30;
 
   const setUser = useUserStore((state) => state.setUser);
 
   const resetMatch = useMatchStore((state) => state.resetMatch);
-
 
   const [count, setCount] = useState(0);
   const [money, setMoney] = useState(0);
@@ -43,6 +42,7 @@ function CookieClicker(props: { navigation: any}){
   function onPressCookie(){
     setMoney(money+clickSpeed);
     setCount(count+clickSpeed);
+    points=count+clickSpeed;
   }
 
   function onPressGrandma(){
@@ -89,13 +89,12 @@ function CookieClicker(props: { navigation: any}){
     let tmp: User | null;
     tmp=MANAGER_USER.getCurrentUser();
     if (tmp!=null){
-      if (useMatchStore().match?.getTabUsers().includes(tmp)){
-        useMatchStore().match?.updatePostMatch(tmp, count);
+      if (MANAGER_MATCH.getCurrentMatch()?.getTabUsers().includes(tmp)){
+        MANAGER_MATCH.getCurrentMatch()?.updatePostMatch(tmp, points);
         setUser(tmp);   
       }
-      resetMatch();
-      navigation.goBack();
     }
+    resetMatch();     
   }
 
   useEffect(() => {
@@ -106,8 +105,9 @@ function CookieClicker(props: { navigation: any}){
 
       if (counter == 0) {
           clearInterval(oneSecInterval);
-          Alert.alert("fin du jeu");
           endGame();
+          Alert.alert("fin du jeu");
+          navigation.navigate('Home');
       }
     }, 1000);
   },[]);
@@ -182,7 +182,7 @@ function CookieClicker(props: { navigation: any}){
 
 const styles = StyleSheet.create({
   container: {
-    top: 20,
+    top: 75,
     margin: 10,
     flex: 1,
     justifyContent: 'center',
