@@ -21,7 +21,7 @@ let points=0;
 function CookieClicker(props: { navigation: any}){
   const { navigation } = props
 
-  const GAMING_TIME=30;
+  const GAMING_TIME=45;
 
   const setUser = useUserStore((state) => state.setUser);
 

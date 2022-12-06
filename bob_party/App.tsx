@@ -12,13 +12,16 @@ import { FakeSaverConversation } from './src/services/conversationService/fakeSa
 import ManagerMatch from './src/services/matchServices/managerMatch'
 import LoaderMatchApi from './src/services/matchServices/loaderMatchApi'
 import SaverMatchApi from './src/services/matchServices/saverMatchApi'
+import LoaderGameApi from './src/services/gameService/loaderGameApi'
+import ManagerGame from './src/services/gameService/managerGame'
 
 
 export const MANAGER_USER = new ManagerUser(new LoaderUserApi, new FakeSaverUser);  
 export const MANAGER_CONVERSATION = new ManagerConversation(new LoaderConversationApi, new FakeSaverConversation);
 export const MANAGER_MATCH = new ManagerMatch(new LoaderMatchApi, new SaverMatchApi);  
+export const MANAGER_GAME = new ManagerGame(new LoaderGameApi);
 
-  
+
   export default function App() {
 
     return (
