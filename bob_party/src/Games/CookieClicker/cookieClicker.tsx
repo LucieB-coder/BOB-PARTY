@@ -10,6 +10,7 @@ import {
   Alert,
 } from 'react-native'
 import { MANAGER_USER } from '../../../App';
+import { useMatchStore } from '../../context/matchContext';
 import { useUserStore } from '../../context/userContext';
 import { Match } from '../../core/Match/match';
 import { User } from '../../core/User/user';
@@ -19,9 +20,12 @@ function CookieClicker(props: { navigation: any}){
   const { navigation } = props
 
 
+
   const GAMING_TIME=15;
 
   const setUser = useUserStore((state) => state.setUser);
+
+  const resetMatch = useMatchStore((state) => state.resetMatch);
 
 
   const [count, setCount] = useState(0);
@@ -85,13 +89,11 @@ function CookieClicker(props: { navigation: any}){
     let tmp: User | null;
     tmp=MANAGER_USER.getCurrentUser();
     if (tmp!=null){
-      /*
-      if (match.getTabUsers().includes(tmp)){
-        match.updatePostMatch(tmp, count);
-        setUser(tmp);
-        
+      if (useMatchStore().match?.getTabUsers().includes(tmp)){
+        useMatchStore().match?.updatePostMatch(tmp, count);
+        setUser(tmp);   
       }
-      */
+      resetMatch();
       navigation.goBack();
     }
   }

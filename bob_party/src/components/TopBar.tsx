@@ -13,6 +13,7 @@ import { useSelector } from "react-redux"
 import { RootState } from "../redux/store"
 import { MANAGER_USER } from "../../App"
 import { useUserStore } from "../context/userContext"
+import { useMatchStore } from "../context/matchContext"
 
 /* 
     Images required
@@ -32,6 +33,9 @@ FC<{nav: any, state?: string}> =
 ({nav, state}) => 
 {
     
+    const resetMatch = useMatchStore((state) => state.resetMatch);
+
+
     /* The display of this component depends of the screen from where it has been called:
         * From the Settings (icon) : Name of the page + cross button
         * From other : skin + Title + parameters icon
@@ -45,6 +49,19 @@ FC<{nav: any, state?: string}> =
                     </Pressable>
                     <Text style={styles.titre}>BOB PARTY</Text>
                     <Pressable onPress={() => nav.goBack()}>
+                        <Image source={cross} style={styles.icon}/>
+                    </Pressable>
+                </View>
+            )
+
+        case 'matchmacking':
+            return (
+                <View style={styles.header}>
+                    <Pressable>
+                        <Image source={msc} style={styles.icon}/>
+                    </Pressable>
+                    <Text style={styles.titre}>BOB PARTY</Text>
+                    <Pressable onPress={() => { resetMatch(); nav.goBack()}}>
                         <Image source={cross} style={styles.icon}/>
                     </Pressable>
                 </View>
