@@ -13,7 +13,7 @@ steps:
         CONTAINERNAME: mysql
         COMMAND: create
         # OVERWRITE: false
-        PRIVATE: true
+        PRIVATE: false
         environment: 
         MYSQL_ROOT_PASSWORD: $ROOT_PASSWORD
         MYSQL_DATABASE: $MYSQL_DATABASE
