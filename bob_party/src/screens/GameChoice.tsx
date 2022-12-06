@@ -16,7 +16,7 @@ let tabConv:Conversation[]=[];
 const cookieClicker= new GameSolo(1, "Cookie Clicker", "https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/typescript/bob_party/assets/ImagesJeux/Pong.png", "/Games/CookieClicker/cookieClicker.tsx", 1, 1, new Map([
   [100, 100],
   [1000, 300],
-  [10000, 200]
+  [10000, 400]
 ]));
 
 

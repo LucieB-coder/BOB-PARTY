@@ -182,7 +182,7 @@ function CookieClicker(props: { navigation: any}){
 
 const styles = StyleSheet.create({
   container: {
-    top: 5,
+    top: 20,
     margin: 10,
     flex: 1,
     justifyContent: 'center',
