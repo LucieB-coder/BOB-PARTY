@@ -19,11 +19,13 @@ class GameGateway{
 /// Brief : Returning all the games found in database
     public function getGames():?array{
         $tabGames=null;
-        $query="SELECT * FROM Game";
-        $this->connection->execQuery($query,[]);
+        $gamesQuery="SELECT * FROM T_E_GAME_GAM";
+        $this->connection->execQuery($gamesQuery,[]);
         $res = $this->connection->getRes();
         foreach($res as $row){
-            $tabGames[]= new Game($row['id'],$row['name'],$row['image']);
+            $tabGames[]= new Game($row['PK_ID'],
+                                  $row['GAM_NAME'],
+                                  $row['GAM_IMAGE']);
         }
         return $tabGames;
     }
@@ -32,12 +34,14 @@ class GameGateway{
 /// Parameters : * $id (string): identifier of the game we are looking for  
     public function getGameById(string $id):?Game{
         $game=null;
-        $query="SELECT * FROM Game WHERE id=:id";
+        $gameInfoQuery="SELECT * FROM T_E_GAME_GAM WHERE PK_ID=:id";
         $arg=array('id'=>array($id,PDO::PARAM_STR));
-        $this->connection->execQuery($query,$arg);
+        $this->connection->execQuery($gameInfoQuery,$arg);
         $res=$this->connection->getRes();
         foreach($res as $row){
-            $game= new Game($row['id'],$row['name'],$row['image']);
+            $game= new Game($row['PK_ID'],
+                            $row['GAM_NAME'],
+                            $row['GAM_IMAGE']);
         }
         return $game;
     }

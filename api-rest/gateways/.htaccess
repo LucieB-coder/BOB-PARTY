@@ -1,6 +1,0 @@
-<Files .htaccess config.ini>
-order allow, deny
-deny from all
-</Files>
-RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK) [NC]
-RewriteRule (.*) - [F]

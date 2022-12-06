@@ -72,6 +72,7 @@ class ConversationGateway{
 
 /// Brief : Adding a new conversation in database
 /// Parameters : * $c (Conversation): conversation we want to insert in database
+/// ***** CRÉER DES TRIGGERS ***** ///
     public function postConversation(Conversation $c): void{
         // Declare queries
         $convCreationQuery = "INSERT INTO T_E_CONVERSATION_COV VALUES(:idConv,:name)";
@@ -91,6 +92,7 @@ class ConversationGateway{
 
 /// Brief : Modifying an EXISTING match in database
 /// Parameters : * $u (Matchs): match we want to update in database
+/// ***** CRÉER DES TRIGGERS ***** ///
     public function putConversation(Conversation $c):void{
         // Declare the queries
         $conversationInsertionQuery = "INSERT INTO T_E_CONVERSATION_COV VALUES (:id,:nom)";
@@ -125,6 +127,7 @@ class ConversationGateway{
 /// Parameters : * $c (Conversation): conversation we want to delete from database
 // ---- 
 // Ne pas oublier le on delete cascade dans la création des tables
+// Créer des triggers
 // ----
     public function deleteConversation(Conversation $c):void{
         // Declare query and argument table

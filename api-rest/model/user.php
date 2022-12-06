@@ -3,7 +3,7 @@
 class User {
 
     // Object attributes
-    public string $id;
+    public int $id;
     public string $username;
     public string $password;
     public string $nationality;
@@ -12,10 +12,10 @@ class User {
     public int $currentBobCoins;
     public int $totalBobCoins;
     public int $nbGamesPlayed;
-    public string $currentSkin;
-    public $listIdSkin;
+    public int $currentSkin;
+    public ?array $listSkin;
 
-    public function __construct(string $_id,string $_username,string $_password, string $_nationality,string $_sex, string $_dateOfBirth, int $_currentBobCoins, int $_totalBobCoins, int $_nbGamesPlayed, string $_currentSkin, $_listIdSkin){
+    public function __construct(int $_id,string $_username,string $_password, string $_nationality,string $_sex, string $_dateOfBirth, int $_currentBobCoins, int $_totalBobCoins, int $_nbGamesPlayed, int $_currentSkin,?array $_listSkin){
         $this->id=$_id;
         $this->username=$_username;
         $this->password=$_password;
@@ -26,7 +26,7 @@ class User {
         $this->totalBobCoins=$_totalBobCoins;
         $this->nbGamesPlayed=$_nbGamesPlayed;
         $this->currentSkin=$_currentSkin;
-        $this->listIdSkin=$_listIdSkin;
+        $this->listSkin=$_listSkin;
     }
     
 }
