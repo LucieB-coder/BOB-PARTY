@@ -1,5 +1,4 @@
 import { Conversation } from "../../core/conversation";
-import { User } from "../../core/User/user";
 import ILoaderConversation from "./ILoaderConversation";
 import ISaverConversation from "./ISaverConversation";
 

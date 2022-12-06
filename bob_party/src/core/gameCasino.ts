@@ -1,4 +1,3 @@
-import { ImageSourcePropType } from 'react-native';
 import { Game } from './game'
 
 export class GameCasino extends Game{

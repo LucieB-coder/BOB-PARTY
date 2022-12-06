@@ -4,21 +4,21 @@ import { Skin } from '../Skin';
 
 // Instance
 const img = "";
-let classique = new Skin("S0001", "Bob", img, 0);
+let classique = new Skin(1, "Bob", img, 0);
 
 
 
 // Get tests
 
 describe('Skin get tests', () => {
-    it('should return S0001', () => {
-        expect(classique.getSkinId()).toBe('S0001');
+    it('should return 1', () => {
+        expect(classique.getSkinId()).toBe(1);
     })
     it('should return Bob', () => {
         expect(classique.getSkinName()).toEqual('Bob');
     })
-    it('should return require(BobClassic.png)', () => {
-        expect(classique.getSkinSource()).toEqual(require(img));
+    it('should return img ("")', () => {
+        expect(classique.getSkinSource()).toEqual(img);
     })
     it('should return 0', () => {
         expect(classique.getSkinCost()).toBe(0);

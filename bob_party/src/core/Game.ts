@@ -1,7 +1,3 @@
-import { randomBytes } from "crypto";
-import { ImageSourcePropType } from "react-native";
-import internal from "stream";
-
 export abstract class Game{
     readonly id:number;
     private name:string;

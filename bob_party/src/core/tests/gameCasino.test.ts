@@ -4,7 +4,7 @@ import { GameCasino } from '../GameCasino';
 
 // Instances
 const img = "";
-let game = new GameCasino("GC001", "bo jeu", img, "super jeu", 1, 5);
+let game = new GameCasino(1, "bo jeu", img, "super jeu", 1, 5);
 
 
 // Get tests

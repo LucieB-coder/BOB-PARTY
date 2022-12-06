@@ -2,8 +2,8 @@ import StubUser from '../userServices/stub';
 import { User } from '../../core/User/user';
 import { Skin } from '../../core/skin';
 import { GameSolo } from '../../core/gameSolo';
-import { MatchSolo } from '../../core/matchSolo';
-import { Match } from '../../core/match';
+import MatchSolo from '../../core/Match/matchSolo';
+import { Match } from '../../core/Match/match';
 import { Conversation } from '../../core/conversation';
 
 // Instances
@@ -16,14 +16,14 @@ let map = new Map<number, number>([
     [150, 6]
 ]);
 let tabUS:User[] = [
-    new User("U0001", "WeshWesh", "MdpDeOuf", "ouioui", "grand", new Date(2022,12,12), 12222, 123324, 12, new Skin("S0001", "Bob", img, 0), [new Skin("S0001", "Bob", img, 0)]),
-    new User("U0002", "leBg", "MdpDeOuf", "ouioui", "grand", new Date(2022,12,12), 12222, 123324, 12, new Skin("S0001", "Bob", img, 0), [new Skin("S0001", "Bob", img, 0)]),
-    new User("U0003", "Alban", "oui", "ouioui", "homme", new Date(2022,12,12), 555, 667, 12, new Skin("S0001", "Bob", img, 0), [new Skin("S0001", "Bob", img, 0)],),
-    new User("U0004", "Fefe63", "jesuishm", "ouioui", "homme", new Date(2022,12,12), 12222, 123324, 12, new Skin("S0001", "Bob", img, 0), [new Skin("S0001", "Bob", img, 0)]),
+    new User(1, "WeshWesh", "MdpDeOuf", "ouioui", "grand", new Date(2022,12,12), 12222, 123324, 12, new Skin(1, "Bob", img, 0), [new Skin(1, "Bob", img, 0)]),
+    new User(2, "leBg", "MdpDeOuf", "ouioui", "grand", new Date(2022,12,12), 12222, 123324, 12, new Skin(1, "Bob", img, 0), [new Skin(1, "Bob", img, 0)]),
+    new User(3, "Alban", "oui", "ouioui", "homme", new Date(2022,12,12), 555, 667, 12, new Skin(1, "Bob", img, 0), [new Skin(1, "Bob", img, 0)],),
+    new User(4, "Fefe63", "jesuishm", "ouioui", "homme", new Date(2022,12,12), 12222, 123324, 12, new Skin(1, "Bob", img, 0), [new Skin(1, "Bob", img, 0)]),
 ];
-let game:GameSolo = new GameSolo('G0001', 'SuperJeu', img, 'source', 1, 1, map);
-let match:Match = new MatchSolo('M0001', false, tabUS, game);
-let convo:Conversation = new Conversation('C0001', tabUS, [], 'superConvo');
+let game:GameSolo = new GameSolo(1, 'SuperJeu', img, 'source', 1, 1, map);
+let match:Match = new MatchSolo(1, false, tabUS, game);
+let convo:Conversation = new Conversation(1, tabUS, [], 'superConvo');
 
 
 // Tests
@@ -35,10 +35,10 @@ describe('StubUser tests', () => {
     })
     describe('loadById tests', () => {
         it('should return UserTest (id: 48)', () => {
-            expect(stub.loadByID('48')).toEqual(tabUS[0]);
+            expect(stub.loadByID(48)).toEqual(tabUS[0]);
         })
         it('should return null', () => {
-            expect(stub.loadByID('jExistePas')).toBe(null);
+            expect(stub.loadByID(999999999999)).toBe(null);
         })
     })
     describe('loadByUserName tests', () => {

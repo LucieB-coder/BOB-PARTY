@@ -1,7 +1,7 @@
 import LoaderUserApi from '../userServices/loaderUserApi';
 import ILoaderUser from '../userServices/ILoaderUser';
-import { Match } from '../../core/match';
-import { MatchSolo } from '../../core/matchSolo';
+import { Match } from '../../core/Match/match';
+import MatchSolo from '../../core/Match/matchSolo';
 import { GameSolo } from '../../core/gameSolo';
 import tabUS from '../../constUser';
 import { Conversation } from '../../core/conversation';
@@ -15,9 +15,9 @@ let map = new Map<number, number>([
     [100, 5],
     [150, 6]
 ]);
-let game:GameSolo = new GameSolo('G0001', 'SuperJeu', img, 'source', 1, 1, map);
-let match:Match = new MatchSolo('M0001', false, tabUS, game);
-let convo:Conversation = new Conversation('C0001', tabUS, [], 'superConvo');
+let game:GameSolo = new GameSolo(1, 'SuperJeu', img, 'source', 1, 1, map);
+let match:Match = new MatchSolo(1, false, tabUS, game);
+let convo:Conversation = new Conversation(1, tabUS, [], 'superConvo');
 
 
 // Tests
@@ -31,10 +31,10 @@ describe('LoaderUserApi tests', () => {
     */
     describe('loadById tests', () => {
         it('should return UserTest (id: 48)', () => {
-            expect(loader.loadByID('48')).toEqual(tabUS[0]);
+            expect(loader.loadByID(48)).toEqual(tabUS[0]);
         })
         it('should return null', () => {
-            expect(loader.loadByID('jExistePas')).toBe(null);
+            expect(loader.loadByID(99999999999)).toBe(null);
         })
     })
     describe('loadByUserName tests', () => {

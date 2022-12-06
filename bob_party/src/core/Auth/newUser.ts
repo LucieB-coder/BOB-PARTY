@@ -64,7 +64,7 @@ export const checkNewUserValidity = (login: string, password: string, dateOfBirt
             break;
 
         default:
-            const newUser : User = new User("0",login,password,nationality,sexe,dateOfBirth);
+            const newUser : User = new User(0,login,password,nationality,sexe,dateOfBirth);
             dispatch(loginUser(newUser));
             nav.navigate('HomeTab');
     }
