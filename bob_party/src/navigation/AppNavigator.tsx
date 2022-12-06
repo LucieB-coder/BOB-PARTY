@@ -13,7 +13,7 @@ import GameChoice from '../screens/GameChoice'
 import SignIn from '../screens/SignIn'
 import SignUp from '../screens/SignUp'
 import LobbySolo from '../screens/LobbySolo'
-
+import CookieClicker from '../Games/CookieClicker/cookieClicker'
 
 
 const HomeStack = createStackNavigator();
@@ -78,13 +78,26 @@ const GameChoiceStack = createStackNavigator();
 */
 function GameChoiceStackScreen() {
   return (
-    <ProfileStack.Navigator screenOptions={{headerShown: false}}>
-      <HomeStack.Screen name='GameChoice' component={GameChoice} options={{animationEnabled: false,}}/>
-      <ProfileStack.Screen name="LobbySolo" component={LobbySolo} options={{animationEnabled: false,}}/>
-    </ProfileStack.Navigator>
+    <GameChoiceStack.Navigator screenOptions={{headerShown: false}}>
+      <GameChoiceStack.Screen name='GameChoice' component={GameChoice} options={{animationEnabled: false,}}/>
+      <GameChoiceStack.Screen name='GameSolo' component={GameSoloStackScreen} options={{animationEnabled: false,}}/>
+    </GameChoiceStack.Navigator>
   );
 }
 
+const GameSoloStack = createStackNavigator();
+
+/*
+  Stack of screens for the profile and the changement of informations
+*/
+function GameSoloStackScreen() {
+  return (
+    <GameSoloStack.Navigator screenOptions={{headerShown: false}}>
+      <GameSoloStack.Screen name='LobbySolo' component={LobbySolo} options={{animationEnabled: false,}}/>
+      <GameSoloStack.Screen name='CookieClicker' component={CookieClicker} />
+    </GameSoloStack.Navigator>
+  );
+}
 
 const Tab = createBottomTabNavigator()
 /*

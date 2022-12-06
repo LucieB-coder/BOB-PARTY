@@ -23,15 +23,16 @@ function LobbySolo(props: { navigation: any; }) {
             state='matchmacking'
             />
             <View style={stylesScreen.bodyCenter}>
-                <ButtonGameTypeChoice
-                    title='Lancer la partie'
-                    onPress={() => navigation.navigate('GameChoice')}
-                />
+            <ButtonGameTypeChoice
+                title='Lancer la partie'
+                onPress={() => navigation.navigate(match?.getGame().getName().replace(/\s/g, ''))}
+            />
             </View>
 
             <Image
+                    style={{width:100, height:100}}
                     source={{uri: match?.getGame().getImageSource()}}
-            />
+                />
         </View>
     );
 }

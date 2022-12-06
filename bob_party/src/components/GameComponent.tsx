@@ -33,7 +33,7 @@ FC<{game: Game, nav: any}> =
             let match=await m.createMatch(tmp, game);
             MANAGER_MATCH.setCurrentMatch(match);
             setMatch(match);
-            nav.navigate("LobbySolo");
+            nav.navigate("GameSolo");
         }
     }
 
