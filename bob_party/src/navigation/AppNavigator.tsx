@@ -12,7 +12,8 @@ import SkinList from '../screens/SkinList'
 import GameChoice from '../screens/GameChoice'
 import SignIn from '../screens/SignIn'
 import SignUp from '../screens/SignUp'
-import CookieClicker from '../Games/CookieClicker/CookieClicker'
+import LobbySolo from '../screens/LobbySolo'
+
 
 
 const HomeStack = createStackNavigator();
@@ -25,7 +26,7 @@ function HomeStackScreen() {
     <HomeStack.Navigator screenOptions={{ headerShown: false}}>
       <HomeStack.Screen name="Home" component={Home} options={{animationEnabled: false,}}/>
       <HomeStack.Screen name="Settings" component={Settings} />
-      <HomeStack.Screen name="GameChoice" component={GameChoice} options={{animationEnabled: false,}}/>
+      <HomeStack.Screen name='GameChoiceTab' component={GameChoiceStackScreen} options={{animationEnabled: false,}}/>
     </HomeStack.Navigator>
   );
 }
@@ -69,6 +70,21 @@ function ProfileStackScreen() {
     </ProfileStack.Navigator>
   );
 }
+
+const GameChoiceStack = createStackNavigator();
+
+/*
+  Stack of screens for the profile and the changement of informations
+*/
+function GameChoiceStackScreen() {
+  return (
+    <ProfileStack.Navigator screenOptions={{headerShown: false}}>
+      <HomeStack.Screen name='GameChoice' component={GameChoice} options={{animationEnabled: false,}}/>
+      <ProfileStack.Screen name="LobbySolo" component={LobbySolo} options={{animationEnabled: false,}}/>
+    </ProfileStack.Navigator>
+  );
+}
+
 
 const Tab = createBottomTabNavigator()
 /*

@@ -8,6 +8,7 @@ import { Game } from "../core/game"
     Importing the correct stylesheet
 */
 import styles from './style/Game.style';
+import LobbySolo from "../screens/LobbySolo"
 
 export const GameComponent : 
 /*
@@ -17,9 +18,10 @@ export const GameComponent :
 FC<{game: Game, nav: any}> = 
 ({game, nav}) => 
 {      
+    
     return (
         <View>
-            <Pressable onPress={() => nav.navigate("CookieClicker")}>
+            <Pressable onPress={() => createNewMatchSolo(game, nav)}>
                 <Image
                     style={styles.image}
                     source={{uri: game.getImageSource()}}
@@ -28,4 +30,10 @@ FC<{game: Game, nav: any}> =
             </Pressable>
         </View> 
     )       
+}
+
+function createNewMatchSolo(game : Game, nav: any) {
+    
+    
+    nav.navigate("LobbySolo")
 }

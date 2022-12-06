@@ -11,33 +11,21 @@ import { ButtonGameTypeChoice } from '../components/ButtonGameTypeChoice';
 
 let tabConv:Conversation[]=[];
 
-function Home(props: { navigation: any; }) {
+function LobbySolo(props: { navigation: any; }) {
 
     const { navigation } = props
 
 
     return ( 
         <View style={stylesScreen.container}>
-            <TopBar
-                nav={navigation}
-                state= 'Home'
-            />
             <View style={stylesScreen.bodyCenter}>
             <ButtonGameTypeChoice
-                title='Jouer Seul'
-                onPress={() => navigation.navigate('GameChoiceTab')}
-            />
-            <ButtonGameTypeChoice
-                title='Défier mes amis'
-                onPress={() => navigation.navigate('GameChoiceTab')}
+                title='Lancer la partie'
+                onPress={() => navigation.navigate('GameChoice')}
             />
             </View>
-            <BotBar 
-                nav={navigation}
-                state='Home'
-            />
         </View>
     );
 }
 
-export default Home
+export default LobbySolo
