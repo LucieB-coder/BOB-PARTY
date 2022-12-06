@@ -1,22 +1,23 @@
 import { Conversation } from "../../core/conversation";
-import { Match } from "../../core/match";
+import { Match } from "../../core/Match/match";
 import { Skin } from "../../core/skin";
 import { User } from "../../core/User/user";
 import ILoaderUser from "./ILoaderUser";
 
 export default class StubUser implements ILoaderUser{
 
+    skin:Skin=new Skin(1, "Bob","https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/typescript/bob_party/assets/BobsSkins/BobClassic.png", 0);
+
+
     tabUS:User[]=[
-        new User("14", "leBg", "MdpDeOuf", "ouioui", "grand", new Date(2022,12,12), 12222, 123324, 12, new Skin("S0001", "Bob",require('bob_party/assets/BobsSkins/BobClassic.png'), 0), [new Skin("S0001", "Bob",require('bob_party/assets/BobsSkins/BobClassic.png'), 0)]),
-        new User("48", "WeshWesh", "MdpDeOuf", "ouioui", "grand", new Date(2022,12,12), 12222, 123324, 12, new Skin("S0001", "Bob",require('bob_party/assets/BobsSkins/BobClassic.png'), 0), [new Skin("S0001", "Bob",require('bob_party/assets/BobsSkins/BobClassic.png'), 0)]),
-        new User("17", "Alban", "oui", "ouioui", "homme", new Date(2022,12,12), 555, 667, 12, new Skin("S0001", "Bob",require('bob_party/assets/BobsSkins/BobClassic.png'), 0), [new Skin("S0001", "Bob",require('bob_party/assets/BobsSkins/BobClassic.png'), 0)],),
-        new User("17", "Fefe63", "jesuishm", "ouioui", "homme", new Date(2022,12,12), 12222, 123324, 12, new Skin("S0001", "Bob",require('bob_party/assets/BobsSkins/BobClassic.png'), 0), [new Skin("S0001", "Bob",require('bob_party/assets/BobsSkins/BobClassic.png'), 0)]),
+        new User(1, "leBg", "MdpDeOuf", "ouioui", "grand", new Date(2022,12,12), 12222, 123324, 12, this.skin, [this.skin]),
+        new User(2, "WeshWesh", "MdpDeOuf", "ouioui", "grand", new Date(2022,12,12), 12222, 123324, 12, this.skin, [this.skin]),
     ];
 
     async loadAllUser(): Promise<User[]> {
         return this.tabUS;
     }
-    async loadByID(id: string): Promise<User | null> {
+    async loadByID(id: number): Promise<User | null> {
         for(let u of this.tabUS){
             if (u.getId()==id){
                 return u;
@@ -57,7 +58,7 @@ export default class StubUser implements ILoaderUser{
         return tabUser;
     }
 
-    async loadLastId(): Promise<string> {
+    async loadLastId(): Promise<number> {
         throw new Error("Method not implemented.");
     }
     

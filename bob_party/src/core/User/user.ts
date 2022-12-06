@@ -5,7 +5,7 @@ import { TextBase } from 'react-native';
 
 export class User{
 
-    readonly id: string;
+    readonly id: number;
     private username: string;
     private password: string;
     private nationality: string;
@@ -18,7 +18,7 @@ export class User{
     private tabSkin: Skin[];
 
     /* Consturctor of the class */
-    constructor(id: string, username: string, password:string, nationality: string, sexe: string, dateOfBirth: Date, currentCoins: number, totalCoins: number,
+    constructor(id: number, username: string, password:string, nationality: string, sexe: string, dateOfBirth: Date, currentCoins: number, totalCoins: number,
                 nbGamesPlayed:number, currentSkin: Skin, tabSkin: Skin[]){
                     this.id=id;
                     this.username=username;

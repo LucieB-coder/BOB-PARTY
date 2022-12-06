@@ -1,17 +1,17 @@
 import { ImageSourcePropType } from 'react-native';
-import { Game } from './game';
-import { User } from "./User/user";
+import { Game } from '../game';
+import { User } from "../User/user";
 
 
 export abstract class Match{
-    readonly code:string;
-    private inGame:Boolean;
+    readonly code:number;
+    private inGame:Boolean=false;
     private tabUsers:User[];
     private theGame:Game;
 
-    constructor(code:string, inGame:Boolean, tabUser:User[], game:Game){
+    constructor(code:number, inGame:Boolean, tabUser:User[], game:Game){
         this.code=code;
-        this.inGame=false;
+        this.inGame=inGame;
         this.tabUsers=[...tabUser];
         this.theGame=game;
     }

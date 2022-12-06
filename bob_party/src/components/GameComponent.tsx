@@ -19,10 +19,10 @@ FC<{game: Game, nav: any}> =
 {      
     return (
         <View>
-            <Pressable onPress={() => nav.navigate('')}>
+            <Pressable onPress={() => nav.navigate("CookieClicker")}>
                 <Image
                     style={styles.image}
-                    source={game.getImageSource()}
+                    source={{uri: game.getImageSource()}}
                 />
                 <Text style={styles.name}>{game.getName()}</Text>
             </Pressable>

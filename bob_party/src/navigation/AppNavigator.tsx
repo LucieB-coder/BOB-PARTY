@@ -12,7 +12,7 @@ import SkinList from '../screens/SkinList'
 import GameChoice from '../screens/GameChoice'
 import SignIn from '../screens/SignIn'
 import SignUp from '../screens/SignUp'
-
+import CookieClicker from '../Games/CookieClicker/CookieClicker'
 
 
 const HomeStack = createStackNavigator();
@@ -25,7 +25,7 @@ function HomeStackScreen() {
     <HomeStack.Navigator screenOptions={{ headerShown: false}}>
       <HomeStack.Screen name="Home" component={Home} options={{animationEnabled: false,}}/>
       <HomeStack.Screen name="Settings" component={Settings} />
-      <HomeStack.Screen name='GameChoice' component={GameChoice} options={{animationEnabled: false,}}/>
+      <HomeStack.Screen name="GameChoice" component={GameChoice} options={{animationEnabled: false,}}/>
     </HomeStack.Navigator>
   );
 }

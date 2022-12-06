@@ -16,7 +16,7 @@ let tabConv:Conversation[]=[];
 const msc = require('../../assets/Icons/FondGris.png');
 
 //const UserActu=new User("14", "leBg", "MdpDeOuf", "ouioui", "grand",  new Date(2022,12,12), 12222, 123324, 12, tabSkinApp[0], tabSkinApp, tabConv);
-const cookieClicker= new GameSolo("1", "Cookie Clicker", require('../../assets/Icons/UnSelected/Gamepad.png'), "/Games/CookieClicker/cookieClicker.tsx", 1, 1, new Map<number,number>);
+const cookieClicker= new GameSolo(1, "Cookie Clicker", "https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/typescript/bob_party/assets/BobsSkins/BobYellowGreenBlueHeart.png", "/Games/CookieClicker/cookieClicker.tsx", 1, 1, new Map<number,number>);
 function GameChoice(props: { navigation: any; }) {
     const { navigation } = props
     return (

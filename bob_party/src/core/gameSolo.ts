@@ -4,7 +4,7 @@ import { Game } from './game'
 export class GameSolo extends Game{
     readonly ptsToCoins:Map<number,number>
 
-    constructor(id:string, name:string, imageSource:ImageSourcePropType, gameSource:string, nbPlayerMin:number, nbPlayerMax:number, ptsToCoins:Map<number,number>){
+    constructor(id:number, name:string, imageSource:string, gameSource:string, nbPlayerMin:number, nbPlayerMax:number, ptsToCoins:Map<number,number>){
         super(id, name, imageSource, gameSource, nbPlayerMin,nbPlayerMax);
         this.ptsToCoins=ptsToCoins;
     }

@@ -4,8 +4,8 @@ import ISaverUser from "./ISaverUser";
 
 export default class FakeSaverUser implements ISaverUser{
     
-    async saveUser(u: User): Promise<void> {
-        return;
+    async saveUser(username:string, password:string, nationality:string, sexe:string, date:Date): Promise<User | null> {
+        return null;
     }
     async deleteUser(u: User): Promise<void> {
         return;

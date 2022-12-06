@@ -7,7 +7,7 @@ export default interface ISaverUser{
      * u the user we want to save
      */
 
-    saveUser(u:User | null): Promise<void>;
+    saveUser(username:string, password:string, nationality:string, sexe:string, date:Date): Promise<User | null>;
 
      /**
       * deleteUser methode that delete a User in the data management system

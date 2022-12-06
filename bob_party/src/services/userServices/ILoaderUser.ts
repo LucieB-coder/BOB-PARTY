@@ -1,5 +1,5 @@
 import { Conversation } from "../../core/conversation";
-import { Match } from "../../core/match";
+import { Match } from "../../core/Match/match";
 import { User } from "../../core/User/user";
 
 export default interface ILoaderUser{
@@ -15,7 +15,7 @@ export default interface ILoaderUser{
      * id the id we want to search
      * return a User if found, if not null
      */
-    loadByID(id:string): Promise<User | null>;
+    loadByID(id:number): Promise<User | null>;
 
     /**
      * loadByUsername methode that load a user from the data management system by his username
@@ -48,5 +48,5 @@ export default interface ILoaderUser{
      * loadLastId methode that load the last id used to create a user
      * return a String
      */
-    loadLastId(): Promise<string>;
+    loadLastId(): Promise<number>;
 }

@@ -1,6 +1,6 @@
 import tabSkinApp from "../../constSkin";
 import { Conversation } from "../../core/conversation";
-import { Match } from "../../core/match";
+import { Match } from "../../core/Match/match";
 import { Skin } from "../../core/skin";
 import { User } from "../../core/User/user";
 import ILoaderUser from "./ILoaderUser";
@@ -37,14 +37,14 @@ export default class LoaderUserApi implements ILoaderUser{
          .then(function (response: any) {
             if (response.data != null && response.data != undefined){
                 Object.assign(test, response.data);
-                us.push(new User("17", "Fefe63", "jesuishm", "ouioui", "homme", new Date(2022,12,12), 12222, 123324, 12, tabSkinApp[6], tabSkinApp));
+                us.push(new User(1, "Fefe63", "jesuishm", "ouioui", "homme", new Date(2022,12,12), 12222, 123324, 12, tabSkinApp[6], tabSkinApp));
             }
         });
     return us;
     }
 
     
-    async loadByID(id: string): Promise<User | null> {
+    async loadByID(id: number): Promise<User | null> {
         let test = new Test(true, 0, "wesh", 0);
         try{
             await this.axios({
@@ -64,7 +64,7 @@ export default class LoaderUserApi implements ILoaderUser{
         }catch (error) {
             console.error(error);
         }
-        return new User("17", "Bite", "jesuishm", "ouioui", "homme", new Date(2022,12,12), 123, 123324, 12, tabSkinApp[6], tabSkinApp);
+        return new User(1, "Bite", "jesuishm", "ouioui", "homme", new Date(2022,12,12), 123, 123324, 12, tabSkinApp[6], tabSkinApp);
     }
 
 
@@ -102,8 +102,9 @@ export default class LoaderUserApi implements ILoaderUser{
               }
          })
          .then(function (response: any) {
-            const tabTest=[new Skin("S0001", "Bob",require('bob_party/assets/BobsSkins/BobClassic.png'), 0),     new Skin("S0002", "Bob Blue",require('bob_party/assets/BobsSkins/BobBlue.png'), 100)];
-            user=new User("U0001", username, password, "ouioui", "homme", new Date(2022,12,12), 200, 123324, 12, new Skin("S0001", "Bob",require('bob_party/assets/BobsSkins/BobClassic.png'), 0), tabTest);
+            const tabTest=[new Skin(1, "Bob","https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/typescript/bob_party/assets/BobsSkins/BobClassic.png", 0),
+            new Skin(2, "Bob Blue","https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/typescript/bob_party/assets/BobsSkins/BobBlue.png", 100)];
+            user=new User(1, username, password, "ouioui", "homme", new Date(2022,12,12), 200, 123324, 12, new Skin(1, "Bob","https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/typescript/bob_party/assets/BobsSkins/BobClassic.png", 0), tabTest);
         });
         return user;
     }
@@ -118,7 +119,7 @@ export default class LoaderUserApi implements ILoaderUser{
     }
 
 
-    async loadLastId(): Promise<string> {
+    async loadLastId(): Promise<number> {
         let test = new Test(true, 0, "wesh", 0);
         try {
             const response = await this.axios.get('https://jsonplaceholder.typicode.com/todos/1');
@@ -126,7 +127,7 @@ export default class LoaderUserApi implements ILoaderUser{
           } catch (error) {
             console.error(error);
           }
-          return "U0001";
+          return 1;
     }
 
 

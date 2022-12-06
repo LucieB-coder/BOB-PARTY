@@ -103,7 +103,7 @@ FC<{nav : any, skin: Skin, state: String}> =
         case 'icon':
             return (
                 <View>
-                    <Image source={skin.getSkinSource()} style={styles.icon}/>
+                    <Image source={{uri: skin.getSkinSource()}} style={styles.icon}/>
                 </View>
             )
         
@@ -113,7 +113,7 @@ FC<{nav : any, skin: Skin, state: String}> =
                     <Text style={styles.nomSkin}>{skin.getSkinName()}</Text>
                     <Image
                         style={styles.imageSkin}
-                        source={skin.getSkinSource()}
+                        source={{uri: skin.getSkinSource()}}
                     />
                     <Text style={styles.nomSkin}>100€</Text>
                 </Pressable>
@@ -124,7 +124,7 @@ FC<{nav : any, skin: Skin, state: String}> =
                     <Text style={styles.nomSkin}>{skin.getSkinName()}</Text>
                     <Image
                         style={styles.imageSkin}
-                        source={skin.getSkinSource()}
+                        source={{uri: skin.getSkinSource()}}
                     />
                 </Pressable>
             )
@@ -134,7 +134,7 @@ FC<{nav : any, skin: Skin, state: String}> =
                     <Text style={styles.nomSkin}>{skin.getSkinName()}</Text>
                     <Image
                         style={styles.imageSkin}
-                        source={skin.getSkinSource()}
+                        source={{uri: skin.getSkinSource()}}
                     />
                 </Pressable>
             )
@@ -142,7 +142,7 @@ FC<{nav : any, skin: Skin, state: String}> =
             return(
                 <Image
                         style={styles.imageSkin}
-                        source={skin.getSkinSource()}
+                        source={{uri: skin.getSkinSource()}}
                 />
             )
     }
