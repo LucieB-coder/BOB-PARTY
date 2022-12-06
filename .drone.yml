@@ -44,10 +44,3 @@ steps:
         CONTAINERNAME: bob_party_container
         COMMAND: create
         OVERWRITE: true
-
-  # - name: make-sonar-test
-  #   CODEFIRST_CLIENTDRONE_ENV_SONAR_TOKEN: 
-  #     from_secret: SONAR_TOKEN
-  #   image: sonarqube:9.7.1-community
-  #   commands:
-  #     - sonar-scanner.bat -D"sonar.projectKey=BOB-PARTY" -D"sonar.sources=." -D"sonar.host.url=https://codefirst.iut.uca.fr/sonar" -D"sonar.login=$[SONAR_TOKEN]"
