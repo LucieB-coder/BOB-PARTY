@@ -12,12 +12,11 @@ import { Conversation } from '../core/conversation';
 import { GameSolo } from '../core/gameSolo';
 let tabConv:Conversation[]=[];
 
-
-const cookieClicker= new GameSolo(1, "Cookie Clicker", "https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/typescript/bob_party/assets/ImagesJeux/Pong.png", "/Games/CookieClicker/cookieClicker.tsx", 1, 1, new Map([
-  [100, 100],
-  [1000, 300],
-  [10000, 400]
-]));
+const map = new Map();
+map.set(0,0);
+map.set(15,10);
+map.set(20,15);
+const cookieClicker= new GameSolo(1, "Cookie Clicker", "https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/typescript/bob_party/assets/ImagesJeux/Pong.png", "/Games/CookieClicker/cookieClicker.tsx", 1, 1, map);
 
 
 function GameChoice(props: { navigation: any; }) {

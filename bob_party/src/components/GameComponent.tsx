@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react"
+import { FC, ReactNode, useCallback } from "react"
 import { Pressable, Image, ImageStyle, Text, View, Alert, ImageSourcePropType, TextStyle } from "react-native"
 import React from "react"
 import { trace } from "console"
@@ -26,7 +26,9 @@ FC<{game: Game, nav: any}> =
 
     const setMatch = useMatchStore((state) => state.setMatch);
 
-    async function createNewMatchSolo(game : Game, nav: any) {
+
+    const createNewMatchSolo = useCallback(async (game : Game, nav: any) => {
+
         const m=new MatchCreator();
         let tmp=MANAGER_USER.getCurrentUser();
         if (tmp!=null){
@@ -35,7 +37,7 @@ FC<{game: Game, nav: any}> =
             setMatch(match);
             nav.navigate("GameSolo");
         }
-    }
+    }, []);
 
     
     return (
