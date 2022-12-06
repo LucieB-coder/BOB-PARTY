@@ -16,5 +16,3 @@ ADD data.sql create.sql
 
 RUN sed -i 's/MYSQL_DATABASE/'$MYSQL_DATABASE'/g' create.sql
 RUN cp create.sql /docker-entrypoint-initdb.d
-
-EXPOSE 3306
