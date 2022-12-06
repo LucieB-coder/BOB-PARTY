@@ -15,10 +15,10 @@ steps:
         # OVERWRITE: false
         PRIVATE: true
         environment: 
-        ROOT_PASSWORD: $ROOT_PASSWORD
-        DATABASE: $MYSQL_DATABASE
-        USER: ${MYSQL_USER}
-        PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        MYSQL_ROOT_PASSWORD: $ROOT_PASSWORD
+        MYSQL_DATABASE: $MYSQL_DATABASE
+        MYSQL_USER: ${MYSQL_USER}
+        MYSQL_PASSWORD: ${MYSQL_ROOT_PASSWORD}
 
 
 
