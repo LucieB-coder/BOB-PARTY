@@ -43,7 +43,7 @@ FC<{game: Game, nav: any}> =
             <Pressable onPress={() => createNewMatchSolo(game, nav)}>
                 <Image
                     style={styles.image}
-                    source={{uri: useMatchStore().match?.getGame().getImageSource()}}
+                    source={{uri: game.getImageSource()}}
                 />
                 <Text style={styles.name}>{game.getName()}</Text>
             </Pressable>

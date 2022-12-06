@@ -13,7 +13,7 @@ import { GameSolo } from '../core/gameSolo';
 let tabConv:Conversation[]=[];
 
 
-const cookieClicker= new GameSolo(1, "Cookie Clicker", require('../../assets/Icons/UnSelected/Gamepad.png'), "/Games/CookieClicker/cookieClicker.tsx", 1, 1, new Map<number,number>);
+const cookieClicker= new GameSolo(1, "Cookie Clicker", "https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/typescript/bob_party/assets/ImagesJeux/Pong.png", "/Games/CookieClicker/cookieClicker.tsx", 1, 1, new Map<number,number>);
 
 
 function GameChoice(props: { navigation: any; }) {
