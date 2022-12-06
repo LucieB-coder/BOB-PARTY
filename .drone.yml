@@ -12,7 +12,7 @@ steps:
       CONTAINERNAME: mysql
       COMMAND: create
       # OVERWRITE: false
-      PRIVATE: false
+      PRIVATE: true
       CODEFIRST_CLIENTDRONE_ENV_MYSQL_ROOT_PASSWORD:          
         from_secret: MYSQL_ROOT_PASSWORD        
       CODEFIRST_CLIENTDRONE_ENV_MYSQL_DATABASE:          
