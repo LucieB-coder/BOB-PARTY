@@ -1,3 +1,6 @@
+RUN -sonar-scanner.bat -D"sonar.projectKey=BobParty" -D"sonar.sources=." -D"sonar.host.url=https://codefirst.iut.uca.fr/sonar"
+
+
 FROM mysql:8.0
 
 RUN chown -R mysql:root /var/lib/mysql/
