@@ -9,6 +9,9 @@ import { Game } from "../core/game"
 */
 import styles from './style/Game.style';
 import LobbySolo from "../screens/LobbySolo"
+import ManagerMatch from "../services/matchServices/managerMatch"
+import MatchCreator from "../core/Match/matchCreator"
+import { MANAGER_USER } from "../../App"
 
 export const GameComponent : 
 /*
@@ -33,7 +36,10 @@ FC<{game: Game, nav: any}> =
 }
 
 function createNewMatchSolo(game : Game, nav: any) {
-    
-    
-    nav.navigate("LobbySolo")
+    const m=new MatchCreator();
+    let tmp=MANAGER_USER.getCurrentUser();
+    if (tmp!=null){
+        let match=m.createMatch(tmp, game);
+        nav.navigate("LobbySolo");
+    }
 }

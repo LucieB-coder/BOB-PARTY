@@ -6,7 +6,7 @@ import { Match } from "./match";
 
 export default class MatchCreator{
 
-    async createMatchSolo(u:User, g:Game): Promise<Match>{
+    async createMatch(u:User, g:Game): Promise<Match>{
         return await MANAGER_MATCH.getsaverMatch().saveMatch(u, g);
     }
 }
