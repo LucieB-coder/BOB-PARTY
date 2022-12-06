@@ -19,7 +19,7 @@ steps:
         - MYSQL_PASSWORD=${MYSQL_PASSWORD}
         - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
     ports:
-      - "${MYSQL_PORT}:3306"
+      - "$MYSQL_PORT:3306"
 
 
 # docker image build (at least I'm trying)
