@@ -5,45 +5,41 @@ name: Dockers_Builder
 
 # Creation of the DB docker
 steps:  
-  - name: deploy-mysql-container
-    image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
+  # database container deployment
+  - name: deploy-container-mysql
+    image: mysql
     environment:
-      IMAGENAME: mysql:8.0
-      CONTAINERNAME: mysql
-      COMMAND: create
-      # OVERWRITE: false
-      PRIVATE: true
-      CODEFIRST_CLIENTDRONE_ENV_MYSQL_ROOT_PASSWORD:          
-        from_secret: MYSQL_ROOT_PASSWORD        
-      CODEFIRST_CLIENTDRONE_ENV_MYSQL_DATABASE:          
-        from_secret: MYSQL_DATABASE       
-      CODEFIRST_CLIENTDRONE_ENV_MYSQL_USER:          
-        from_secret: MYSQL_USER       
-      CODEFIRST_CLIENTDRONE_ENV_MYSQL_PASSWORD:          
-        from_secret: MYSQL_PASSWORD
-
-
-# Creation of a hosting docker for our application
-  - name: deploy-container
-    image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
-    environment:
-      IMAGENAME: reactnativecommunity/react-native-android:2.1
-      CONTAINERNAME: container_react
-      COMMAND: create
-      PRIVATE: true
-      OVERWRITE: true
+        IMAGENAME: mariadb:10
+        CONTAINERNAME: mysql
+        COMMAND: create
+        # OVERWRITE: false
+        PRIVATE: false
+        environment: 
+        MYSQL_ROOT_PASSWORD: $ROOT_PASSWORD
+        MYSQL_DATABASE: $MYSQL_DATABASE
+        MYSQL_USER: ${MYSQL_USER}
+        MYSQL_PASSWORD: ${MYSQL_ROOT_PASSWORD}
 
 
 
-# docker image build
-  - name: docker-build-and-push
-    image: plugins/docker
-    settings:
-       dockerfile: Dockerfile
-       context: .
-       registry: hub.codefirst.iut.uca.fr
-       repo: hub.codefirst.iut.uca.fr/lilian.breton/BobParty
-       username:
-         from_secret: SECRET_REGISTRY_USERNAME
-       password:
-         from_secret: SECRET_REGISTRY_PASSWORD
+# docker image build (at least I'm trying)
+  # - name: docker-build-and-push
+  #   image: plugins/docker
+  #   settings:
+  #      dockerfile: Dockerfile
+  #      context: .
+  #      registry: hub.codefirst.iut.uca.fr
+  #      repo: hub.codefirst.iut.uca.fr/lilian.breton/bobparty
+  #      username:
+  #        from_secret: SECRET_REGISTRY_USERNAME
+  #      password:
+  #        from_secret: SECRET_REGISTRY_PASSWORD
+
+# container deployment
+  # - name: deploy-bob_party-container
+  #   image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
+  #   environment:
+  #       IMAGENAME: hub.codefirst.iut.uca.fr/lilian.breton/bobparty:latest
+  #       CONTAINERNAME: bob_party_container
+  #       COMMAND: create
+  #       OVERWRITE: true

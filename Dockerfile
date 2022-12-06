@@ -1,11 +1,18 @@
-FROM node:17-alpine
+FROM mysql:8.0
 
-WORKDIR /app
+RUN chown -R mysql:root /var/lib/mysql/
 
-RUN npm install
+ARG MYSQL_DATABASE
+ARG MYSQL_USER
+ARG MYSQL_PASSWORD
+ARG MYSQL_ROOT_PASSWORD
 
-COPY . .
+ENV MYSQL_DATABASE=$MYSQL_DATABASE
+ENV MYSQL_USER=$MYSQL_USER
+ENV MYSQL_PASSWORD=$MYSQL_PASSWORD
+ENV MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
 
-EXPOSE 3000
+ADD data.sql create.sql
 
-CMD ["npm", "start"]
+RUN sed -i 's/MYSQL_DATABASE/'$MYSQL_DATABASE'/g' create.sql
+RUN cp create.sql /docker-entrypoint-initdb.d
