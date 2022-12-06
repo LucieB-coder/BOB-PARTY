@@ -13,15 +13,11 @@ steps:
       COMMAND: create
       # OVERWRITE: false
       PRIVATE: true
-      CODEFIRST_CLIENTDRONE_ENV_MYSQL_ROOT_PASSWORD:          
-        from_secret: MYSQL_ROOT_PASSWORD        
-      CODEFIRST_CLIENTDRONE_ENV_MYSQL_DATABASE:          
-        from_secret: MYSQL_DATABASE       
-      CODEFIRST_CLIENTDRONE_ENV_MYSQL_USER:          
-        from_secret: MYSQL_USER       
-      CODEFIRST_CLIENTDRONE_ENV_MYSQL_PASSWORD:          
-        from_secret: MYSQL_PASSWORD
-      MYSQL_ALLOW_EMPTY_PASSWORD : true
+      args:
+        - MYSQL_DATABASE=${MYSQL_DATABASE}
+        - MYSQL_USER=${MYSQL_USER}
+        - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+        - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
 
 
 # docker image build (at least I'm trying)
