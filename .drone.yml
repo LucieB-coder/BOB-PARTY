@@ -21,6 +21,7 @@ steps:
         from_secret: MYSQL_USER       
       CODEFIRST_CLIENTDRONE_ENV_MYSQL_PASSWORD:          
         from_secret: MYSQL_PASSWORD
+      MYSQL_ALLOW_EMPTY_PASSWORD : true
 
 
 # docker image build (at least I'm trying)
