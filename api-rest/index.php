@@ -52,6 +52,7 @@
     if($method_name == null){
         header("HTTP/1.0 400 Request Name Empty");
         http_response_code(400);
+        
     }
     switch ($request_method){
         case 'GET':
@@ -60,16 +61,19 @@
                     header("HTTP/1.0 400 Id not given");
                     http_response_code(400);
                 } else{
-                    $id = (string)$url[3];
+                    $id = (int)$url[3];
                     $user = $usergw->getUserById($id);
-                    echo json_encode($user);
+                    header('Content-Type: application/json');
+                    echo json_encode($user, JSON_PRETTY_PRINT);
+                    http_response_code(200);
                 }
             }
             elseif($method_name === "getUserByUsername"){ // test : OK
                 $username = !empty($url[3]) ? (string) $url[3] : null;
                 if ($username !== null){
                     $user =$usergw->getUserByUsername($username);
-                    echo json_encode($user);
+                    header('Content-Type: application/json');
+                    echo json_encode($user, JSON_PRETTY_PRINT);
                 } else{
                     header("HTTP/1.0 400 Username not given");
                     http_response_code(400);
@@ -80,7 +84,9 @@
                 $password = !empty($url[4]) ? (string) $url[4] : null;
                 if ($username != null || $password != null){
                     $user =$usergw->getUserForConnection($username,$password);
-                    echo json_encode($user);
+                    header('Content-Type: application/json');
+                    echo json_encode($user, JSON_PRETTY_PRINT);
+                    http_response_code(200);
                 } else{
                     header("HTTP/1.0 400 Username or password not given");
                     http_response_code(400);
@@ -88,37 +94,47 @@
             }
             elseif($method_name === "getSkins"){ // test : OK
                 $tabSkin = $skingw->getSkins();
-                echo json_encode($tabSkin);
+                header('Content-Type: application/json');
+                echo json_encode($tabSkin, JSON_PRETTY_PRINT);
+                http_response_code(200);
             }
             elseif($method_name === "getGames"){ // test : OK
                 $tabGame = $gamegw->getGames();
-                echo json_encode($tabGame);
+                header('Content-Type: application/json');
+                echo json_encode($tabGame, JSON_PRETTY_PRINT);
+                http_response_code(200);
             }
             elseif($method_name === "getGameById"){ // test : OK
-                $id = !empty($url[3]) ? (string) $url[3] : null;
+                $id = !empty($url[3]) ? (int) $url[3] : null;
                 if ($id !== null){
                     $game = $gamegw->getGameById($id);
-                    echo json_encode($game);
+                    header('Content-Type: application/json');
+                    echo json_encode($game, JSON_PRETTY_PRINT);
+                    http_response_code(200);
                 } else{
                     header("HTTP/1.0 400 Id not given");
                     http_response_code(400);
                 } 
             }
             elseif($method_name === "getMatchById"){ // test : OK
-                $id = !empty($url[3]) ? (string) $url[3] : null;
+                $id = !empty($url[3]) ? (int) $url[3] : null;
                 if ($id !== null){
                     $match = $matchgw->getMatchById($id);
-                    echo json_encode($match);
+                    header('Content-Type: application/json');
+                    echo json_encode($match, JSON_PRETTY_PRINT);
+                    http_response_code(200);
                 } else{
                     header("HTTP/1.0 400 Id not given");
                     http_response_code(400);
                 } 
             }
             elseif($method_name === "getConversations"){ // tests : OK
-                $id = !empty($url[3]) ? (string) $url[3] : null;
+                $id = !empty($url[3]) ? (int) $url[3] : null;
                 if ($id !== null){
                     $conversations = $conversationgw->getConversations($id);
-                    echo json_encode($conversations);
+                    header('Content-Type: application/json');
+                    echo json_encode($conversations, JSON_PRETTY_PRINT);
+                    http_response_code(200);
                 } else{
                     header("HTTP/1.0 400 Id not given");
                     http_response_code(400);
@@ -140,12 +156,14 @@
                 $sex = !empty($url[6]) ? (string) $url[6] : null;
                 $dateOfBirth = !empty($url[7]) ? (string) $url[7] : null;
                 $usergw->postUser($username,$password,$nationality,$sex,$dateOfBirth);
+                http_response_code(200);
             }
             elseif($method_name === "postMatch"){ // test : OK
-                $idGame = !empty($url[3]) ? (string) $url[3] : null;
-                $idCreator = !empty($url[4]) ? (string) $url[4] : null;
+                $idGame = !empty($url[3]) ? (int) $url[3] : null;
+                $idCreator = !empty($url[4]) ? (int) $url[4] : null;
                 if ($idGame != null || $idCreator != null){
                     $match =$matchgw->postMatch($idGame,$idCreator);
+                    http_response_code(200);
                 } else{
                     header("HTTP/1.0 400 idGame or idCreator not given");
                     http_response_code(400);
@@ -153,9 +171,10 @@
             }
             elseif($method_name === "postConversation"){ // test : OK
                 $name = !empty($url[3]) ? (string) $url[3] : null;
-                $idCreator = !empty($url[4]) ? (string) $url[4] : null;
+                $idCreator = !empty($url[4]) ? (int) $url[4] : null;
                 if ($name != null || $idCreator != null){
                     $conversationgw->postConversation($name,$idCreator);
+                    http_response_code(200);
                 } else{
                     header("HTTP/1.0 400 name or creator not given");
                     http_response_code(400);
@@ -172,78 +191,86 @@
                     header("HTTP/1.0 400 Invalid number of arguments");
                     http_response_code(400);
                 }
-                $id = !empty($url[3]) ? (string) $url[3] : null;
+                $id = !empty($url[3]) ? (int) $url[3] : null;
                 $username = !empty($url[4]) ? (string) $url[4] : null;
                 $password = !empty($url[5]) ? (string) $url[5] : null;
-                $nbCurrentCoins = !empty($url[6]) ? (string) $url[6] : null;
-                $totalnbCoins = !empty($url[7]) ? (string) $url[7] : null;
-                $nbGames = !empty($url[8]) ? (string) $url[8] : null;
-                $currentSkin = !empty($url[9]) ? (string) $url[9] : null;
+                $nbCurrentCoins = !empty($url[6]) ? (int) $url[6] : null;
+                $totalnbCoins = !empty($url[7]) ? (int) $url[7] : null;
+                $nbGames = !empty($url[8]) ? (int) $url[8] : null;
+                $currentSkin = !empty($url[9]) ? (int) $url[9] : null;
                 $usergw->putUser($id,$username,$password,$nbCurrentCoins,$totalnbCoins,$nbGames,$currentSkin);
+                http_response_code(200);
             }
             elseif($method_name === "putSkinList"){ // test : OK
-                $idUser = !empty($url[3]) ? (string) $url[3] : null;
-                $idSkin = !empty($url[4]) ? (string) $url[4] : null;
+                $idUser = !empty($url[3]) ? (int) $url[3] : null;
+                $idSkin = !empty($url[4]) ? (int) $url[4] : null;
                 if ($idUser != null || $idSkin != null){
                     $usergw->putSkinList($idUser,$idSkin);
+                    http_response_code(200);
                 } else{
                     header("HTTP/1.0 400 idSkin or idUser not given");
                     http_response_code(400);
                 }
             }
             elseif($method_name === "putMatch"){ // test : OK
-                $id = !empty($url[3]) ? (string) $url[3] : null;
+                $id = !empty($url[3]) ? (int) $url[3] : null;
                 if ($id !== null){
                     $matchgw->putMatch($id);
+                    http_response_code(200);
                 } else{
                     header("HTTP/1.0 400 Id not given");
                     http_response_code(400);
                 } 
             }
             elseif($method_name === "addUserToMatch"){ // test : OK
-                $idMatch = !empty($url[3]) ? (string) $url[3] : null;
-                $idUser = !empty($url[4]) ? (string) $url[4] : null;
+                $idMatch = !empty($url[3]) ? (int) $url[3] : null;
+                $idUser = !empty($url[4]) ? (int) $url[4] : null;
                 if ($idUser != null || $idMatch != null){
                     $matchgw->addUserToMatch($idMatch,$idUser);
+                    http_response_code(200);
                 } else{
                     header("HTTP/1.0 400 idSkin or idUser not given");
                     http_response_code(400);
                 }
             }
             elseif($method_name === "deleteUserFromMatch"){ // test : OK
-                $idUser = !empty($url[3]) ? (string) $url[3] : null;
+                $idUser = !empty($url[3]) ? (int) $url[3] : null;
                 if ($idUser != null){
                     $matchgw->deleteUserFromMatch($idUser);
+                    http_response_code(200);
                 } else{
                     header("HTTP/1.0 400 idUser not given");
                     http_response_code(400);
                 }
             }
             elseif($method_name === "putConversation"){ // test : OK
-                $id = !empty($url[3]) ? (string) $url[3] : null;
+                $id = !empty($url[3]) ? (int) $url[3] : null;
                 $newName = !empty($url[4]) ? (string) $url[4] : null;
                 if ($id != null && $newName != null){
                     $conversationgw->putConversation($id,$newName);
+                    http_response_code(200);
                 } else{
                     header("HTTP/1.0 400 id or new name not given");
                     http_response_code(400);
                 }
             }
             elseif($method_name === "addUserToConversation"){ // test : OK
-                $idConv = !empty($url[3]) ? (string) $url[3] : null;
-                $idUser = !empty($url[4]) ? (string) $url[4] : null;
+                $idConv = !empty($url[3]) ? (int) $url[3] : null;
+                $idUser = !empty($url[4]) ? (int) $url[4] : null;
                 if ($idConv != null && $idUser != null){
                     $conversationgw->addUserToConversation($idConv,$idUser);
+                    http_response_code(200);
                 } else{
                     header("HTTP/1.0 400 id conv or id user not given");
                     http_response_code(400);
                 }
             }
             elseif($method_name === "deleteUserFromConversation"){ // test : OK
-                $idConv = !empty($url[3]) ? (string) $url[3] : null;
-                $idUser = !empty($url[4]) ? (string) $url[4] : null;
+                $idConv = !empty($url[3]) ? (int) $url[3] : null;
+                $idUser = !empty($url[4]) ? (int) $url[4] : null;
                 if ($idConv != null && $idUser != null){
                     $conversationgw->deleteUserFromConversation($idConv,$idUser);
+                    http_response_code(200);
                 } else{
                     header("HTTP/1.0 400 id conv or id user not given");
                     http_response_code(400);
@@ -255,6 +282,7 @@
                 $idConv=!empty($url[5]) ? (int) $url[5] : null;
                 if ($msg != null && $idSender != null && $idConv != null){
                     $conversationgw->addMessageToConversation($msg,$idSender,$idConv);
+                    http_response_code(200);
                 } else{
                     header("HTTP/1.0 400 id conv or message or sender not given");
                     http_response_code(400);
@@ -267,27 +295,30 @@
             break;
         case 'DELETE':
             if($method_name === "deleteUser"){ // test : OK
-                $id = !empty($url[3]) ? (string) $url[3] : null;
+                $id = !empty($url[3]) ? (int) $url[3] : null;
                 if($id!=null){
                     $usergw->deleteUser($id);
+                    http_response_code(200);
                 }else{
                     header("HTTP/1.0 400 Id not given");
                     http_response_code(400);
                 }
             }
             elseif($method_name == "deleteMatch"){ // test : OK
-                $id = !empty($url[3]) ? (string) $url[3] : null;
+                $id = !empty($url[3]) ? (int) $url[3] : null;
                 if($id!=null){
                     $matchgw->deleteMatch($id);
+                    http_response_code(200);
                 }else{
                     header("HTTP/1.0 400 Id not given");
                     http_response_code(400);
                 }
             }
             elseif($method_name === "deleteConversation"){ // test : OK
-                $id = !empty($url[3]) ? (string) $url[3] : null;
+                $id = !empty($url[3]) ? (int) $url[3] : null;
                 if($id!=null){
                     $conversationgw->deleteConversation($id);
+                    http_response_code(200);
                 }else{
                     header("HTTP/1.0 400 Id not given");
                     http_response_code(400);
