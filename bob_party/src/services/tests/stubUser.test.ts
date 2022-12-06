@@ -7,6 +7,7 @@ import { Match } from '../../core/match';
 import { Conversation } from '../../core/conversation';
 
 // Instances
+const img = "";
 let stub:StubUser = new StubUser();
 let map = new Map<number, number>([
     [50, 3],
@@ -15,14 +16,14 @@ let map = new Map<number, number>([
     [150, 6]
 ]);
 let tabUS:User[] = [
-    new User("U0001", "WeshWesh", "MdpDeOuf", "ouioui", "grand", new Date(2022,12,12), 12222, 123324, 12, new Skin("S0001", "Bob",require('bob_party/assets/BobsSkins/BobClassic.png'), 0), [new Skin("S0001", "Bob",require('bob_party/assets/BobsSkins/BobClassic.png'), 0)]),
-    new User("U0002", "leBg", "MdpDeOuf", "ouioui", "grand", new Date(2022,12,12), 12222, 123324, 12, new Skin("S0001", "Bob",require('bob_party/assets/BobsSkins/BobClassic.png'), 0), [new Skin("S0001", "Bob",require('bob_party/assets/BobsSkins/BobClassic.png'), 0)]),
-    new User("U0003", "Alban", "oui", "ouioui", "homme", new Date(2022,12,12), 555, 667, 12, new Skin("S0001", "Bob",require('bob_party/assets/BobsSkins/BobClassic.png'), 0), [new Skin("S0001", "Bob",require('bob_party/assets/BobsSkins/BobClassic.png'), 0)],),
-    new User("U0004", "Fefe63", "jesuishm", "ouioui", "homme", new Date(2022,12,12), 12222, 123324, 12, new Skin("S0001", "Bob",require('bob_party/assets/BobsSkins/BobClassic.png'), 0), [new Skin("S0001", "Bob",require('bob_party/assets/BobsSkins/BobClassic.png'), 0)]),
+    new User("U0001", "WeshWesh", "MdpDeOuf", "ouioui", "grand", new Date(2022,12,12), 12222, 123324, 12, new Skin("S0001", "Bob", img, 0), [new Skin("S0001", "Bob", img, 0)]),
+    new User("U0002", "leBg", "MdpDeOuf", "ouioui", "grand", new Date(2022,12,12), 12222, 123324, 12, new Skin("S0001", "Bob", img, 0), [new Skin("S0001", "Bob", img, 0)]),
+    new User("U0003", "Alban", "oui", "ouioui", "homme", new Date(2022,12,12), 555, 667, 12, new Skin("S0001", "Bob", img, 0), [new Skin("S0001", "Bob", img, 0)],),
+    new User("U0004", "Fefe63", "jesuishm", "ouioui", "homme", new Date(2022,12,12), 12222, 123324, 12, new Skin("S0001", "Bob", img, 0), [new Skin("S0001", "Bob", img, 0)]),
 ];
-let game:GameSolo = new GameSolo('G0001', 'SuperJeu', require('id'), 'source', 1, 1, map);
-let match:Match = new MatchSolo('M0001', tabUS, game);
-let convo:Conversation = new Conversation(tabUS, [], 'superConvo');
+let game:GameSolo = new GameSolo('G0001', 'SuperJeu', img, 'source', 1, 1, map);
+let match:Match = new MatchSolo('M0001', false, tabUS, game);
+let convo:Conversation = new Conversation('C0001', tabUS, [], 'superConvo');
 
 
 // Tests

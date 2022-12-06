@@ -1,11 +1,11 @@
 import { User } from '../User/user';
 import { Skin } from '../Skin';
-import { Conversation } from '../Conversation';
 
 
 // Instances
-let classique = new Skin("S0001", "Bob", require('bob_party/assets/BobsSkins/BobClassic.png'), 0);
-let blue = new Skin("S0002", "Bob Blue", require('bob_party/assets/BobsSkins/BobBlue.png'), 100);
+const img = "";
+let classique = new Skin("S0001", "Bob", img, 0);
+let blue = new Skin("S0002", "Bob Blue", img, 100);
 let tab:Skin[] = [];
 let tab2:Skin[] = [classique, blue];
 let dateBirth = new Date(2010,0o3,0o7);

@@ -1,17 +1,15 @@
-import { Game } from '../game';
-import { GameSolo } from '../GameSolo';
 import { GameMulti } from '../GameMulti';
-import { GameCasino } from '../GameCasino';
 
 
 // Instances
+const img = "";
 let myMap = new Map<number, number>([
     [4, 1],
     [3, 3],
     [2, 5],
     [1, 10]
 ]);
-let game = new GameMulti("GM001", "bo jeu", require('bob_party/assets/ImagesJeux/blackjack.jpg'), "super jeu", 1, 5, myMap);
+let game = new GameMulti("GM001", "bo jeu", img, "super jeu", 1, 5, myMap);
 
 
 // Get tests
@@ -23,7 +21,7 @@ describe('GameMuti get tests', () => {
         expect(game.getName()).toBe('bo jeu');
     })
     it('should return require(blackjack.jpg)', () => {
-        expect(game.getImageSource()).toBe(require('bob_party/assets/ImagesJeux/blackjack.jpg'));
+        expect(game.getImageSource()).toBe(img);
     })
     it('should return super jeu', () => {
         expect(game.getGameSource()).toBe('super jeu');
@@ -42,7 +40,7 @@ describe('GameMuti get tests', () => {
 
 // Setting new values
 game.setGameSource('trop cool le jeu');
-game.setImageSource(require('bob_party/assets/ImagesJeux/JeuDeDame.jpg'));
+game.setImageSource(img);
 game.setName('beau jeu');
 game.setNbPlayerMin(2);
 game.setNbPlayerMax(4);
@@ -54,7 +52,7 @@ describe('GameMulti set tests', () => {
         expect(game.getName()).toBe('beau jeu');
     })
     it('should return require(JeuDeDame.jpg)', () => {
-        expect(game.getImageSource).toBe(require('bob_party/assets/ImagesJeux/JeuDeDame.jpg'));
+        expect(game.getImageSource).toBe(img);
     })
     it('should return trop cool le jeu', () => {
         expect(game.getGameSource()).toBe('trop cool le jeu');

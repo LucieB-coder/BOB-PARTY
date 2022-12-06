@@ -7,6 +7,7 @@ import tabUS from '../../constUser';
 import { Conversation } from '../../core/conversation';
 
 // Instances
+const img = "";
 let loader:ILoaderUser = new LoaderUserApi();
 let map = new Map<number, number>([
     [50, 3],
@@ -14,9 +15,9 @@ let map = new Map<number, number>([
     [100, 5],
     [150, 6]
 ]);
-let game:GameSolo = new GameSolo('G0001', 'SuperJeu', require('id'), 'source', 1, 1, map);
-let match:Match = new MatchSolo('M0001', tabUS, game);
-let convo:Conversation = new Conversation(tabUS, [], 'superConvo');
+let game:GameSolo = new GameSolo('G0001', 'SuperJeu', img, 'source', 1, 1, map);
+let match:Match = new MatchSolo('M0001', false, tabUS, game);
+let convo:Conversation = new Conversation('C0001', tabUS, [], 'superConvo');
 
 
 // Tests

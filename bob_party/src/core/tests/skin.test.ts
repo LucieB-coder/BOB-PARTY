@@ -3,8 +3,8 @@ import { Skin } from '../Skin';
 
 
 // Instance
-
-let classique = new Skin("S0001", "Bob", require('bob_party/assets/BobsSkins/BobClassic.png'), 0);
+const img = "";
+let classique = new Skin("S0001", "Bob", img, 0);
 
 
 
@@ -15,10 +15,10 @@ describe('Skin get tests', () => {
         expect(classique.getSkinId()).toBe('S0001');
     })
     it('should return Bob', () => {
-        expect(classique.getSkinName()).toBe('Bob');
+        expect(classique.getSkinName()).toEqual('Bob');
     })
     it('should return require(BobClassic.png)', () => {
-        expect(classique.getSkinSource()).toBe(require('bob_party/assets/BobsSkins/BobClassic.png'));
+        expect(classique.getSkinSource()).toEqual(require(img));
     })
     it('should return 0', () => {
         expect(classique.getSkinCost()).toBe(0);
@@ -31,7 +31,7 @@ describe('Skin get tests', () => {
 
 classique.setSkinName('Bob Blue');
 classique.setSkinCost(100);
-classique.setSkinSource(require('bob_party/assets/BobsSkins/BobBlue.png'));
+classique.setSkinSource(img);
 
 
 
@@ -42,7 +42,7 @@ describe('Skin set tests', () => {
         expect(classique.getSkinName()).toBe('Bob blue');
     })
     it('should return require(BobBlue.png)', () => {
-        expect(classique.getSkinSource()).toBe(require('bob_party/assets/BobsSkins/BobBlue.png'));
+        expect(classique.getSkinSource()).toBe(img);
     })
     it('should return 100', () => {
         expect(classique.getSkinCost()).toBe(0);

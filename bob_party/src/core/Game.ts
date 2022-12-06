@@ -5,13 +5,13 @@ import internal from "stream";
 export abstract class Game{
     readonly id:string;
     private name:string;
-    private imageSource:ImageSourcePropType;
+    private imageSource:string;
     private gameSource:string;
     private nbPlayerMin: number;
     private nbPlayerMax:number;
 
     /* Constructor of the class */
-    constructor (id:string, name:string, imageSource:ImageSourcePropType, gameSource:string, nbPlayerMin:number, nbPlayerMax:number){
+    constructor (id:string, name:string, imageSource:string, gameSource:string, nbPlayerMin:number, nbPlayerMax:number){
         this.id=id;
         this.name=name;
         this.imageSource=imageSource;
@@ -41,7 +41,7 @@ export abstract class Game{
     }
 
     /* Brief : Function setting the image of a game */
-    setImageSource(imageSource:ImageSourcePropType){
+    setImageSource(imageSource:string){
         this.imageSource=imageSource;
     }
 

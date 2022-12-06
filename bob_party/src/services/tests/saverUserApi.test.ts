@@ -1,3 +1,4 @@
+/*
 import LoaderUserApi from '../userServices/loaderUserApi';
 import SaverUserApi from '../userServices/saverUserApi';
 
@@ -8,9 +9,13 @@ let loader = new LoaderUserApi();
 
 
 // Tests
-/*
+
 describe('SaverUserApi tests', () => {
     describe('saverUser tests', () => {
     })
 }) 
 */
+
+it('should return true', () => {
+    expect(1+1).toBe(2);
+})

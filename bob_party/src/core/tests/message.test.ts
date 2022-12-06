@@ -1,15 +1,13 @@
 import { Message } from '../Message';
 import { User } from '../User/user';
-import { Conversation } from '../Conversation';
 import { Skin } from '../Skin';
 
 // Instances
-let conv:Conversation[] = [];
-let tab:Skin[] = [];
-let classique = new Skin("S0001", "Bob", require('bob_party/assets/BobsSkins/BobClassic.png'), 0);
+const img = "";
+let classique = new Skin("S0001", "Bob", img, 0);
 let dateBirth = new Date(2010,0o3,0o7);
-let usr = new User('00001', 'Killyan', 'password', 'France', 'M', dateBirth, 0, 0, 0, classique, tab);
-let usr2 = new User('00002', 'Karina', '1234', 'France', 'F', dateBirth, 5, 6, 8, classique, tab);
+let usr = new User('00001', 'Killyan', 'password', 'France', 'M', dateBirth, 0, 0, 0, classique, []);
+let usr2 = new User('00002', 'Karina', '1234', 'France', 'F', dateBirth, 5, 6, 8, classique, []);
 let theDate = new Date(2022,10,14);
 let theDate2 = new Date(2022,10,13);
 let mess = new Message('M0001', 'Bob Party est le meilleur projet', usr, theDate);
