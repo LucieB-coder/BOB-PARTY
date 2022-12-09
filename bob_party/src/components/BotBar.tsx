@@ -59,7 +59,7 @@ FC<{nav: any, state?: String}> =
       }
       }, []);
 
-      const handleConversationChange = useCallback(async () => {
+    const handleConversationChange = useCallback(async () => {
         let tmp=MANAGER_USER.getCurrentUser();
         if (tmp!=undefined){
           await MANAGER_CONVERSATION.getLoaderConversation().loadByUser(tmp).then((res) => {      

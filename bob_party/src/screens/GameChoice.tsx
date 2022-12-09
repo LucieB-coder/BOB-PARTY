@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, View, Text, Alert, Pressable, Image} from 'react-native'
+import { StyleSheet, View, Text, Alert, Pressable, Image, FlatList} from 'react-native'
 import React from 'react';
 import { Game } from '../core/game';
 import { Skin } from '../core/skin';
@@ -10,33 +10,34 @@ import { User } from '../core/User/user';
 import tabSkinApp from '../constSkin';
 import { Conversation } from '../core/conversation';
 import { GameSolo } from '../core/gameSolo';
+import { ScreenIndicator } from '../components/ScreenIndicator';
+import stylesScreen from './style/screens.style'
+import { MANAGER_GAME } from '../../App';
+import { useGameStore } from '../context/gameContext';
 let tabConv:Conversation[]=[];
 
-const map = new Map();
-map.set(0,0);
-map.set(15,10);
-map.set(20,15);
-const cookieClicker= new GameSolo(1, "Cookie Clicker", "https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/typescript/bob_party/assets/ImagesJeux/Pong.png", "/Games/CookieClicker/cookieClicker.tsx", 1, 1, map);
 
-
-function GameChoice(props: { navigation: any; }) {
-    const { navigation } = props
+function GameChoice(props: { navigation: any}) {
+    const { navigation} = props
     
-    
+    console.log(MANAGER_GAME.getTabGame());
     return (
-    <View style={styles.container}>
+      <View style={stylesScreen.container}>
       <TopBar
         nav={navigation}
       />
-      <View style={styles.body}>
-        <GameComponent
-          game={cookieClicker}
-          nav={navigation}
-        />
+      <View style={stylesScreen.bodyStart}>
+        <ScreenIndicator title='Game Choice'/>
+        <FlatList 
+          data={MANAGER_GAME.getTabGame()}
+          numColumns={2}
+          columnWrapperStyle={{ flex: 1, justifyContent: "space-around"}}
+          keyExtractor={item =>item.getName()}
+          renderItem={({item}) => <GameComponent game={item} nav={navigation}/>} />
       </View>
       <BotBar 
           nav={navigation}
-          state='Home'
+          state='Store'
       />
     </View>
   );
