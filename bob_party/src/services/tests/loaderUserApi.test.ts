@@ -22,13 +22,6 @@ let convo:Conversation = new Conversation(1, tabUS, [], 'superConvo');
 
 // Tests
 describe('LoaderUserApi tests', () => {
-    /*
-    describe('loadAllUser tests', () => {
-        it('should return tabUS [UserTest, Alban, UserActu, Fefe63]', () => {
-            expect(loader.loadAllUser()).toEqual(tabUS);
-        })
-    })
-    */
     describe('loadById tests', () => {
         it('should return UserTest (id: 48)', () => {
             expect(loader.loadByID(48)).toEqual(tabUS[0]);
@@ -66,11 +59,4 @@ describe('LoaderUserApi tests', () => {
             expect(loader.loadUserByConversation(convo)).toEqual(tabUS);
         })
     })
-    /*
-    describe('loadLastId', () => {
-        it('should return U0004', () => {
-            expect(loader.loadLastId()).toBe('U0004');
-        })
-    })
-    */
 })

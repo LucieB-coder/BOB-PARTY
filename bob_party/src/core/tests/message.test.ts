@@ -22,29 +22,26 @@ describe('Message get tests', () => {
         expect(mess.getMessageContent()).toBe('Bob Party est le meilleur projet');
     })
     it('should return usr', () => {
-        expect(mess.getMessageSender()).toBe(usr);
+        expect(mess.getMessageSender()).toEqual(usr);
     })
     it('should return theDate', () => {
-        expect(mess.getMessageDate()).toBe(theDate);
+        expect(mess.getMessageDate()).toEqual(theDate);
     })
 })
-
-
-// Setting new values
-mess.setMessageContent('Vive Bob Party');
-mess.setMessageSender(usr2);
-mess.setMessageDate(theDate2);
 
 
 // Set tests
 describe('Message set tests', () => {
     it('should return Vive Bob Party', () => {
+        mess.setMessageContent('Vive Bob Party');
         expect(mess.getMessageContent()).toBe('Vive Bob Party');
     })
     it('should return usr2', () => {
-        expect(mess.getMessageSender()).toBe(usr2);
+        mess.setMessageSender(usr2);
+        expect(mess.getMessageSender()).toEqual(usr2);
     })
     it('should return theDate2', () => {
-        expect(mess.getMessageDate()).toBe(theDate2);
+        mess.setMessageDate(theDate2);
+        expect(mess.getMessageDate()).toEqual(theDate2);
     })
 })

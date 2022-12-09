@@ -15,7 +15,7 @@ describe('Skin get tests', () => {
         expect(classique.getSkinId()).toBe(1);
     })
     it('should return Bob', () => {
-        expect(classique.getSkinName()).toEqual('Bob');
+        expect(classique.getSkinName()).toBe('Bob');
     })
     it('should return img ("")', () => {
         expect(classique.getSkinSource()).toEqual(img);
@@ -27,24 +27,19 @@ describe('Skin get tests', () => {
 
 
 
-// Setting new values
-
-classique.setSkinName('Bob Blue');
-classique.setSkinCost(100);
-classique.setSkinSource(img);
-
-
-
 // Set tests
 
 describe('Skin set tests', () => {
     it('should return The Classique', () => {
-        expect(classique.getSkinName()).toBe('Bob blue');
+        classique.setSkinName('Bob Blue');
+        expect(classique.getSkinName()).toBe('Bob Blue');
     })
-    it('should return require(BobBlue.png)', () => {
-        expect(classique.getSkinSource()).toBe(img);
+    it('should return yo', () => {
+        classique.setSkinSource("yo");
+        expect(classique.getSkinSource()).toBe('yo');
     })
     it('should return 100', () => {
-        expect(classique.getSkinCost()).toBe(0);
+        classique.setSkinCost(100);
+        expect(classique.getSkinCost()).toBe(100);
     })
 })

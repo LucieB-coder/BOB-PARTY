@@ -14,11 +14,11 @@ let theDate = new Date(2022,10,14);
 let theDate2 = new Date(2022,10,13);
 let theDate3 = new Date(2022,10,15);
 let mess = new Message(1, 'Bob Party est le meilleur projet', usr, theDate2);
-let tabU:User[] = [usr, usr2];
+let tabU = [usr, usr2];
 let mess2 = new Message(2, 'Oui tout à fait', usr2, theDate);
 let mess3 = new Message(3, 'Mais oui trop de ouf', usr, theDate3);
-let tabM:Message[] = [mess, mess2];
-let tabM2:Message[] = [mess, mess2, mess3];
+let tabM = [mess, mess2];
+let tabM2 = [mess, mess2, mess3];
 let convo = new Conversation(1, tabU, tabM, 'the conv');
 let usr3 = new User(4, 'wow', 'password', 'France', 'M', dateBirth, 0, 0, 0, classique, tab);
 
@@ -43,7 +43,7 @@ describe('Conversation get tests', () => {
 })
 
 
-// Set test
+// Set tests
 describe('Conversation set test', () => {
     it('should return THE conv', () => {
         convo.setName('THE conv');
