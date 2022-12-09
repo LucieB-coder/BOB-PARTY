@@ -24,11 +24,10 @@ steps:
           from_secret: db_password
 
 
-
 # docker image build (at least I'm trying)
- - name: docker-build-and-push
-   image: plugins/docker
-   settings:
+  - name: docker-build-and-push
+    image: plugins/docker
+    settings:
       dockerfile: Dockerfile
       context: .
       registry: hub.codefirst.iut.uca.fr
