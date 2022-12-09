@@ -1,4 +1,8 @@
-RUN -sonar-scanner.bat -D"sonar.projectKey=BobParty" -D"sonar.sources=." -D"sonar.host.url=https://codefirst.iut.uca.fr/sonar"
+RUN --rm \
+    -e SONAR_HOST_URL="https://codefirst.iut.uca.fr/sonar" \
+    -e SONAR_LOGIN=sqp_bef6be1353791524d291104c36283e68bfa60655 \
+    -v "bob_party/src" \
+    sonarsource/sonar-scanner-cli
 
 
 FROM mysql:8.0
