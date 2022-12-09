@@ -2,6 +2,10 @@
 # https://hub.docker.com/_/php
 FROM php:8.0-apache
 
+
+#Il faudra ajouter les PDO de notre BDD parce que php-apache ne les implémente pas
+
+
 # Configure PHP for Cloud Run.
 # Precompile PHP code with opcache.
 RUN docker-php-ext-install -j "$(nproc)" opcache
