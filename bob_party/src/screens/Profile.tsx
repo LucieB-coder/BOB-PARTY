@@ -8,8 +8,8 @@ import { BotBar } from '../components/BotBar';
 import { SkinComponent } from '../components/Skin';
 import { ButtonGreySmall } from '../components/ButtonGreySmall';
 import { ScreenIndicator } from '../components/ScreenIndicator';
-import { useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
+import { MANAGER_USER } from '../../App';
+import { useUserStore } from '../context/userContext';
 
 const coin = require('../../assets/Icons/Coin.png')
 
@@ -18,8 +18,6 @@ const coin = require('../../assets/Icons/Coin.png')
 function Profile(props: { navigation: any; }) {
     const { navigation } = props
 
-    const currentUser = useSelector((state: RootState) => state.currentUser.value)[0];
-
     return (
     <View style={stylesScreen.container}>
         <TopBar
@@ -27,22 +25,23 @@ function Profile(props: { navigation: any; }) {
           />
       <View style={stylesScreen.bodyStart}>
         <ScreenIndicator title='Profil'/>
-        <Text style={styles.pseudoText}>{currentUser.getUsername()}</Text>
+        <Text style={styles.pseudoText}>{useUserStore().user?.getUsername()}</Text>
         <View style={styles.coinSkinView}>
             <View style={styles.coinView}>
                 <Image 
                     style={styles.coin}
                     source={coin}
                 />
-                <Text style={styles.coinText}>{currentUser.getCurrentCoins()}</Text>
+                <Text style={styles.coinText}>{useUserStore().user?.getCurrentCoins()}</Text>
             </View>
             <View style={styles.skinView}>
-                <SkinComponent skin={currentUser.getCurrentSkin()} state='profile' />
-                <ButtonGreySmall onPress={() => navigation.navigate('SkinList')} title='Changer de skin' state='Profile'/>
+                <SkinComponent skin={useUserStore().user?.getCurrentSkin()} state='profile' nav={navigation}/>
+                <ButtonGreySmall onPress={() => {navigation.navigate('SkinList');}} title='Changer de skin' state='Profile'/>
             </View>
         </View>
         <View style={styles.infoView}>
-            <Text style={styles.infoText}>Total de BobCoin gagnés: {currentUser.getTotalCoins()}</Text>
+            <Text style={styles.infoText}>Total de BobCoin gagnés: {useUserStore().user?.getTotalCoins()}</Text>
+            <Text style={styles.infoText}>Total de BobCoin gagnés: </Text>
         </View>
       </View>
       <BotBar

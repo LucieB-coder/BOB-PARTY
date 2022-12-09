@@ -8,15 +8,12 @@ import { FlatList } from 'react-native-gesture-handler';
 import { SkinComponent } from '../components/Skin';
 import tabSkinApp from '../constSkin';
 import { ScreenIndicator } from '../components/ScreenIndicator';
-import { useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
+import { MANAGER_USER } from '../../App';
 
 
 
 function SkinList(props: { navigation: any; }) {
     const { navigation } = props
-
-    const currentUser = useSelector((state: RootState) => state.currentUser.value[0]);
 
     return (
     <View style={stylesScreen.container}>
@@ -26,11 +23,11 @@ function SkinList(props: { navigation: any; }) {
       <View style={stylesScreen.bodyStart}>
         <ScreenIndicator title='Mes Skins'/>
         <FlatList 
-          data={tabSkinApp}
+          data={MANAGER_USER.getCurrentUser()?.getTabSkin()}
           numColumns={2}
           columnWrapperStyle={{ flex: 1, justifyContent: "space-around"}}
           keyExtractor={item =>item.getSkinName()}
-          renderItem={({item}) => <SkinComponent skin={item} state='liste'/>} />
+          renderItem={({item}) => <SkinComponent skin={item} state='liste' nav={navigation}/>} />
       </View>
       <BotBar
           nav={navigation}

@@ -1,13 +1,13 @@
 import { ImageSourcePropType } from "react-native";
 
 export class Skin{
-    readonly id: string;
+    readonly id: number;
     private name: string;
-    private source: ImageSourcePropType;
+    private source: string;
     private cost:number;
 
     /* Constructor of the class */
-    constructor(id:string, name: string, source:ImageSourcePropType, Cost:number){
+    constructor(id:number, name: string, source:string, Cost:number){
         this.id=id;
         this.name=name;
         this.source=source;
@@ -20,7 +20,7 @@ export class Skin{
     }
 
     /* Brief : Fuction setting the source of the image of a skin */
-    setSkinSource(source: ImageSourcePropType){
+    setSkinSource(source: string){
         this.source=source;
     }
 
@@ -47,5 +47,9 @@ export class Skin{
     /* Brief : Fuction getting the cost of a skin */
     setSkinCost(cost:number){
         this.cost=cost;
+    }
+
+    isEqual(s:Skin){
+        return this.id==s.id;
     }
 }

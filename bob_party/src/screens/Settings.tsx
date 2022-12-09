@@ -7,25 +7,46 @@ import { TopBar } from '../components/TopBar';
 import { ButtonGreySmall } from '../components/ButtonGreySmall';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
-import DialogInput from "react-native-dialog-input";
-import { updatePseudo, updatePassword, updateNationality, updateSex } from "../redux/features/currentUserSlice";
 import Dialog from "react-native-dialog"
 import RNPickerSelect from "react-native-picker-select";
-import tabNat from '../constNat';
-import tabSex from '../constSex';
+import { PickerGreySmall } from '../components/PickerGreySmall';
+import { MANAGER_USER } from '../../App';
+import { useUserStore } from '../context/userContext';
+import DialogInput from 'react-native-dialog-input';
+import UserModificationManager from '../core/User/userModificationManager';
 
 function Settings(props: { navigation: any; }) {
     const { navigation } = props
+    const setUser = useUserStore((state) => state.setUser);
 
-    const currentUser = useSelector((state: RootState) => state.currentUser.value)[0];
+
 
     const [dialogPseudoVisible, setDialogPseudoVisible] = useState(false);
     const [dialogPasswordVisible, setDialogPasswordVisible] = useState(false);
-    const [dialogNationalityVisible, setDialogNationalityVisible] = useState(false);
-    const [dialogSexVisible, setDialogSexVisible] = useState(false);
 
     const [selectedSex, setSelectedSex] = useState("");
     const [selectedNationality, setSelectedNationality] = useState("");
+
+
+    async function changeUsername(username:string){
+      const m = new UserModificationManager();
+      let tmp=MANAGER_USER.getCurrentUser();
+      if (tmp!=null){
+        await m.changeUsername(tmp, username);
+        setUser(tmp);
+        MANAGER_USER.setCurrentUser(tmp);
+      }
+    }
+
+    async function changePassword(password:string){
+      const m = new UserModificationManager();
+      let tmp=MANAGER_USER.getCurrentUser();
+      if (tmp!=null){
+        await m.changePassword(tmp, password);
+        setUser(tmp);
+        MANAGER_USER.setCurrentUser(tmp);
+      }
+    }
 
     const dispatch=useDispatch();
 
@@ -41,23 +62,24 @@ function Settings(props: { navigation: any; }) {
           <View style={{flexDirection: 'row', justifyContent: 'space-between',}}>
             <View>
               <View>
-                <Text style={styles.text}>Pseudo: {currentUser.getUsername()}</Text>
-                <ButtonGreySmall onPress={() => setDialogPseudoVisible(true)} title='Changer le pseudo'/>
+                <Text style={styles.text}>Pseudo: {useUserStore().user?.getUsername()}</Text>
+                <ButtonGreySmall onPress={() => {console.log(dialogPseudoVisible);
+                ;setDialogPseudoVisible(true)}} title='Changer le pseudo'/>
               </View>
               <View>
-                <Text style={styles.text}>Mot de passe: {currentUser.getPassword()}</Text>
-                <ButtonGreySmall onPress={() => setDialogPasswordVisible(true)} title='Changer le mot de passe'/>
+                <Text style={styles.text}>Mot de passe: {useUserStore().user?.getPassword()}</Text>
+                <ButtonGreySmall onPress={() => setDialogPasswordVisible(true) } title='Changer le mot de passe'/>
               </View>
               <View>
-                <Text style={styles.text}>Nationalité: {currentUser.getNationality()}</Text>
-                <ButtonGreySmall onPress={() => setDialogNationalityVisible(true)} title='Changer la nationnalité'/>
+                <Text style={styles.text}>Nationalité: {useUserStore().user?.getNationality()}</Text>
+                <PickerGreySmall title='Changer la nationalité' valueChange={(value:string) => setSelectedNationality(value)} donePress={() => dispatch(updateNationality(selectedNationality))} values={["Francais", "Anglais"]} />
               </View>
               <View>
-                <Text style={styles.text}>Sexe: {currentUser.getSexe()}</Text>
-                <ButtonGreySmall onPress={() => setDialogSexVisible(true)} title='Changer le sexe'/>
+                <Text style={styles.text}>Sexe: {useUserStore().user?.getSexe()}</Text>
+                <PickerGreySmall title='Changer le sexe' valueChange={(value:string) => setSelectedSex(value)} donePress={() => dispatch(updateSex(selectedSex))} values={["Homme", "Femme", "Autre"]} />
               </View>
             </View>
-            <Text style={styles.textID}>ID: {currentUser.getId()}</Text>
+            <Text style={styles.textID}>ID: {useUserStore().user?.getId()}</Text>
           </View>
         </View>
       </View>
@@ -66,7 +88,7 @@ function Settings(props: { navigation: any; }) {
         isDialogVisible={dialogPseudoVisible}
         title="Inserer le nouveau pseudo"
         hintInput ="Pseudo"
-        submitInput={ (inputText: string) => {dispatch(updatePseudo(inputText)); setDialogPseudoVisible(false)} }
+        submitInput={ (inputText: string) => { changeUsername(inputText); setDialogPseudoVisible(false)} }
         closeDialog={ () => {setDialogPseudoVisible(false)}}>
       </DialogInput>
 
@@ -74,35 +96,10 @@ function Settings(props: { navigation: any; }) {
         isDialogVisible={dialogPasswordVisible}
         title="Inserer le nouveau mot de passe"
         hintInput ="Mot de passe"
-        submitInput={ (inputText: string) => {dispatch(updatePassword(inputText)); setDialogPasswordVisible(false)} }
+        submitInput={ (inputText: string) => { changePassword(inputText); setDialogPasswordVisible(false)} }
         closeDialog={ () => {setDialogPasswordVisible(false)}}>
+          
       </DialogInput>
-
-      <Dialog.Container visible={dialogNationalityVisible}>
-        <Dialog.Title>Changer de nationalité</Dialog.Title>
-        <View style={styles.RNPView}>
-          <RNPickerSelect
-            placeholder={{label:"Cliquez pour changer", value: null}}
-            onValueChange={(value:string) => setSelectedNationality(value)}
-            items={tabNat}
-          />
-        </View>  
-        <Dialog.Button label="Cancel" onPress={() => setDialogNationalityVisible(false)} />
-        <Dialog.Button label="Valider" onPress={() => {dispatch(updateNationality(selectedNationality)); setDialogNationalityVisible(false)}} />
-      </Dialog.Container>
-
-      <Dialog.Container visible={dialogSexVisible}>
-        <Dialog.Title>Changer de sexe</Dialog.Title>
-        <View style={styles.RNPView}>
-          <RNPickerSelect
-            placeholder={{label:"Cliquez pour changer", value: null}}
-            onValueChange={(value:string) => setSelectedSex(value)}
-            items={tabSex}
-          />
-        </View>  
-        <Dialog.Button label="Cancel" onPress={() => setDialogSexVisible(false)} />
-        <Dialog.Button label="Valider" onPress={() => {dispatch(updateSex(selectedSex)); setDialogSexVisible(false)}} />
-      </Dialog.Container>
 
     </View>
   );

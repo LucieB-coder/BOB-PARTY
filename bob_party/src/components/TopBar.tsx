@@ -11,6 +11,9 @@ import { User } from "../core/User/user"
 import styles from './style/TopBar.style';
 import { useSelector } from "react-redux"
 import { RootState } from "../redux/store"
+import { MANAGER_USER } from "../../App"
+import { useUserStore } from "../context/userContext"
+import { useMatchStore } from "../context/matchContext"
 
 /* 
     Images required
@@ -29,8 +32,9 @@ export const TopBar :
 FC<{nav: any, state?: string}> = 
 ({nav, state}) => 
 {
+    
+    const resetMatch = useMatchStore((state) => state.resetMatch);
 
-    const currentUser = useSelector((state: RootState) => state.currentUser.value)[0];
 
     /* The display of this component depends of the screen from where it has been called:
         * From the Settings (icon) : Name of the page + cross button
@@ -49,11 +53,25 @@ FC<{nav: any, state?: string}> =
                     </Pressable>
                 </View>
             )
+
+        case 'matchmacking':
+            return (
+                <View style={styles.header}>
+                    <Pressable>
+                        <Image source={msc} style={styles.icon}/>
+                    </Pressable>
+                    <Text style={styles.titre}>BOB PARTY</Text>
+                    <Pressable onPress={() => { resetMatch(); nav.goBack()}}>
+                        <Image source={cross} style={styles.icon}/>
+                    </Pressable>
+                </View>
+            )
         default:
+
             return (
                 <View style={styles.header}>
                     <Pressable onPress={() => nav.navigate('ProfileTab', {screen: 'Profile'})}>
-                            <SkinComponent skin={currentUser.getCurrentSkin()} state='icon' />
+                            <SkinComponent skin={MANAGER_USER.getCurrentUser().getCurrentSkin()} state='icon' nav={nav} />
                         </Pressable>
                         <Text style={styles.titre}>BOB PARTY</Text>
                         <Pressable onPress={() => nav.navigate('Settings')}>

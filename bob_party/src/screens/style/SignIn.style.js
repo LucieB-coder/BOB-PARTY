@@ -19,14 +19,16 @@ export default StyleSheet.create({
         letterSpacing: 0.25,
         color: 'white',
       },
-      signup:{
+      textLink:{
         fontSize:15,
         color:'white',
         textDecorationLine:"underline",   
       },
       textInput: {
-        width: '50%',
+        width: '80%',
         height: '5%',
         backgroundColor: 'white',
+        padding: 10,
+        marginVertical: 10,
       }
   });

@@ -3,12 +3,14 @@ import { User } from "./User/user";
 
 
 export class Conversation{
+    private id: number;
     private tabUser: User[];
     private tabMessage: Message[];
     private name: string;
     
     /* Constructor of the class */
-    constructor(tabUser: User[], tabMessage:Message[], name:string){
+    constructor(id: number, tabUser: User[], tabMessage:Message[], name:string){
+        this.id=id;
         this.tabUser=[...tabUser];
         this.tabMessage=[...tabMessage];
         this.name=name;
@@ -36,6 +38,11 @@ export class Conversation{
         this.sortMessageDesc();
     }
 
+    /* Brief : function returning the id of a conversation */
+    getId(){
+        return this.id;
+    }
+
     /* Brief : function returning the name to a conversation */
     getName(){
         return this.name;
@@ -49,7 +56,7 @@ export class Conversation{
     /* Brief : function returning the last message of a conversation */
     getLastMessage(){
         this.sortMessageDesc();
-        return this.tabMessage[0].getMessageContent();
+        return this.tabMessage[0];
     }
 
     /* Brief : function sorting the messages of a conversation to be in the discussion order */

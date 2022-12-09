@@ -23,5 +23,9 @@ export default StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
-      },
+    },
+    RNPView: {
+        alignSelf: 'center',
+        padding: 20,
+    }
   });

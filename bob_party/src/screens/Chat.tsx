@@ -1,18 +1,17 @@
 import { StatusBar } from 'expo-status-bar'
 import {View} from 'react-native'
-import React from 'react';
+import React, { useCallback } from 'react';
 import stylesScreen from './style/screens.style';
 import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
 import { FlatList } from 'react-native-gesture-handler';
 import { ConversationComponent } from '../components/ConversationComponent';
-import { useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
+import { Conversation } from '../core/conversation';
+import { MANAGER_CONVERSATION, MANAGER_USER } from '../../App';
+import { useConversationStore } from '../context/conversationContext';
 
 function Chat(props: { navigation: any; }) {
     const { navigation } = props
-
-    const currentUser = useSelector((state: RootState) => state.currentUser.value[0]);
     
     return (  
     <View style={stylesScreen.container}>
@@ -20,9 +19,10 @@ function Chat(props: { navigation: any; }) {
           nav={navigation}
           />
       <View style={stylesScreen.bodyStart}>
+
         <FlatList 
-          data={currentUser.getTabConv()}
-          renderItem={({item}) => <ConversationComponent conv={item} state='Preview'/>} 
+          data={useConversationStore().tabConv}
+          renderItem={({item}) => <ConversationComponent conv={item} state='Preview' navigation={navigation}/>} 
         />
       </View>
       <BotBar 

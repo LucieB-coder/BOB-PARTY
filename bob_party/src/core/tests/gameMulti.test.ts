@@ -1,23 +1,27 @@
-import { GameMulti } from '../gameMulti';
+import { GameMulti } from '../GameMulti';
 
 
 // Instances
+const img = "";
 let myMap = new Map<number, number>([
-    [50, 3],
-    [75, 4],
-    [100, 5],
-    [150, 6]
+    [4, 1],
+    [3, 3],
+    [2, 5],
+    [1, 10]
 ]);
-let game = new GameMulti("bo jeu", require('bob_party/assets/ImagesJeux/blackjack.jpg'), "super jeu", 1, 5, myMap);
+let game = new GameMulti(1, "bo jeu", img, "super jeu", 1, 5, myMap);
 
 
 // Get tests
-describe('GameMuti get tests', () => {
+describe('GameMulti get tests', () => {
+    it('should return 1', () => {
+        expect(game.getId()).toBe(1);
+    })
     it('should return bo jeu', () => {
         expect(game.getName()).toBe('bo jeu');
     })
     it('should return require(blackjack.jpg)', () => {
-        expect(game.getImageSource()).toBe(require('bob_party/assets/ImagesJeux/blackjack.jpg'));
+        expect(game.getImageSource()).toEqual(img);
     })
     it('should return super jeu', () => {
         expect(game.getGameSource()).toBe('super jeu');
@@ -29,34 +33,48 @@ describe('GameMuti get tests', () => {
         expect(game.getNbPlayerMax()).toBe(5);
     })
     it('should return myMap', () => {
-        expect(game.getMultiMap()).toBe(myMap);
+        expect(game.getMultiMap()).toEqual(myMap);
     })
 })
-
-
-// Setting new values
-game.setGameSource('trop cool le jeu');
-game.setImageSource(require('bob_party/assets/ImagesJeux/JeuDeDame.jpg'));
-game.setName('beau jeu');
-game.setNbPlayerMin(2);
-game.setNbPlayerMax(4);
 
 
 // Set tests
 describe('GameMulti set tests', () => {
     it('should return beau jeu', () => {
+        game.setName('beau jeu');
         expect(game.getName()).toBe('beau jeu');
     })
-    it('should return require(JeuDeDame.jpg)', () => {
-        expect(game.getImageSource).toBe(require('bob_party/assets/ImagesJeux/JeuDeDame.jpg'));
+    it('should return img ("")', () => {
+        game.setImageSource(img);
+        expect(game.getImageSource()).toEqual(img);
     })
     it('should return trop cool le jeu', () => {
+        game.setGameSource('trop cool le jeu');
         expect(game.getGameSource()).toBe('trop cool le jeu');
     })
     it('should return trop cool le jeu', () => {
+        game.setNbPlayerMin(2);
         expect(game.getNbPlayerMin()).toBe(2);
     })
     it('should return 4', () => {
-        expect(game.getNbPlayerMin()).toBe(4);
+        game.setNbPlayerMax(4);
+        expect(game.getNbPlayerMax()).toBe(4);
+    })
+})
+
+
+// Coins Calculator tests
+describe('GameMulti coins calculator tests', () => {
+    it('should return 1', () => {
+        expect(game.coinsCalculator(4)).toBe(1);
+    })
+    it('should return 3', () => {
+        expect(game.coinsCalculator(3)).toBe(3);
+    })
+    it('should return 5', () => {
+        expect(game.coinsCalculator(2)).toBe(5);
+    })
+    it('should return 10', () => {
+        expect(game.coinsCalculator(1)).toBe(10);
     })
 })

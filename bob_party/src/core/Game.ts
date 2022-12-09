@@ -1,20 +1,24 @@
-import { randomBytes } from "crypto";
-import { ImageSourcePropType } from "react-native";
-
 export abstract class Game{
+    readonly id:number;
     private name:string;
-    private imageSource:ImageSourcePropType;
+    private imageSource:string;
     private gameSource:string;
     private nbPlayerMin: number;
     private nbPlayerMax:number;
 
     /* Constructor of the class */
-    constructor (name:string, imageSource:ImageSourcePropType, gameSource:string, nbPlayerMin:number, nbPlayerMax:number){
+    constructor (id:number, name:string, imageSource:string, gameSource:string, nbPlayerMin:number, nbPlayerMax:number){
+        this.id=id;
         this.name=name;
         this.imageSource=imageSource;
         this.gameSource=gameSource;
         this.nbPlayerMin=nbPlayerMin;
         this.nbPlayerMax=nbPlayerMax;
+    }
+
+    /* Brief : Function getting the id of a game */
+    getId(){
+        return this.id;
     }
 
     /* Brief : Function getting the name of a game */
@@ -33,7 +37,7 @@ export abstract class Game{
     }
 
     /* Brief : Function setting the image of a game */
-    setImageSource(imageSource:ImageSourcePropType){
+    setImageSource(imageSource:string){
         this.imageSource=imageSource;
     }
 
@@ -66,4 +70,6 @@ export abstract class Game{
     setNbPlayerMax(nbPlayerMax:number){
         this.nbPlayerMax=nbPlayerMax;
     }
+
+    abstract coinsCalculator(points: number): number;
 }

@@ -1,11 +1,10 @@
-import { ImageSourcePropType } from 'react-native';
 import { Game } from './game'
 
 export class GameSolo extends Game{
     readonly ptsToCoins:Map<number,number>
 
-    constructor(name:string, imageSource:ImageSourcePropType, gameSource:string, nbPlayerMin:number, nbPlayerMax:number, ptsToCoins:Map<number,number>){
-        super(name, imageSource, gameSource, nbPlayerMin,nbPlayerMax);
+    constructor(id:number, name:string, imageSource:string, gameSource:string, nbPlayerMin:number, nbPlayerMax:number, ptsToCoins:Map<number,number>){
+        super(id, name, imageSource, gameSource, nbPlayerMin,nbPlayerMax);
         this.ptsToCoins=ptsToCoins;
     }
 
@@ -15,11 +14,13 @@ export class GameSolo extends Game{
     }
 
     //Returns the gain depending on the number of points
-    CoinsWithPoints(nbPoints:number){
-        let coins;
+    coinsCalculator(points:number): number{
+        let coins=0;
+        let test;
         for (let key of this.ptsToCoins.keys()){
-            coins = this.ptsToCoins.get(key);
-            if (nbPoints<key ){
+            test = this.ptsToCoins.get(key);
+            coins=key;
+            if (test != undefined && test>=points){
                 return coins;
             }
         }

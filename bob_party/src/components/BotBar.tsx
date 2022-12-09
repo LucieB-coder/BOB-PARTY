@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react"
+import { FC, ReactNode, useCallback } from "react"
 import { Pressable, Image, View} from "react-native"
 import React from "react"
 
@@ -6,6 +6,10 @@ import React from "react"
     Importing the correct stylesheet
 */
 import styles from './style/BotBar.style';
+import { useStoreStore } from "../context/storeContext";
+import { MANAGER_CONVERSATION, MANAGER_USER } from "../../App";
+import tabSkinApp from "../constSkin";
+import { useConversationStore } from "../context/conversationContext";
 
 /* 
     Images that are required to create a bottom bar
@@ -35,6 +39,37 @@ export const BotBar :
 FC<{nav: any, state?: String}> = 
 ({nav, state}) => 
 {
+
+    const setTabSkin = useStoreStore((state) => state.setTabSkin);
+    const setTabConv = useConversationStore((state) => state.setTabConv);
+
+    const handleStoreChange = useCallback(async () => {
+  
+      let tabSkinStore=[...tabSkinApp];
+      let tmp=MANAGER_USER.getCurrentUser()?.getTabSkin();
+      if (tmp!=undefined){
+          tmp.forEach(skin => {
+              for (let i=0; i<tabSkinStore.length; i++){
+                  if(skin.isEqual(tabSkinStore[i])){
+                      tabSkinStore.splice(i,1);
+                  }
+              }
+          });
+          setTabSkin(tabSkinStore);
+      }
+      }, []);
+
+    const handleConversationChange = useCallback(async () => {
+        let tmp=MANAGER_USER.getCurrentUser();
+        if (tmp!=undefined){
+          await MANAGER_CONVERSATION.getLoaderConversation().loadByUser(tmp).then((res) => {      
+            MANAGER_CONVERSATION.setCurrentTabConv(res);
+            setTabConv(res);
+        });
+      }
+  
+    }, []);
+  
     /* 
         By default, all the images are the white ones
     */
@@ -66,7 +101,7 @@ FC<{nav: any, state?: String}> =
         */
     return (
     <View style={styles.footer}>
-            <Pressable onPress={() => nav.navigate('ChatTab')}>
+            <Pressable onPress={() => {handleConversationChange() ;nav.navigate('ChatTab')}}>
                 <Image
                     style={styles.icon}
                     source={imgLeft}
@@ -78,7 +113,7 @@ FC<{nav: any, state?: String}> =
                     source={imgMid}
                 />
             </Pressable>
-            <Pressable onPress={() => nav.navigate('StoreTab')}>
+            <Pressable onPress={() => {handleStoreChange(); nav.navigate('StoreTab')}}>
                 <Image
                     style={styles.icon}
                     source={imgRight}
