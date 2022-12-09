@@ -7,7 +7,7 @@ name: Dockers_Builder
 steps:  
   # database container deployment
   - name: deploy-container-mysql
-    image: mysql
+    image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
     environment:
         IMAGENAME: mariadb:10
         CONTAINERNAME: mysql
