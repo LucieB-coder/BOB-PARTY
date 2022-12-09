@@ -25,7 +25,9 @@ class GameGateway{
         foreach($res as $row){
             $tabGames[]= new Game($row['PK_ID'],
                                   $row['GAM_NAME'],
-                                  $row['GAM_IMAGE']);
+                                  $row['GAM_IMAGE'],
+                                  $row['GAM_NB_PLAYER_MIN'],
+                                  $row['GAM_NB_PLAYER_MAX']);
         }
         return $tabGames;
     }
@@ -41,7 +43,9 @@ class GameGateway{
         foreach($res as $row){
             $game= new Game($row['PK_ID'],
                             $row['GAM_NAME'],
-                            $row['GAM_IMAGE']);
+                            $row['GAM_IMAGE'],
+                            $row['GAM_NB_PLAYER_MIN'],
+                            $row['GAM_NB_PLAYER_MAX']);
         }
         return $game;
     }

@@ -6,8 +6,14 @@
     RewriteRule (.+) index.php?p=$1 [QSA,L]
 </IfModule>
 
-<Files ~ "^\.ht">
-Order Allow,Deny
-Allow From all
+# Redirecting 403 errors to index.php (does not work)
+ErrorDocument 403 http://localhost:8888/api-rest/index.php
+
+# Refusing access to all files ending with php
+Require all denied
+
+# Allowing access to index.php
+<Files index.php>
+  Require all granted
 </Files>
 

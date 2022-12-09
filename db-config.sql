@@ -41,7 +41,9 @@ CREATE TABLE T_H_SKIN_SKI (
 CREATE TABLE T_E_GAME_GAM (
     PK_ID int AUTO_INCREMENT PRIMARY KEY,
     GAM_NAME varchar(50) UNIQUE,
-    GAM_IMAGE varchar(50) UNIQUE
+    GAM_IMAGE varchar(50) UNIQUE,
+    GAM_NB_PLAYER_MIN int,
+    GAM_NB_PLAYER_MAX int 
 );
 
 /* -- Table Match -- */
