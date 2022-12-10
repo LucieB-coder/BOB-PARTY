@@ -30,8 +30,8 @@ FC<{game: Game, nav: any}> =
     const createNewMatchSolo = useCallback(async (game : Game, nav: any) => {
 
         const m=new MatchCreator();
-        let tmp=MANAGER_USER.getCurrentUser();
-        if (tmp!=null){
+        const tmp=MANAGER_USER.getCurrentUser();
+        if (tmp!==null){
             let match=await m.createMatch(tmp, game);
             MANAGER_MATCH.setCurrentMatch(match);
             setMatch(match);

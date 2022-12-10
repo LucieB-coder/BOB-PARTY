@@ -1,13 +1,9 @@
-module.exports = function(api) {
+module.exports = function (api) {
   api.cache(true);
   return {
-    presets: [ 
+    presets: [
       ['babel-preset-expo'],
-      '@babel/preset-typescript',
-  ],
-  presets: [
-    ['@babel/preset-env', { targets: { node: 'current' } }],
-  '@babel/preset-typescript', '@babel/preset-react',
-  ],
+      ['@babel/preset-env', { targets: { node: 'current' } }]
+    ],
   };
 };

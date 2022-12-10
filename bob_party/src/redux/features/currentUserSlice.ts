@@ -31,7 +31,6 @@ export const currentUserSlice = createSlice({
         updatePseudo: (state, action: PayloadAction<string>) =>{
             const newUser: User = new User(currentUser.getId(), currentUser.getUsername(), currentUser.getPassword(), currentUser.getNationality(), currentUser.getSexe(), currentUser.getDateOfBirth());
 
-            console.log(currentUser);
             newUser.setUsername(action.payload);
             return {
                 ...state,

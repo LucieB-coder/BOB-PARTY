@@ -26,14 +26,9 @@ export const MANAGER_GAME = new ManagerGame(new LoaderGameApi);
   export default function App() {
 
     return (
-      <Text>CC</Text>
-      
-      /*
       <Provider store={store}>
         <MainTabNavigator/>
       </Provider>
-      */
-      
     );
   }
   
