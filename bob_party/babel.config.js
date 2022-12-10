@@ -3,11 +3,11 @@ module.exports = function(api) {
   return {
     presets: [ 
       ['babel-preset-expo'],
-    '@babel/preset-typescript',
+      '@babel/preset-typescript',
   ],
   presets: [
     ['@babel/preset-env', { targets: { node: 'current' } }],
-  '@babel/preset-typescript', '@babel/preset-react'
+  '@babel/preset-typescript', '@babel/preset-react',
   ],
   };
 };

@@ -14,6 +14,7 @@ import LoaderMatchApi from './src/services/matchServices/loaderMatchApi'
 import SaverMatchApi from './src/services/matchServices/saverMatchApi'
 import LoaderGameApi from './src/services/gameService/loaderGameApi'
 import ManagerGame from './src/services/gameService/managerGame'
+import { Text } from 'react-native'
 
 
 export const MANAGER_USER = new ManagerUser(new LoaderUserApi, new FakeSaverUser);  
@@ -25,9 +26,14 @@ export const MANAGER_GAME = new ManagerGame(new LoaderGameApi);
   export default function App() {
 
     return (
+      <Text>CC</Text>
+      
+      /*
       <Provider store={store}>
         <MainTabNavigator/>
       </Provider>
+      */
+      
     );
   }
   

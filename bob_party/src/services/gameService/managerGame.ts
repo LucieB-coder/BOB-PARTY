@@ -5,6 +5,10 @@ export default class ManagerGame{
 
     private tabGame: Game[] | null=null;
 
+    private tabGameSolo: Game[] | null=null;
+
+    private tabGameMulti: Game[] | null=null;
+
     private loaderGame: ILoaderGame;
 
     constructor(loader:ILoaderGame){
@@ -17,6 +21,22 @@ export default class ManagerGame{
 
     setTabGame(g:Game[] | null){
         this.tabGame=g;
+    }
+
+    getTabGameSolo(){
+        return this.tabGame;
+    }
+
+    setTabGameSolo(g:Game[] | null){
+        this.tabGameSolo=g;
+    }
+
+    getTabGameMulti(){
+        return this.tabGameMulti;
+    }
+
+    setTabGameMulti(g:Game[] | null){
+        this.tabGameMulti=g;
     }
 
     getLoaderGame(){
