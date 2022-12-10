@@ -1,4 +1,4 @@
-import { Game } from "../../core/game";
+import { Game } from "../../core/Game";
 import ILoaderGame from "./ILoaderGame";
 
 export default class ManagerGame{

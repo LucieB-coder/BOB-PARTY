@@ -1,4 +1,4 @@
-import { Game } from "../../core/game";
+import { Game } from "../../core/Game";
 import { Match } from "../../core/Match/match";
 
 import { User } from "../../core/User/user";

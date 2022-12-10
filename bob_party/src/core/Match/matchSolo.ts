@@ -1,7 +1,7 @@
 import { Match } from "./match";
 import { GameSolo } from "../gameSolo";
 import { User } from "../User/user";
-import { Game } from "../game";
+import { Game } from "../Game";
 import { ManagerCoinsUser } from "../User/userCoinsModifier";
 
 export default class MatchSolo extends Match{

@@ -1,6 +1,6 @@
 import { MANAGER_MATCH } from "../../../App";
 import ManagerMatch from "../../services/matchServices/managerMatch";
-import { Game } from "../game";
+import { Game } from "../Game";
 import { User } from "../User/user";
 import { Match } from "./match";
 

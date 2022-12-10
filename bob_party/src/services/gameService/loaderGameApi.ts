@@ -1,4 +1,4 @@
-import { Game } from "../../core/game";
+import { Game } from "../../core/Game";
 import { GameSolo } from "../../core/gameSolo";
 import ILoaderGame from "./ILoaderGame";
 

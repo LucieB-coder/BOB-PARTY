@@ -2,7 +2,7 @@ import { FC, ReactNode, useCallback } from "react"
 import { Pressable, Image, ImageStyle, Text, View, Alert, ImageSourcePropType, TextStyle } from "react-native"
 import React from "react"
 import { trace } from "console"
-import { Game } from "../core/game"
+import { Game } from "../core/Game"
 
 /*
     Importing the correct stylesheet
