@@ -27,7 +27,7 @@ export class Conversation{
         return this.tabUser;
     }
 
-    /* Brief : function adding an user to a conversation */
+    /* Brief : function adding a user to a conversation */
     ajouterUser(us:User){
         this.tabUser?.push(us);
     }
