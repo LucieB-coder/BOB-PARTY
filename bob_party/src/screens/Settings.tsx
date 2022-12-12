@@ -29,26 +29,45 @@ function Settings(props: { navigation: any; }) {
 
 
     async function changeUsername(username:string){
-      const m = new UserModificationManager();
-      const tmp=MANAGER_USER.getCurrentUser();
-      if (tmp!==null){
-        await m.changeUsername(tmp, username);
+      let userManager = new UserModificationManager();
+      let tmp=MANAGER_USER.getCurrentUser();
+      if (tmp!=null){
+        await userManager.changeUsername(tmp, username);
         setUser(tmp);
         MANAGER_USER.setCurrentUser(tmp);
       }
     }
 
     async function changePassword(password:string){
-      const m = new UserModificationManager();
-      const tmp=MANAGER_USER.getCurrentUser();
-      if (tmp!==null){
-        await m.changePassword(tmp, password);
+      let userManager = new UserModificationManager();
+      let tmp=MANAGER_USER.getCurrentUser();
+      if (tmp!=null){
+        await userManager.changePassword(tmp, password);
         setUser(tmp);
         MANAGER_USER.setCurrentUser(tmp);
       }
     }
 
-    const dispatch=useDispatch();
+    async function changeSexe(sexe:string){
+      let userManager = new UserModificationManager();
+      let tmp=MANAGER_USER.getCurrentUser();
+      if (tmp!=null){
+        await userManager.changeSexe(tmp, sexe);
+        setUser(tmp);
+        MANAGER_USER.setCurrentUser(tmp);
+      }
+    }
+
+    async function changeNationality(nationality:string){
+      let userManager = new UserModificationManager();
+      let tmp=MANAGER_USER.getCurrentUser();
+      if (tmp!=null){
+        await userManager.changeNationality(tmp, nationality);
+        setUser(tmp);
+        MANAGER_USER.setCurrentUser(tmp);
+      }
+    }
+
 
     return (
     <View style={stylesScreen.container}>
@@ -72,11 +91,11 @@ function Settings(props: { navigation: any; }) {
               </View>
               <View>
                 <Text style={styles.text}>Nationalité: {useUserStore().user?.getNationality()}</Text>
-                <PickerGreySmall title='Changer la nationalité' valueChange={(value:string) => setSelectedNationality(value)} donePress={() => dispatch(updateNationality(selectedNationality))} values={["Francais", "Anglais"]} />
+                <PickerGreySmall title='Changer la nationalité' valueChange={(value:string) => setSelectedNationality(value)} donePress={() => changeNationality(selectedNationality)} values={["Francais", "Anglais"]} />
               </View>
               <View>
                 <Text style={styles.text}>Sexe: {useUserStore().user?.getSexe()}</Text>
-                <PickerGreySmall title='Changer le sexe' valueChange={(value:string) => setSelectedSex(value)} donePress={() => dispatch(updateSex(selectedSex))} values={["Homme", "Femme", "Autre"]} />
+                <PickerGreySmall title='Changer le sexe' valueChange={(value:string) => setSelectedSex(value)} donePress={() => changeSexe(selectedSex)} values={["Homme", "Femme", "Autre"]} />
               </View>
             </View>
             <Text style={styles.textID}>ID: {useUserStore().user?.getId()}</Text>
