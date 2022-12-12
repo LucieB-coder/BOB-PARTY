@@ -14,8 +14,6 @@ import SaverMatchApi from './src/services/matchServices/saverMatchApi'
 import LoaderGameApi from './src/services/gameService/loaderGameApi'
 import ManagerGame from './src/services/gameService/managerGame'
 import { useFonts } from 'expo-font';
-import * as SplashScreen from 'expo-splash-screen';
-import { View } from 'react-native'
 
 
 export const MANAGER_USER = new ManagerUser(new LoaderUserApi, new FakeSaverUser);
