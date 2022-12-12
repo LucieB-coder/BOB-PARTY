@@ -38,9 +38,7 @@ function SignIn(props: { navigation: any; }) {
                 setUser(MANAGER_USER.getCurrentUser());
                 navigation.navigate('HomeTab');
             }
-            else{
-                console.log("wesh c'est null");
-            }
+
         });
 
     }, []);

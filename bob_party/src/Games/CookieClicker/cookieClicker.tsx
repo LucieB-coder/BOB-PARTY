@@ -21,7 +21,7 @@ let points=0;
 function CookieClicker(props: { navigation: any}){
   const { navigation } = props
 
-  const GAMING_TIME=45;
+  const GAMING_TIME=120;
 
   const setUser = useUserStore((state) => state.setUser);
 
@@ -86,9 +86,8 @@ function CookieClicker(props: { navigation: any}){
   }
 
   function endGame(){
-    let tmp: User | null;
-    tmp=MANAGER_USER.getCurrentUser();
-    if (tmp!=null){
+    const tmp=MANAGER_USER.getCurrentUser();
+    if (tmp!==null){
       if (MANAGER_MATCH.getCurrentMatch()?.getTabUsers().includes(tmp)){
         MANAGER_MATCH.getCurrentMatch()?.updatePostMatch(tmp, points);
         setUser(tmp);   

@@ -24,9 +24,7 @@ export default class LoaderGameApi implements ILoaderGame{
             map.set(300,150);
             map.set(450,1000);
             const cookieClicker= new GameSolo(1, "Cookie Clicker", "https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/typescript/bob_party/assets/ImagesJeux/Pong.png", "/Games/CookieClicker/cookieClicker.tsx", 1, 1, map);
-            const test= new GameSolo(1, "Test", "https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/typescript/bob_party/assets/ImagesJeux/Pendu.jpg", "/Games/CookieClicker/cookieClicker.tsx", 1, 1, map);
-            tab=[cookieClicker, test];
-            console.log(tab);
+            tab=[cookieClicker];
         });
         return tab;
         

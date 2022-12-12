@@ -30,8 +30,8 @@ function Settings(props: { navigation: any; }) {
 
     async function changeUsername(username:string){
       const m = new UserModificationManager();
-      let tmp=MANAGER_USER.getCurrentUser();
-      if (tmp!=null){
+      const tmp=MANAGER_USER.getCurrentUser();
+      if (tmp!==null){
         await m.changeUsername(tmp, username);
         setUser(tmp);
         MANAGER_USER.setCurrentUser(tmp);
@@ -40,8 +40,8 @@ function Settings(props: { navigation: any; }) {
 
     async function changePassword(password:string){
       const m = new UserModificationManager();
-      let tmp=MANAGER_USER.getCurrentUser();
-      if (tmp!=null){
+      const tmp=MANAGER_USER.getCurrentUser();
+      if (tmp!==null){
         await m.changePassword(tmp, password);
         setUser(tmp);
         MANAGER_USER.setCurrentUser(tmp);

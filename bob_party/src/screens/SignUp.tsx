@@ -26,7 +26,6 @@ function SignUp(props: { navigation: any; }) {
 
 
     function onDateSelected(event : DateTimePickerEvent, value : Date | undefined) {
-        console.log(value);
         if (value != undefined) {
             setDate(value);
         }

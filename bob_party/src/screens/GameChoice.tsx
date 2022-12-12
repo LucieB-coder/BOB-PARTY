@@ -20,7 +20,6 @@ let tabConv:Conversation[]=[];
 function GameChoice(props: { navigation: any}) {
     const { navigation} = props
     
-    console.log(MANAGER_GAME.getTabGame());
     return (
       <View style={stylesScreen.container}>
       <TopBar
@@ -37,7 +36,7 @@ function GameChoice(props: { navigation: any}) {
       </View>
       <BotBar 
           nav={navigation}
-          state='Store'
+          state='Home'
       />
     </View>
   );
