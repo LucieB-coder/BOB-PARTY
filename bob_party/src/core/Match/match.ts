@@ -1,5 +1,5 @@
 import { ImageSourcePropType } from 'react-native';
-import { Game } from '../Game';
+import { Game } from '../game';
 import { User } from "../User/user";
 
 

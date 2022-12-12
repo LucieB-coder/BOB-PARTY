@@ -9,7 +9,7 @@ import { ButtonGameTypeChoice } from '../components/ButtonGameTypeChoice';
 import { MANAGER_GAME } from '../../App';
 import { useGameStore } from '../context/gameContext';
 import { GameSolo } from '../core/gameSolo';
-import { Game } from '../core/Game';
+import { Game } from '../core/game';
 import game from '../testGameSolo';
 
 

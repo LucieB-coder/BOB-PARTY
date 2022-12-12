@@ -1,6 +1,6 @@
 import { Match } from "./match";
 import { User } from "../User/user";
-import { Game } from "../Game";
+import { Game } from "../game";
 import { GameCasino } from "../gameCasino";
 import { ManagerCoinsUser } from "../User/userCoinsModifier";
 

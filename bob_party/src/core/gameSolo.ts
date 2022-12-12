@@ -1,4 +1,4 @@
-import { Game } from './Game'
+import { Game } from './game'
 
 export class GameSolo extends Game{
     readonly ptsToCoins:Map<number,number>

@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, View, Text, Alert, Pressable, Image, FlatList} from 'react-native'
 import React from 'react';
-import { Game } from '../core/Game';
+import { Game } from '../core/game';
 import { Skin } from '../core/skin';
 import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';

@@ -1,4 +1,4 @@
-import { Game } from './Game'
+import { Game } from './game'
 
 export class GameMulti extends Game{
     readonly rankToCoins:Map<number,number>
