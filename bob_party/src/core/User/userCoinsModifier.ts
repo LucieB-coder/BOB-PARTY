@@ -1,8 +1,7 @@
-import { MANAGER_USER } from "../../../App";
-import ManagerUser from "../../services/userServices/managerUser";
+import { MANAGER_USER } from "../../../appManagers";
 import { User } from "./user";
 
-export class ManagerCoinsUser{
+export class UserCoinsModifier{
 
 
     async addCoins(u:User, coins:number){

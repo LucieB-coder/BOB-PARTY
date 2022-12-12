@@ -8,7 +8,7 @@ import { FlatList } from 'react-native-gesture-handler';
 import { SkinComponent } from '../components/Skin';
 import tabSkinApp from '../constSkin';
 import { ScreenIndicator } from '../components/ScreenIndicator';
-import { MANAGER_USER } from '../../App';
+import { MANAGER_USER } from '../../appManagers';
 
 
 

@@ -6,14 +6,10 @@ import { Skin } from '../core/skin';
 import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
 import { GameComponent } from '../components/GameComponent';
-import { User } from '../core/User/user';
-import tabSkinApp from '../constSkin';
 import { Conversation } from '../core/conversation';
-import { GameSolo } from '../core/gameSolo';
 import { ScreenIndicator } from '../components/ScreenIndicator';
 import stylesScreen from './style/screens.style'
-import { MANAGER_GAME } from '../../App';
-import { useGameStore } from '../context/gameContext';
+import { MANAGER_GAME } from '../../appManagers';
 let tabConv:Conversation[]=[];
 
 

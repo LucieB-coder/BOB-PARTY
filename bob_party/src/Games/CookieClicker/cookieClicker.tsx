@@ -9,7 +9,7 @@ import {
   TouchableHighlight,
   Alert,
 } from 'react-native'
-import { MANAGER_MATCH, MANAGER_USER } from '../../../App';
+import { MANAGER_MATCH, MANAGER_USER } from '../../../appManagers';
 import { useMatchStore } from '../../context/matchContext';
 import { useUserStore } from '../../context/userContext';
 import { Match } from '../../core/Match/match';
