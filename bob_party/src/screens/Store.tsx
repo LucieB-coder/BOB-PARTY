@@ -7,11 +7,6 @@ import { BotBar } from '../components/BotBar';
 import { FlatList } from 'react-native-gesture-handler';
 import { SkinComponent } from '../components/Skin';
 import { ScreenIndicator } from '../components/ScreenIndicator';
-import { useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
-import tabSkinApp from '../constSkin';
-import { MANAGER_USER } from '../../App';
-import { useUserStore } from '../context/userContext';
 import { useStoreStore } from '../context/storeContext';
 
 

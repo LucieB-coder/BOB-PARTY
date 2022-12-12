@@ -2,7 +2,7 @@ import { Match } from "./match";
 import { User } from "../User/user";
 import { Game } from "../game";
 import { GameMulti } from "../gameMulti";
-import { ManagerCoinsUser } from "../User/userCoinsModifier";
+import { UserCoinsModifier } from "../User/userCoinsModifier";
 
 export default class MatchMulti extends Match{
 
@@ -11,7 +11,7 @@ export default class MatchMulti extends Match{
     }
 
     updatePostMatch(user:User, points: number): void {
-        const manage= new ManagerCoinsUser();
+        const manage= new UserCoinsModifier();
         manage.addCoins(user, this.getGame().coinsCalculator(points));
     }
 }

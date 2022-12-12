@@ -1,4 +1,4 @@
-import { MANAGER_USER } from "../../../App";
+import { MANAGER_USER } from "../../../appManagers";
 import { User } from "./user";
 
 

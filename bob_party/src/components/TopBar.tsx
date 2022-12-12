@@ -9,11 +9,8 @@ import { User } from "../core/User/user"
     Import the correct stylesheet
 */
 import styles from './style/TopBar.style';
-import { useSelector } from "react-redux"
-import { RootState } from "../redux/store"
-import { MANAGER_USER } from "../../App"
-import { useUserStore } from "../context/userContext"
 import { useMatchStore } from "../context/matchContext"
+import { MANAGER_USER } from "../../appManagers"
 
 /* 
     Images required

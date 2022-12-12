@@ -8,7 +8,6 @@ import { BotBar } from '../components/BotBar';
 import { SkinComponent } from '../components/Skin';
 import { ButtonGreySmall } from '../components/ButtonGreySmall';
 import { ScreenIndicator } from '../components/ScreenIndicator';
-import { MANAGER_USER } from '../../App';
 import { useUserStore } from '../context/userContext';
 
 const coin = require('../../assets/Icons/Coin.png')

@@ -9,8 +9,8 @@ import { loginUser } from '../redux/features/currentUserSlice';
 import { RootState } from '../redux/store';
 import { updateIncorrectCredentials } from '../redux/features/credentialErrorsSlice';
 import Dialog from "react-native-dialog";
-import { MANAGER_USER } from '../../App';
 import { useUserStore } from '../context/userContext';
+import { MANAGER_USER } from '../../appManagers';
 
 
 

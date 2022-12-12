@@ -1,6 +1,5 @@
 import React from "react";
 import create from "zustand";
-import { MANAGER_USER } from "../../App";
 import { Conversation } from "../core/conversation";
 
 

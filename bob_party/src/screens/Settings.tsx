@@ -10,10 +10,10 @@ import { RootState } from '../redux/store';
 import Dialog from "react-native-dialog"
 import RNPickerSelect from "react-native-picker-select";
 import { PickerGreySmall } from '../components/PickerGreySmall';
-import { MANAGER_USER } from '../../App';
 import { useUserStore } from '../context/userContext';
 import DialogInput from 'react-native-dialog-input';
 import UserModificationManager from '../core/User/userModificationManager';
+import { MANAGER_USER } from '../../appManagers';
 
 function Settings(props: { navigation: any; }) {
     const { navigation } = props

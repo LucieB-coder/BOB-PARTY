@@ -6,11 +6,9 @@ import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
 import { Conversation } from '../core/conversation';
 import { ButtonGameTypeChoice } from '../components/ButtonGameTypeChoice';
-import { MANAGER_GAME } from '../../App';
 import { useGameStore } from '../context/gameContext';
-import { GameSolo } from '../core/gameSolo';
-import { Game } from '../core/game';
-import game from '../testGameSolo';
+import { MANAGER_GAME } from '../../appManagers';
+
 
 
 

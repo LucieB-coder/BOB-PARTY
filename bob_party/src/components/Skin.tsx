@@ -8,12 +8,12 @@ import { Skin } from "../core/skin"
 */
 import styles from "./style/Skin.style"
 import { useDispatch, useSelector } from "react-redux"
-import { MANAGER_USER } from "../../App"
 import { useUserStore } from "../context/userContext"
-import { ManagerCoinsUser } from "../core/User/userCoinsModifier"
+import { UserCoinsModifier } from "../core/User/userCoinsModifier"
 import UserSkinModifier from "../core/User/userSkinModifier"
 import { useStoreStore } from "../context/storeContext"
 import tabSkinApp from "../constSkin"
+import { MANAGER_USER } from "../../appManagers"
 
 
 
@@ -68,7 +68,7 @@ export const SkinComponent:
 
         async function buySkin(skin: Skin) {
             const mSkin = new UserSkinModifier();
-            const mCoins = new ManagerCoinsUser();
+            const mCoins = new UserCoinsModifier();
             const tmp = MANAGER_USER.getCurrentUser();
             if (tmp !== null) {
 

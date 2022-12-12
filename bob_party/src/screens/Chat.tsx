@@ -6,8 +6,6 @@ import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
 import { FlatList } from 'react-native-gesture-handler';
 import { ConversationComponent } from '../components/ConversationComponent';
-import { Conversation } from '../core/conversation';
-import { MANAGER_CONVERSATION, MANAGER_USER } from '../../App';
 import { useConversationStore } from '../context/conversationContext';
 
 function Chat(props: { navigation: any; }) {

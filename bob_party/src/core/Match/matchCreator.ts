@@ -1,5 +1,4 @@
-import { MANAGER_MATCH } from "../../../App";
-import ManagerMatch from "../../services/matchServices/managerMatch";
+import { MANAGER_MATCH } from "../../../appManagers";
 import { Game } from "../game";
 import { User } from "../User/user";
 import { Match } from "./match";
