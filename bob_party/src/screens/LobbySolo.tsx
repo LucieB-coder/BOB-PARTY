@@ -6,7 +6,6 @@ import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
 import { Conversation } from '../core/conversation';
 import { ButtonGameTypeChoice } from '../components/ButtonGameTypeChoice';
-import { MANAGER_MATCH } from '../../App';
 import { useMatchStore } from '../context/matchContext';
 
 

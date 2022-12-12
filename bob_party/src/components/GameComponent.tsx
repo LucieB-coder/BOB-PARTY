@@ -11,8 +11,8 @@ import styles from './style/Game.style';
 import LobbySolo from "../screens/LobbySolo"
 import ManagerMatch from "../services/matchServices/managerMatch"
 import MatchCreator from "../core/Match/matchCreator"
-import { MANAGER_MATCH, MANAGER_USER } from "../../App"
 import { useMatchStore } from "../context/matchContext"
+import { MANAGER_MATCH, MANAGER_USER } from "../../appManagers"
 
 export const GameComponent : 
 

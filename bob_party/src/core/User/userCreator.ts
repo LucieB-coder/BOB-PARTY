@@ -2,7 +2,7 @@ import { User } from "./user";
 import tabSkinApp from "../../constSkin";
 import { Conversation } from "../conversation";
 import ManagerUser from "../../services/userServices/managerUser";
-import { MANAGER_USER } from "../../../App";
+import { MANAGER_USER } from "../../../appManagers";
 
 export class UserCreator{
 

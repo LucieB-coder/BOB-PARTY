@@ -1,10 +1,6 @@
-import React from "react";
 import create from "zustand";
-import { MANAGER_USER } from "../../App";
-import tabSkinApp from "../constSkin";
 import { Game } from "../core/game";
-import { Skin } from "../core/Skin";
-import { User } from "../core/User/user";
+
 
 
 // Define store types

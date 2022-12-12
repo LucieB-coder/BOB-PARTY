@@ -1,4 +1,4 @@
-import { MANAGER_USER } from '../../../App';
+import { MANAGER_USER } from '../../../appManagers';
 import { Skin } from '../Skin'
 import { User } from './user'
 

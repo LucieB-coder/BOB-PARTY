@@ -9,8 +9,6 @@ import { Conversation } from "../core/conversation"
 */
 import styles from "./style/ConverstationComponent.style"
 import { SkinComponent } from "./Skin"
-import { User } from "../core/User/user"
-import { MANAGER_USER } from "../../App"
 
 export const ConversationComponent :
 /* Parameters : 

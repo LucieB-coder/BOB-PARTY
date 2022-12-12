@@ -7,9 +7,9 @@ import React from "react"
 */
 import styles from './style/BotBar.style';
 import { useStoreStore } from "../context/storeContext";
-import { MANAGER_CONVERSATION, MANAGER_USER } from "../../App";
 import tabSkinApp from "../constSkin";
 import { useConversationStore } from "../context/conversationContext";
+import { MANAGER_CONVERSATION, MANAGER_USER } from "../../appManagers";
 
 /* 
     Images that are required to create a bottom bar
