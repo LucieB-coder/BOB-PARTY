@@ -119,7 +119,7 @@ function CookieClicker(props: { navigation: any}){
               Timer: {timer}
             </Text>
             <TouchableHighlight onPress={onPressCookie} >
-              <Image style={styles.photo} source={{uri: 'https://cdn-icons-png.flaticon.com/512/614/614131.png'}}/>
+              <Image style={styles.photo} source={{uri: 'https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/Persistance/bob_party/assets/ImagesJeux/CookieClicker/ChristmasCookie.png'}}/>
             </TouchableHighlight>
             <Text>
               Argent {money}
@@ -130,7 +130,7 @@ function CookieClicker(props: { navigation: any}){
           </View>
           <View style={styles.containerRight}>
             <TouchableHighlight onPress={onPressGrandma}>
-              <Image style={styles.photo} source={{uri: 'https://www.pngall.com/wp-content/uploads/12/Grandma-Happy-PNG-Photo.png'}}/>
+              <Image style={styles.photo} source={{uri: 'https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/Persistance/bob_party/assets/ImagesJeux/CookieClicker/ChristmasGrandma.png'}}/>
             </TouchableHighlight>
             <View>
               <Text style={styles.cout}>
@@ -139,7 +139,7 @@ function CookieClicker(props: { navigation: any}){
             </View>
 
             <TouchableHighlight onPress={onPressFarm} style={styles.photo}>
-              <Image style={styles.photo} source={{uri: 'https://www.pngall.com/wp-content/uploads/8/Farming-PNG-Picture.png'}}/>
+              <Image style={styles.photo} source={{uri: 'https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/Persistance/bob_party/assets/ImagesJeux/CookieClicker/ChristmasFarm.png'}}/>
             </TouchableHighlight>
             <View>
               <Text style={styles.cout}>
@@ -148,7 +148,7 @@ function CookieClicker(props: { navigation: any}){
             </View>
 
             <TouchableHighlight onPress={onPressFactory}>
-              <Image style={styles.photo} source={{uri: 'https://cdn.pixabay.com/photo/2018/04/16/09/12/factory-3323977_960_720.png'}}/>
+              <Image style={styles.photo} source={{uri: 'https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/Persistance/bob_party/assets/ImagesJeux/CookieClicker/ChristmasFactory.png'}}/>
             </TouchableHighlight>
             <View>
               <Text style={styles.cout}>
@@ -209,7 +209,7 @@ const styles = StyleSheet.create({
   },
   photo: {
     width: 50,
-    height: 50
+    height: 100
   },
   cout: {
     marginBottom: 20
