@@ -5,10 +5,6 @@ import stylesScreen from './style/screens.style';
 import styles from './style/Settings.style';
 import { TopBar } from '../components/TopBar';
 import { ButtonGreySmall } from '../components/ButtonGreySmall';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
-import Dialog from "react-native-dialog"
-import RNPickerSelect from "react-native-picker-select";
 import { PickerGreySmall } from '../components/PickerGreySmall';
 import { useUserStore } from '../context/userContext';
 import DialogInput from 'react-native-dialog-input';
@@ -17,6 +13,7 @@ import { MANAGER_USER } from '../../appManagers';
 
 function Settings(props: { navigation: any; }) {
     const { navigation } = props
+
     const setUser = useUserStore((state) => state.setUser);
 
 
@@ -29,26 +26,45 @@ function Settings(props: { navigation: any; }) {
 
 
     async function changeUsername(username:string){
-      const m = new UserModificationManager();
-      const tmp=MANAGER_USER.getCurrentUser();
-      if (tmp!==null){
-        await m.changeUsername(tmp, username);
+      let userManager = new UserModificationManager();
+      let tmp=MANAGER_USER.getCurrentUser();
+      if (tmp!=null){
+        await userManager.changeUsername(tmp, username);
         setUser(tmp);
         MANAGER_USER.setCurrentUser(tmp);
       }
     }
 
     async function changePassword(password:string){
-      const m = new UserModificationManager();
-      const tmp=MANAGER_USER.getCurrentUser();
-      if (tmp!==null){
-        await m.changePassword(tmp, password);
+      let userManager = new UserModificationManager();
+      let tmp=MANAGER_USER.getCurrentUser();
+      if (tmp!=null){
+        await userManager.changePassword(tmp, password);
         setUser(tmp);
         MANAGER_USER.setCurrentUser(tmp);
       }
     }
 
-    const dispatch=useDispatch();
+    async function changeSexe(sexe:string){
+      let userManager = new UserModificationManager();
+      let tmp=MANAGER_USER.getCurrentUser();
+      if (tmp!=null && sexe != null){
+        await userManager.changeSexe(tmp, sexe);
+        setUser(tmp);
+        MANAGER_USER.setCurrentUser(tmp);
+      }
+    }
+
+    async function changeNationality(nationality:string){
+      let userManager = new UserModificationManager();
+      let tmp=MANAGER_USER.getCurrentUser();
+      if (tmp!=null && nationality != null){
+        await userManager.changeNationality(tmp, nationality);
+        setUser(tmp);
+        MANAGER_USER.setCurrentUser(tmp);
+      }
+    }
+
 
     return (
     <View style={stylesScreen.container}>
@@ -72,11 +88,11 @@ function Settings(props: { navigation: any; }) {
               </View>
               <View>
                 <Text style={styles.text}>Nationalité: {useUserStore().user?.getNationality()}</Text>
-                <PickerGreySmall title='Changer la nationalité' valueChange={(value:string) => setSelectedNationality(value)} donePress={() => dispatch(updateNationality(selectedNationality))} values={["Francais", "Anglais"]} />
+                <PickerGreySmall title='Selectionner un pays' valueChange={(value:string) => setSelectedNationality(value)} donePress={() => changeNationality(selectedNationality)} values={[ { label: 'France', value: 'Francais(e)' }, { label: 'Royaume-Uni', value: 'Anglais(e)' }, { label: 'Espagne', value: 'Espagnol(e)' }, { label: 'Belgique', value: 'Belge' }, { label: 'Allemagne', value: 'Allemand(e)' }, ]}/>
               </View>
               <View>
                 <Text style={styles.text}>Sexe: {useUserStore().user?.getSexe()}</Text>
-                <PickerGreySmall title='Changer le sexe' valueChange={(value:string) => setSelectedSex(value)} donePress={() => dispatch(updateSex(selectedSex))} values={["Homme", "Femme", "Autre"]} />
+                <PickerGreySmall title='Selectionner le sexe' valueChange={(value:string) => setSelectedSex(value)} donePress={() => changeSexe(selectedSex)} values={[ { label: 'Homme', value: 'Homme' }, { label: 'Femme', value: 'Femme' }, {label: 'Autre', value: 'Autre' } ]} />
               </View>
             </View>
             <Text style={styles.textID}>ID: {useUserStore().user?.getId()}</Text>
