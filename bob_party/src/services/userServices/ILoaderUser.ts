@@ -43,10 +43,4 @@ export default interface ILoaderUser{
      * return an array of User
      */
     loadUserByConversation(c:Conversation): Promise<User[]>;
-
-    /**
-     * loadLastId methode that load the last id used to create a user
-     * return a String
-     */
-    loadLastId(): Promise<number>;
 }

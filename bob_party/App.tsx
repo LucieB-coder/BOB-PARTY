@@ -7,7 +7,9 @@ import { useFonts } from 'expo-font';
 
 
 
+
 export default function App() {
+
 
   const [fontsLoaded] = useFonts({
     'Helvetica': require('./assets/fonts/Helvetica.ttf'),
