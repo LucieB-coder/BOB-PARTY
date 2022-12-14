@@ -1,131 +1,84 @@
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, View, Text, Alert, Pressable, Image} from 'react-native'
-import React from 'react';
+import { View, Text } from 'react-native'
+import React, { useState } from 'react';
+import stylesScreen from './style/screens.style';
+import styles from './style/Settings.style';
+import { TopBar } from '../components/TopBar';
+import { ButtonGreySmall } from '../components/ButtonGreySmall';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
+import DialogInput from "react-native-dialog-input";
+import { updatePseudo, updatePassword, updateNationality, updateSex } from "../redux/features/currentUserSlice";
+import Dialog from "react-native-dialog"
+import RNPickerSelect from "react-native-picker-select";
+import tabNat from '../constNat';
+import tabSex from '../constSex';
+import { PickerGreySmall } from '../components/PickerGreySmall';
 
-const msc = require('../../assets/Icons/FondGris.png');
-const engrenage = require('../../assets/Icons/UnSelected/Cross.png');
-
-function Store(props: { navigation: any; }) {
+function Settings(props: { navigation: any; }) {
     const { navigation } = props
+
+    const currentUser = useSelector((state: RootState) => state.currentUserManager.currentUser);
+
+    const [dialogPseudoVisible, setDialogPseudoVisible] = useState(false);
+    const [dialogPasswordVisible, setDialogPasswordVisible] = useState(false);
+
+    const [selectedSex, setSelectedSex] = useState("");
+    const [selectedNationality, setSelectedNationality] = useState("");
+
+    const dispatch=useDispatch();
+
     return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Image
-          style={styles.engrenage}
-          source={msc}
+    <View style={stylesScreen.container}>
+      <TopBar
+          nav={navigation}
+          state='settings'
         />
-        <Text style={styles.titre}>Paramètres</Text>
-        <Pressable onPress={() => props.navigation.goBack()}>
-          <Image
-          style={styles.engrenage}
-          source={engrenage}
-          />
-        </Pressable>
+      <View style={stylesScreen.bodyStartCenter}>
+        <Text style={styles.title}>Informations du Joueur</Text>
+        <View style={styles.infoView}>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between',}}>
+            <View>
+              <View>
+                <Text style={styles.text}>Pseudo: {currentUser.getUsername()}</Text>
+                <ButtonGreySmall onPress={() => setDialogPseudoVisible(true)} title='Changer le pseudo'/>
+              </View>
+              <View>
+                <Text style={styles.text}>Mot de passe: {currentUser.getPassword()}</Text>
+                <ButtonGreySmall onPress={() => setDialogPasswordVisible(true)} title='Changer le mot de passe'/>
+              </View>
+              <View>
+                <Text style={styles.text}>Nationalité: {currentUser.getNationality()}</Text>
+                <PickerGreySmall title='Changer la nationalité' valueChange={(value:string) => setSelectedNationality(value)} donePress={() => dispatch(updateNationality(selectedNationality))} values={tabNat} />
+              </View>
+              <View>
+                <Text style={styles.text}>Sexe: {currentUser.getSexe()}</Text>
+                <PickerGreySmall title='Changer le sexe' valueChange={(value:string) => setSelectedSex(value)} donePress={() => dispatch(updateSex(selectedSex))} values={tabSex} />
+              </View>
+            </View>
+            <Text style={styles.textID}>ID: {currentUser.getId()}</Text>
+          </View>
+        </View>
       </View>
-      <View style={styles.body}>
-        <Text style={styles.text}>couille</Text>
-      </View>
+
+      <DialogInput
+        isDialogVisible={dialogPseudoVisible}
+        title="Inserer le nouveau pseudo"
+        hintInput ="Pseudo"
+        submitInput={ (inputText: string) => {dispatch(updatePseudo(inputText)); setDialogPseudoVisible(false)} }
+        closeDialog={ () => {setDialogPseudoVisible(false)}}>
+      </DialogInput>
+
+      <DialogInput 
+        isDialogVisible={dialogPasswordVisible}
+        title="Inserer le nouveau mot de passe"
+        hintInput ="Mot de passe"
+        submitInput={ (inputText: string) => {dispatch(updatePassword(inputText)); setDialogPasswordVisible(false)} }
+        closeDialog={ () => {setDialogPasswordVisible(false)}}>
+      </DialogInput>
+
     </View>
   );
 }
 
-
-function Button(props: { onPress: any; title?: any | undefined; }) {
-  const { onPress, title = 'Save' } = props;
-  return (
-    <Pressable style={styles.button} onPress={onPress}>
-      <Text style={styles.text}>{title}</Text>
-    </Pressable>
-  );
-}
-
-
-const styles = StyleSheet.create({
-    body: {
-        flex: 1,
-        flexDirection: 'column',
-        alignItems: 'flex-start',
-        width: '70%',
-    },
-    
-    container: {
-    flex: 1,
-    backgroundColor: "#45444E",
-    flexDirection: "column",
-    justifyContent: "flex-start",
-    alignItems: "center",
-  },
-  button: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '30%',
-    width: '100%',
-    marginTop: '10%',
-    paddingVertical: 12,
-    paddingHorizontal: 32,
-    borderRadius: 10,
-    elevation: 3,
-    backgroundColor: '#0085FF',
-  },
-  text: {
-    fontSize: 16,
-    lineHeight: 21,
-    fontWeight: 'bold',
-    letterSpacing: 0.25,
-    color: 'white',
-  },
-  header: {
-    flex : 0.15,
-    width: '100%',
-    flexDirection: 'row',
-    backgroundColor: '#2D2C33',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-  },
-  titre: {
-    flex: 0.7,
-    flexDirection: 'column',
-    textAlign: 'center',
-    fontSize: 30,
-    fontFamily: 'Helvetica',
-    fontWeight: 'bold',
-    letterSpacing: 0.25,
-    color: 'white',
-  },
-  engrenage: {
-    borderRadius: 10,
-    width: 50,
-    height: 50,
-  },
-  avatar: {
-    borderRadius: 10,
-    width: 50,
-    height: 50,
-  },
-  
-  footer: {
-    flex: 0.15,
-    flexDirection: 'row',
-    backgroundColor: '#2D2C33',
-    flexWrap: 'wrap',
-    width: '100%',
-    justifyContent: 'space-evenly',
-  },
-  iconFooter: {
-    marginBottom: 25,
-    marginTop: 10,
-    width: 65,
-    height: 50,
-  },
-  iconStore: {
-    marginBottom: 25,
-    marginTop: 10,
-    marginLeft: 7,
-    marginRight: 8,
-    width: 50,
-    height: 50,
-  },
-
-});
-
-export default Store
+export default Settings
