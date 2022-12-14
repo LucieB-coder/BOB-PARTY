@@ -25,17 +25,17 @@ steps:
 
 
 # docker image build
-  - name: docker-build-and-push
-    image: plugins/docker
-    settings:
-      dockerfile: Dockerfile
-      context: .
-      registry: hub.codefirst.iut.uca.fr
-      repo: hub.codefirst.iut.uca.fr/lilian.breton/bobparty
-      username:
-        from_secret: SECRET_REGISTRY_USERNAME
-      password:
-        from_secret: SECRET_REGISTRY_PASSWORD
+  # - name: docker-build-and-push
+  #   image: plugins/docker
+  #   settings:
+  #     dockerfile: Dockerfile
+  #     context: .
+  #     registry: hub.codefirst.iut.uca.fr
+  #     repo: hub.codefirst.iut.uca.fr/lilian.breton/bobparty
+  #     username:
+  #       from_secret: SECRET_REGISTRY_USERNAME
+  #     password:
+  #       from_secret: SECRET_REGISTRY_PASSWORD
 
 #container deployment
   # - name: deploy-bob_party-container
