@@ -24,7 +24,7 @@ steps:
           from_secret: db_password
 
 
-# docker image build
+# # docker image build
   # - name: docker-build-and-push
   #   image: plugins/docker
   #   settings:
