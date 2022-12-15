@@ -5,15 +5,15 @@ import { Conversation } from "../core/conversation";
 
 // Define store types
 interface ConversationState {
-    tabConv: Conversation[] | undefined;
+    tabConv: Conversation[] | null;
     setTabConv: (tabConv: Conversation[]) => void;
     resetTabConv: () => void;
   }
 
 // Define store data and methods
 export const useConversationStore = create<ConversationState>()((set, get) => ({
-    tabConv: undefined,
+    tabConv: null,
     setTabConv: (tabConv) => set((state) => ({ tabConv: tabConv })),
-    resetTabConv: () => set((state) => ({tabConv: undefined})),
+    resetTabConv: () => set((state) => ({tabConv: null})),
 }));
 

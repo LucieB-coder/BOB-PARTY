@@ -11,6 +11,7 @@ import { User } from "../core/User/user"
 import styles from './style/TopBar.style';
 import { useMatchStore } from "../context/matchContext"
 import { MANAGER_USER } from "../../appManagers"
+import { useUserStore } from "../context/userContext"
 
 /* 
     Images required
@@ -68,7 +69,7 @@ FC<{nav: any, state?: string}> =
             return (
                 <View style={styles.header}>
                     <Pressable onPress={() => nav.navigate('ProfileTab', {screen: 'Profile'})}>
-                            <SkinComponent skin={MANAGER_USER.getCurrentUser().getCurrentSkin()} state='icon' nav={nav} />
+                            <SkinComponent skin={useUserStore().user?.getCurrentSkin()} state='icon' nav={nav} />
                         </Pressable>
                         <Text style={styles.titre}>BOB PARTY</Text>
                         <Pressable onPress={() => nav.navigate('Settings')}>

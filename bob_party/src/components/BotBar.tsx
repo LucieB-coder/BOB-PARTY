@@ -10,6 +10,7 @@ import { useStoreStore } from "../context/storeContext";
 import tabSkinApp from "../constSkin";
 import { useConversationStore } from "../context/conversationContext";
 import { MANAGER_CONVERSATION, MANAGER_USER } from "../../appManagers";
+import { socket } from "../../socketConfig";
 
 /* 
     Images that are required to create a bottom bar
@@ -30,23 +31,26 @@ const smessage = require('../../assets/Icons/Selected/SChat.png');
 const sstore = require('../../assets/Icons/Selected/SStore.png');
 
 
+
+
+
 export const BotBar:
     /* Parameters :
        * nav : tool needed to allow the navigation between the screens
        * state : optional parameter that indicates from which screen the component has been called
             (the string must be the name of the screen)
     */
+
+
     FC<{ nav: any, state?: String }> =
     ({ nav, state }) => {
 
+
         const setTabSkin = useStoreStore((state) => state.setTabSkin);
-        const setTabConv = useConversationStore((state) => state.setTabConv);
 
         const handleStoreChange = useCallback(async () => {
 
             let tabSkinStore = [...tabSkinApp];
-            //   const tmp=MANAGER_USER.getCurrentUser()?.getTabSkin();
-            //   if (tmp!==undefined){
             MANAGER_USER.getCurrentUser()?.getTabSkin()?.forEach(skin => {
                 for (let i = 0; i < tabSkinStore.length; i++) {
                     if (skin.isEqual(tabSkinStore[i])) {
@@ -55,19 +59,11 @@ export const BotBar:
                 }
             });
             setTabSkin(tabSkinStore);
-            //   }
         }, []);
 
-        const handleConversationChange = useCallback(async () => {
-            const tmp = MANAGER_USER.getCurrentUser();
-            if (tmp !== null) {
-                await MANAGER_CONVERSATION.getLoaderConversation().loadByUser(tmp).then((res) => {
-                    MANAGER_CONVERSATION.setCurrentTabConv(res);
-                    setTabConv(res);
-                });
-            }
 
-        }, []);
+
+        
 
         /* 
             By default, all the images are the white ones
@@ -100,7 +96,7 @@ export const BotBar:
         */
         return (
             <View style={styles.footer}>
-                <Pressable onPress={() => { handleConversationChange(); nav.navigate('ChatTab') }}>
+                <Pressable onPress={() => {  nav.navigate('ChatTab') }}>
                     <Image
                         style={styles.icon}
                         source={imgLeft}

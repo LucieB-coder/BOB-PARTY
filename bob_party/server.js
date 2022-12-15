@@ -1,3 +1,4 @@
+
 const express = require('express');
 const app = express();
 const http = require('http');
@@ -5,16 +6,21 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 
-const connectUsers = []
+const connectUsers = [];
 
 io.on('connection', (socket) => {
   console.log(socket.id)  
 
-  socket.on('joinRoom', ({username}) => {
-    connectUsers.push(username)
 
-    socket.emit('roomJoined', connectUsers)
+  socket.on('inConv', (conv) => {
+    socket.join("C" + conv.id);
   });
+
+  socket.on("messageSent", (conv) =>{
+    socket.to("C"+conv.id).emit("messageReceived");
+    console.log("Message envoyé");
+  });
+  
 });
 
 server.listen(3000, () => {

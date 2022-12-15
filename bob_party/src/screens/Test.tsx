@@ -5,36 +5,28 @@ import React from 'react';
 import { FlatList } from 'react-native-gesture-handler';
 import { SkinComponent } from '../components/Skin';
 import { Skin } from '../core/skin';
+import { MessageComponent } from '../components/MessageComponent';
+import { MANAGER_CONVERSATION, MANAGER_USER } from '../../appManagers';
+import { Message } from '../core/message';
+import { User } from '../core/User/user';
 
-/*
-const skinTest = new Skin("S0001","Bob",require('../../assets/BobsSkins/BobClassic.png'));
-const skinBleu = new Skin("S0001","Bob Bleu", require('../../assets/BobsSkins/BobBlue.png'))
-const skinBW = new Skin("S0001","Bob BW", require('../../assets/BobsSkins/BobBW.png'))
-const skinGreen = new Skin("S0001","Bob Vert", require('../../assets/BobsSkins/BobGreen.png'))
-const skinPT = new Skin("S0001","Bob R&T", require('../../assets/BobsSkins/BobPinkTurquoise.png'))
-
-let listSkin: Array<Skin> = [skinTest, skinBleu, skinBW, skinGreen, skinPT]
 
 function Test(props: { navigation: any; }) {
+    
     const { navigation } = props
 
-    const ItemSeprator = () => <View style={{
-        height: 2,
-        width: "100%",
-        backgroundColor: "red",
-    }}/>
+    let skin= new Skin(1, "Bob","https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/typescript/bob_party/assets/BobsSkins/BobClassic.png", 0);
+    
+    let user1 = new User(1, "Alban", "oui", "ouioui", "homme", new Date(2022,12,12), 555, 667, 12, skin, [skin]);
+
+    let message = new Message(1, "bonjour je m'appelle alban et blablablablablablablafkfjsbndfihbsfiusbdfisdubfsdijbfisdjfbsdiufbsdifbsdifbsdibfsdifbsdifbsdifbsdibfsdibfsdiubfsdibfsdiubfsdiubfsqhdbqshjdbsqhbdqshbdqksjb", user1, new Date(2022,12,12));
+
 
     return (
-        <View style={{backgroundColor: 'blue', flex: 0.7, alignSelf: 'center'}}>
-            <FlatList 
-                data={listSkin}
-                numColumns={2}
-                columnWrapperStyle={{ flex: 1, justifyContent: "space-around"}}
-                keyExtractor={item =>item.getSkinName()}
-                renderItem={({item}) => <SkinComponent skin={item} state='shop'/>} />
+        <View style={{backgroundColor: '#45444D', flex: 1, flexDirection: 'column-reverse', paddingBottom: 50,}}>
+            <MessageComponent mess={message}></MessageComponent>
         </View>
     );
 }
 
 export default Test
-*/
