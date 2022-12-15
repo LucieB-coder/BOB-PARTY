@@ -27,11 +27,18 @@ export class LoaderConversationApi implements ILoaderConversation{
          })
          .then(function (response: any) {
             let skin= new Skin(1, "Bob","https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/typescript/bob_party/assets/BobsSkins/BobClassic.png", 0);
+            let skin2= new Skin(1, "Bob","https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/typescript/bob_party/assets/BobsSkins/BobBlue.png", 0);
+            let user1 = new User(1, "Alban", "oui", "ouioui", "homme", new Date(2022,12,12), 555, 667, 12, skin, [skin]);
+            let user2 = new User(3, "Fefe63", "jesuishm", "ouioui", "homme", new Date(2022,12,12), 12222, 123324, 12, skin2, [skin]);
             tabConv=[new Conversation(1, 
-            [new User(1, "Alban", "oui", "ouioui", "homme", new Date(2022,12,12), 555, 667, 12, skin, [skin]),
-            new User(3, "Fefe63", "jesuishm", "ouioui", "homme", new Date(2022,12,12), 12222, 123324, 12, skin, [skin])],
-            [new Message(1, "bonjour", new User(1, "Alban", "oui", "ouioui", "homme", new Date(2022,12,12), 555, 667, 12, skin, [skin]), new Date(2022,12,12)),
-            new Message(2, "test", new User(2, "Fefe63", "oui", "ouioui", "homme", new Date(2022,12,12), 555, 667, 12, skin, [skin]), new Date(2022,12,13))], "leNom")];
+                [user1, user2],
+                [
+                new Message(1, "bonjour", user1, new Date(2022,12,12)), 
+                new Message(2, "test", user2, new Date(2022,12,13)),
+                new Message(3, "Je m'appelle alban et j'aime trop faire les messages quand ça marche mais ya encore qq trucs qui marche pas donc un peu cool mais pas trop", user1, new Date(2022,12,14)), 
+                new Message(4, "Fefe63 est dans la place", user2, new Date(2022,12,15)), 
+                ]
+                , user1.getUsername()+user2.getUsername())];
         });
         return tabConv;
     }
