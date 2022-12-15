@@ -104,7 +104,7 @@ export default class LoaderUserApi implements ILoaderUser{
          .then(function (response: any) {
             const tabTest=[new Skin(1, "Bob","https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/typescript/bob_party/assets/BobsSkins/BobClassic.png", 0),
             new Skin(2, "Bob Blue","https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/typescript/bob_party/assets/BobsSkins/BobBlue.png", 100)];
-            user=new User(1, username, password, "ouioui", "homme", new Date(2022,12,12), 200, 123324, 12, new Skin(1, "Bob","https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/typescript/bob_party/assets/BobsSkins/BobClassic.png", 0), tabTest);
+            user=new User(1, username, password, "ouioui", "homme", new Date(2022,12,12), 0, 0, 12, tabTest[0], tabTest);
         });
         return user;
     }
@@ -129,8 +129,4 @@ export default class LoaderUserApi implements ILoaderUser{
           }
           return 1;
     }
-
-
-    
-    
 }

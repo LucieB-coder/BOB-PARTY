@@ -17,6 +17,8 @@ import CookieClicker from '../Games/CookieClicker/cookieClicker'
 import Conversation from '../screens/Conversation'
 
 import Test from '../screens/Test'
+import MatchMaking from '../screens/MatchMaking'
+import TicTacToe from '../Games/Tic-Tac-Toe/tic-tac-toe'
 
 
 const HomeStack = createStackNavigator();
@@ -97,8 +99,9 @@ const GameSoloStack = createStackNavigator();
 function GameSoloStackScreen() {
   return (
     <GameSoloStack.Navigator screenOptions={{headerShown: false}}>
-      <GameSoloStack.Screen name='LobbySolo' component={LobbySolo} options={{animationEnabled: false,}}/>
+      <GameSoloStack.Screen name='MatchMaking' component={MatchMaking} options={{animationEnabled: false,}}/>
       <GameSoloStack.Screen name='CookieClicker' component={CookieClicker} />
+      <GameSoloStack.Screen name='TicTacToe' component={TicTacToe} />
     </GameSoloStack.Navigator>
   );
 }
