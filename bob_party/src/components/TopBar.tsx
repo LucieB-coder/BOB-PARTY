@@ -51,7 +51,7 @@ FC<{nav: any, state?: string}> =
                 </View>
             )
 
-        case 'matchmacking':
+        case 'matchmacking'|| 'game':
             return (
                 <View style={styles.header}>
                     <Pressable>
