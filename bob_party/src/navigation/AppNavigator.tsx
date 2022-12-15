@@ -14,6 +14,9 @@ import SignIn from '../screens/SignIn'
 import SignUp from '../screens/SignUp'
 import LobbySolo from '../screens/LobbySolo'
 import CookieClicker from '../Games/CookieClicker/cookieClicker'
+import Conversation from '../screens/Conversation'
+
+import Test from '../screens/Test'
 
 
 const HomeStack = createStackNavigator();
@@ -53,6 +56,7 @@ function ChatStackScreen() {
     <ChatStack.Navigator screenOptions={{headerShown: false}}>
       <ChatStack.Screen name="Chat" component={Chat} />
       <ChatStack.Screen name="Settings" component={Settings} />
+      <ChatStack.Screen name="Conversation" component={Conversation} />
     </ChatStack.Navigator>
   );
 }
@@ -121,6 +125,8 @@ function MainTabNavigator() {
     </NavigationContainer>
   )
 }
+
+
 
 
 export default MainTabNavigator
