@@ -5,12 +5,13 @@ import stylesScreen from './style/screens.style'
 import { TextInput } from 'react-native-gesture-handler';
 import styles from "./style/SignIn.style";
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from '../redux/features/currentUserSlice';
 import { RootState } from '../redux/store';
 import { updateIncorrectCredentials } from '../redux/features/credentialErrorsSlice';
 import Dialog from "react-native-dialog";
 import { useUserStore } from '../context/userContext';
-import { MANAGER_USER } from '../../appManagers';
+import { MANAGER_CONVERSATION, MANAGER_USER } from '../../appManagers';
+import { socket } from "../../socketConfig";
+import { useConversationStore } from '../context/conversationContext';
 
 
 
@@ -18,6 +19,8 @@ import { MANAGER_USER } from '../../appManagers';
 function SignIn(props: { navigation: any; }) {
     const { navigation } = props
     const setUser = useUserStore((state) => state.setUser);
+    const setTabConv = useConversationStore((state) => state.setTabConv);
+
 
     const errorList = useSelector((state: RootState) => state.credentialErrors.loginErrorList);
     const [pseudo, setPseudo] = useState('');
@@ -29,20 +32,47 @@ function SignIn(props: { navigation: any; }) {
             dispatch(updateIncorrectCredentials(true));
     }
 
+    let waitConnect=0;
 
-    const handleUserConnect = useCallback(async (pseudo: string, password: string) => {
+    async function handleUserConnect(username: string, password: string){
         
-        await MANAGER_USER.getLoaderUser().loadByUsernamePassword(pseudo, password).then((res) => {      
-            if (res!=null){
-                MANAGER_USER.setCurrentUser(res);
-                setUser(MANAGER_USER.getCurrentUser());
-                navigation.navigate('HomeTab');
-            }
+        if (waitConnect==0){
+            waitConnect=1;
+            await MANAGER_USER.getLoaderUser().loadByUsernamePassword(username, password).then(async (res) => {   
+                if (res!=null){
+                    MANAGER_USER.setCurrentUser(res);
+                    setUser(MANAGER_USER.getCurrentUser());
+                    socket.emit("signIn", res);
+                    await handleConversationLoad();
+                    MANAGER_CONVERSATION.getCurrentTabConv()?.forEach( conv =>{
+                        socket.emit("inConv", conv);
+                        socket.emit("messageSent", conv);
+                    });
+                    navigation.navigate('HomeTab');                
 
-        });
+                }
 
-    }, []);
-    
+            });
+            waitConnect=0;
+        }
+        return;      
+    }
+
+    async function handleConversationLoad(){
+        const tmp = MANAGER_USER.getCurrentUser();
+        if (tmp !== null) {
+            await MANAGER_CONVERSATION.getLoaderConversation().loadByUser(tmp).then((res) => {
+                MANAGER_CONVERSATION.setCurrentTabConv(res);
+                setTabConv(res);
+            });
+        }
+      }
+
+    socket.on("messageReceived", () =>{
+        console.log("Message reçu");
+        handleConversationLoad();
+    });
+
 
     return (
     <View style={stylesScreen.container}>

@@ -1,10 +1,11 @@
+/*
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { Skin } from "../../core/Skin";
 import { User } from "../../core/User/user";
 
 const dateNull = new Date();
 
-const userNull:User= new User("","","","","",dateNull);
+const userNull:User | null= null;
 
 var currentUser:User = userNull;
 
@@ -72,3 +73,4 @@ export const { updateNationality } = currentUserSlice.actions
 export const { updateSex } = currentUserSlice.actions
 
 export default currentUserSlice.reducer;
+*/

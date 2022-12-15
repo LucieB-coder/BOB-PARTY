@@ -159,7 +159,7 @@ function CookieClicker(props: { navigation: any }) {
           </View>
 
           <TouchableHighlight onPress={onPressWizard}>
-            <Image style={styles.photo} source={{ uri: 'https://www.clasher.us/images/coc/units/Wizard_Tower7.png' }} />
+            <Image style={styles.photo} source={{ uri: 'https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/Persistance/bob_party/assets/ImagesJeux/CookieClicker/ChristmasTower.png' }} />
           </TouchableHighlight>
           <View>
             <Text style={styles.cout}>
@@ -168,7 +168,7 @@ function CookieClicker(props: { navigation: any }) {
           </View>
 
           <TouchableHighlight onPress={onPressPortal}>
-            <Image style={styles.photo} source={{ uri: 'https://i.pinimg.com/originals/98/29/21/9829215db6f9210c0ae4e318e854cb1f.png' }} />
+            <Image style={styles.photo} source={{ uri: 'https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/Persistance/bob_party/assets/ImagesJeux/CookieClicker/ChristmasPortal.png' }} />
           </TouchableHighlight>
           <View>
             <Text style={styles.cout}>
@@ -185,10 +185,12 @@ function CookieClicker(props: { navigation: any }) {
 
 const styles = StyleSheet.create({
   container: {
+    height: window.innerHeight,
+    width: window.innerWidth,
     flex: 1,
   },
   containerTop:{
-    top: 75,
+    top: "5%",
     margin: 10,
     flex: 1,
     justifyContent: 'center',

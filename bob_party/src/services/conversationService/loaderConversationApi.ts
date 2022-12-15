@@ -27,7 +27,7 @@ export class LoaderConversationApi implements ILoaderConversation{
          })
          .then(function (response: any) {
             let skin= new Skin(1, "Bob","https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/typescript/bob_party/assets/BobsSkins/BobClassic.png", 0);
-            tabConv=[new Conversation(1, 
+            tabConv=[new Conversation(40, 
             [new User(1, "Alban", "oui", "ouioui", "homme", new Date(2022,12,12), 555, 667, 12, skin, [skin]),
             new User(3, "Fefe63", "jesuishm", "ouioui", "homme", new Date(2022,12,12), 12222, 123324, 12, skin, [skin])],
             [new Message(1, "bonjour", new User(1, "Alban", "oui", "ouioui", "homme", new Date(2022,12,12), 555, 667, 12, skin, [skin]), new Date(2022,12,12)),
