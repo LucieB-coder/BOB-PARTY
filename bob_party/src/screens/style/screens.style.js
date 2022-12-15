@@ -6,13 +6,18 @@ export default StyleSheet.create({
         backgroundColor: '#45444E',
         flexDirection: "column",
         justifyContent: "flex-start",
-        alignItems: "center",
     },
     bodyStart: {
         flex: 1,
         flexDirection: 'column',
         width: '100%',
-      },
+    },
+    bodyStartReverse:{
+        flex: 1,
+        flexDirection: 'column-reverse',
+        justifyContent: 'flex-end',
+        width: '100%',
+    },
     bodyStartCenter: {
         flex: 1,
         alignItems: 'center',
