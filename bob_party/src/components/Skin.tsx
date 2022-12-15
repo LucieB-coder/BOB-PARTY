@@ -26,7 +26,7 @@ export const SkinComponent:
         * skin : Skin to be displayed
         * state : Indicates from wich screen the component has been called
     */
-    FC<{ nav: any, skin: Skin, state: String }> =
+    FC<{  skin: Skin, state: String, nav?: any,}> =
     ({ nav, skin, state }) => {
 
         const navigation = nav;
