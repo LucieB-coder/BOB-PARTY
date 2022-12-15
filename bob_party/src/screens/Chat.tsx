@@ -5,7 +5,7 @@ import stylesScreen from './style/screens.style';
 import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
 import { FlatList } from 'react-native-gesture-handler';
-import { ConversationComponent } from '../components/ConversationComponent';
+import { ConversationPreviewComponent } from '../components/ConversationPreviewComponent';
 import { useConversationStore } from '../context/conversationContext';
 
 function Chat(props: { navigation: any; }) {
@@ -20,7 +20,7 @@ function Chat(props: { navigation: any; }) {
 
         <FlatList 
           data={useConversationStore().tabConv}
-          renderItem={({item}) => <ConversationComponent conv={item} state='Preview' navigation={navigation}/>} 
+          renderItem={({item}) => <ConversationPreviewComponent conv={item} navigation={navigation}/>} 
         />
       </View>
       <BotBar 
