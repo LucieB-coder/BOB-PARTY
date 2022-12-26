@@ -24,7 +24,7 @@ class MatchGateway{
 /// Parameters : * $id (string): identifier of the match we are looking for
     public function getMatchById(string $matchId):?Matchs{
         $match=NULL;
-        $matchInfoQuery="SELECT PK_ID, MTC_IN_GAME, FK_ID_GAME FROM T_E_MATCH_MTC WHERE PK_ID = :id";
+        $matchInfoQuery="SELECT PK_ID, MTC_IN_GAME, FK_GAME FROM T_E_MATCH_MTC WHERE PK_ID = :id";
         $playersInMatchQuery="SELECT FK_USER FROM T_J_PLAY_MATCH_PLM WHERE FK_MATCH=:id";
         $argId=array('id' => array($matchId, PDO::PARAM_INT));
         $this->connection->execQuery($playersInMatchQuery, $argId);
@@ -35,7 +35,7 @@ class MatchGateway{
         $this->connection->execQuery($matchInfoQuery, $argId);
         $res=$this->connection->getRes();
         foreach($res as $row){
-            $match = new Matchs($row['PK_ID'],$row['MTC_IN_GAME'],$row['FK_ID_GAME'],$tabUser);
+            $match = new Matchs($row['PK_ID'],$row['MTC_IN_GAME'],$row['FK_GAME'],$tabUser);
         }
         return $match;
     }
