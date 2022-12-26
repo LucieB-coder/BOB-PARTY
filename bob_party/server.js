@@ -20,7 +20,6 @@ io.on('connection', (socket) => {
     socket.to("C"+conv.id).emit("messageReceived");
     console.log("Message envoyé");
   });
-  
 });
 
 server.listen(3000, () => {
