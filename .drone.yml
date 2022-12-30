@@ -37,7 +37,7 @@ steps:
       password:
         from_secret: SECRET_REGISTRY_PASSWORD
 
-container deployment
+#container deployment
    - name: deploy-bob_party-container
      image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
      environment:
