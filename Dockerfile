@@ -21,4 +21,4 @@ ENV MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
 ADD bobParty.sql bobParty.sql
 
 RUN sed -i 's/MYSQL_DATABASE/'$MYSQL_DATABASE'/g' create.sql
-RUN cp create.sql /docker-entrypoint-initdb.d
+RUN cp bobParty.sql /docker-entrypoint-initdb.d
