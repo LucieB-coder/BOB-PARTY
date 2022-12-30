@@ -1,4 +1,4 @@
-# This file creates our 2 docker containers 1221531
+# This file creates our 2 docker containers
 kind: pipeline
 name: Dockers_Builder
 
