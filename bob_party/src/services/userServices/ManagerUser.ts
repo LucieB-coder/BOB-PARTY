@@ -27,15 +27,7 @@ export default class ManagerUser{
         return this.loaderUser;
     }
 
-    setLoaderUser(l:ILoaderUser){
-        this.loaderUser=l;
-    }
-
     getsaverUser(){
         return this.saverUser;
-    }
-
-    setsaverUser(s:ISaverUser){
-        this.saverUser=s;
     }
 }

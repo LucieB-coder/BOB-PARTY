@@ -1,7 +1,6 @@
 import React from "react";
 import create from "zustand";
-import { MANAGER_USER } from "../../App";
-import tabSkinApp from "../constSkin";
+import { MANAGER_SKIN } from "../../appManagers";
 import { Skin } from "../core/Skin";
 import { User } from "../core/User/user";
 
@@ -15,8 +14,8 @@ interface StoreState {
 
 // Define store data and methods
 export const useStoreStore = create<StoreState>()((set, get) => ({
-    tabSkin: tabSkinApp,
+    tabSkin: [],
     setTabSkin: (tabSkin) => set((state) => ({ tabSkin: tabSkin })),
-    resetTabSkin: () => set((state) => ({ tabSkin: tabSkinApp })),
+    resetTabSkin: () => set((state) => ({ tabSkin: [] })),
 }));
 

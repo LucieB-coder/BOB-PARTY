@@ -7,7 +7,10 @@ import { BotBar } from '../components/BotBar';
 import { Conversation } from '../core/conversation';
 import { ButtonGameTypeChoice } from '../components/ButtonGameTypeChoice';
 import { useGameStore } from '../context/gameContext';
-import { MANAGER_GAME } from '../../appManagers';
+import { MANAGER_CONVERSATION, MANAGER_GAME, MANAGER_USER } from '../../appManagers';
+import { socket } from '../../socketConfig';
+import { useConversationStore } from '../context/conversationContext';
+import { Message } from '../core/message';
 
 
 
@@ -18,79 +21,37 @@ function Home(props: { navigation: any; }) {
 
   const { navigation } = props
 
-  const setTabGame = useGameStore((state) => state.setTabGame);
-  const setTabGameSolo = useGameStore((state) => state.setTabGameSolo);
-  const setTabGameMulti = useGameStore((state) => state.setTabGameMulti);
 
-  /*
-      const handleGame = useCallback(async (typeJeu: string) => {
-        switch(typeJeu){
-          case 'solo':
-            let tabSolo:Game[]=[]
-            let tmp=MANAGER_GAME.getTabGameSolo();
-            if (tmp==null){
-              let tabAll=MANAGER_GAME.getTabGame();
-                if (tabAll==null){
-                  await MANAGER_GAME.getLoaderGame().loadAllGame().then((res) => {      
-                    MANAGER_GAME.setTabGame(res);
-                    setTabGame(res);
-                  });
-                }
-                tabAll?.forEach(game =>{
-                  if (game.getNbPlayerMax()==1){
-                    tabSolo.push(game);
-                  }
-                })
-                MANAGER_GAME.setTabGameSolo(tabSolo);
-                setTabGameSolo(tabSolo);
-                navigation.navigate('GameChoiceTab')
-            }
-            else{
-              navigation.navigate('GameChoiceTab')
-            }
-          case 'multi':
-            let tabMulti:Game[]=[]
-            let tkt=MANAGER_GAME.getTabGameSolo();
-            if (tkt==null){
-              let tabAll=MANAGER_GAME.getTabGame();
-                if (tabAll==null){
-                  await MANAGER_GAME.getLoaderGame().loadAllGame().then((res) => {      
-                    MANAGER_GAME.setTabGame(res);
-                    setTabGame(res);
-                  });
-                }
-                tabAll?.forEach(game =>{
-                  if (game.getNbPlayerMax()==1){
-                    tabSolo.push(game);
-                  }
-                })
-                MANAGER_GAME.setTabGameMulti(tabMulti);
-                setTabGameMulti(tabMulti);
-                navigation.navigate('GameChoiceTab')
-            }
-            else{
-              navigation.navigate('GameChoiceTab')
-            }
-  
-        }
-        
-    }, []);
-    */
+  const setTabConv = useConversationStore((state) => state.setTabConv);
+  const setCurrentConv = useConversationStore((state) => state.setCurrentConv);
 
-  const handleGame = useCallback(async (typeJeu: string) => {
 
-    const tmp = MANAGER_GAME.getTabGame();
-    if (tmp === null) {
-      await MANAGER_GAME.getLoaderGame().loadAllGame().then((res) => {
-        MANAGER_GAME.setTabGame(res);
-        setTabGame(res);
-        navigation.navigate('GameChoiceTab')
-      });
+  //It has to be in the home page that way the database will reload the conversations when the user receive a message een if he is in another page
+
+  socket.on("messageReceived", async () =>{
+    console.log("Message reçu");
+    await handleConversationLoad();
+  });    
+
+  async function handleConversationLoad(){
+    const tmp = MANAGER_USER.getCurrentUser();
+    if (tmp !== null) {
+        await MANAGER_CONVERSATION.getLoaderConversation().loadByUser(tmp).then((res) => {
+            const tmp=MANAGER_USER.getCurrentUser()
+            MANAGER_CONVERSATION.setTabConv(res);
+            if (tmp!==null){
+              const tmpConv=MANAGER_CONVERSATION.getCurrentConv();
+              if (tmpConv!==null){
+                const trouveIndex = (element: Conversation) => element.getId()===tmpConv.getId();
+                const index=MANAGER_CONVERSATION.getTabConv().findIndex(trouveIndex);
+                MANAGER_CONVERSATION.setCurrentConv(MANAGER_CONVERSATION.getTabConv()[index]);
+                setCurrentConv(MANAGER_CONVERSATION.getCurrentConv());
+              }
+              setTabConv(MANAGER_CONVERSATION.getTabConv());
+            }
+        });
     }
-    else {
-      navigation.navigate('GameChoiceTab')
-    }
-  }, []);
+  }
 
   return (
     <View style={stylesScreen.container}>
@@ -101,11 +62,11 @@ function Home(props: { navigation: any; }) {
       <View style={stylesScreen.bodyCenter}>
         <ButtonGameTypeChoice
           title='Jouer Seul'
-          onPress={() => { handleGame("solo") }}
+          onPress={() => { navigation.navigate('GameChoiceTab') }}
         />
         <ButtonGameTypeChoice
           title='Défier mes amis'
-          onPress={() => handleGame("multi")}
+          onPress={() => navigation.navigate('GameChoiceTab')}
         />
       </View>
       <BotBar

@@ -1,3 +1,4 @@
+import { Skin } from "../../core/Skin";
 import { User } from "../../core/User/user";
 
 export default interface ISaverUser{
@@ -20,4 +21,7 @@ export default interface ISaverUser{
       * u the user we want to update
       */
      updateUser(u:User | null): Promise<void>;
+
+    addSkinList(u: User, s:Skin): Promise<void>;
+
 }

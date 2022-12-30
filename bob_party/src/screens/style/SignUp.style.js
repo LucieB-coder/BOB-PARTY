@@ -2,8 +2,8 @@ import { StyleSheet } from "react-native";
 
 
 export default StyleSheet.create({
-    textInput: {
-        width: '100%',
+      textInput: {
+        width: '70%',
         height: '5%',
         backgroundColor: 'white',
         padding: 10,

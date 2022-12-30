@@ -6,7 +6,7 @@ import { User } from './user'
 export default class UserSkinModifier{
     async addSkin(user:User, skin:Skin){
         user.addSkin(skin);
-        await MANAGER_USER.getsaverUser().updateUser(user);
+        await MANAGER_USER.getsaverUser().addSkinList(user, skin);
     }
     
     async changeCurrentSkin(user:User, skin:Skin){

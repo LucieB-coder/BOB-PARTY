@@ -1,4 +1,3 @@
-import tabSkinApp from "../../constSkin";
 import { Conversation } from "../../core/conversation";
 import { Match } from "../../core/Match/match";
 import { Skin } from "../../core/skin";
@@ -23,90 +22,56 @@ export default class LoaderUserApi implements ILoaderUser{
 
     private axios = require('axios').default;
 
+
     async loadAllUser() : Promise<User[]> {
-        let us:User[]=[];
-        let test=new Test(false, 1, "a", 1);
-        await this.axios({
-            method: 'get',
-            url: 'https://jsonplaceholder.typicode.com/todos',
-            params: {
-                name: "getAllUser",
-                //Les params genre nom de la fonction en php
-              }
-         })
-         .then(function (response: any) {
-            if (response.data != null && response.data != undefined){
-                Object.assign(test, response.data);
-                us.push(new User(1, "Fefe63", "jesuishm", "ouioui", "homme", new Date(2022,12,12), 12222, 123324, 12, tabSkinApp[6], tabSkinApp));
-            }
-        });
-    return us;
+        throw new Error("Method not implemented.");
     }
 
     
     async loadByID(id: number): Promise<User | null> {
-        let test = new Test(true, 0, "wesh", 0);
-        try{
-            await this.axios({
-                method: 'get',
-                url: 'https://jsonplaceholder.typicode.com/todos/1',
-                params: {
-                    name: "getUserById",
-                    id: id,
-                    //Les params genre nom de la fonction en php
-                }
-            })
-                .then(function (response: any) {
-                    console.log(response.data);
-                    Object.assign(test, response.data);
-                    console.log(test.id);
-                });
-        }catch (error) {
-            console.error(error);
-        }
-        return new User(1, "Bite", "jesuishm", "ouioui", "homme", new Date(2022,12,12), 123, 123324, 12, tabSkinApp[6], tabSkinApp);
+        let us:User | null=null;
+        const url='http://localhost:8888/api-rest/index.php/getUserById/'+ id;
+        await this.axios({
+            method: 'get',
+            url: url,
+         })
+         .then(function (response: any) {
+            if (response.data != null && response.data != undefined){
+                us=JsonToUser(response);
+            }
+        });
+        return us;
     }
 
 
     async loadByUsername(username: string): Promise<User | null> {
-        let test = new Test(true, 0, "wesh", 0);
-        try{
-            await this.axios({
-                method: 'get',
-                url: 'https://jsonplaceholder.typicode.com/todos/1',
-                params: {
-                    name: "getUserByUsername",
-                    username: username,
-                    //Les params genre nom de la fonction en php
-                }
-            })
-                .then(function (response: any) {
-                    console.log(response.data);
-                    Object.assign(test, response.data);
-                    console.log(test.id);
-                });
-        }catch (error) {
-            console.error(error);
-        }
-        return null;
+        let us:User | null=null;
+        const url='http://localhost:8888/api-rest/index.php/getUserByUsername/'+ username;
+        await this.axios({
+            method: 'get',
+            url: url,
+         })
+         .then(function (response: any) {
+            if (response.data != null && response.data != undefined){
+                us=JsonToUser(response);
+            }
+        });
+        return us;
     }
 
     async loadByUsernamePassword(username: string, password: string): Promise<User | null>{
-        let user:User | null=null;
+        let us:User | null=null;
+        const url='http://localhost:8888/api-rest/index.php/getUserForConnection/'+ username + "/" + password;
         await this.axios({
             method: 'get',
-            url: 'https://jsonplaceholder.typicode.com/todos/1',
-            params: {
-                name: "getAllUser",
-                //Les params genre nom de la fonction en php
-              }
+            url: url,
          })
          .then(function (response: any) {
-            const tabTest=[new Skin(1, "Bob","https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/typescript/bob_party/assets/BobsSkins/BobClassic.png", 0),
-            new Skin(2, "Bob Blue","https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/typescript/bob_party/assets/BobsSkins/BobBlue.png", 100)];
-            user=new User(1, username, password, "ouioui", "homme", new Date(2022,12,12), 0, 0, 12, tabTest[0], tabTest);
+            if (response.data != null && response.data != undefined){
+                us=JsonToUser(response);
+            }
         });
-        return user;
+        return us;
     }
 
     async loadUserByMatch(m: Match): Promise<User[]> {
@@ -118,15 +83,15 @@ export default class LoaderUserApi implements ILoaderUser{
         throw new Error("Method not implemented.");
     }
 
-
-    async loadLastId(): Promise<number> {
-        let test = new Test(true, 0, "wesh", 0);
-        try {
-            const response = await this.axios.get('https://jsonplaceholder.typicode.com/todos/1');
-            console.log(response.data);
-          } catch (error) {
-            console.error(error);
-          }
-          return 1;
-    }
+    
 }
+function JsonToUser(response: any): User{
+    const tabSkin:Skin[]=[];
+    response.data.tabSkin.forEach((skins: { id: number; name: string; source: string; cost: number; }) => {
+        tabSkin.push(new Skin(skins.id, skins.name, skins.source, skins.cost));
+    });
+    const skin=new Skin(response.data.currentSkin.id, response.data.currentSkin.name, response.data.currentSkin.source, response.data.currentSkin.cost);
+    return new User(response.data.id, response.data.username, response.data.password, response.data.nationality, response.data.sexe, new Date(response.data.dateOfBirth), response.data.currentCoins, response.data.totalCoins, response.data.nbGamesPlayed, skin, tabSkin);
+                
+}
+

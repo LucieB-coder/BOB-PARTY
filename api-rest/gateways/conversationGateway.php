@@ -28,14 +28,14 @@ class ConversationGateway{
 /// Parameters : * $idUser (string): identifier of the user we want to get the conversations
     public function getConversations(string $_idUser):?array{
         // Declaration of arrays (NULL) and queries
-        $tabConversations=NULL;
-        $tabUsers=NULL;
-        $tabMessages=NULL;
+        $tabConversations=[];
+        $tabUsers=[];
+        $tabMessages=[];
         $conversationQuery = "SELECT c.PK_ID, c.COV_NAME
                                 FROM T_H_CONVERSATION_COV c, T_J_DISCUSS_DIS d
                                 WHERE c.PK_ID=d.FK_CONVERSATION
                                     AND d.FK_USER=:idUser";        
-        $messagesQuery = "SELECT m.PK_ID, m.MSG_MESSAGE, m.FK_SENDER
+        $messagesQuery = "SELECT m.PK_ID, m.MSG_MESSAGE, m.FK_SENDER, m.MSG_DATEENVOIE
                                    FROM T_H_MESSAGE_MSG m, T_J_CONTAIN_MESSAGE_CMG c
                                    WHERE m.PK_ID=c.FK_MESSAGE
                                        AND c.FK_CONVERSATION=:idConv";
@@ -53,9 +53,10 @@ class ConversationGateway{
             $this->connection->execQuery($messagesQuery,$argIdConv);
             $resMessages=$this->connection->getRes();
             foreach($resMessages as $rowMessages){
-                $tabUsers[] = new Message($rowMessages['PK_ID'],
+                $tabMessages[] = new Message($rowMessages['PK_ID'],
                                           $rowMessages['MSG_MESSAGE'],
-                                          $rowMessages['FK_SENDER']);
+                                          $rowMessages['FK_SENDER'],
+                                          $rowMessages['MSG_DATEENVOIE']);
             }
             // Find all the users in the conversation
             $this->connection->execQuery($usersQuery,$argIdConv);
@@ -76,7 +77,7 @@ class ConversationGateway{
     }
 
 /// Brief : Adding a new conversation in database
-    public function postConversation(string $name, int $idUser): void{
+    public function postConversation(string $name, array $idUsers): int{
         // Declare queries
         $convCreationQuery = "INSERT INTO T_H_CONVERSATION_COV VALUES(NULL,:name)";
         $addUserInConvQuery = "INSERT INTO T_J_DISCUSS_DIS VALUES(:idUser,:idConv)";
@@ -92,10 +93,13 @@ class ConversationGateway{
         foreach($res as $row){
             $id=$row['PK_ID'];
         }
-        $argUserInConvQuery = array('idUser'=>array($idUser, PDO::PARAM_INT),
-                                    'idConv'=>array($id, PDO::PARAM_INT));
-        $this->connection->execQuery($addUserInConvQuery,$argUserInConvQuery);
+        foreach ($idUsers as $idUs){
+            $argUserInConvQuery = array('idUser'=>array($idUs, PDO::PARAM_INT),
+                                        'idConv'=>array($id, PDO::PARAM_INT));
+            $this->connection->execQuery($addUserInConvQuery,$argUserInConvQuery);
         }
+        return $id;
+    }
     
 
 /// Brief : Modifying an EXISTING conversation in database
@@ -125,12 +129,13 @@ public function deleteUserFromConversation(int $idConv, int $idUser){
 }
 
 /// Brief : adding a new message into a conversation
-    public function addMessageToConversation(string $message, int $idSender, int $idConv){
-        $insertMessageQuery = "INSERT INTO T_H_MESSAGE_MSG VALUES(NULL,:message,:idSender)";
+    public function addMessageToConversation(string $message, int $idSender, int $idConv, string $date): int{
+        $insertMessageQuery = "INSERT INTO T_H_MESSAGE_MSG VALUES(NULL,:message,:idSender, :date)";
         $insertMsgInConvQuery = "INSERT INTO T_J_CONTAIN_MESSAGE_CMG VALUES(:idConv,:idMessage)";
 
         $argInsertMessage= array('message'=>array($message,PDO::PARAM_STR),
-                                 'idSender'=>array($idSender,PDO::PARAM_INT));
+                                 'idSender'=>array($idSender,PDO::PARAM_INT),
+                                 'date'=>array($date,PDO::PARAM_STR));
         $this->connection->execQuery($insertMessageQuery,$argInsertMessage);
         $this->connection->execQuery("SELECT PK_ID 
                                      FROM T_H_MESSAGE_MSG
@@ -143,6 +148,7 @@ public function deleteUserFromConversation(int $idConv, int $idUser){
         $argMsgInConv = array('idConv'=>array($idConv,PDO::PARAM_INT),
                               'idMessage'=>array($idMsg,PDO::PARAM_INT));
         $this->connection->execQuery($insertMsgInConvQuery,$argMsgInConv);
+        return $idMsg;
     }
 
 /// Brief : Deleting a conversation and its messages from database

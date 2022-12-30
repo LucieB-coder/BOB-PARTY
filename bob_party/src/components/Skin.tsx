@@ -12,8 +12,7 @@ import { useUserStore } from "../context/userContext"
 import { UserCoinsModifier } from "../core/User/userCoinsModifier"
 import UserSkinModifier from "../core/User/userSkinModifier"
 import { useStoreStore } from "../context/storeContext"
-import tabSkinApp from "../constSkin"
-import { MANAGER_USER } from "../../appManagers"
+import { MANAGER_SKIN, MANAGER_USER } from "../../appManagers"
 
 
 
@@ -50,9 +49,7 @@ export const SkinComponent:
 
         const handleStoreChange = useCallback(async () => {
 
-            let tabSkinStore = [...tabSkinApp];
-            // const tmp=MANAGER_USER.getCurrentUser()?.getTabSkin();
-            // if (tmp!=undefined){
+            let tabSkinStore = [...MANAGER_SKIN.getTabSkin()];
             MANAGER_USER.getCurrentUser()?.getTabSkin()?.forEach(skin => {
                 for (let i = 0; i < tabSkinStore.length; i++) {
                     if (skin.isEqual(tabSkinStore[i])) {
@@ -61,9 +58,6 @@ export const SkinComponent:
                 }
             });
             setTabSkin(tabSkinStore);
-            //}
-
-
         }, []);
 
         async function buySkin(skin: Skin) {

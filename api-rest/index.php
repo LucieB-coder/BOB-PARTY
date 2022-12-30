@@ -1,6 +1,5 @@
  <?php
-    echo "hey you ";
- 
+
     header('Access-Control-Allow-Origin: *');
     header('Access-Control-Allow-Methods: POST,GET,DELETE,PUT');
     /// Good to know :
@@ -10,7 +9,7 @@
     include ('dbConnection.php');
     include ('gateways/userGateway.php');
     include ('gateways/matchGateway.php');
-    include ('gateways/conversationGataway.php');
+    include ('gateways/conversationGateway.php');
     include ('gateways/gameGateway.php');
     include ('gateways/skinGateway.php');
 
@@ -145,6 +144,7 @@
                 header("HTTP/1.0 401 UNAUTHORIZED REQUEST");
                 http_response_code(401); 
             }
+            break;
         case 'POST':
             if($method_name === "postUser"){ // test : OK
                 if (count($url)<8){
@@ -153,7 +153,7 @@
                 }
                 $username = !empty($url[4]) ? (string) $url[4] : null;
                 $password = !empty($url[5]) ? (string) $url[5] : null;
-                $nationality = !empty($url[5]) ? (string) $url[5] : null;
+                $nationality = !empty($url[6]) ? (string) $url[6] : null;
                 $sex = !empty($url[7]) ? (string) $url[7] : null;
                 $dateOfBirth = !empty($url[8]) ? (string) $url[8] : null;
                 $usergw->postUser($username,$password,$nationality,$sex,$dateOfBirth);
@@ -172,9 +172,11 @@
             }
             elseif($method_name === "postConversation"){ // test : OK
                 $name = !empty($url[4]) ? (string) $url[4] : null;
-                $idCreator = !empty($url[5]) ? (int) $url[5] : null;
-                if ($name != null || $idCreator != null){
-                    $conversationgw->postConversation($name,$idCreator);
+                $idList = !empty($url[5]) ? (array) explode(",",$url[5]) : null;
+                $name=urldecode($name);
+                if ($name != null || $idList != null){
+                    $id=$conversationgw->postConversation($name,$idList);
+                    echo json_encode($id, JSON_PRETTY_PRINT);
                     http_response_code(200);
                 } else{
                     header("HTTP/1.0 400 name or creator not given");
@@ -188,18 +190,20 @@
             break;
         case 'PUT':
             if($method_name === "putUser"){ // test : OK
-                if (count($url)<10){
+                if (count($url)<12){
                     header("HTTP/1.0 400 Invalid number of arguments");
                     http_response_code(400);
                 }
                 $id = !empty($url[4]) ? (int) $url[4] : null;
                 $username = !empty($url[5]) ? (string) $url[5] : null;
                 $password = !empty($url[6]) ? (string) $url[6] : null;
-                $nbCurrentCoins = !empty($url[7]) ? (int) $url[7] : null;
-                $totalnbCoins = !empty($url[8]) ? (int) $url[8] : null;
-                $nbGames = !empty($url[9]) ? (int) $url[9] : null;
-                $currentSkin = !empty($url[10]) ? (int) $url[10] : null;
-                $usergw->putUser($id,$username,$password,$nbCurrentCoins,$totalnbCoins,$nbGames,$currentSkin);
+                $sexe = !empty($url[7]) ? (string) $url[7] : null;
+                $nationality = !empty($url[8]) ? (string) $url[8] : null;
+                $nbCurrentCoins = !empty($url[9]) ? (int) $url[9] : null;
+                $totalnbCoins = !empty($url[10]) ? (int) $url[10] : null;
+                $nbGames = !empty($url[11]) ? (int) $url[11] : null;
+                $currentSkin = !empty($url[12]) ? (int) $url[12] : null;
+                $usergw->putUser($id,$username,$password,$sexe, $nationality, $nbCurrentCoins,$totalnbCoins,$nbGames,$currentSkin);
                 http_response_code(200);
             }
             elseif($method_name === "putSkinList"){ // test : OK
@@ -247,6 +251,8 @@
             elseif($method_name === "putConversation"){ // test : OK
                 $id = !empty($url[4]) ? (int) $url[4] : null;
                 $newName = !empty($url[5]) ? (string) $url[5] : null;
+                $newName=urldecode($newName);
+
                 if ($id != null && $newName != null){
                     $conversationgw->putConversation($id,$newName);
                     http_response_code(200);
@@ -281,8 +287,13 @@
                 $msg=!empty($url[4]) ? (string) $url[4] : null;
                 $idSender=!empty($url[5]) ? (int) $url[5] : null;
                 $idConv=!empty($url[6]) ? (int) $url[6] : null;
-                if ($msg != null && $idSender != null && $idConv != null){
-                    $conversationgw->addMessageToConversation($msg,$idSender,$idConv);
+                $date=!empty($url[7]) ? (string) $url[7] : null;
+                $date=urldecode($date);
+                $msg=urldecode($msg);
+
+                if ($msg != null && $idSender != null && $idConv != null && $date!=null){
+                    $id=$conversationgw->addMessageToConversation($msg,$idSender,$idConv, $date);
+                    echo json_encode($id, JSON_PRETTY_PRINT);
                     http_response_code(200);
                 } else{
                     header("HTTP/1.0 400 id conv or message or sender not given");

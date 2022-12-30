@@ -1,3 +1,4 @@
+import { MANAGER_USER } from "../../../appManagers";
 import { Conversation } from "../../core/conversation";
 import { Message } from "../../core/message";
 import { Skin } from "../../core/skin";
@@ -17,23 +18,67 @@ export class LoaderConversationApi implements ILoaderConversation{
     async loadByUser(u: User): Promise<Conversation[]> {
 
         let tabConv:Conversation[]=[];
+        const url='http://localhost:8888/api-rest/index.php/getConversations/' +u.getId();
         await this.axios({
             method: 'get',
-            url: 'https://jsonplaceholder.typicode.com/todos/1',
-            params: {
-                name: "getConversationByUser",
-                //Les params genre nom de la fonction en php
-              }
+            url: url,
          })
-         .then(function (response: any) {
-            let skin= new Skin(1, "Bob","https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/typescript/bob_party/assets/BobsSkins/BobClassic.png", 0);
-            tabConv=[new Conversation(40, 
-            [new User(1, "Alban", "oui", "ouioui", "homme", new Date(2022,12,12), 555, 667, 12, skin, [skin]),
-            new User(3, "Fefe63", "jesuishm", "ouioui", "homme", new Date(2022,12,12), 12222, 123324, 12, skin, [skin])],
-            [new Message(1, "bonjour", new User(1, "Alban", "oui", "ouioui", "homme", new Date(2022,12,12), 555, 667, 12, skin, [skin]), new Date(2022,12,12)),
-            new Message(2, "test", new User(2, "Fefe63", "oui", "ouioui", "homme", new Date(2022,12,12), 555, 667, 12, skin, [skin]), new Date(2022,12,13))], "leNom")];
+         .then(async function (response: any) {
+            tabConv=await jsonToConversation(response);
         });
         return tabConv;
     }
 
+}
+
+async function jsonToConversation(response:any) {
+    const tabConv:Conversation[]=[];
+    let end=new Promise<void>((resolve, reject) => {
+        response.data.forEach( async (conv: { listIdUsers: any[]; tabMessages: any[]; id: number; name: string; }) => {
+            const tabUser:User[]=[];
+            const tabMessage:Message[]=[];
+            let first = new Promise<void>((resolve,reject) => {
+                conv.listIdUsers.forEach(async id => {
+                    const user:User | null= await MANAGER_USER.getLoaderUser().loadByID(id);
+                    if (user!=null){
+                        tabUser.push(user);
+                    }
+                    if(conv.listIdUsers.length===tabUser.length){
+                        resolve();
+
+                    }
+                });
+                if (conv.listIdUsers.length===0){
+                    resolve();
+
+                }
+            });
+
+            let second= new Promise<void> ((resolve, reject) => {
+                conv.tabMessages.forEach(async message => {
+                    const sender:User | null= await MANAGER_USER.getLoaderUser().loadByID(message.idSender);
+                    if (sender!=null){
+                        
+                        tabMessage.push(new Message(message.id, message.content, sender, new Date(message.dateEnvoie)));
+                    }
+                    if(conv.tabMessages.length===tabMessage.length){
+                        resolve();
+                    }
+                });
+                if (conv.tabMessages.length===0){
+                    resolve();
+                }
+            });
+            await Promise.all([first, second]);
+            tabConv.push(new Conversation(conv.id, tabUser, tabMessage, conv.name));
+            if (tabConv.length===response.data.length){
+                resolve();
+            }
+        });
+        if (response.data.length==0){
+            resolve();
+        }
+    });
+    await Promise.all([end]);
+    return tabConv;         
 }

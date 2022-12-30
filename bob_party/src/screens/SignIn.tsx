@@ -9,9 +9,10 @@ import { RootState } from '../redux/store';
 import { updateIncorrectCredentials } from '../redux/features/credentialErrorsSlice';
 import Dialog from "react-native-dialog";
 import { useUserStore } from '../context/userContext';
-import { MANAGER_CONVERSATION, MANAGER_USER } from '../../appManagers';
+import { MANAGER_CONVERSATION, MANAGER_GAME, MANAGER_SKIN, MANAGER_USER } from '../../appManagers';
 import { socket } from "../../socketConfig";
 import { useConversationStore } from '../context/conversationContext';
+import { useGameStore } from '../context/gameContext';
 
 
 
@@ -19,7 +20,12 @@ import { useConversationStore } from '../context/conversationContext';
 function SignIn(props: { navigation: any; }) {
     const { navigation } = props
     const setUser = useUserStore((state) => state.setUser);
+
     const setTabConv = useConversationStore((state) => state.setTabConv);
+
+    const setTabGame = useGameStore((state) => state.setTabGame);
+    const setTabGameSolo = useGameStore((state) => state.setTabGameSolo);
+    const setTabGameMulti = useGameStore((state) => state.setTabGameMulti);
 
 
     const errorList = useSelector((state: RootState) => state.credentialErrors.loginErrorList);
@@ -38,18 +44,28 @@ function SignIn(props: { navigation: any; }) {
         
         if (waitConnect==0){
             waitConnect=1;
-            await MANAGER_USER.getLoaderUser().loadByUsernamePassword(username, password).then(async (res) => {   
+
+            await MANAGER_USER.getLoaderUser().loadByUsernamePassword(username, password).then(async (res) => { 
                 if (res!=null){
                     MANAGER_USER.setCurrentUser(res);
                     setUser(MANAGER_USER.getCurrentUser());
                     socket.emit("signIn", res);
+                    await handleSkinLoad();
                     await handleConversationLoad();
-                    MANAGER_CONVERSATION.getCurrentTabConv()?.forEach( conv =>{
+                    await handleGameLoad();
+                    /*
+                    const conv=await MANAGER_CONVERSATION.getsaverConversation().saveConversation("Wesh la conv", res, [2,3], res.getUsername() + " a créé une conversation", new Date());
+                    if (conv!=null){
+                        MANAGER_CONVERSATION.getTabConv().push(conv);
+                    }
+                    */
+                    MANAGER_CONVERSATION.getTabConv()?.forEach( conv =>{
                         socket.emit("inConv", conv);
-                        socket.emit("messageSent", conv);
                     });
-                    navigation.navigate('HomeTab');                
-
+                    navigation.navigate('HomeTab');   
+                }
+                else{
+                    Alert.alert("Incorrect Username or Password");
                 }
 
             });
@@ -62,16 +78,37 @@ function SignIn(props: { navigation: any; }) {
         const tmp = MANAGER_USER.getCurrentUser();
         if (tmp !== null) {
             await MANAGER_CONVERSATION.getLoaderConversation().loadByUser(tmp).then((res) => {
-                MANAGER_CONVERSATION.setCurrentTabConv(res);
+                MANAGER_CONVERSATION.setTabConv(res);
                 setTabConv(res);
             });
         }
-      }
+    }
 
-    socket.on("messageReceived", () =>{
-        console.log("Message reçu");
-        handleConversationLoad();
-    });
+    async function handleSkinLoad(){
+        MANAGER_SKIN.setTabSkin(await MANAGER_SKIN.getLoaderSkin().loadAllSkin());
+    }
+
+    async function handleGameLoad(){
+        MANAGER_GAME.setTabGame(await MANAGER_GAME.getLoaderGame().loadAllGame());
+        MANAGER_GAME.getTabGame().forEach(game => {
+            if (game.getNbPlayerMin()>1){
+                MANAGER_GAME.getTabGameMulti().push(game);
+            }
+            else{
+                MANAGER_GAME.getTabGameSolo().push(game);
+            }
+        });
+        setTabGame(MANAGER_GAME.getTabGame());
+        setTabGameMulti(MANAGER_GAME.getTabGameMulti())
+        setTabGameSolo(MANAGER_GAME.getTabGameSolo());
+
+    }
+
+    
+
+
+
+    
 
 
     return (

@@ -3,11 +3,11 @@ import ILoaderGame from "./ILoaderGame";
 
 export default class ManagerGame{
 
-    private tabGame: Game[] | null=null;
+    private tabGame: Game[]=[];
 
-    private tabGameSolo: Game[] | null=null;
+    private tabGameSolo: Game[]=[];
 
-    private tabGameMulti: Game[] | null=null;
+    private tabGameMulti: Game[]=[];
 
     private loaderGame: ILoaderGame;
 
@@ -19,15 +19,15 @@ export default class ManagerGame{
         return this.tabGame;
     }
 
-    setTabGame(g:Game[] | null){
+    setTabGame(g:Game[]){
         this.tabGame=g;
     }
 
     getTabGameSolo(){
-        return this.tabGame;
+        return this.tabGameSolo;
     }
 
-    setTabGameSolo(g:Game[] | null){
+    setTabGameSolo(g:Game[]){
         this.tabGameSolo=g;
     }
 
@@ -35,16 +35,12 @@ export default class ManagerGame{
         return this.tabGameMulti;
     }
 
-    setTabGameMulti(g:Game[] | null){
+    setTabGameMulti(g:Game[]){
         this.tabGameMulti=g;
     }
 
     getLoaderGame(){
         return this.loaderGame;
-    }
-
-    setLoaderGame(l:ILoaderGame){
-        this.loaderGame=l;
     }
 
 }

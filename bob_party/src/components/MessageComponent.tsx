@@ -21,8 +21,7 @@ FC<{mess: Message}> =
 ({mess}) => 
 { 
     let messStyle;
-    const user1 = MANAGER_USER.getCurrentUser();
-    if (mess.getMessageSender() === user1){
+    if (MANAGER_USER.getCurrentUser()?.isEqual(mess.getMessageSender())){
         return(
             
             <View style={styles.mainRightView}>

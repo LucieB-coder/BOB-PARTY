@@ -4,7 +4,9 @@ import ISaverConversation from "./ISaverConversation";
 
 export default class ManagerConversation{
 
-    private currentTabConv:Conversation[]=[];
+    private currentConv:Conversation | null= null;
+
+    private tabConv:Conversation[]=[];
 
     private loaderConversation: ILoaderConversation;
 
@@ -15,12 +17,20 @@ export default class ManagerConversation{
         this.saverConversation=saverConversation;
     }
 
-    getCurrentTabConv(){
-        return this.currentTabConv;
+    getCurrentConv(){
+        return this.currentConv;
     }
 
-    setCurrentTabConv(c:Conversation[]){
-        this.currentTabConv=c;
+    setCurrentConv(c:Conversation){
+        this.currentConv=c;
+    }
+
+    getTabConv(){
+        return this.tabConv;
+    }
+
+    setTabConv(c:Conversation[]){
+        this.tabConv=c;
     }
 
     getLoaderConversation(){

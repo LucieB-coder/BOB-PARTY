@@ -79,8 +79,7 @@ function Settings(props: { navigation: any; }) {
             <View>
               <View>
                 <Text style={styles.text}>Pseudo: {useUserStore().user?.getUsername()}</Text>
-                <ButtonGreySmall onPress={() => {console.log(dialogPseudoVisible);
-                ;setDialogPseudoVisible(true)}} title='Changer le pseudo'/>
+                <ButtonGreySmall onPress={() => {setDialogPseudoVisible(true)}} title='Changer le pseudo'/>
               </View>
               <View>
                 <Text style={styles.text}>Mot de passe: {useUserStore().user?.getPassword()}</Text>

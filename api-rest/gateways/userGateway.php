@@ -1,6 +1,8 @@
 <?php
 
 require_once('model/user.php');
+require_once('model/skin.php');
+
 
 class UserGateway{
 
@@ -33,6 +35,9 @@ class UserGateway{
     public function convertResToUser($res):?User{
         $usr=null;
         foreach($res as $row){
+            $skinGateway=new SkinGateway($this->connection);
+            $skinId=$row['FK_CURRENT_SKIN'];
+            $skin=$skinGateway->getSkinById($skinId);
         $usr= new User($row['PK_ID'],
             $row['USR_USERNAME'],
             $row['USR_PASSWORD'],
@@ -42,7 +47,7 @@ class UserGateway{
             $row['USR_CURRENT_NB_COINS'],
             $row['USR_TOTAL_NB_COINS'],
             $row['USR_NB_GAMES_PLAYED'],
-            $row['FK_CURRENT_SKIN'],
+            $skin,
             null);
         }
         return $usr;
@@ -54,8 +59,8 @@ class UserGateway{
         $tabSkin=null;
         $skinsOfUserQuery="SELECT s.* 
                         FROM T_H_SKIN_SKI s, T_J_OWN_SKIN_OWN o
-                        WHERE o.FK_USER=:id";
-        $argIdUser=array('id'=>array($id,PDO::PARAM_STR));
+                        WHERE o.FK_USER=:id AND S.PK_ID=o.FK_SKIN";
+        $argIdUser=array('id'=>array($id,PDO::PARAM_INT));
         $this->connection->execQuery($skinsOfUserQuery,$argIdUser);
         $resSkin=$this->connection->getRes();
         foreach($resSkin as $row){
@@ -76,7 +81,7 @@ class UserGateway{
         $res=$this->connection->getRes();
         $usr=$this->convertResToUser($res);
         if ($usr != null){
-            $usr->listSkin=$this->getSkinList($usr->id);
+            $usr->tabSkin=$this->getSkinList($usr->id);
         }
         return $usr;
     }
@@ -92,7 +97,7 @@ class UserGateway{
         $res=$this->connection->getRes();
         $usr=$this->convertResToUser($res);
         if ($usr != null){
-            $usr->listSkin=$this->getSkinList($usr->id);
+            $usr->tabSkin=$this->getSkinList($usr->id);
         }
         return $usr;
     }
@@ -113,7 +118,7 @@ class UserGateway{
         $res=$this->connection->getRes();
         $usr=$this->convertResToUser($res);
         if ($usr != null){
-            $usr->listSkin=$this->getSkinList($usr->id);
+            $usr->tabSkin=$this->getSkinList($usr->id);
         }
         return $usr;
     }
@@ -134,10 +139,12 @@ class UserGateway{
 /// Brief : Modifying an EXISTING user in database
 /// Parameters : * $u (User): user we want to update in database
 /// Returning TRUE if the modifications has been done succesfully, FALSE otherwise
-    public function putUser(int $id,string $username, string $password, int $currentBobCoins,int $totalBobCoins,int $nbGamesPlayed, int $currentSkin){
+    public function putUser(int $id,string $username, string $password, string $sex, string $nationality, int $currentBobCoins,int $totalBobCoins,int $nbGamesPlayed, int $currentSkin){
         $updateUserQuery="UPDATE T_S_USER_USR 
                         SET USR_USERNAME = :username, 
                             USR_PASSWORD=:password,
+                            USR_SEX=:sex,
+                            USR_NATIONALITY=:nationality,
                             USR_CURRENT_NB_COINS=:currentBobCoins, 
                             USR_TOTAL_NB_COINS=:totalBobCoins, 
                             USR_NB_GAMES_PLAYED=:nbGamesPlayed, 
@@ -145,6 +152,8 @@ class UserGateway{
                         WHERE PK_ID=:id";
         $argUser=array('username' => array($username, PDO::PARAM_STR), 
                 'password' => array($password, PDO::PARAM_STR),
+                'sex' => array($sex, PDO::PARAM_STR),
+                'nationality' => array($nationality, PDO::PARAM_STR),
                 'currentBobCoins' => array($currentBobCoins, PDO::PARAM_INT),
                 'totalBobCoins' => array($totalBobCoins, PDO::PARAM_INT), 
                 'nbGamesPlayed' => array($nbGamesPlayed, PDO::PARAM_INT),

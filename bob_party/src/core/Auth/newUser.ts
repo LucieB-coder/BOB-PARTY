@@ -4,17 +4,8 @@ import tabUS from "../../constUser";
 import { User } from '../User/user';
 import { updateAlreadyUsedPseudo,updateImpossibleBirthDate,updateUndefinedBirthDate,updateUndefinedNationality,updateTooLongPseudo,updateUndefinedPseudo,updateUndefinedSex, updateTooShortPassword, updateInvalidPassword, updateInvalidPseudo, updateUndefinedPassword } from '../../redux/features/credentialErrorsSlice';
 
-function max(array: User[]){
-    let max: string = "";
-    for (let index = 0; index < array.length; index++) {
-        const element = array[index].getId();
-        if (element > max) max = element;
-    }
-    return max;
-}
-
     
-export const checkNewUserValidity = (login: string, password: string, dateOfBirth: Date, nationality: string, sexe: string, dispatch: any, nav: any) => {
+export const checkNewUserValidity = (login: string, password: string, dateOfBirth: Date, nationality: string, sexe: string, dispatch: any) => {
     let actualDate : number  = Date.now();
     let givenDate : number = dateOfBirth.getTime();
     let passwordRegex : RegExp = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])(?!.*?[.\n\\{}[\],]).{8,}$/;
@@ -33,11 +24,11 @@ export const checkNewUserValidity = (login: string, password: string, dateOfBirt
             dispatch(updateUndefinedBirthDate(true));
             break;
 
-        case (nationality == ''):
+        case (nationality === '' || nationality==null):
             dispatch(updateUndefinedNationality(true))
             break;
 
-        case (sexe == ''):
+        case (sexe === '' || sexe==null):
             dispatch(updateUndefinedSex(true));
             break;
 
@@ -64,8 +55,7 @@ export const checkNewUserValidity = (login: string, password: string, dateOfBirt
             break;
 
         default:
-            const newUser : User = new User(0,login,password,nationality,sexe,dateOfBirth);
-            dispatch(loginUser(newUser));
-            nav.navigate('HomeTab');
+            return true;
     }
+    return false;
 };

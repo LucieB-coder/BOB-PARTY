@@ -7,6 +7,10 @@ import { BotBar } from '../components/BotBar';
 import { FlatList } from 'react-native-gesture-handler';
 import { ConversationPreviewComponent } from '../components/ConversationPreviewComponent';
 import { useConversationStore } from '../context/conversationContext';
+import { io } from 'socket.io-client';
+import { socket } from '../../socketConfig';
+import { MANAGER_CONVERSATION, MANAGER_USER } from '../../appManagers';
+import { Message } from '../core/message';
 
 function Chat(props: { navigation: any; }) {
     const { navigation } = props

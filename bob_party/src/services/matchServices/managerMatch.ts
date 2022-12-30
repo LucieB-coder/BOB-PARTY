@@ -27,15 +27,7 @@ export default class ManagerMatch{
         return this.loaderMatch;
     }
 
-    setLoaderMatch(l:ILoaderMatch){
-        this.loaderMatch=l;
-    }
-
     getsaverMatch(){
         return this.saverMatch;
-    }
-
-    setsaverMatch(s:ISaverMatch){
-        this.saverMatch=s;
     }
 }

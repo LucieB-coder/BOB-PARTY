@@ -4,14 +4,14 @@ class Skin{
 
     public int $id;
     public string $name;
-    public string $image;
-    public int $price;
+    public string $source;
+    public int $cost;
 
-    public function __construct(int $_id, string $_name, string $_image, int $_price){
+    public function __construct(int $_id, string $_name, string $_source, int $_cost){
         $this->id=$_id;
         $this->name=$_name;
-        $this->image=$_image;
-        $this->price=$_price;
+        $this->source=$_source;
+        $this->cost=$_cost;
     }
 }
 

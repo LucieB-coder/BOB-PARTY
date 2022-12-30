@@ -7,9 +7,8 @@ import React from "react"
 */
 import styles from './style/BotBar.style';
 import { useStoreStore } from "../context/storeContext";
-import tabSkinApp from "../constSkin";
 import { useConversationStore } from "../context/conversationContext";
-import { MANAGER_CONVERSATION, MANAGER_USER } from "../../appManagers";
+import { MANAGER_CONVERSATION, MANAGER_SKIN, MANAGER_USER } from "../../appManagers";
 import { socket } from "../../socketConfig";
 
 /* 
@@ -50,7 +49,7 @@ export const BotBar:
 
         const handleStoreChange = useCallback(async () => {
 
-            let tabSkinStore = [...tabSkinApp];
+            let tabSkinStore = [...MANAGER_SKIN.getTabSkin()];
             MANAGER_USER.getCurrentUser()?.getTabSkin()?.forEach(skin => {
                 for (let i = 0; i < tabSkinStore.length; i++) {
                     if (skin.isEqual(tabSkinStore[i])) {

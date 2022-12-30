@@ -3,14 +3,16 @@
 class Message {
 
     // Object attributes
-    public String $id;
-    public String $message;
-    public String $idSender;
+    public string $id;
+    public string $content;
+    public string $idSender;
+    public string $dateEnvoie;
 
-    public function __construct(String $_id, String $_message, String $_idSender){
+    public function __construct(string $_id, string $_content, string $_idSender, string $_dateEnvoie){
         $this->id=$_id;
-        $this->message=$_message;
+        $this->content=$_content;
         $this->idSender=$_idSender;
+        $this->dateEnvoie=$_dateEnvoie;
     }
 }
 
