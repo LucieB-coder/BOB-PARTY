@@ -6,7 +6,7 @@ name: Dockers_Builder
 # Creation of the DB docker
 steps:  
   # database container deployment
-  - name: deploy-container-mysql
+  - name: deploy-container-mysql-test
     image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
     environment:
         IMAGENAME: mysql:8.0
