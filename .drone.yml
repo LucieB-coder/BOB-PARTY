@@ -22,6 +22,7 @@ steps:
           from_secret: MYSQL_USER
         CODEFIRST_CLIENTDRONE_ENV_MYSQL_PASSWORD:
           from_secret: MYSQL_PASSWORD
+        ADMINS: thomas.chazot2, mathilde.jean3,lilian.breton, lucie.bedouret, alban.guilhot
 
 
 # docker image build
