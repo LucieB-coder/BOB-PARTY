@@ -1,3 +1,4 @@
-From php
-COPY ./index.php ./
-CMD ["php", "-S", ]
+FROM php:7.4-cli
+COPY . /api-rest
+WORKDIR /api-rest
+CMD [ "php", "./index.php" ]
