@@ -39,7 +39,7 @@ steps:
         from_secret: SECRET_REGISTRY_PASSWORD_TOM
 
 
-container deployment
+#container deployment
   - name: deploy-api-containers
     image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
     environment:
