@@ -55,5 +55,5 @@ steps:
           from_secret: MYSQL_PASSWORD
         CODEFIRST_CLIENTDRONE_ENV_DB_DATABASE:
           from_secret: MYSQL_DATABASE
-      depends_on: 
+    depends_on: 
         - container-api
