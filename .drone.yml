@@ -57,3 +57,26 @@ steps:
           from_secret: MYSQL_DATABASE
     depends_on: 
         - container-api
+
+
+# docker image build
+  - name: docker-build-and-push
+    image: plugins/docker
+    settings:
+      dockerfile: Dockerfile
+      context: .
+      registry: hub.codefirst.iut.uca.fr
+      repo: hub.codefirst.iut.uca.fr/thomas.chazot2/bobparty
+      username:
+        from_secret: SECRET_REGISTRY_USERNAME_TOM
+      password:
+        from_secret: SECRET_REGISTRY_PASSWORD_TOM
+
+#container deployment
+  - name: deploy-bob_party-container
+    image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
+    environment:
+        IMAGENAME: hub.codefirst.iut.uca.fr/thomas.chazot2/bobparty:latest
+        CONTAINERNAME: bob_party_container
+        COMMAND: create
+        #OVERWRITE: true
