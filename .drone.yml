@@ -34,9 +34,9 @@ steps:
       registry: hub.codefirst.iut.uca.fr
       repo: hub.codefirst.iut.uca.fr/thomas.chazot2/bobparty/api-rest
       username:
-        from_secret: SECRET_REGISTRY_USERNAME
+        from_secret: SECRET_REGISTRY_USERNAME_TOM
       password:
-        from_secret: SECRET_REGISTRY_PASSWORD
+        from_secret: SECRET_REGISTRY_PASSWORD_TOM
 
 
 #container deployment
