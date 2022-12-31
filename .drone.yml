@@ -9,19 +9,19 @@ steps:
   - name: deploy-container-mysql
     image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
     environment:
-        IMAGENAME: mariadb:10
+        IMAGENAME: mysql:8.0
         CONTAINERNAME: mysql
         COMMAND: create
         # OVERWRITE: true
         PRIVATE: true
         CODEFIRST_CLIENTDRONE_ENV_MARIADB_ROOT_PASSWORD:    
-          from_secret: db_root_password
+          from_secret: MYSQL_ROOT_PASSWORD
         CODEFIRST_CLIENTDRONE_ENV_MARIADB_DATABASE:
-          from_secret: db_database
+          from_secret: MYSQL_DATABASE
         CODEFIRST_CLIENTDRONE_ENV_MARIADB_USER:
-          from_secret: db_user
+          from_secret: MYSQL_USER
         CODEFIRST_CLIENTDRONE_ENV_MARIADB_PASSWORD:
-          from_secret: db_password
+          from_secret: MYSQL_PASSWORD
         ADMINS: thomas.chazot2, mathilde.jean3,lilian.breton, lucie.bedouret, alban.guilhot
 
 
@@ -50,10 +50,10 @@ steps:
         CODEFIRST_CLIENTDRONE_ENV_DB_SERVER:
           from_secret: db_server
         CODEFIRST_CLIENTDRONE_ENV_DB_USER:
-          from_secret: db_user
+          from_secret: MYSQL_USER
         CODEFIRST_CLIENTDRONE_ENV_DB_PASSWORD:
-          from_secret: db_password
+          from_secret: MYSQL_PASSWORD
         CODEFIRST_CLIENTDRONE_ENV_DB_DATABASE:
-          from_secret: db_database
+          from_secret: MYSQL_DATABASE
       depends_on: 
         - container-api
