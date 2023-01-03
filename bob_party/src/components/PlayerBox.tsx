@@ -7,7 +7,7 @@ import { Game } from "../core/game"
 /*
     Importing the correct stylesheet
 */
-import styles from './style/Game.style';
+import styles from './style/PlayerBox.style';
 import LobbySolo from "../screens/LobbySolo"
 import ManagerMatch from "../services/matchServices/managerMatch"
 import MatchCreator from "../core/Match/matchCreator"
@@ -26,12 +26,12 @@ FC<{user: User}> =
 ({user}) => 
 {      
     return (
-        <View>
+        <View style={styles.container}>
                 <Image
-                    style={styles.image}
+                    style={styles.icon}
                     source={{uri: user.getCurrentSkin().getSkinSource()}}
                 />
-                <Text style={styles.name}>{user.getUsername()}</Text>
+                <Text style={styles.nomJoueur}>{user.getUsername()}</Text>
         </View> 
     )    
     

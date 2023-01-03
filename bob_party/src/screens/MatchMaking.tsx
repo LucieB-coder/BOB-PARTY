@@ -3,6 +3,7 @@ import { View, Image, Text, Button} from 'react-native'
 import React from 'react';
 import stylesScreen from './style/screens.style';
 import styles from './style/Settings.style';
+import stylesList from './style/MatchMaking.style';
 import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
 import { Conversation } from '../core/conversation';
@@ -28,6 +29,7 @@ function MatchMaking(props: { navigation: any; }) {
                 data={match?.getTabUsers()} 
                 keyExtractor={usr =>usr.getUsername()}
                 renderItem={({item}) => <PlayerBox user={item}/>}
+                style={stylesList.list}
             />
             <View style={stylesScreen.bodyCenter}>
             <Button
@@ -37,9 +39,9 @@ function MatchMaking(props: { navigation: any; }) {
             </View>
 
             <Image
-                    style={{width:100, height:100}}
-                    source={{uri: match?.getGame().getImageSource()}}
-                />
+                style={{width:100, height:100}}
+                source={{uri: match?.getGame().getImageSource()}}
+            />
         </View>
     );
 }

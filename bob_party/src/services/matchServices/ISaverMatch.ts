@@ -9,7 +9,7 @@ export default interface ISaverMatch{
      * m the Match we want to save
      */
 
-    saveMatch(u:User, g:Game): Promise<Match>;
+    saveMatch(u:User, g:Game | undefined): Promise<Match>;
 
     /**
      * deleteMatch methode that delete a Match in the data management system
