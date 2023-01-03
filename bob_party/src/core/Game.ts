@@ -2,16 +2,14 @@ export abstract class Game{
     readonly id:number;
     private name:string;
     private imageSource:string;
-    private gameSource:string;
     private nbPlayerMin: number;
     private nbPlayerMax:number;
 
     /* Constructor of the class */
-    constructor (id:number, name:string, imageSource:string, gameSource:string, nbPlayerMin:number, nbPlayerMax:number){
+    constructor (id:number, name:string, imageSource:string, nbPlayerMin:number, nbPlayerMax:number){
         this.id=id;
         this.name=name;
         this.imageSource=imageSource;
-        this.gameSource=gameSource;
         this.nbPlayerMin=nbPlayerMin;
         this.nbPlayerMax=nbPlayerMax;
     }
@@ -39,16 +37,6 @@ export abstract class Game{
     /* Brief : Function setting the image of a game */
     setImageSource(imageSource:string){
         this.imageSource=imageSource;
-    }
-
-    /* Brief : Function getting the source of a game */
-    getGameSource(){
-        return this.gameSource;
-    }
-
-    /* Brief : Function setting the source of a game */
-    setGameSource(gameSource:string){
-        this.gameSource=gameSource;
     }
 
     /* Brief : Function getting the number of player */

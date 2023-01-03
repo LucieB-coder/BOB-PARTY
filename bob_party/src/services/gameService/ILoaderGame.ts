@@ -6,7 +6,7 @@ export default interface ILoaderGame{
      * loadAllGame methode that load every Game from the data management system
      * return an array of Game
      */
-    loadAllGame(): Promise<Game[]>;
+    loadAllGames(): Promise<Game[]>;
 
     /**
      * loadByID methode that load a match from the data management system by its id

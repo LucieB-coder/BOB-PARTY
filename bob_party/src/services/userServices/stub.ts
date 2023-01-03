@@ -24,7 +24,7 @@ export default class StubUser implements ILoaderUser{
         [150, 6]
     ]);
 
-    game:GameSolo = new GameSolo(1, 'SuperJeu', "", 'source', 1, 1, this.map);
+    game:GameSolo = new GameSolo(1, 'SuperJeu', "", 1, 1, this.map);
 
     match:Match = new MatchSolo(1, false, this.tabUS, this.game);
 

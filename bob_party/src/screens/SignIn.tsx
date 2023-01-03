@@ -107,7 +107,7 @@ function SignIn(props: { navigation: any; }) {
     }
 
     async function handleGameLoad(){
-        MANAGER_GAME.setTabGame(await MANAGER_GAME.getLoaderGame().loadAllGame());
+        MANAGER_GAME.setTabGame(await MANAGER_GAME.getLoaderGame().loadAllGames());
         MANAGER_GAME.getTabGame().forEach(game => {
             if (game.getNbPlayerMin()>1){
                 MANAGER_GAME.getTabGameMulti().push(game);
@@ -119,7 +119,6 @@ function SignIn(props: { navigation: any; }) {
         setTabGame(MANAGER_GAME.getTabGame());
         setTabGameMulti(MANAGER_GAME.getTabGameMulti())
         setTabGameSolo(MANAGER_GAME.getTabGameSolo());
-
     }
 
     

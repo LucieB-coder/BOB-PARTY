@@ -176,11 +176,6 @@ export default function BlackJack(){
         setGameover(true);
         setGameMessage("You Win $ "+ betValue);
         
-      }else if(dealerPoints > 21 && playerPoints < 22){
-        await modifAmount(amount+betValue);
-        setTotalBet(0);
-        setGameover(true);
-        setGameMessage("You Win $ "+ betValue);
       }
       else if(playerPoints > 21 && dealerPoints <= 21){
         await modifAmount(amount);
@@ -196,8 +191,8 @@ export default function BlackJack(){
         setGameover(true);
         setGameMessage("Push!");
       }else{
-        await modifAmount(amount+totalBet);
-
+        
+        await modifAmount(amount);
         setTotalBet(0);
         setGameover(true);
         setGameMessage("Dealer Wins, You Lost");

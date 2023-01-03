@@ -5,8 +5,10 @@ export class UserCoinsModifier{
 
 
     async addCoins(u:User, coins:number){
-        u.setCurrentCoins(u.getCurrentCoins()+coins);
-        u.setTotalCoins(u.getTotalCoins()+coins);
+        const newCoins: number=coins+u.getCurrentCoins();
+        const newTotalCoins: number=coins+u.getTotalCoins();
+        u.setCurrentCoins(newCoins);
+        u.setTotalCoins(newTotalCoins);
         await MANAGER_USER.getsaverUser().updateUser(u);
         MANAGER_USER.setCurrentUser(u);
     }

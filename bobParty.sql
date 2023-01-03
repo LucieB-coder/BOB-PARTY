@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : ven. 30 déc. 2022 à 14:14
+-- Généré le : mar. 03 jan. 2023 à 15:37
 -- Version du serveur : 5.7.34
 -- Version de PHP : 7.4.21
 
@@ -30,10 +30,21 @@ SET time_zone = "+00:00";
 CREATE TABLE `T_E_GAME_GAM` (
   `PK_ID` int(11) NOT NULL,
   `GAM_NAME` varchar(50) DEFAULT NULL,
-  `GAM_IMAGE` varchar(50) DEFAULT NULL,
+  `GAM_IMAGE` varchar(200) DEFAULT NULL,
   `GAM_NB_PLAYER_MIN` int(11) DEFAULT NULL,
-  `GAM_NB_PLAYER_MAX` int(11) DEFAULT NULL
+  `GAM_NB_PLAYER_MAX` int(11) DEFAULT NULL,
+  `GAM_TYPE` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `T_E_GAME_GAM`
+--
+
+INSERT INTO `T_E_GAME_GAM` (`PK_ID`, `GAM_NAME`, `GAM_IMAGE`, `GAM_NB_PLAYER_MIN`, `GAM_NB_PLAYER_MAX`, `GAM_TYPE`) VALUES
+(1, 'Cookie Clicker', 'https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/typescript/bob_party/assets/ImagesJeux/Pong.png', 1, 1, 'GameSolo'),
+(2, 'TicTacToe', 'https://is3-ssl.mzstatic.com/image/thumb/Purple123/v4/f2/06/ef/f206ef53-7206-ffae-af6b-52460ba5636f/source/256x256bb.jpg', 1, 1, 'GameSolo'),
+(3, 'TicTacToe Online', 'https://is3-ssl.mzstatic.com/image/thumb/Purple123/v4/f2/06/ef/f206ef53-7206-ffae-af6b-52460ba5636f/source/256x256bb.jpg', 2, 2, 'GameMulti'),
+(4, 'BlackJack', 'https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/peristanceBDD/bob_party/assets/ImagesJeux/blackjack.jpg', 1, 1, 'GameCasino');
 
 -- --------------------------------------------------------
 
@@ -183,6 +194,33 @@ INSERT INTO `T_J_DISCUSS_DIS` (`FK_USER`, `FK_CONVERSATION`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `T_J_GAME_MAP_GMP`
+--
+
+CREATE TABLE `T_J_GAME_MAP_GMP` (
+  `FK_GAME` int(11) NOT NULL,
+  `GMP_KEY` int(11) NOT NULL,
+  `GMP_VALUE` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `T_J_GAME_MAP_GMP`
+--
+
+INSERT INTO `T_J_GAME_MAP_GMP` (`FK_GAME`, `GMP_KEY`, `GMP_VALUE`) VALUES
+(1, 0, 0),
+(1, 100, 25),
+(1, 1000, 30),
+(1, 10000, 40),
+(1, 100000, 50),
+(1, 1000000, 75),
+(3, 0, 0),
+(3, 1, 25),
+(3, 2, 50);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `T_J_OWN_SKIN_OWN`
 --
 
@@ -205,7 +243,8 @@ INSERT INTO `T_J_OWN_SKIN_OWN` (`FK_USER`, `FK_SKIN`) VALUES
 (7, 1),
 (8, 1),
 (10, 1),
-(11, 1);
+(11, 1),
+(12, 1);
 
 -- --------------------------------------------------------
 
@@ -242,14 +281,15 @@ CREATE TABLE `T_S_USER_USR` (
 --
 
 INSERT INTO `T_S_USER_USR` (`PK_ID`, `USR_USERNAME`, `USR_PASSWORD`, `USR_NATIONALITY`, `USR_SEX`, `USR_DATE_OF_BIRTH`, `USR_CURRENT_NB_COINS`, `USR_TOTAL_NB_COINS`, `USR_NB_GAMES_PLAYED`, `FK_CURRENT_SKIN`) VALUES
-(1, 'tom', 't', 'Anglais(e)', 'M', '2003-07-01', 100, 600, 12, 2),
+(1, 'tom', 't', 'Anglais(e)', 'M', '2003-07-01', 0, 225, 12, 2),
 (2, 'leilla20', 'l', 'France', 'F', '2003-11-22', 0, 0, 0, 1),
 (3, 'test', 't', 'Français(e)', 'H', '1999-12-27', 0, 0, 0, 1),
 (6, 'LEBg', 'belleBite63*', 'Espagnol(e)', 'Autre', '2001-12-27', 0, 0, 0, 1),
 (7, 'DYLAN', 'argGR65**', 'Anglais(e)', 'Autre', '2002-12-27', 0, 0, 0, 1),
 (8, 'Marche', 'je45tE**', 'Anglais(e)', 'Femme', '1999-12-27', 0, 0, 0, 1),
 (10, 'dsqdz', 'AEZQzze1*', 'Francais(e)', 'null', '2005-12-27', 0, 0, 0, 1),
-(11, 'qdsqdz', 'dqzA12****', 'Francais(e)', 'Homme', '2002-12-27', 0, 0, 0, 1);
+(11, 'qdsqdz', 'dqzA12****', 'Francais(e)', 'Homme', '2002-12-27', 0, 0, 0, 1),
+(12, 'thilde', 'coucoulesnazes*M0', 'Francais(e)', 'Femme', '2004-11-02', 0, 0, 0, 1);
 
 --
 -- Déclencheurs `T_S_USER_USR`
@@ -268,7 +308,7 @@ DELIMITER ;
 --
 ALTER TABLE `T_E_GAME_GAM`
   ADD PRIMARY KEY (`PK_ID`),
-  ADD UNIQUE KEY `GAM_NAME` (`GAM_NAME`,`GAM_IMAGE`);
+  ADD UNIQUE KEY `GAM_NAME` (`GAM_NAME`) USING BTREE;
 
 --
 -- Index pour la table `T_E_MATCH_MTC`
@@ -313,6 +353,12 @@ ALTER TABLE `T_J_DISCUSS_DIS`
   ADD KEY `FK_CONVERSATION` (`FK_CONVERSATION`);
 
 --
+-- Index pour la table `T_J_GAME_MAP_GMP`
+--
+ALTER TABLE `T_J_GAME_MAP_GMP`
+  ADD PRIMARY KEY (`FK_GAME`,`GMP_KEY`,`GMP_VALUE`) USING BTREE;
+
+--
 -- Index pour la table `T_J_OWN_SKIN_OWN`
 --
 ALTER TABLE `T_J_OWN_SKIN_OWN`
@@ -342,7 +388,7 @@ ALTER TABLE `T_S_USER_USR`
 -- AUTO_INCREMENT pour la table `T_E_GAME_GAM`
 --
 ALTER TABLE `T_E_GAME_GAM`
-  MODIFY `PK_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `PK_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `T_E_MATCH_MTC`
@@ -354,7 +400,7 @@ ALTER TABLE `T_E_MATCH_MTC`
 -- AUTO_INCREMENT pour la table `T_H_CONVERSATION_COV`
 --
 ALTER TABLE `T_H_CONVERSATION_COV`
-  MODIFY `PK_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `PK_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT pour la table `T_H_MESSAGE_MSG`
@@ -372,7 +418,7 @@ ALTER TABLE `T_H_SKIN_SKI`
 -- AUTO_INCREMENT pour la table `T_S_USER_USR`
 --
 ALTER TABLE `T_S_USER_USR`
-  MODIFY `PK_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `PK_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Contraintes pour les tables déchargées
@@ -403,6 +449,12 @@ ALTER TABLE `T_J_CONTAIN_MESSAGE_CMG`
 ALTER TABLE `T_J_DISCUSS_DIS`
   ADD CONSTRAINT `t_j_discuss_dis_ibfk_1` FOREIGN KEY (`FK_USER`) REFERENCES `T_S_USER_USR` (`PK_ID`) ON DELETE CASCADE,
   ADD CONSTRAINT `t_j_discuss_dis_ibfk_2` FOREIGN KEY (`FK_CONVERSATION`) REFERENCES `T_H_CONVERSATION_COV` (`PK_ID`) ON DELETE CASCADE;
+
+--
+-- Contraintes pour la table `T_J_GAME_MAP_GMP`
+--
+ALTER TABLE `T_J_GAME_MAP_GMP`
+  ADD CONSTRAINT `t_j_game_map_gmp_ibfk_1` FOREIGN KEY (`FK_GAME`) REFERENCES `T_E_GAME_GAM` (`PK_ID`);
 
 --
 -- Contraintes pour la table `T_J_OWN_SKIN_OWN`

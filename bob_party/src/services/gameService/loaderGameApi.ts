@@ -1,4 +1,5 @@
 import { Game } from "../../core/game";
+import { GameCasino } from "../../core/gameCasino";
 import { GameMulti } from "../../core/gameMulti";
 import { GameSolo } from "../../core/gameSolo";
 import ILoaderGame from "./ILoaderGame";
@@ -8,28 +9,37 @@ export default class LoaderGameApi implements ILoaderGame{
     private axios = require('axios').default;
 
     
-    async loadAllGame(): Promise<Game[]> {
+    async loadAllGames(): Promise<Game[]> {
         let tab: Game[]=[];
+        const url="http://localhost:8888/api-rest/index.php/getGames";
         await this.axios({
             method: 'get',
-            url: 'https://jsonplaceholder.typicode.com/todos/1',
-            params: {
-                name: "getAllUser",
-                //Les params genre nom de la fonction en php
-              }
+            url: url,
+
          })
          .then(function (response: any) {
-            const map = new Map();
-            map.set(0,0);
-            map.set(100,50);
-            map.set(300,150);
-            map.set(450,1000);
-            const cookieClicker= new GameSolo(1, "Cookie Clicker", "https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/typescript/bob_party/assets/ImagesJeux/Pong.png", "./src/Games/CookieClicker/cookieClicker.tsx", 1, 1, map);
-            const ticTacToe= new GameSolo(2,"TicTacToe", "https://is3-ssl.mzstatic.com/image/thumb/Purple123/v4/f2/06/ef/f206ef53-7206-ffae-af6b-52460ba5636f/source/256x256bb.jpg", "./src/Games/Tic-Tac-Toe/tic_tac_toe.tsx", 1, 1, map);
-            const ticTacToeOnline= new GameSolo(3,"TicTacToeOnline", "https://is3-ssl.mzstatic.com/image/thumb/Purple123/v4/f2/06/ef/f206ef53-7206-ffae-af6b-52460ba5636f/source/256x256bb.jpg", "./src/Games/Tic-Tac-Toe/tic_tac_toe_online.tsx", 2, 2, map);
-            const blackjack = new GameMulti(4, "BlackJack", "https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/peristanceBDD/bob_party/assets/ImagesJeux/blackjack.jpg", "./src/Games/BlackJack/blackJack", 1, 1, map)
-            tab=[cookieClicker,ticTacToe, ticTacToeOnline, blackjack];
-
+            response.data.forEach(game => {
+                switch(game.type){
+                    case "GameSolo":
+                        let mapSolo = new Map();
+                        for (let i=0; i<game.keys.length; i++){
+                            mapSolo.set(new Number(game.keys[i]), new Number(game.values[i]))
+                        }
+                        tab.push(new GameSolo(game.id, game.name, game.image, game.nmbPlayerMin, game.nbPlayerMax, mapSolo));
+                        break;
+                    case "GameMulti":
+                        const mapMulti = new Map();
+                        for (let i=0; i<game.keys.length; i++){
+                            mapMulti.set(new Number(game.keys[i]), new Number(game.values[i]));
+                        }
+                        tab.push(new GameMulti(game.id, game.name, game.image, game.nmbPlayerMin, game.nbPlayerMax, mapMulti));
+                        break;
+                    case "GameCasino":
+                        tab.push(new GameCasino(game.id, game.name, game.image, game.nmbPlayerMin, game.nbPlayerMax));
+                        break;
+                }
+            });
+            
         });
         return tab;
         

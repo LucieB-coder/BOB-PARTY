@@ -21,8 +21,8 @@ let myMap = new Map<number, number>([
     [150, 6]
 ]);
 let tabU2:User[] = [];
-let game=new GameSolo(1, "bo jeu", img, "super jeu", 1, 1, myMap);
-let game2 = new GameSolo(2, "jeu magnifique", img, "wow jeu", 1, 1, myMap)
+let game=new GameSolo(1, "bo jeu", img, 1, 1, myMap);
+let game2 = new GameSolo(2, "jeu magnifique", img, 1, 1, myMap)
 let match = new MatchSolo(1, false, tabU, game);
 let match2 = new MatchSolo(1, false, tabU2, game2);
 let match3 = new MatchSolo(1, false, tabU, game);

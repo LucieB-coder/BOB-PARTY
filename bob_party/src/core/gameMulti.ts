@@ -3,8 +3,8 @@ import { Game } from './game'
 export class GameMulti extends Game{
     readonly rankToCoins:Map<number,number>
 
-    constructor(id:number, name:string, imageSource:string, gameSource:string, nbPlayerMin:number, nbPlayerMax:number, rankToCoins:Map<number,number>){
-        super(id, name, imageSource, gameSource, nbPlayerMin, nbPlayerMax);
+    constructor(id:number, name:string, imageSource:string, nbPlayerMin:number, nbPlayerMax:number, rankToCoins:Map<number,number>){
+        super(id, name, imageSource, nbPlayerMin, nbPlayerMax);
         this.rankToCoins=rankToCoins;
     }
 

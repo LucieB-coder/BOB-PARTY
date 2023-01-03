@@ -9,7 +9,7 @@ let myMap = new Map<number, number>([
     [2, 5],
     [1, 10]
 ]);
-let game = new GameMulti(1, "bo jeu", img, "super jeu", 1, 5, myMap);
+let game = new GameMulti(1, "bo jeu", img, 1, 5, myMap);
 
 
 // Get tests

@@ -8,7 +8,7 @@ let myMap = new Map<number, number>([
     [100, 5],
     [150, 6]
 ]);
-let game=new GameSolo(1, "bo jeu", img, "super jeu", 1, 1, myMap);
+let game=new GameSolo(1, "bo jeu", img, 1, 1, myMap);
 
 
 // Get tests
