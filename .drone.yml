@@ -12,7 +12,7 @@ steps:
         IMAGENAME: mysql:8.0
         CONTAINERNAME: mysql
         COMMAND: create
-        # OVERWRITE: true
+        OVERWRITE: true
         PRIVATE: true
         CODEFIRST_CLIENTDRONE_ENV_MARIADB_ROOT_PASSWORD:    
           from_secret: MYSQL_ROOT_PASSWORD
