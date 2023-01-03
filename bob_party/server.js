@@ -16,9 +16,16 @@ io.on('connection', (socket) => {
   });
 
   socket.on("messageSent", (conv) =>{
-    console.log("C"+conv.id);
     socket.to("C"+conv.id).emit("messageReceived");
     console.log("Message envoyé");
+  });
+
+  socket.on('inMatch', (match) => {
+    socket.join("M" + match);
+  });
+
+  socket.on("playTicTacToe", (match, rowIndex, columnIndex, turn) =>{
+    socket.to("M"+match).emit("oppPlayTicTacToe", rowIndex, columnIndex, turn);
   });
 });
 

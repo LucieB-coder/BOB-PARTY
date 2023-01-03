@@ -6,14 +6,14 @@ import { User } from "../core/User/user";
 
 
 // Define store types
-interface StoreState {
-    tabSkin: Skin[];
+interface SkinState {
+    tabSkin: Skin[] | null;
     setTabSkin: (tabSkin: Skin[]) => void;
     resetTabSkin: () => void;
   }
 
 // Define store data and methods
-export const useStoreStore = create<StoreState>()((set, get) => ({
+export const useSkinStore = create<SkinState>()((set, get) => ({
     tabSkin: [],
     setTabSkin: (tabSkin) => set((state) => ({ tabSkin: tabSkin })),
     resetTabSkin: () => set((state) => ({ tabSkin: [] })),

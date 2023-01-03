@@ -3,11 +3,11 @@ import React, {useState} from "react";
 import styles from './TicTacToeStyle.js';
 import { useMatchStore } from "../../context/matchContext";
 import { current } from "@reduxjs/toolkit";
-import { ScreenIndicator } from "../../components/ScreenIndicator.tsx";
-import { TopBar } from "../../components/TopBar.tsx";
+import { ScreenIndicator } from "../../components/ScreenIndicator";
+import { TopBar } from "../../components/TopBar";
 
 
-export default function tic_tac_toe(props: { navigation: any}){
+export default function TicTacToe(props: { navigation: any}){
     const [map,setMap]=useState([
         ['','',''],
         ['','',''],

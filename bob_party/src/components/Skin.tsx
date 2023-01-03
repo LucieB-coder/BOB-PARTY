@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useUserStore } from "../context/userContext"
 import { UserCoinsModifier } from "../core/User/userCoinsModifier"
 import UserSkinModifier from "../core/User/userSkinModifier"
-import { useStoreStore } from "../context/storeContext"
+import { useSkinStore } from "../context/storeContext"
 import { MANAGER_SKIN, MANAGER_USER } from "../../appManagers"
 
 
@@ -34,7 +34,7 @@ export const SkinComponent:
 
         const setUser = useUserStore((state) => state.setUser);
 
-        const setTabSkin = useStoreStore((state) => state.setTabSkin);
+        const setTabSkin = useSkinStore((state) => state.setTabSkin);
 
 
         async function changerSkin(skin: Skin) {

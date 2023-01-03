@@ -7,7 +7,7 @@ import { BotBar } from '../components/BotBar';
 import { FlatList } from 'react-native-gesture-handler';
 import { SkinComponent } from '../components/Skin';
 import { ScreenIndicator } from '../components/ScreenIndicator';
-import { useStoreStore } from '../context/storeContext';
+import { useSkinStore } from '../context/storeContext';
 
 
 
@@ -22,7 +22,7 @@ function Store(props: { navigation: any; }) {
       <View style={stylesScreen.bodyStart}>
         <ScreenIndicator title='Store'/>
         <FlatList 
-          data={useStoreStore().tabSkin}
+          data={useSkinStore().tabSkin}
           numColumns={2}
           columnWrapperStyle={{ flex: 1, justifyContent: "space-around"}}
           keyExtractor={item =>item.getSkinName()}

@@ -1,4 +1,5 @@
 import { Game } from "../../core/game";
+import { GameMulti } from "../../core/gameMulti";
 import { GameSolo } from "../../core/gameSolo";
 import ILoaderGame from "./ILoaderGame";
 
@@ -23,9 +24,11 @@ export default class LoaderGameApi implements ILoaderGame{
             map.set(100,50);
             map.set(300,150);
             map.set(450,1000);
-            const cookieClicker= new GameSolo(1, "Cookie Clicker", "https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/typescript/bob_party/assets/ImagesJeux/Pong.png", "/Games/CookieClicker/cookieClicker.tsx", 1, 1, map);
-            const ticTacToe= new GameSolo(2,"TicTacToe", "https://is3-ssl.mzstatic.com/image/thumb/Purple123/v4/f2/06/ef/f206ef53-7206-ffae-af6b-52460ba5636f/source/256x256bb.jpg", "/Games/Tic-Tac-Toe/tic-tac-toe.tsx", 1, 1, map);
-            tab=[cookieClicker,ticTacToe];
+            const cookieClicker= new GameSolo(1, "Cookie Clicker", "https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/typescript/bob_party/assets/ImagesJeux/Pong.png", "./src/Games/CookieClicker/cookieClicker.tsx", 1, 1, map);
+            const ticTacToe= new GameSolo(2,"TicTacToe", "https://is3-ssl.mzstatic.com/image/thumb/Purple123/v4/f2/06/ef/f206ef53-7206-ffae-af6b-52460ba5636f/source/256x256bb.jpg", "./src/Games/Tic-Tac-Toe/tic_tac_toe.tsx", 1, 1, map);
+            const ticTacToeOnline= new GameSolo(3,"TicTacToeOnline", "https://is3-ssl.mzstatic.com/image/thumb/Purple123/v4/f2/06/ef/f206ef53-7206-ffae-af6b-52460ba5636f/source/256x256bb.jpg", "./src/Games/Tic-Tac-Toe/tic_tac_toe_online.tsx", 2, 2, map);
+            const blackjack = new GameMulti(4, "BlackJack", "https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/peristanceBDD/bob_party/assets/ImagesJeux/blackjack.jpg", "./src/Games/BlackJack/blackJack", 1, 1, map)
+            tab=[cookieClicker,ticTacToe, ticTacToeOnline, blackjack];
 
         });
         return tab;

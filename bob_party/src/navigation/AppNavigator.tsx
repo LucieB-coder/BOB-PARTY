@@ -14,11 +14,12 @@ import SignIn from '../screens/SignIn'
 import SignUp from '../screens/SignUp'
 import LobbySolo from '../screens/LobbySolo'
 import CookieClicker from '../Games/CookieClicker/cookieClicker'
-import Conversation from '../screens/Conversation'
+import Conversation from '../screens/ConversationScreen'
 
-import Test from '../screens/Test'
-import MatchMaking from '../screens/MatchMaking'
-import TicTacToe from '../Games/Tic-Tac-Toe/tic-tac-toe'
+
+import TicTacToe from '../Games/Tic-Tac-Toe/tic_tac_toe'
+import TicTacToeOnline from '../Games/Tic-Tac-Toe/tic_tac_toe_online'
+import BlackJack from '../Games/BlackJack/blackJack'
 
 
 const HomeStack = createStackNavigator();
@@ -102,6 +103,8 @@ function GameSoloStackScreen() {
       <GameSoloStack.Screen name='LobbySolo' component={LobbySolo} options={{animationEnabled: false,}}/>
       <GameSoloStack.Screen name='CookieClicker' component={CookieClicker} />
       <GameSoloStack.Screen name='TicTacToe' component={TicTacToe} />
+      <GameSoloStack.Screen name='TicTacToeOnline' component={TicTacToeOnline} />
+      <GameSoloStack.Screen name='BlackJack' component={BlackJack} />
     </GameSoloStack.Navigator>
   );
 }

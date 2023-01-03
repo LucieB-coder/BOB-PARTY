@@ -13,6 +13,8 @@ import { MANAGER_CONVERSATION, MANAGER_GAME, MANAGER_SKIN, MANAGER_USER } from '
 import { socket } from "../../socketConfig";
 import { useConversationStore } from '../context/conversationContext';
 import { useGameStore } from '../context/gameContext';
+import { Conversation } from '../core/conversation';
+import { useSkinStore } from '../context/storeContext';
 
 
 
@@ -22,10 +24,14 @@ function SignIn(props: { navigation: any; }) {
     const setUser = useUserStore((state) => state.setUser);
 
     const setTabConv = useConversationStore((state) => state.setTabConv);
-
+    const setCurrentConv = useConversationStore((state) => state.setCurrentConv);
+    
     const setTabGame = useGameStore((state) => state.setTabGame);
     const setTabGameSolo = useGameStore((state) => state.setTabGameSolo);
     const setTabGameMulti = useGameStore((state) => state.setTabGameMulti);
+
+    const setTabSkin = useSkinStore((state) => state.setTabSkin);
+
 
 
     const errorList = useSelector((state: RootState) => state.credentialErrors.loginErrorList);
@@ -53,15 +59,14 @@ function SignIn(props: { navigation: any; }) {
                     await handleSkinLoad();
                     await handleConversationLoad();
                     await handleGameLoad();
-                    /*
-                    const conv=await MANAGER_CONVERSATION.getsaverConversation().saveConversation("Wesh la conv", res, [2,3], res.getUsername() + " a créé une conversation", new Date());
-                    if (conv!=null){
-                        MANAGER_CONVERSATION.getTabConv().push(conv);
-                    }
-                    */
                     MANAGER_CONVERSATION.getTabConv()?.forEach( conv =>{
                         socket.emit("inConv", conv);
                     });
+
+                    socket.on("messageReceived", async () =>{
+                        await handleConversationLoad();
+                    });
+
                     navigation.navigate('HomeTab');   
                 }
                 else{
@@ -74,18 +79,31 @@ function SignIn(props: { navigation: any; }) {
         return;      
     }
 
-    async function handleConversationLoad(){
+  
+    
+      async function handleConversationLoad(){
         const tmp = MANAGER_USER.getCurrentUser();
         if (tmp !== null) {
             await MANAGER_CONVERSATION.getLoaderConversation().loadByUser(tmp).then((res) => {
+                const tmp=MANAGER_USER.getCurrentUser()
                 MANAGER_CONVERSATION.setTabConv(res);
-                setTabConv(res);
+                if (tmp!==null){
+                  const tmpConv=MANAGER_CONVERSATION.getCurrentConv();
+                  if (tmpConv!==null){
+                    const trouveIndex = (element: Conversation) => element.getId()===tmpConv.getId();
+                    const index=MANAGER_CONVERSATION.getTabConv().findIndex(trouveIndex);
+                    MANAGER_CONVERSATION.setCurrentConv(MANAGER_CONVERSATION.getTabConv()[index]);
+                    setCurrentConv(MANAGER_CONVERSATION.getCurrentConv());
+                  }
+                  setTabConv(MANAGER_CONVERSATION.getTabConv());
+                }
             });
         }
-    }
+      }
 
     async function handleSkinLoad(){
         MANAGER_SKIN.setTabSkin(await MANAGER_SKIN.getLoaderSkin().loadAllSkin());
+        setTabSkin(MANAGER_SKIN.getTabSkin());
     }
 
     async function handleGameLoad(){

@@ -6,10 +6,10 @@ import React from "react"
     Importing the correct stylesheet
 */
 import styles from './style/BotBar.style';
-import { useStoreStore } from "../context/storeContext";
 import { useConversationStore } from "../context/conversationContext";
 import { MANAGER_CONVERSATION, MANAGER_SKIN, MANAGER_USER } from "../../appManagers";
 import { socket } from "../../socketConfig";
+import { useSkinStore } from "../context/storeContext";
 
 /* 
     Images that are required to create a bottom bar
@@ -45,7 +45,7 @@ export const BotBar:
     ({ nav, state }) => {
 
 
-        const setTabSkin = useStoreStore((state) => state.setTabSkin);
+        const setTabSkin = useSkinStore((state) => state.setTabSkin);
 
         const handleStoreChange = useCallback(async () => {
 

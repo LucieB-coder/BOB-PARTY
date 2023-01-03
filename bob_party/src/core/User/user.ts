@@ -147,9 +147,11 @@ export class User{
         this.tabSkin.push(skin);
     }
 
-    isEqual(u:User){
-        if (u.getId()==this.id){
-            return true;
+    isEqual(u:User | null){
+        if (u!= null){
+            if (u.getId()==this.id){
+                return true;
+            }
         }
         return false;
     }
