@@ -83,7 +83,7 @@ function SignUp(props: { navigation: any; }) {
             break;
         
         case (errorList.invalidPassword):
-            Alert.alert("Votre pseudo doit contenir au moins une majuscule, une majuscule, un chiffre et un caractère spécial (#?!@$%^&*-)");
+            Alert.alert("Votre password doit contenir au moins une majuscule, une majuscule, un chiffre et un caractère spécial (#?!@$%^&*-)");
             dispatch(updateInvalidPassword(false));
             break;
 
@@ -99,7 +99,7 @@ function SignUp(props: { navigation: any; }) {
             
             <View style={{width: '60%', alignItems: 'center'}}>
                 <Text style={styles.text}>Login</Text>
-                <TextInput style={styles.textInput} placeholder='Login' onChangeText={(val) => setPseudo(val)} autoCapitalize='none' />
+                <TextInput style={styles.textInput} placeholder='Login' onChangeText={(val) => setPseudo(val)} autoCapitalize='none'/>
             </View>
             
             <View style={{width: '60%', alignItems: 'center'}}>

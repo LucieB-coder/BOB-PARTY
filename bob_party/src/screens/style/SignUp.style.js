@@ -6,7 +6,8 @@ export default StyleSheet.create({
         width: '100%',
         height: '5%',
         backgroundColor: 'white',
-        padding: 10,
+        color:'black',
+        padding: 20,
         marginTop: 10,
       },
       button: {

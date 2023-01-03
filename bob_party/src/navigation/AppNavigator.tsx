@@ -18,7 +18,7 @@ import Conversation from '../screens/Conversation'
 
 import Test from '../screens/Test'
 import MatchMaking from '../screens/MatchMaking'
-import TicTacToe from '../Games/Tic-Tac-Toe/Tic-Tac-Toe'
+import TicTacToe from '../Games/Tic-Tac-Toe/tic-tac-toe'
 
 
 const HomeStack = createStackNavigator();
