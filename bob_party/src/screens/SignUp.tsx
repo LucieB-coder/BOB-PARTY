@@ -11,7 +11,6 @@ import { checkNewUserValidity } from '../core/Auth/newUser';
 import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import RNPickerSelect from "react-native-picker-select";
 import { PickerGreySmall } from '../components/PickerGreySmall';
-import { loginUser } from '../redux/features/currentUserSlice';
 import { RootState } from '../redux/store';
 import { updateImpossibleBirthDate, updateInvalidPassword, updateInvalidPseudo, updateTooLongPseudo, updateTooShortPassword, updateUndefinedBirthDate, updateUndefinedNationality, updateUndefinedPassword, updateUndefinedPseudo, updateUndefinedSex } from '../redux/features/credentialErrorsSlice';
 import { getSystemErrorMap } from 'util';
