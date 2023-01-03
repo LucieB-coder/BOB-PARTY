@@ -12,15 +12,15 @@ steps:
         IMAGENAME: mysql:8.0
         CONTAINERNAME: mysql
         COMMAND: create
-        OVERWRITE: true
+        #OVERWRITE: true
         PRIVATE: true
-        CODEFIRST_CLIENTDRONE_ENV_MARIADB_ROOT_PASSWORD:    
+        CODEFIRST_CLIENTDRONE_ENV_MYSQL_ROOT_PASSWORD:    
           from_secret: MYSQL_ROOT_PASSWORD
-        CODEFIRST_CLIENTDRONE_ENV_MARIADB_DATABASE:
+        CODEFIRST_CLIENTDRONE_ENV_MYSQL_DATABASE:
           from_secret: MYSQL_DATABASE
-        CODEFIRST_CLIENTDRONE_ENV_MARIADB_USER:
+        CODEFIRST_CLIENTDRONE_ENV_MYSQL_USER_TOM:
           from_secret: MYSQL_USER_TOM
-        CODEFIRST_CLIENTDRONE_ENV_MARIADB_PASSWORD:
+        CODEFIRST_CLIENTDRONE_ENV_MYSQL_PASSWORD_TOM:
           from_secret: MYSQL_PASSWORD_TOM
         ADMINS: thomas.chazot2, mathilde.jean3, lilian.breton, lucie.bedouret, alban.guilhot
 
