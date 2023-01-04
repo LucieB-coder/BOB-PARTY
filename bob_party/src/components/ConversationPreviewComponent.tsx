@@ -34,7 +34,7 @@ FC<{conv: Conversation, navigation: any}> =
     
 
     return(
-        <Pressable onPress={() => {MANAGER_CONVERSATION.setCurrentConv(conv); setCurrentConv(conv) ;navigation.navigate(Conversation)}}>
+        <Pressable onPress={() => {MANAGER_CONVERSATION.setCurrentConv(conv); setCurrentConv(conv); navigation.navigate(Conversation)}}>
             <View style={styles.conv}>
                 <View>
                     <SkinComponent skin={user2.getCurrentSkin()} state='icon' nav={navigation}/>
