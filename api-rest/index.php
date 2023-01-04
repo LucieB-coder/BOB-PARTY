@@ -199,10 +199,11 @@
                 $password = !empty($url[6]) ? (string) $url[6] : null;
                 $sexe = !empty($url[7]) ? (string) $url[7] : null;
                 $nationality = !empty($url[8]) ? (string) $url[8] : null;
-                $nbCurrentCoins = !empty($url[9]) ? (int) $url[9] : null;
-                $totalnbCoins = !empty($url[10]) ? (int) $url[10] : null;
-                $nbGames = !empty($url[11]) ? (int) $url[11] : null;
+                $nbCurrentCoins = (int) $url[9];
+                $totalnbCoins = (int) $url[10];
+                $nbGames = (int) $url[11];
                 $currentSkin = !empty($url[12]) ? (int) $url[12] : null;
+                echo ($nbCurrentCoins . '  ' . $totalnbCoins . "  ". $nbGames);
                 $usergw->putUser($id,$username,$password,$sexe, $nationality, $nbCurrentCoins,$totalnbCoins,$nbGames,$currentSkin);
                 http_response_code(200);
             }

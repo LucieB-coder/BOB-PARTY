@@ -38,6 +38,7 @@ class UserGateway{
             $skinGateway=new SkinGateway($this->connection);
             $skinId=$row['FK_CURRENT_SKIN'];
             $skin=$skinGateway->getSkinById($skinId);
+            echo $
         $usr= new User($row['PK_ID'],
             $row['USR_USERNAME'],
             $row['USR_PASSWORD'],
