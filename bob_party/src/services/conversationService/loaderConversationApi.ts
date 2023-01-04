@@ -24,7 +24,9 @@ export class LoaderConversationApi implements ILoaderConversation{
             url: url,
          })
          .then(async function (response: any) {
-            tabConv=await jsonToConversation(response);
+            if (response.data != null || response.data != undefined){
+                tabConv=await jsonToConversation(response);
+            }
         });
         return tabConv;
     }
