@@ -51,34 +51,40 @@ function ConversationScreen(props: { navigation: any; }) {
 		);
 	};
 	return(
-		<KeyboardAvoidingView  behavior={Platform.OS == "ios" ? "padding" : "height"} style={stylesScreen.container}>
-				<View style={stylesScreen.bodyStart}>
-					<FlatList
-						data={useConversationStore().currentConv?.getTabMessage().reverse()}
-						renderItem={renderMessage}
-						keyExtractor={item => item.getMessageId().toString()}
-						style={{flexDirection:'column-reverse'}}
-					/>
-					
-					<TextInput
-						style={{height: '7%',
-						width: '90%',
-						borderRadius: '15%',
-						backgroundColor: 'white',
-						padding: 10,
-						marginBottom: '7%',
-						alignSelf: 'center',
-						marginTop: '3%',
-						}} 
-						placeholder='Votre message...' 
-						returnKeyType="send"
-						onChangeText={onChangeText}
-						value={text}
-						onSubmitEditing={(val) => {sendMessage(val)}}
-						blurOnSubmit
-					/>
-				</View>
-		</KeyboardAvoidingView>
+		<View style={stylesScreen.container}>
+      <TopBar
+        nav={navigation}
+		state="conversation"
+		/>
+			<KeyboardAvoidingView  behavior={Platform.OS == "ios" ? "padding" : "height"} style={stylesScreen.container}>
+					<View style={stylesScreen.bodyStart}>
+						<FlatList
+							data={useConversationStore().currentConv?.getTabMessage()}
+							renderItem={renderMessage}
+							keyExtractor={item => item.getMessageId().toString()}
+							inverted
+							/>
+						
+						<TextInput
+							style={{height: '7%',
+							width: '90%',
+							borderRadius: '15%',
+							backgroundColor: 'white',
+							padding: 10,
+							marginBottom: '7%',
+							alignSelf: 'center',
+							marginTop: '3%',
+							}} 
+							placeholder='Votre message...' 
+							returnKeyType="send"
+							onChangeText={onChangeText}
+							value={text}
+							onSubmitEditing={(val) => {sendMessage(val)}}
+							blurOnSubmit
+						/>
+					</View>
+			</KeyboardAvoidingView>
+		</View>
 	);
 }
 

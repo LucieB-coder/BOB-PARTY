@@ -21,7 +21,7 @@ export default class ManagerConversation{
         return this.currentConv;
     }
 
-    setCurrentConv(c:Conversation){
+    setCurrentConv(c:Conversation | null){
         this.currentConv=c;
     }
 

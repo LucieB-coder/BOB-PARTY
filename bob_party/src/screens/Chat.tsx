@@ -27,6 +27,7 @@ function Chat(props: { navigation: any; }) {
           renderItem={({item}) => <ConversationPreviewComponent conv={item} navigation={navigation}/>} 
         />
       </View>
+      
       <BotBar 
           nav={navigation}
           state='Chat'

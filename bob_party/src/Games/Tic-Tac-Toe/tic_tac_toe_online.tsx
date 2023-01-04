@@ -9,7 +9,7 @@ import { socket } from "../../../socketConfig";
 import { MANAGER_MATCH, MANAGER_USER } from "../../../appManagers";
 
 
-export default function TicTacToeOnline(){
+export default function TicTacToeOnline(props: { navigation: any }){
 
     const [init, setInit]=useState(0);
 
@@ -22,13 +22,9 @@ export default function TicTacToeOnline(){
     ]);
 
     const [turnUser, setTurnUser]=useState("x");
-    /*
-    if (MANAGER_MATCH.getCurrentMatch()?.getTabUsers()[0].isEqual(MANAGER_USER.getCurrentUser())){
-        turn="o";
-    }
-    */
 
-    //const {navigation}=props;
+
+    const {navigation}=props;
 
     const [currentTurn,setCurrentTurn] = useState("x");
 
@@ -85,18 +81,35 @@ export default function TicTacToeOnline(){
     }
 
     const checkWinning = () =>{
+        const tmp=MANAGER_USER.getCurrentUser()
         // Checks rows
         for (let i=0; i<3; i++){
             const isRowXWinning = map[i].every((cell)=> cell==="x");
             const isRowOWinning = map[i] .every((cell)=>cell==="o");
             if(isRowXWinning==true){
+                if (tmp!==null){
+                    if (turnUser==="x"){
+                        MANAGER_MATCH.getCurrentMatch()?.updatePostMatch(tmp, 2);
+                    }
+                    else{
+                        MANAGER_MATCH.getCurrentMatch()?.updatePostMatch(tmp, 0);
+                    }
+                }
                 Alert.alert("X won !");
-                //navigation.goBack();
+                navigation.goBack();
                 return true;
             }
             else if(isRowOWinning==true){
+                if (tmp!==null){
+                    if (turnUser==="x"){
+                        MANAGER_MATCH.getCurrentMatch()?.updatePostMatch(tmp, 0);
+                    }
+                    else{
+                        MANAGER_MATCH.getCurrentMatch()?.updatePostMatch(tmp, 2);
+                    }
+                }
                 Alert.alert("O won !");
-                //navigation.goBack();
+                navigation.goBack();
                 return true;
             }
         }
@@ -114,13 +127,29 @@ export default function TicTacToeOnline(){
                 }
             }
             if (isColumnXWinning == true){
+                if (tmp!==null){
+                    if (turnUser==="x"){
+                        MANAGER_MATCH.getCurrentMatch()?.updatePostMatch(tmp, 2);
+                    }
+                    else{
+                        MANAGER_MATCH.getCurrentMatch()?.updatePostMatch(tmp, 0);
+                    }
+                }
                 Alert.alert("X won !");
-                //navigation.goBack();
+                navigation.goBack();
                 return true;
             }
             if(isColumnOWinning==true){
+                if (tmp!==null){
+                    if (turnUser==="x"){
+                        MANAGER_MATCH.getCurrentMatch()?.updatePostMatch(tmp, 0);
+                    }
+                    else{
+                        MANAGER_MATCH.getCurrentMatch()?.updatePostMatch(tmp, 2);
+                    }
+                }
                 Alert.alert("O won !");
-                //navigation.goBack();
+                navigation.goBack();
                 return true;
             }
             
@@ -145,13 +174,29 @@ export default function TicTacToeOnline(){
             }
         }
         if(isDiag1OWinning==true || isDiag2OWinning==true){
+            if (tmp!==null){
+                if (turnUser==="x"){
+                    MANAGER_MATCH.getCurrentMatch()?.updatePostMatch(tmp, 0);
+                }
+                else{
+                    MANAGER_MATCH.getCurrentMatch()?.updatePostMatch(tmp, 2);
+                }
+            }
             Alert.alert("O won !");
-            //navigation.goBack();
+            navigation.goBack();
             return true;
         }
         if(isDiag1XWinning==true || isDiag2XWinning==true){
+            if (tmp!==null){
+                if (turnUser==="x"){
+                    MANAGER_MATCH.getCurrentMatch()?.updatePostMatch(tmp, 2);
+                }
+                else{
+                    MANAGER_MATCH.getCurrentMatch()?.updatePostMatch(tmp, 0);
+                }
+            }
             Alert.alert("X won !");
-            //navigation.goBack();
+            navigation.goBack();
             return true;
         }
     };
@@ -161,8 +206,12 @@ export default function TicTacToeOnline(){
         const isRow1Full = map[1] .every((cell)=>cell!=="");
         const isRow2Full = map[2] .every((cell)=>cell!=="");
         if(isRow0Full==true && isRow1Full==true && isRow2Full==true){
+            const tmp=MANAGER_USER.getCurrentUser();
+            if (tmp!==null){
+                MANAGER_MATCH.getCurrentMatch()?.updatePostMatch(tmp, 1);
+            }
             Alert.alert("Draw !");
-            //navigation.goBack();
+            navigation.goBack();
             return false;
         }
     };
