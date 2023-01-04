@@ -16,7 +16,6 @@ FC<{nav: any}> =
 ({nav}) => 
 {
 
-    const currentGameType= useGameStore((state) => state.currentGameType);
 
     let gameList : Game[] | undefined;
 
