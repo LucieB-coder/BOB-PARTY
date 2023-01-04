@@ -11,6 +11,8 @@ export default class ManagerGame{
 
     private loaderGame: ILoaderGame;
 
+    public currentGameType: string="";
+
     constructor(loader:ILoaderGame){
         this.loaderGame=loader;
     }
