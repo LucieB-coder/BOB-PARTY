@@ -79,6 +79,18 @@ FC<{nav: any, state?: string}> =
                     </Pressable>
                 </View>
             )
+        case 'addConversation':
+            return (
+                <View style={styles.header}>
+                    <Pressable onPress={() => {nav.goBack()}}>
+                        <Image source={cross} style={styles.icon}/>
+                    </Pressable>
+                    <Text style={styles.titre}>Chat with your friends</Text>
+                    <Pressable>
+                        <Image source={msc} style={styles.icon}/>
+                    </Pressable>
+                </View>
+            )
 
         default:
             return (

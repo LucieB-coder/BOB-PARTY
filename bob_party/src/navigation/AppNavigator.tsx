@@ -15,6 +15,7 @@ import SignUp from '../screens/SignUp'
 import LobbySolo from '../screens/LobbySolo'
 import CookieClicker from '../Games/CookieClicker/cookieClicker'
 import Conversation from '../screens/ConversationScreen'
+import AddConversation from '../screens/AddConversation'
 
 
 import TicTacToe from '../Games/Tic-Tac-Toe/tic_tac_toe'
@@ -60,6 +61,7 @@ function ChatStackScreen() {
       <ChatStack.Screen name="Chat" component={Chat} />
       <ChatStack.Screen name="Settings" component={Settings} />
       <ChatStack.Screen name="Conversation" component={Conversation} />
+      <ChatStack.Screen name="AddConversation" component={AddConversation} />
     </ChatStack.Navigator>
   );
 }

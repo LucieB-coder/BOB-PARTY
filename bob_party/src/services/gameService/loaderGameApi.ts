@@ -25,7 +25,6 @@ export default class LoaderGameApi implements ILoaderGame{
                         case "GameSolo":
                             let mapSolo = new Map();
                             for (let i=0; i<game.keys.length; i++){
-                                console.log(game.keys[i], game.name);
                                 mapSolo.set(new Number(game.keys[i]), new Number(game.values[i]))
                             }
                             tab.push(new GameSolo(game.id, game.name, game.image, game.nbPlayerMin, game.nbPlayerMax, mapSolo));

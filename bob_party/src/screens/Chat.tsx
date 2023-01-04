@@ -16,7 +16,7 @@ import styles from '../components/style/TopBar.style';
 
 function Chat(props: { navigation: any; }) {
     const { navigation } = props
-    const cross = require('../../assets/Icons/UnSelected/Cross.png');
+    const add = require('../../assets/Icons/UnSelected/Add.png');
     
     return (  
     <View style={stylesScreen.container}>
@@ -30,8 +30,8 @@ function Chat(props: { navigation: any; }) {
           renderItem={({item}) => <ConversationPreviewComponent conv={item} navigation={navigation}/>} 
         />
       </View>
-      <Pressable onPress={() => navigation.navigate('Settings')}>
-          <Image source={cross} style={styles.icon}/>
+      <Pressable onPress={() => navigation.navigate('AddConversation')} style={{alignItems:"center", alignContent:"center"}}>
+          <Image source={add} style={styles.icon}/>
       </Pressable>
       
       <BotBar 
