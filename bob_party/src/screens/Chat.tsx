@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar'
-import {View} from 'react-native'
+import {Pressable, View, Image} from 'react-native'
 import React, { useCallback } from 'react';
 import stylesScreen from './style/screens.style';
 import { TopBar } from '../components/TopBar';
@@ -11,9 +11,12 @@ import { io } from 'socket.io-client';
 import { socket } from '../../socketConfig';
 import { MANAGER_CONVERSATION, MANAGER_USER } from '../../appManagers';
 import { Message } from '../core/message';
+import styles from '../components/style/TopBar.style';
+
 
 function Chat(props: { navigation: any; }) {
     const { navigation } = props
+    const cross = require('../../assets/Icons/UnSelected/Cross.png');
     
     return (  
     <View style={stylesScreen.container}>
@@ -27,6 +30,9 @@ function Chat(props: { navigation: any; }) {
           renderItem={({item}) => <ConversationPreviewComponent conv={item} navigation={navigation}/>} 
         />
       </View>
+      <Pressable onPress={() => navigation.navigate('Settings')}>
+          <Image source={cross} style={styles.icon}/>
+      </Pressable>
       
       <BotBar 
           nav={navigation}

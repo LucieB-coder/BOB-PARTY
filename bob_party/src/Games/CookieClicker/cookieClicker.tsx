@@ -91,6 +91,7 @@ function CookieClicker(props: { navigation: any }) {
     if (tmp !== null) {
       if (MANAGER_MATCH.getCurrentMatch()?.getTabUsers().includes(tmp)) {
         MANAGER_MATCH.getCurrentMatch()?.updatePostMatch(tmp, points);
+        MANAGER_USER.setCurrentUser(tmp);
         setUser(tmp);
       }
     }

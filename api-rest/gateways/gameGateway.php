@@ -23,8 +23,9 @@ class GameGateway{
         $mapQuery="SELECT * FROM T_J_GAME_MAP_GMP WHERE FK_GAME=:id ORDER BY GMP_KEY";
         $this->connection->execQuery($gamesQuery,[]);
         $res = $this->connection->getRes();
+        $i=0;
         foreach($res as $row){
-            $tabkey=[];
+            $tabKey=[];
             $tabValue=[];
             $arg=array(':id'=>array($row['PK_ID'], PDO::PARAM_INT));
             $this->connection->execQuery($mapQuery,$arg);
@@ -40,8 +41,7 @@ class GameGateway{
                                   $row['GAM_NB_PLAYER_MIN'],
                                   $row['GAM_NB_PLAYER_MAX'],
                                   $tabKey,
-                                  $tabValue);
-            
+                                  $tabValue);            
         }
         return $tabGames;
     }

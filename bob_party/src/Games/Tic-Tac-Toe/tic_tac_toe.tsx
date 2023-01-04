@@ -5,9 +5,16 @@ import { useMatchStore } from "../../context/matchContext";
 import { current } from "@reduxjs/toolkit";
 import { ScreenIndicator } from "../../components/ScreenIndicator";
 import { TopBar } from "../../components/TopBar";
+import { MANAGER_MATCH, MANAGER_USER } from "../../../appManagers";
+import { useUserStore } from "../../context/userContext";
 
 
 export default function TicTacToe(props: { navigation: any}){
+
+    const setUser = useUserStore((state) => state.setUser);
+
+    const resetMatch = useMatchStore((state) => state.resetMatch);
+    
     const [map,setMap]=useState([
         ['','',''],
         ['','',''],
@@ -46,12 +53,12 @@ export default function TicTacToe(props: { navigation: any}){
             const isRowOWinning = map[i] .every((cell)=>cell==="o");
             if(isRowXWinning==true){
                 Alert.alert("X won !");
-                navigation.goBack();
+                endGame();
                 return true;
             }
             else if(isRowOWinning==true){
                 Alert.alert("O won !");
-                navigation.goBack();
+                endGame();
                 return true;
             }
         }
@@ -70,12 +77,12 @@ export default function TicTacToe(props: { navigation: any}){
             }
             if (isColumnXWinning == true){
                 Alert.alert("X won !");
-                navigation.goBack();
+                endGame();
                 return true;
             }
             if(isColumnOWinning==true){
                 Alert.alert("O won !");
-                navigation.goBack();
+                endGame();
                 return true;
             }
             
@@ -101,12 +108,12 @@ export default function TicTacToe(props: { navigation: any}){
         }
         if(isDiag1OWinning==true || isDiag2OWinning==true){
             Alert.alert("O won !");
-            navigation.goBack();
+            endGame();
             return true;
         }
         if(isDiag1XWinning==true || isDiag2XWinning==true){
             Alert.alert("X won !");
-            navigation.goBack();
+            endGame();
             return true;
         }
     };
@@ -117,10 +124,24 @@ export default function TicTacToe(props: { navigation: any}){
         const isRow2Full = map[2] .every((cell)=>cell!=="");
         if(isRow0Full==true && isRow1Full==true && isRow2Full==true){
             Alert.alert("Draw !");
-            navigation.goBack();
+            endGame();
             return false;
         }
     };
+
+
+    function endGame() {
+        const tmp = MANAGER_USER.getCurrentUser();
+        if (tmp !== null) {
+          if (MANAGER_MATCH.getCurrentMatch()?.getTabUsers().includes(tmp)) {
+            MANAGER_MATCH.getCurrentMatch()?.updatePostMatch(tmp, 0);
+            MANAGER_USER.setCurrentUser(tmp);
+            setUser(tmp);
+          }
+        }
+        navigation.goBack();
+        resetMatch();
+      }
 
     return(
         <View style={styles.container}>

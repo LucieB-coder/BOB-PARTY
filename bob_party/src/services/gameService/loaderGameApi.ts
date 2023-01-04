@@ -25,19 +25,20 @@ export default class LoaderGameApi implements ILoaderGame{
                         case "GameSolo":
                             let mapSolo = new Map();
                             for (let i=0; i<game.keys.length; i++){
+                                console.log(game.keys[i], game.name);
                                 mapSolo.set(new Number(game.keys[i]), new Number(game.values[i]))
                             }
-                            tab.push(new GameSolo(game.id, game.name, game.image, game.nmbPlayerMin, game.nbPlayerMax, mapSolo));
+                            tab.push(new GameSolo(game.id, game.name, game.image, game.nbPlayerMin, game.nbPlayerMax, mapSolo));
                             break;
                         case "GameMulti":
                             const mapMulti = new Map();
                             for (let i=0; i<game.keys.length; i++){
                                 mapMulti.set(new Number(game.keys[i]), new Number(game.values[i]));
                             }
-                            tab.push(new GameMulti(game.id, game.name, game.image, game.nmbPlayerMin, game.nbPlayerMax, mapMulti));
+                            tab.push(new GameMulti(game.id, game.name, game.image, game.nbPlayerMin, game.nbPlayerMax, mapMulti));
                             break;
                         case "GameCasino":
-                            tab.push(new GameCasino(game.id, game.name, game.image, game.nmbPlayerMin, game.nbPlayerMax));
+                            tab.push(new GameCasino(game.id, game.name, game.image, game.nbPlayerMin, game.nbPlayerMax));
                             break;
                     }
                 });
