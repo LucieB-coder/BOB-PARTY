@@ -1,7 +1,7 @@
 FROM php:8.0-apache
 
 COPY api-rest/start-apache /usr/local/bin
-RUN chmod 755 start-apache
+RUN chmod 755 api-rest/start-apache
 
 # Copy application source
 COPY api-rest/* /var/www/html
