@@ -1,3 +1,3 @@
 FROM php:7.4-cli
 COPY . /api-rest
-CMD [ "pwd" ]
+CMD [ "ls" ]
