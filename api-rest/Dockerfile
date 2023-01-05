@@ -1,5 +1,5 @@
 FROM php:7.4-cli
 COPY . /api-rest
 WORKDIR api-rest
-CMD [ "php", "./index.php" ]
+CMD [ "php", "api-rest/index.php" ]
 CMD [ "ls" ]
