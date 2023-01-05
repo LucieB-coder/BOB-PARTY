@@ -1,2 +1,2 @@
-FROM php:7.4-cli
+FROM php:latest
 CMD [ "ls" ]
