@@ -11,7 +11,7 @@ import { io } from 'socket.io-client';
 import { socket } from '../../socketConfig';
 import { MANAGER_CONVERSATION, MANAGER_USER } from '../../appManagers';
 import { Message } from '../core/message';
-import styles from '../components/style/TopBar.style';
+import styles from './style/Chat.style.js';
 
 
 function Chat(props: { navigation: any; }) {
@@ -29,10 +29,13 @@ function Chat(props: { navigation: any; }) {
           data={useConversationStore().tabConv}
           renderItem={({item}) => <ConversationPreviewComponent conv={item} navigation={navigation}/>} 
         />
+        <View style={styles.viewPlusButton}>
+          <Pressable onPress={() => navigation.navigate('AddConversation')} style={styles.pressablePlusButton}>
+              <Image source={add} style={styles.icon}/>
+          </Pressable>
+        </View>
       </View>
-      <Pressable onPress={() => navigation.navigate('AddConversation')} style={{alignItems:"center", alignContent:"center"}}>
-          <Image source={add} style={styles.icon}/>
-      </Pressable>
+      
       
       <BotBar 
           nav={navigation}
