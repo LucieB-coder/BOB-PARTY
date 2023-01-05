@@ -1,4 +1,4 @@
 FROM php:7.4-cli
-COPY . /api-rest
-WORKDIR /api-rest
-CMD [ "php", "./index.php" ]
+COPY . /BOB_PARTY/api-rest
+WORKDIR /BOB_PARTY
+CMD [ "php", "./api-rest/index.php" ]
