@@ -62,6 +62,9 @@ export default function AddConversation(props: {navigation:any}){
             await MANAGER_CONVERSATION.getsaverConversation().saveConversation(name, tmp, tabId, tmp.getUsername() + " created a conversation", new Date()).then((res)=>{
                 if (res!==null){
                     MANAGER_CONVERSATION.getTabConv().push(res);
+                    MANAGER_CONVERSATION.getTabConv()?.sort(
+                        (objA, objB) => objB.getLastMessage().getMessageDate().getTime() - objA.getLastMessage().getMessageDate().getTime(),
+                    );
                     setTabConv(MANAGER_CONVERSATION.getTabConv());
                     socket.emit("createConversation", tabId);
                     navigation.goBack();

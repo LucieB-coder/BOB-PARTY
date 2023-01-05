@@ -97,6 +97,9 @@ function SignIn(props: { navigation: any; }) {
                   if (tmpConv!==null){
                     const trouveIndex = (element: Conversation) => element.getId()===tmpConv.getId();
                     const index=MANAGER_CONVERSATION.getTabConv().findIndex(trouveIndex);
+                    MANAGER_CONVERSATION.getTabConv()?.sort(
+                        (objA, objB) => objB.getLastMessage().getMessageDate().getTime() - objA.getLastMessage().getMessageDate().getTime(),
+                    );
                     MANAGER_CONVERSATION.setCurrentConv(MANAGER_CONVERSATION.getTabConv()[index]);
                     setCurrentConv(MANAGER_CONVERSATION.getCurrentConv());
                   }
