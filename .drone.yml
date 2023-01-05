@@ -56,6 +56,7 @@ steps:
           from_secret: MYSQL_PASSWORD_TOM
         CODEFIRST_CLIENTDRONE_ENV_DB_DATABASE:
           from_secret: MYSQL_DATABASE
+        ADMINS: thomaschazot2,mathildejean3,lilianbreton,luciebedouret,albanguilhot,cedricbouhours,thomasbellembois
     depends_on: 
         - container-api
 
@@ -81,3 +82,4 @@ steps:
         CONTAINERNAME: bob_party_container
         COMMAND: create
         #OVERWRITE: true
+        ADMINS: thomaschazot2,mathildejean3,lilianbreton,luciebedouret,albanguilhot,cedricbouhours,thomasbellembois
