@@ -1,6 +1,6 @@
 FROM php:8.0-apache
 
-COPY apir-rest/start-apache /usr/local/bin
+COPY api-rest/start-apache /usr/local/bin
 RUN chmod 755 start-apache
 
 # Copy application source
