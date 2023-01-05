@@ -9,15 +9,22 @@ const io = new Server(server);
 io.on('connection', (socket) => {
   console.log(socket.id)  
 
+  socket.on('signIn', (id) => {
+  });
 
   socket.on('inConv', (conv) => {
     socket.join("C" + conv.id);
-    console.log("C"+conv.id);
   });
 
   socket.on("messageSent", (conv) =>{
     socket.to("C"+conv.id).emit("messageReceived");
     console.log("Message envoyé");
+  });
+
+  socket.on("createConversation", (tabId) =>{
+    tabId.forEach(id => {
+      socket.to("U"+id).emit("messageReceived");
+    });
   });
 
   socket.on('inMatch', (match) => {

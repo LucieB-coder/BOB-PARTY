@@ -59,7 +59,7 @@ export default function AddConversation(props: {navigation:any}){
                 if (res!==null){
                     MANAGER_CONVERSATION.getTabConv().push(res);
                     setTabConv(MANAGER_CONVERSATION.getTabConv());
-                    socket.emit("messageSent", res);
+                    socket.emit("createConversation", tabId);
                     navigation.goBack();
                 }
             });

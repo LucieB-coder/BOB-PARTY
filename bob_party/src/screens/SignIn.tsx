@@ -55,13 +55,10 @@ function SignIn(props: { navigation: any; }) {
                 if (res!=null){
                     MANAGER_USER.setCurrentUser(res);
                     setUser(MANAGER_USER.getCurrentUser());
-                    socket.emit("signIn", res);
                     await handleSkinLoad();
                     await handleConversationLoad();
                     await handleGameLoad();
-                    MANAGER_CONVERSATION.getTabConv()?.forEach( conv =>{
-                        socket.emit("inConv", conv);
-                    });
+                    initSocket();
 
                     socket.on("messageReceived", async () =>{
                         await handleConversationLoad();
@@ -79,7 +76,15 @@ function SignIn(props: { navigation: any; }) {
         return;      
     }
 
-  
+    function initSocket(){
+        socket.emit("signIn", MANAGER_USER.getCurrentUser()?.id);
+        MANAGER_CONVERSATION.getTabConv()?.forEach( conv =>{
+            socket.emit("inConv", conv);
+        });
+        socket.on("messageReceived", async () =>{
+            await handleConversationLoad();
+        });
+    }
     
       async function handleConversationLoad(){
         const tmp = MANAGER_USER.getCurrentUser();
