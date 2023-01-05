@@ -13,6 +13,8 @@ import { useMatchStore } from "../context/matchContext"
 import { MANAGER_CONVERSATION, MANAGER_USER } from "../../appManagers"
 import { useUserStore } from "../context/userContext"
 import { useConversationStore } from "../context/conversationContext"
+import { socket } from "../../socketConfig"
+import { Conversation } from "../core/conversation"
 
 /* 
     Images required
@@ -20,6 +22,7 @@ import { useConversationStore } from "../context/conversationContext"
 const engrenage = require('../../assets/Icons/UnSelected/Cogs.png');
 const cross = require('../../assets/Icons/UnSelected/Cross.png');
 const msc = require('../../assets/Icons/FondGris.png');
+const door = require('../../assets/Icons/UnSelected/Door.png');
 
 export const TopBar : 
 /* Parameters: 
@@ -35,6 +38,27 @@ FC<{nav: any, state?: string}> =
     const resetMatch = useMatchStore((state) => state.resetMatch);
     const resetCurrentConv = useConversationStore((state) => state.resetCurrentConv);
 
+    const setTabConv = useConversationStore((state) => state.setTabConv);
+
+
+
+    async function quitConv(){
+        const tmp=MANAGER_USER.getCurrentUser();
+        const tmpConv=MANAGER_CONVERSATION.getCurrentConv();
+        if (tmp!==null && tmpConv!==null){
+            await MANAGER_CONVERSATION.getsaverConversation().deleteUserToConversation(tmpConv, tmp);
+            const trouveIndex = (element: Conversation) => element.getId()===tmpConv.getId();
+            const index=MANAGER_CONVERSATION.getTabConv().findIndex(trouveIndex);
+            MANAGER_CONVERSATION.getTabConv().splice(index);
+            if (tmpConv.getTabUser().length===1){
+                await MANAGER_CONVERSATION.getsaverConversation().deleteConversation(tmpConv);
+            }
+            MANAGER_CONVERSATION.setCurrentConv(null);
+            setTabConv(MANAGER_CONVERSATION.getTabConv());
+            socket.emit("messageSent", tmpConv);
+            nav.goBack();
+        }
+    }
 
     /* The display of this component depends of the screen from where it has been called:
         * From the Settings (icon) : Name of the page + cross button
@@ -74,8 +98,8 @@ FC<{nav: any, state?: string}> =
                         <Image source={cross} style={styles.icon}/>
                     </Pressable>
                     <Text style={styles.titre}>{useConversationStore().currentConv?.getName()}</Text>
-                    <Pressable>
-                        <Image source={msc} style={styles.icon}/>
+                    <Pressable onPress={ () => quitConv()}>
+                        <Image source={door} style={styles.icon}/>
                     </Pressable>
                 </View>
             )

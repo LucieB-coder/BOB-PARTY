@@ -139,8 +139,8 @@ export default function TicTacToe(props: { navigation: any}){
             setUser(tmp);
           }
         }
-        navigation.goBack();
         resetMatch();
+        navigation.goBack();
       }
 
     return(

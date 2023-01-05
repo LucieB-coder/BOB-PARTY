@@ -25,8 +25,10 @@ FC<{conv: Conversation, navigation: any}> =
 
     const user1 = MANAGER_USER.getCurrentUser();
     let tmp;
-
-    if (user1?.isEqual(conv.getTabUser()[0])) tmp = conv.getTabUser()[1];
+    if (conv.getTabMessage().length<2){
+        tmp=conv.getTabUser()[0];
+    }
+    else if (user1?.isEqual(conv.getTabUser()[0])) tmp = conv.getTabUser()[1];
     else tmp = conv.getTabUser()[0];
 
     const user2 = tmp;

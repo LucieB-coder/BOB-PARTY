@@ -21,6 +21,10 @@ export default function AddConversation(props: {navigation:any}){
             Alert.alert("Everyone needs a name even a conversation :)");
             return;
         }
+        if (name.length>50){
+            Alert.alert("The conversation name should not exceed 30 character");
+            return;
+        }
         if (listId.trim().length === 0){
             Alert.alert("Specify the id of your friends to chat with them :)");
             return;

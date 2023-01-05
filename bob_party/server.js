@@ -10,6 +10,7 @@ io.on('connection', (socket) => {
   console.log(socket.id)  
 
   socket.on('signIn', (id) => {
+    socket.join("U"+id);
   });
 
   socket.on('inConv', (conv) => {

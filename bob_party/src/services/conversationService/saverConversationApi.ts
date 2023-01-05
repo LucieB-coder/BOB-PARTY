@@ -59,17 +59,26 @@ export class SaverConversationApi implements ISaverConversation{
         return message;    
     }
 
-    addUserToConversation(c: Conversation, id: number): Promise<void> {
+    async addUserToConversation(c: Conversation, id: number): Promise<void> {
         throw new Error("Method not implemented.");
     }
-    deleteUserToConversation(c: Conversation, u: User): Promise<void> {
-        throw new Error("Method not implemented.");
+    async deleteUserToConversation(c: Conversation, u: User): Promise<void> {
+        let url='http://localhost:8888/api-rest/index.php/deleteUserFromConversation/' + c.getId() + "/" +u.getId();
+        await this.axios({
+            method: 'put',
+            url: url,
+        });
     }
 
     
     async deleteConversation(c: Conversation): Promise<void> {
-        return;
+        let url='http://localhost:8888/api-rest/index.php/deleteConversation/' + c.getId();
+        await this.axios({
+            method: 'delete',
+            url: url,
+        });    
     }
+    
     async updateConversation(c: Conversation): Promise<void> {
         return;
     }

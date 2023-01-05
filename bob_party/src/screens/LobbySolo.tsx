@@ -7,6 +7,7 @@ import { BotBar } from '../components/BotBar';
 import { Conversation } from '../core/conversation';
 import { ButtonGameTypeChoice } from '../components/ButtonGameTypeChoice';
 import { useMatchStore } from '../context/matchContext';
+import { MANAGER_MATCH } from '../../appManagers';
 
 
 function LobbySolo(props: { navigation: any; }) {
@@ -24,7 +25,7 @@ function LobbySolo(props: { navigation: any; }) {
             <View style={stylesScreen.bodyCenter}>
             <ButtonGameTypeChoice
                 title='Lancer la partie'
-                onPress={() => navigation.navigate(match?.getGame().getName().replace(/\s/g, ''))}
+                onPress={() => navigation.navigate(MANAGER_MATCH.getCurrentMatch()?.getGame().getName().replace(/\s/g, ''))}
             />
             </View>
 
