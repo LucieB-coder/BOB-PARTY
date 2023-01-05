@@ -9,7 +9,7 @@ export default StyleSheet.create(
     image : {
         borderRadius: 15,
         marginTop: 15,
-        marginRight: 15,
+        marginHorizontal: 7.5,
         width: 100,
         height: 100,
       },

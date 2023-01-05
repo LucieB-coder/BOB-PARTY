@@ -6,7 +6,7 @@ import styles from './style/Settings.style';
 import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
 import { Conversation } from '../core/conversation';
-import { ButtonGameTypeChoice } from '../components/ButtonGameTypeChoice';
+import { BigBlueButton } from '../components/BigBlueButton';
 import { useMatchStore } from '../context/matchContext';
 import { FlatList, TextInput } from 'react-native-gesture-handler';
 import { PlayerBox } from '../components/PlayerBox';

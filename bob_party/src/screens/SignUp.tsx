@@ -3,7 +3,7 @@ import { StyleSheet, View, ImageSourcePropType, Pressable, Text, Alert} from 're
 import React, { useState } from 'react';
 import stylesScreen from './style/screens.style'
 import { TextInput } from 'react-native-gesture-handler';
-import { ButtonGameTypeChoice } from '../components/ButtonGameTypeChoice';
+import { BigBlueButton } from '../components/BigBlueButton';
 import styles from "./style/SignUp.style";
 import { useDispatch, useSelector } from 'react-redux';
 import { checkNewUserValidity } from '../core/Auth/newUser';

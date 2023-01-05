@@ -5,7 +5,7 @@ import stylesScreen from './style/screens.style'
 import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
 import { Conversation } from '../core/conversation';
-import { ButtonGameTypeChoice } from '../components/ButtonGameTypeChoice';
+import { BigBlueButton } from '../components/BigBlueButton';
 import { useGameStore } from '../context/gameContext';
 import { MANAGER_CONVERSATION, MANAGER_GAME, MANAGER_USER } from '../../appManagers';
 import { socket } from '../../socketConfig';
@@ -35,11 +35,11 @@ function Home(props: { navigation: any; }) {
         state='Home'
       />
       <View style={stylesScreen.bodyCenter}>
-        <ButtonGameTypeChoice
+        <BigBlueButton
           title='Jouer Seul'
           onPress={() => { MANAGER_GAME.currentGameType="solo";navigation.navigate('GameChoiceTab') }}
         />
-        <ButtonGameTypeChoice
+        <BigBlueButton
           title='Défier mes amis'
           onPress={() => { MANAGER_GAME.currentGameType="multi" ; navigation.navigate('GameChoiceTab')}}
         />
