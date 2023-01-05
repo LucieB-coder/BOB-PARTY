@@ -9,7 +9,7 @@ steps:
   - name: deploy-container-mysql-test
     image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
     environment:
-        IMAGENAME: mysql:8.0
+        IMAGENAME: mysql:latest
         CONTAINERNAME: mysql
         COMMAND: create
         #OVERWRITE: true
