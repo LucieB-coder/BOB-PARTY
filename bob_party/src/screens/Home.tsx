@@ -11,6 +11,7 @@ import { MANAGER_CONVERSATION, MANAGER_GAME, MANAGER_USER } from '../../appManag
 import { socket } from '../../socketConfig';
 import { useConversationStore } from '../context/conversationContext';
 import { Message } from '../core/message';
+import ManagerUser from '../services/userServices/managerUser';
 
 
 
@@ -20,8 +21,6 @@ let tabConv: Conversation[] = [];
 function Home(props: { navigation: any; }) {
 
   const { navigation } = props
-
-
 
 
 
@@ -38,11 +37,11 @@ function Home(props: { navigation: any; }) {
       <View style={stylesScreen.bodyCenter}>
         <ButtonGameTypeChoice
           title='Jouer Seul'
-          onPress={() => { navigation.navigate('GameChoiceTab') }}
+          onPress={() => { MANAGER_GAME.currentGameType="solo";navigation.navigate('GameChoiceTab') }}
         />
         <ButtonGameTypeChoice
           title='Défier mes amis'
-          onPress={() => navigation.navigate('GameChoiceTab')}
+          onPress={() => { MANAGER_GAME.currentGameType="multi" ; navigation.navigate('GameChoiceTab')}}
         />
       </View>
       <BotBar

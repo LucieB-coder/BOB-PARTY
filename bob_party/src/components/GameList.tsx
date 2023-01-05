@@ -9,6 +9,7 @@ import { Game } from "../core/game"
 import { useGameStore } from "../context/gameContext"
 import { GameComponent } from "./GameComponent"
 import ManagerGame from "../services/gameService/managerGame"
+import { MANAGER_GAME, MANAGER_USER } from "../../appManagers"
 
 export const GameList : 
 
@@ -19,13 +20,14 @@ FC<{nav: any}> =
 
     let gameList : Game[] | undefined;
 
-    if(currentGameType === "solo" ){
-        console.log("sole");
-        gameList = useGameStore((state) => state.tabGameSolo);
+    if(MANAGER_GAME.currentGameType === "solo" ){
+        console.log("solo");
+        gameList = MANAGER_GAME.getTabGameSolo();
+        console.log(gameList);
     }
-    else if(currentGameType === "multi"){
+    else if(MANAGER_GAME.currentGameType === "multi"){
         console.log("multi");
-        gameList = useGameStore((state) => state.tabGameMulti);
+        gameList = MANAGER_GAME.getTabGameMulti();
     }
     else{
         console.log("crotte");   
