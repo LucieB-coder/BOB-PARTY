@@ -1,7 +1,7 @@
 FROM php:8.0-apache
 
 CMD [ "chmod", "755", "api-rest/start-apache"]
-CMD [ "ls", "-l", "api-rest"]
+CMD [ "ls", "-l", "api-rest/start-apache"]
 COPY api-rest/start-apache /usr/local/bin
 
 # Copy application source
