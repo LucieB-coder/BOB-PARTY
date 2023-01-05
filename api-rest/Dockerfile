@@ -1,2 +1,2 @@
 FROM php:latest
-CMD [ "ls" ]
+CMD [ "find", "." , "-name", "index.php"  ]
