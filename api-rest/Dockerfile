@@ -6,5 +6,6 @@ RUN chmod 755 /usr/local/bin/start-apache
 # Copy application source
 COPY api-rest/* /var/www/html/
 RUN chown -R www-data:www-data /var/www/html
+RUN ls "/var/www/html"
 
 CMD ["start-apache"]
