@@ -13,7 +13,7 @@ steps:
         CONTAINERNAME: mysql
         COMMAND: create
         #OVERWRITE: true
-        PRIVATE: true
+        #PRIVATE: true
         CODEFIRST_CLIENTDRONE_ENV_MYSQL_ROOT_PASSWORD:    
           from_secret: MYSQL_ROOT_PASSWORD
         CODEFIRST_CLIENTDRONE_ENV_MYSQL_DATABASE:
@@ -48,7 +48,7 @@ steps:
         CONTAINERNAME: api-bobParty
         COMMAND: create
         OVERWRITE: true
-        PRIVATE: true
+        #PRIVATE: true
         CODEFIRST_CLIENTDRONE_ENV_DB_SERVER:
           from_secret: db_server
         CODEFIRST_CLIENTDRONE_ENV_DB_USER:
