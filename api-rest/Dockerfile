@@ -1,3 +1,3 @@
 FROM php:latest
-COPY api-rest toto
-CMD [ "find", "/" , "-name", "index.php"  ]
+COPY api-rest api-rest
+CMD [ "php", "api-rest/toto.php"]
