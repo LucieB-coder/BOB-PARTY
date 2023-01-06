@@ -14,5 +14,7 @@ ENV MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
 
 ADD bobParty.sql bobParty.sql
 
+EXPOSE 3306
+
 RUN sed -i 's/MYSQL_DATABASE/'$MYSQL_DATABASE'/g' bobParty.sql
 RUN cp bobParty.sql /docker-entrypoint-initdb.d
