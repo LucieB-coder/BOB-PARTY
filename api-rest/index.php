@@ -17,7 +17,7 @@
     // ------
     // Comment faire un fichier .htaccess pour protéger ce fichier ?????????
     // ------
-    $ini_array= parse_ini_file("config.ini");
+    //$ini_array= parse_ini_file("config.ini");
 
     $dsn = "mysql:host=". getenv("DB_SERVER").";dbname=". getenv("MYSQL_DATABASE");
     $username = getenv("MYSQL_USER_TOM");
