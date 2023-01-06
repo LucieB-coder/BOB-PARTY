@@ -8,8 +8,6 @@ steps:
   # database container deployment
   - name: deploy-container-mysql-test
     image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
-    settings:
-      dockerfile: Dockerfile
     environment:
         IMAGENAME: mysql:latest
         CONTAINERNAME: mysql
