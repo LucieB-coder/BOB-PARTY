@@ -19,16 +19,15 @@
     // ------
     $ini_array= parse_ini_file("config.ini");
 
-    //$dsn = "mysql:host=". getenv("DB_SERVER").";dbname=". getenv("MYSQL_DATABASE");
-    //$username = getenv("MYSQL_USER_TOM");
-    //$password = getenv("MYSQL_PASSWORD_TOM");
+    $dsn = "mysql:host=". getenv("DB_SERVER").";dbname=". getenv("MYSQL_DATABASE");
+    $username = getenv("MYSQL_USER_TOM");
+    $password = getenv("MYSQL_PASSWORD_TOM");
 
-    //echo $dsn . " " . $username . " " . $password . " ";
+    echo $dsn . " " . $username . " " . $password . " ";
 
     // Initializing Database
     try{
-        //$database = new DatabaseConnection($dsn,$username,$password);
-        $database = new DatabaseConnection($ini_array['dsn'],$ini_array['username'],$ini_array['password']);
+        $database = new DatabaseConnection($dsn,$username,$password);
     } catch (PDOException $e) {
         echo "ERROR connection";
         header("HTTP/1.0 ".$e->getMessage());
