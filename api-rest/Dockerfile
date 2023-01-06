@@ -6,7 +6,6 @@ RUN chmod 755 /usr/local/bin/start-apache
 # Copy application source
 ADD api-rest /var/www/html/ 
 RUN chown -R www-data:www-data /var/www/html
-RUN apt-get update
-RUN apt-get install -y phpmyadmin
+RUN apt-get update && apt-get install -y phpmyadmin 
 
 CMD ["start-apache"]
