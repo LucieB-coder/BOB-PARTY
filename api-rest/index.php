@@ -18,12 +18,13 @@
     // Comment faire un fichier .htaccess pour protéger ce fichier ?????????
     // ------
     //$ini_array= parse_ini_file("config.ini");
-    //
-    $dsn = "mysql:host=". getenv("DB_SERVER").";port=3306;dbname=". getenv("MYSQL_DATABASE");
-    $username = "root";
-    $password = getenv("MYSQL_ROOT_PASSWORD");
+
+    $dsn = "mysql:host=". getenv("DB_SERVER").";dbname=". getenv("MYSQL_DATABASE");
+    $username = getenv("MYSQL_USER_TOM");
+    $password = getenv("MYSQL_PASSWORD_TOM");
 
     echo $dsn . " " . $username . " " . $password . " ";
+
     // Initializing Database
     try{
         $database = new DatabaseConnection($dsn,$username,$password);
