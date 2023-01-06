@@ -63,6 +63,19 @@ steps:
     depends_on: [ deploy-container-mysql, container-api ]
 
 
+  
+#container deployment
+  - name: deploy-php-container
+    image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
+    ports: - 8899:80
+    environment:
+        IMAGENAME: phpmyadmin/phpmyadmin:latest
+        CONTAINERNAME: phpmyadmin
+        COMMAND: create
+        #OVERWRITE: true
+        ADMINS: thomaschazot2,mathildejean3,lilianbreton,luciebedouret,albanguilhot,cedricbouhours,thomasbellembois
+
+
 # # docker image build
 #   - name: docker-build-and-push
 #     image: plugins/docker
