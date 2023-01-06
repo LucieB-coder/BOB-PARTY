@@ -19,6 +19,7 @@
     // ------
     $ini_array= parse_ini_file("config.ini");
     // Initializing Database
+    echo $ini_array['dsn'] . $ini_array['username'] . $ini_array['password'];
     try{
         $database = new DatabaseConnection($ini_array['dsn'],$ini_array['username'],$ini_array['password']);
     } catch (PDOException $e) {
