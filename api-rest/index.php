@@ -23,6 +23,7 @@
     $username = "root";
     $password = getenv("MYSQL_ROOT_PASSWORD");
 
+    echo $dsn . " " . $username . " " . $password . " ";
     // Initializing Database
     try{
         $database = new DatabaseConnection($dsn,$username,$password);
