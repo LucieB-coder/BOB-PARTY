@@ -19,11 +19,11 @@
     // ------
     //$ini_array= parse_ini_file("config.ini");
 
-    $dsn = "mysql:host=". getenv("db_server").";dbname=". getenv("MYSQL_DATABASE");
+    $dsn = "mysql:host=". getenv("DB_SERVER").";dbname=". getenv("MYSQL_DATABASE");
     $username = "root";
     $password = getenv("MYSQL_ROOT_PASSWORD");
 
-    echo getenv("db_server");
+    echo getenv("DB_SERVER");
 
     // Initializing Database
     try{
