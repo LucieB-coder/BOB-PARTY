@@ -23,7 +23,6 @@
     $username = getenv("MYSQL_USER_TOM");
     $password = getenv("MYSQL_PASSWORD_TOM");
 
-    echo $ini_array['dsn'];
     // Initializing Database
     try{
         $database = new DatabaseConnection($dsn,$username,$password);
@@ -32,6 +31,8 @@
         header("HTTP/1.0 ".$e->getMessage());
         http_response_code(600); // Quel code pour les erreurs PDO?
     }
+
+    echo $database;
     
     
     // Initializing Gateways
