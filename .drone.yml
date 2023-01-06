@@ -85,4 +85,4 @@ steps:
 #         CONTAINERNAME: bob_party_container
 #         COMMAND: create
 #         #OVERWRITE: true
-        ADMINS: thomaschazot2,mathildejean3,lilianbreton,luciebedouret,albanguilhot,cedricbouhours,thomasbellembois
+        # ADMINS: thomaschazot2,mathildejean3,lilianbreton,luciebedouret,albanguilhot,cedricbouhours,thomasbellembois
