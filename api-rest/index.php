@@ -17,12 +17,16 @@
     // ------
     // Comment faire un fichier .htaccess pour protéger ce fichier ?????????
     // ------
-    $ini_array= parse_ini_file("config.ini");
+    //$ini_array= parse_ini_file("config.ini");
+
+    $dsn = "mysql:host=". getenv("db_server").";dbname=". getenv("MYSQL_DATABASE");
+    $username = getenv("MYSQL_USER_TOM");
+    $password = getenv("MYSQL_PASSWORD_TOM");
 
     echo $ini_array['dsn'];
     // Initializing Database
     try{
-        $database = new DatabaseConnection($ini_array['dsn'],$ini_array['username'],$ini_array['password']);
+        $database = new DatabaseConnection($dsn,$username,$password);
     } catch (PDOException $e) {
         echo "ERROR connection";
         header("HTTP/1.0 ".$e->getMessage());
