@@ -1,7 +1,7 @@
 <?php
 
-require_once('user.php');
-require_once('skin.php');
+require_once('model/user.php');
+require_once('model/skin.php');
 
 
 class UserGateway{
