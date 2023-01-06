@@ -7,11 +7,11 @@
     ///
 
     include ('dbConnection.php');
-    include (__DIR__ .'gateways/userGateway.php');
-    include (__DIR__ .'gateways/matchGateway.php');
-    include (__DIR__ .'gateways/conversationGateway.php');
-    include (__DIR__ .'gateways/gameGateway.php');
-    include (__DIR__ .'gateways/skinGateway.php');
+    include (__DIR__ .'/gateways/userGateway.php');
+    include (__DIR__ .'/gateways/matchGateway.php');
+    include (__DIR__ .'/gateways/conversationGateway.php');
+    include (__DIR__ .'/gateways/gameGateway.php');
+    include (__DIR__ .'/gateways/skinGateway.php');
 
     // Connection to database
     // ------
