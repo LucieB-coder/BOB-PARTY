@@ -7,7 +7,7 @@
     ///
 
     include ('dbConnection.php');
-    include ('userGateway.php');
+    include ('gateways/userGateway.php');
     include ('gateways/matchGateway.php');
     include ('gateways/conversationGateway.php');
     include ('gateways/gameGateway.php');
