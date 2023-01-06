@@ -9,5 +9,6 @@ RUN chown -R www-data:www-data /var/www/html
 
 RUN apt-get update && apt-get upgrade
 RUN apt install wget -y
+RUN hostnamectl
 
-CMD ["start-apache"]
+#CMD ["start-apache"]
