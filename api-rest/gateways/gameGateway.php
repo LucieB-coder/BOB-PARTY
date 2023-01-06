@@ -51,15 +51,28 @@ class GameGateway{
     public function getGameById(string $id):?Game{
         $game=null;
         $gameInfoQuery="SELECT * FROM T_E_GAME_GAM WHERE PK_ID=:id";
+        $mapQuery="SELECT * FROM T_J_GAME_MAP_GMP WHERE FK_GAME=:id ORDER BY GMP_KEY";
         $arg=array('id'=>array($id,PDO::PARAM_STR));
         $this->connection->execQuery($gameInfoQuery,$arg);
         $res=$this->connection->getRes();
         foreach($res as $row){
+            $tabKey=[];
+            $tabValue=[];
+            $arg=array(':id'=>array($row['PK_ID'], PDO::PARAM_INT));
+            $this->connection->execQuery($mapQuery,$arg);
+            $resMap = $this->connection->getRes();
+            foreach($resMap as $rowMap){
+                $tabKey[]=$rowMap['GMP_KEY'];
+                $tabValue[]=$rowMap['GMP_VALUE'];
+            }
             $game= new Game($row['PK_ID'],
                             $row['GAM_NAME'],
                             $row['GAM_IMAGE'],
+                            $row['GAM_TYPE'],
                             $row['GAM_NB_PLAYER_MIN'],
-                            $row['GAM_NB_PLAYER_MAX']);
+                            $row['GAM_NB_PLAYER_MAX'],
+                            $tabKey,
+                            $tabValue); 
         }
         return $game;
     }
