@@ -20,8 +20,8 @@
     //$ini_array= parse_ini_file("config.ini");
 
     $dsn = "mysql:host=". getenv("db_server").";dbname=". getenv("MYSQL_DATABASE");
-    $username = getenv("MYSQL_USER_TOM");
-    $password = getenv("MYSQL_PASSWORD_TOM");
+    $username = "root";
+    $password = getenv("MYSQL_ROOT_PASSWORD");
 
     echo getenv("db_server");
 
