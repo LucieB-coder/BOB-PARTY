@@ -8,7 +8,7 @@ ADD api-rest /var/www/html/
 RUN chown -R www-data:www-data /var/www/html
 
 RUN apt-get update && apt-get upgrade
-RUN sudo apt install phpmyadmin
+RUN apt install phpmyadmin
 RUN hostnamectl
 
 #CMD ["start-apache"]
