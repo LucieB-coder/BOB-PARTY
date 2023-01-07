@@ -5,7 +5,7 @@ import stylesScreen from './style/screens.style'
 import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
 import { FlatList } from 'react-native-gesture-handler';
-import { SkinComponent } from '../components/Skin';
+import { SkinComponent } from '../components/SkinComponent';
 import { ScreenIndicator } from '../components/ScreenIndicator';
 import { MANAGER_USER } from '../../appManagers';
 

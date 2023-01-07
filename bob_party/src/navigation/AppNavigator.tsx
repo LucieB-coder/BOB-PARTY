@@ -12,7 +12,7 @@ import SkinList from '../screens/SkinList'
 import GameChoice from '../screens/GameChoice'
 import SignIn from '../screens/SignIn'
 import SignUp from '../screens/SignUp'
-import LobbySolo from '../screens/LobbySolo'
+import Lobby from '../screens/Lobby'
 import CookieClicker from '../Games/CookieClicker/cookieClicker'
 import Conversation from '../screens/ConversationScreen'
 import AddConversation from '../screens/AddConversation'
@@ -102,7 +102,7 @@ const GameSoloStack = createStackNavigator();
 function GameSoloStackScreen() {
   return (
     <GameSoloStack.Navigator screenOptions={{headerShown: false}}>
-      <GameSoloStack.Screen name='LobbySolo' component={LobbySolo} options={{animationEnabled: false,}}/>
+      <GameSoloStack.Screen name='LobbySolo' component={Lobby} options={{animationEnabled: false,}}/>
       <GameSoloStack.Screen name='CookieClicker' component={CookieClicker} />
       <GameSoloStack.Screen name='TicTacToe' component={TicTacToe} />
       <GameSoloStack.Screen name='TicTacToeOnline' component={TicTacToeOnline} />

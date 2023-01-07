@@ -8,7 +8,7 @@ import { Game } from "../core/game"
     Importing the correct stylesheet
 */
 import styles from './style/Game.style';
-import LobbySolo from "../screens/LobbySolo"
+import Lobby from "../screens/Lobby"
 import ManagerMatch from "../services/matchServices/managerMatch"
 import MatchCreator from "../core/Match/matchCreator"
 import { useMatchStore } from "../context/matchContext"

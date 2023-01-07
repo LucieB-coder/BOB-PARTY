@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { StyleSheet, View, Text, Alert, Pressable, Image, ImageBackground} from 'react-native'
 import React from 'react';
 import { FlatList } from 'react-native-gesture-handler';
-import { SkinComponent } from '../components/Skin';
+import { SkinComponent } from '../components/SkinComponent';
 import { Skin } from '../core/skin';
 import { MessageComponent } from '../components/MessageComponent';
 import { MANAGER_CONVERSATION, MANAGER_USER } from '../../appManagers';

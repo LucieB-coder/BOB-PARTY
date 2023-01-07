@@ -2,7 +2,7 @@ import { FC, ReactNode } from "react"
 import { Pressable, Image, Text, View} from "react-native"
 import { Skin } from "../core/Skin"
 import React from "react"
-import { SkinComponent } from "./Skin"
+import { SkinComponent } from "./SkinComponent"
 import { User } from "../core/User/user"
 
 /*

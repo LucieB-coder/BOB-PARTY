@@ -8,7 +8,7 @@ import { Conversation } from "../core/conversation"
     Importing the correct stylesheet
 */
 import styles from "./style/MessageComponent.style.js"
-import { SkinComponent } from "./Skin"
+import { SkinComponent } from "./SkinComponent"
 import { MANAGER_USER } from "../../appManagers"
 import { User } from "../core/User/user"
 import { Message } from "../core/message"

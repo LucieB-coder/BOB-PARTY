@@ -5,7 +5,7 @@ import stylesScreen from './style/screens.style'
 import styles from './style/Profile.style'
 import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
-import { SkinComponent } from '../components/Skin';
+import { SkinComponent } from '../components/SkinComponent';
 import { ButtonGreySmall } from '../components/ButtonGreySmall';
 import { ScreenIndicator } from '../components/ScreenIndicator';
 import { useUserStore } from '../context/userContext';
