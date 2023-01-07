@@ -9,6 +9,4 @@ RUN chown -R www-data:www-data /var/www/html
 
 FROM phpmyadmin:latest
 
-RUN phpmyadmin -version
-
 #CMD ["start-apache"]
