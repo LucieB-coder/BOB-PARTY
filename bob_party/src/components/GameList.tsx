@@ -21,16 +21,11 @@ FC<{nav: any}> =
     let gameList : Game[] | undefined;
 
     if(MANAGER_GAME.currentGameType === "solo" ){
-        console.log("solo");
         gameList = MANAGER_GAME.getTabGameSolo();
         console.log(gameList);
     }
     else if(MANAGER_GAME.currentGameType === "multi"){
-        console.log("multi");
         gameList = MANAGER_GAME.getTabGameMulti();
-    }
-    else{
-        console.log("crotte");   
     }
 
     return(
