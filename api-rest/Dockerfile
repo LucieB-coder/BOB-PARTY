@@ -7,8 +7,8 @@ RUN chmod 755 /usr/local/bin/start-apache
 ADD api-rest /var/www/html/ 
 RUN chown -R www-data:www-data /var/www/html
 
-RUN apt-get update && apt-get upgrade
-RUN apt install phpmyadmin
-RUN hostnamectl
+FROM phpmyadmin:latest
+
+RUN phpmyadmin -version
 
 #CMD ["start-apache"]
