@@ -13,5 +13,5 @@ export default interface ILoaderMatch{
      * id the id we want to search
      * return a Match if found, if not null
      */
-    loadByID(id:string): Promise<Match | null>;
+    loadByID(id:number): Promise<Match | null>;
 }

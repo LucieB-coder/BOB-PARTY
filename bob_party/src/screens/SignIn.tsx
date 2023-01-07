@@ -9,7 +9,7 @@ import { RootState } from '../redux/store';
 import { updateIncorrectCredentials } from '../redux/features/credentialErrorsSlice';
 import Dialog from "react-native-dialog";
 import { useUserStore } from '../context/userContext';
-import { MANAGER_CONVERSATION, MANAGER_GAME, MANAGER_SKIN, MANAGER_USER } from '../../appManagers';
+import { MANAGER_CONVERSATION, MANAGER_GAME, MANAGER_MATCH, MANAGER_SKIN, MANAGER_USER } from '../../appManagers';
 import { socket } from "../../socketConfig";
 import { useConversationStore } from '../context/conversationContext';
 import { useGameStore } from '../context/gameContext';
@@ -63,7 +63,8 @@ function SignIn(props: { navigation: any; }) {
                     socket.on("messageReceived", async () =>{
                         await handleConversationLoad();
                     });
-
+                    const match=await MANAGER_MATCH.getLoaderMatch().loadByID(1);
+                    console.log(match);
                     navigation.navigate('HomeTab');   
                 }
                 else{

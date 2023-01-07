@@ -13,5 +13,5 @@ export default interface ILoaderGame{
      * id the id we want to search
      * return a Game if found, if not null
      */
-    loadByID(id:string): Promise<Game | null>;
+    loadByID(id:number): Promise<Game | null>;
 }

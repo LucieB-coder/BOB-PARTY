@@ -46,8 +46,33 @@ export default class LoaderGameApi implements ILoaderGame{
         return tab;
         
     }
-    async loadByID(id: string): Promise<Game | null> {
-        throw new Error("Method not implemented.");
+    async loadByID(id: number): Promise<Game | null> {
+        let game: Game|null=null;
+        const url="http://localhost:8888/api-rest/index.php/getGameById/" + id;
+        await this.axios({
+            method: 'get',
+            url: url,
+         }).then(function (response: any){
+            if (response.data!=undefined || response.data!==null){
+                switch(response.data.type){
+                    case "GameSolo":
+                        let mapSolo = new Map();
+                        for (let i=0; i<response.data.keys.length; i++){
+                            mapSolo.set(new Number(response.data.keys[i]), new Number(response.data.values[i]))
+                        }
+                        game = new GameSolo(response.data.id, response.data.name, response.data.image, response.data.nbPlayerMin, response.data.nbPlayerMax, mapSolo);
+                    case "GameMulti":
+                        const mapMulti = new Map();
+                        for (let i=0; i<response.data.keys.length; i++){
+                            mapMulti.set(new Number(response.data.keys[i]), new Number(response.data.values[i]));
+                        }
+                        game = new GameMulti(response.data.id, response.data.name, response.data.image, response.data.nbPlayerMin, response.data.nbPlayerMax, mapMulti);
+                    case "GameCasino":
+                        game = new GameCasino(response.data.id, response.data.name, response.data.image, response.data.nbPlayerMin, response.data.nbPlayerMax);
+                }
+            }
+        });
+        return game;
     }
 
 }
