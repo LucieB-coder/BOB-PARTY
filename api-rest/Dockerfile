@@ -1,5 +1,6 @@
 FROM php:8.0-apache
-FROM php:8.0-cli
+
+RUN apt install php8.0-mysql
 
 COPY api-rest/start-apache /usr/local/bin 
 RUN chmod 755 /usr/local/bin/start-apache
