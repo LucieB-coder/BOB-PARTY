@@ -10,9 +10,11 @@ import { Game } from "../core/game"
 import styles from './style/Game.style';
 import Lobby from "../screens/Lobby"
 import ManagerMatch from "../services/matchServices/managerMatch"
-import MatchCreator from "../core/Match/matchCreator"
+import MatchModifier from "../core/Match/matchModifier"
 import { useMatchStore } from "../context/matchContext"
-import { MANAGER_MATCH, MANAGER_USER } from "../../appManagers"
+import { MANAGER_GAME, MANAGER_MATCH, MANAGER_USER } from "../../appManagers"
+import { GameSolo } from "../core/gameSolo"
+import { socket } from "../../socketConfig"
 
 export const GameComponent : 
 
@@ -27,12 +29,13 @@ FC<{game: Game, nav: any}> =
     const setMatch = useMatchStore((state) => state.setMatch);
 
 
-    const createNewMatchSolo = useCallback(async (game : Game, nav: any) => {
+    const createNewMatch = useCallback(async (game : Game, nav: any) => {
 
-        const m=new MatchCreator();
+        const m=new MatchModifier();
         const tmp=MANAGER_USER.getCurrentUser();
         if (tmp!==null){
             let match=await m.createMatch(tmp, game);
+            socket.emit("joinMatch", match);
             MANAGER_MATCH.setCurrentMatch(match);
             setMatch(match);
             nav.navigate("GameSolo");
@@ -42,7 +45,7 @@ FC<{game: Game, nav: any}> =
     
     return (
         <View>
-            <Pressable onPress={() => createNewMatchSolo(game, nav)}>
+            <Pressable onPress={() => createNewMatch(game, nav)}>
                 <Image
                     style={styles.image}
                     source={{uri: game.getImageSource()}}

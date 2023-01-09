@@ -164,6 +164,7 @@
                 $idCreator = !empty($url[5]) ? (int) $url[5] : null;
                 if ($idGame != null || $idCreator != null){
                     $match =$matchgw->postMatch($idGame,$idCreator);
+                    echo json_encode($match, JSON_PRETTY_PRINT);
                     http_response_code(200);
                 } else{
                     header("HTTP/1.0 400 idGame or idCreator not given");
@@ -203,7 +204,6 @@
                 $totalnbCoins = (int) $url[10];
                 $nbGames = (int) $url[11];
                 $currentSkin = !empty($url[12]) ? (int) $url[12] : null;
-                echo ($nbCurrentCoins . '  ' . $totalnbCoins . "  ". $nbGames);
                 $usergw->putUser($id,$username,$password,$sexe, $nationality, $nbCurrentCoins,$totalnbCoins,$nbGames,$currentSkin);
                 http_response_code(200);
             }

@@ -17,6 +17,10 @@ io.on('connection', (socket) => {
     socket.join("C" + conv.id);
   });
 
+  socket.on('quitConv', (conv) => {
+    socket.off("C" + conv);
+  });
+
   socket.on("messageSent", (conv) =>{
     socket.to("C"+conv.id).emit("messageReceived");
     console.log("Message envoyé");
@@ -28,8 +32,13 @@ io.on('connection', (socket) => {
     });
   });
 
-  socket.on('inMatch', (match) => {
+
+  socket.on('joinMatch', (match) => {
     socket.join("M" + match);
+  });
+
+  socket.on('quitMatch', (match) => {
+    socket.off("M" + match);
   });
 
   socket.on("playTicTacToe", (match, rowIndex, columnIndex, turn) =>{

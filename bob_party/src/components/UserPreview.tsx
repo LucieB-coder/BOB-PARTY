@@ -8,12 +8,6 @@ import { Game } from "../core/game"
     Importing the correct stylesheet
 */
 import styles from './style/UserPreview.style';
-import Lobby from "../screens/Lobby"
-import ManagerMatch from "../services/matchServices/managerMatch"
-import MatchCreator from "../core/Match/matchCreator"
-import { useMatchStore } from "../context/matchContext"
-import { MANAGER_MATCH, MANAGER_USER } from "../../appManagers"
-import { Match } from "../core/Match/match"
 import { User } from "../core/User/user"
 
 export const UserPreview : 
@@ -22,10 +16,11 @@ export const UserPreview :
     * match : match that must be displayed
     * nav : tool needed to allow the navigation between the screens
 */
-FC<{user: User | undefined}> = 
+FC<{user: User | null}> = 
 ({user}) => 
 {      
-    if(user != undefined){
+    console.log(user);
+    if(user !== null){
         return (
             <View style= {styles.view}>
                     <Image

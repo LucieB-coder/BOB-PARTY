@@ -41,7 +41,7 @@ class MatchGateway{
     }
 
 /// Brief : Adding a NEW match in database
-    public function postMatch(int $idGame, int $idCreator){
+    public function postMatch(int $idGame, int $idCreator): ?Matchs{
         $insertMatchQuery="INSERT INTO T_E_MATCH_MTC VALUES(NULL,0,:idGame)";
         $insertPlayQuery = "INSERT INTO T_J_PLAY_MATCH_PLM VALUES(:idCreator,:id);";
         $argInsertMatch=array('idGame'=>array($idGame, PDO::PARAM_INT));
@@ -57,7 +57,7 @@ class MatchGateway{
         $argInsertPlay= array('idCreator'=>array($idCreator,PDO::PARAM_INT),
                               'id'=>array($id,PDO::PARAM_INT));
         $this->connection->execQuery($insertPlayQuery,$argInsertPlay);
-        return;
+        return new Matchs($id, 0, $idGame, [$idCreator]);
     }
 
 /// Brief : Modifying an EXISTING match in database

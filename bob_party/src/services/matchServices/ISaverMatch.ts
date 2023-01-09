@@ -18,8 +18,15 @@ export default interface ISaverMatch{
     deleteMatch(m:Match): Promise<void>;
 
     /**
-     * updateMatch methode that update a Match in the data management system
-     * m the Match we want to update
+     * deleteUserFromMatch methode that delete a User from a Match in the data management system
+     * u the User we want to delete
      */
-    updateMatch(m:Match): Promise<void>;
+     deleteUserFromMatch(u:User): Promise<void>;
+
+    /**
+     * joinMatch methode that add a User to a Match in the data management system
+     * u the User we want to add
+     * id the id of the Match
+     */
+     joinMatch(u:User, id:number): Promise<Match | null>;
 }

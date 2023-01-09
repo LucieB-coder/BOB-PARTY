@@ -22,7 +22,6 @@ FC<{nav: any}> =
 
     if(MANAGER_GAME.currentGameType === "solo" ){
         gameList = MANAGER_GAME.getTabGameSolo();
-        console.log(gameList);
     }
     else if(MANAGER_GAME.currentGameType === "multi"){
         gameList = MANAGER_GAME.getTabGameMulti();

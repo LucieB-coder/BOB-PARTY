@@ -10,11 +10,12 @@ import { User } from "../core/User/user"
 */
 import styles from './style/TopBar.style';
 import { useMatchStore } from "../context/matchContext"
-import { MANAGER_CONVERSATION, MANAGER_USER } from "../../appManagers"
+import { MANAGER_CONVERSATION, MANAGER_MATCH, MANAGER_USER } from "../../appManagers"
 import { useUserStore } from "../context/userContext"
 import { useConversationStore } from "../context/conversationContext"
 import { socket } from "../../socketConfig"
 import { Conversation } from "../core/conversation"
+import MatchModifier from "../core/Match/matchModifier"
 
 /* 
     Images required
@@ -36,6 +37,8 @@ FC<{nav: any, state?: string}> =
 {
     
     const resetMatch = useMatchStore((state) => state.resetMatch);
+    const resetTabUserMatch = useMatchStore((state) => state.resetTabUser);
+
     const resetCurrentConv = useConversationStore((state) => state.resetCurrentConv);
 
     const setTabConv = useConversationStore((state) => state.setTabConv);
@@ -56,7 +59,21 @@ FC<{nav: any, state?: string}> =
             MANAGER_CONVERSATION.setCurrentConv(null);
             setTabConv(MANAGER_CONVERSATION.getTabConv());
             socket.emit("messageSent", tmpConv);
+            socket.emit("quitConv", tmpConv);   
             nav.goBack();
+        }
+    }
+
+    async function clickQuitMatch(){
+        const tmp=MANAGER_USER.getCurrentUser();
+        const tmpMatch=MANAGER_MATCH.getCurrentMatch();
+        const m=new MatchModifier();
+        if (tmp!==null && tmpMatch!==null){
+            socket.emit("quitMatch", tmpMatch);
+            await m.quitMatch(tmp, tmpMatch);
+            resetMatch();
+            resetTabUserMatch();
+            MANAGER_MATCH.setCurrentMatch(null);
         }
     }
 
@@ -85,7 +102,7 @@ FC<{nav: any, state?: string}> =
                         <Image source={msc} style={styles.icon}/>
                     </Pressable>
                     <Text style={styles.titre}>BOB PARTY</Text>
-                    <Pressable onPress={() => { resetMatch(); nav.goBack()}}>
+                    <Pressable onPress={() => { clickQuitMatch(); nav.goBack()}}>
                         <Image source={cross} style={styles.icon}/>
                     </Pressable>
                 </View>

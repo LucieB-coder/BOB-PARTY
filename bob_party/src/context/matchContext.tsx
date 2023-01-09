@@ -7,10 +7,10 @@ import { User } from "../core/User/user";
 // Define store types
 interface MatchState {
     match: Match | null;
-    tabUser: User[] | null[];
+    tabUser: any[];
     setMatch: (match: Match|null) => void;
     resetMatch: () => void;
-    setTabUser: (tabUser: User[] | null[]) => void;
+    setTabUser: (tabUser: any[]) => void;
     resetTabUser: () => void;
   }
 

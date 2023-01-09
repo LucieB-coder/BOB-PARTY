@@ -63,8 +63,6 @@ function SignIn(props: { navigation: any; }) {
                     socket.on("messageReceived", async () =>{
                         await handleConversationLoad();
                     });
-                    const match=await MANAGER_MATCH.getLoaderMatch().loadByID(1);
-                    console.log(match);
                     navigation.navigate('HomeTab');   
                 }
                 else{

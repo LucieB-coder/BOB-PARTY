@@ -10,6 +10,8 @@ import { BigBlueButton } from '../components/BigBlueButton';
 import { useMatchStore } from '../context/matchContext';
 import { FlatList, TextInput } from 'react-native-gesture-handler';
 import { PlayerBox } from '../components/PlayerBox';
+import { MANAGER_MATCH } from '../../appManagers';
+import { User } from '../core/User/user';
 
 
 function MatchMaking(props: { navigation: any; }) {
