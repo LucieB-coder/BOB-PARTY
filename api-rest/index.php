@@ -4,8 +4,10 @@
         $conn->query("CREATE TABLE coucou (`COUCOU_ID` int(10) unsigned NOT NULL,`COUCOU_TEXT` char(10) NOT NULL);");
         $conn->query("INSERT INTO `coucou` VALUES(1,'TOTO');");
         $res = $conn->query("SELECT * FROM coucou");
+        $res = $conn->query("SELECT * FROM T_H_SKIN_SKI");
         while ($une_valeur = $res->fetch_array()) {
-            echo $une_valeur["COUCOU_ID"]." ".$une_valeur["COUCOU_TEXT"];
+            //echo $une_valeur["COUCOU_ID"]." ".$une_valeur["COUCOU_TEXT"];
+            echo $une_valeur[0];
         }
     exit;
 
