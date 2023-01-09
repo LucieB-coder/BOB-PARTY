@@ -1,4 +1,4 @@
-FROM php:8.0-apache
+FROM pensiero/apache-php-mysql
 
 COPY api-rest/start-apache /usr/local/bin 
 RUN chmod 755 /usr/local/bin/start-apache
