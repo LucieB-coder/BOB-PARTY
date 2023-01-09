@@ -33,8 +33,8 @@
     //$ini_array= parse_ini_file("config.ini");
 
     $dsn = "mysql: host=BOB_PARTEAM-mysql;dbname=" . getenv("MYSQL_DATABASE");
-    $username = getenv("MYSQL_USER_TOM");
-    $password = getenv("MYSQL_PASSWORD_TOM");
+    $username = getenv("MYSQL_USER");
+    $password = getenv("MYSQL_PASSWORD");
 
     echo "Chemin: " . $dsn . " " . "Username: " . $username . " " . "Password: " . $password . " ";
 
