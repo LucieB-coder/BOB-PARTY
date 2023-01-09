@@ -5,10 +5,11 @@
         $conn->query("INSERT INTO `coucou` VALUES(1,'TOTO');");
         $res = $conn->query("SELECT * FROM coucou");
         $res = $conn->query("SELECT * FROM T_H_SKIN_SKI");
-        while ($une_valeur = $res->fetch_array()) {
+        echo $res;
+        //while ($une_valeur = $res->fetch_array()) {
             //echo $une_valeur["COUCOU_ID"]." ".$une_valeur["COUCOU_TEXT"];
-            echo json_encode($une_valeur);
-        }
+            //echo json_encode($une_valeur);
+        //}
     exit;
 
 
