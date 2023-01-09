@@ -8,7 +8,8 @@ steps:
   # database container deployment
   - name: deploy-container-mysql
     image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
-    ports: "9906:3306"
+    #ports: Je crois que c'est pour ça que ça ne l'api n'arrive pas à ce connecter mais ces lignes ne marchent pas
+     # - "9906:3306"
     settings:
        context: .
        dockerfile: Dockerfile
