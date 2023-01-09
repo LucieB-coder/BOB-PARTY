@@ -1,4 +1,5 @@
 FROM php:8.0-apache
+FROM php:8.0-cli
 
 COPY api-rest/start-apache /usr/local/bin 
 RUN chmod 755 /usr/local/bin/start-apache
