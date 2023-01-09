@@ -11,6 +11,8 @@ steps:
     #ports: Je crois que c'est pour ça que ça ne l'api n'arrive pas à ce connecter mais ces lignes ne marchent pas
      # - "9906:3306"
     settings:
+       ports:
+         - "9906:3306"
        context: .
        dockerfile: Dockerfile
     environment:
