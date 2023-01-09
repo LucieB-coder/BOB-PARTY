@@ -21,7 +21,7 @@
     //$ini_array= parse_ini_file("config.ini");
 
     $dsn = "mysql:host=db".";port=3036;dbname=". getenv("MYSQL_DATABASE");
-    $username = getenv("MYSQL_USER_TOM");
+    $username = "root";
     $password = getenv("MYSQL_PASSWORD_TOM");
 
     echo "Chemin: " . $dsn . " " . "Username: " . $username . " " . "Password: " . $password . " ";
