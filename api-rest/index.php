@@ -1,10 +1,5 @@
  <?php
 
-
-
-    $conn = new mysqli("BOB_PARTEAM-mysql",getenv("MYSQL_USER"),getenv("MYSQL_PASSWORD"),getenv("MYSQL_DATABASE"));
-    exit;
-
     header('Access-Control-Allow-Origin: *');
     header('Access-Control-Allow-Methods: POST,GET,DELETE,PUT');
     /// Good to know :
