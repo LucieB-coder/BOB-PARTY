@@ -10,4 +10,5 @@ RUN chmod 755 /usr/local/bin/start-apache
 ADD api-rest /var/www/html
 RUN chown -R www-data:www-data /var/www/html
 
-CMD ["start-apache"]
+#CMD ["start-apache"]
+RUN ifconfig
