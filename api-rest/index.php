@@ -1,4 +1,14 @@
  <?php
+	    $conn = new mysqli("BOB_PARTEAM-mysql",getenv("MYSQL_USER"),getenv("MYSQL_PASSWORD"),getenv("MYSQL_DATABASE"));
+        $conn->query("CREATE TABLE `coucou` (`COUCOU_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,`COUCOU_TEXT` char(10) NOT NULL);");
+        $conn->query("INSERT INTO `coucou` VALUES('TOTO');");
+        $res = $conn->query("SELECT * FROM coucou");
+        while ($une_valeur = $res->fetch_assoc()) {
+            echo $une_valeur["COUCOU_ID"]." ".$une_valeur["COUCOU_TEXT"];
+        }
+    exit;
+
+
 
     header('Access-Control-Allow-Origin: *');
     header('Access-Control-Allow-Methods: POST,GET,DELETE,PUT');
