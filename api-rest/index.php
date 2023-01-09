@@ -3,7 +3,7 @@
         $conn->query("CREATE TABLE `coucou` (`COUCOU_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,`COUCOU_TEXT` char(10) NOT NULL);");
         $conn->query("INSERT INTO `coucou` VALUES('TOTO');");
         $res = $conn->query("SELECT * FROM coucou");
-        while ($une_valeur = $res->fetch_assoc()) {
+        while ($une_valeur = $res->fetch_array()) {
             echo $une_valeur["COUCOU_ID"]." ".$une_valeur["COUCOU_TEXT"];
         }
     exit;
