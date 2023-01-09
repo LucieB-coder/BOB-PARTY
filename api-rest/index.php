@@ -20,7 +20,7 @@
     // ------
     //$ini_array= parse_ini_file("config.ini");
 
-    $dsn = "mysql:host=db".";port=3036;dbname=". getenv("MYSQL_DATABASE");
+    $dsn = "mysql:host=".getenv("DB_SERVER").";port=3036;dbname=". getenv("MYSQL_DATABASE");
     $username = "root";
     $password = getenv("MYSQL_ROOT_PASSWORD");
 
@@ -32,6 +32,7 @@
     } catch (PDOException $e) {
         echo "ERROR connection";
         echo $e->getMessage();
+        echo $dsn;
         header("HTTP/1.0 ".$e->getMessage());
         http_response_code(600); // Quel code pour les erreurs PDO?
     }
