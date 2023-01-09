@@ -30,6 +30,7 @@
         $database = new DatabaseConnection($dsn,$username,$password);
     } catch (PDOException $e) {
         echo "ERROR connection";
+        $e->getMessage();
         header("HTTP/1.0 ".$e->getMessage());
         http_response_code(600); // Quel code pour les erreurs PDO?
     }
