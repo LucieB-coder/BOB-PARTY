@@ -9,7 +9,7 @@ steps:
   - name: deploy-container-mysql
     image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
     ports:
-    - "8001:5432"
+    - 8001:5432
     environment:
         IMAGENAME: mysql:latest
         CONTAINERNAME: mysql
