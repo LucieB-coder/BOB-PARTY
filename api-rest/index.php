@@ -20,7 +20,7 @@
     // ------
     //$ini_array= parse_ini_file("config.ini");
 
-    $dsn = "mysql: host=https://codefirst.iut.uca.fr/containers/BOB_PARTEAM-mysql;dbname=". getenv("MYSQL_DATABASE");
+    $dsn = "mysql: host="getenv("DB_SERVER").";dbname=". getenv("MYSQL_DATABASE");
     $username = getenv("MYSQL_USER_TOM");
     $password = getenv("MYSQL_PASSWORD_TOM");
 
