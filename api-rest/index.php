@@ -20,7 +20,7 @@
     // ------
     //$ini_array= parse_ini_file("config.ini");
 
-    $dsn = "mysql:host=db".";port=3036;dbname=". getenv("MYSQL_DATABASE");
+    $dsn = "mysql:host=bobParty".";port=3036;dbname=". getenv("MYSQL_DATABASE");
     $username = getenv("MYSQL_USER_TOM");
     $password = getenv("MYSQL_PASSWORD_TOM");
 
