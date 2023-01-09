@@ -8,6 +8,9 @@ steps:
   # database container deployment
   - name: deploy-container-mysql
     image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
+    settings:
+       context: .
+       dockerfile: Dockerfile
     environment:
         IMAGENAME: mysql:latest
         CONTAINERNAME: mysql
@@ -23,8 +26,6 @@ steps:
         CODEFIRST_CLIENTDRONE_ENV_MYSQL_PASSWORD_TOM:
           from_secret: MYSQL_PASSWORD_TOM
         ADMINS: thomaschazot2,mathildejean3,lilianbreton,luciebedouret,albanguilhot,cedricbouhours,thomasbellembois
-    ports:
-      - 3306:3306
 
 
 
