@@ -1,9 +1,8 @@
  <?php
 	    $conn = new mysqli("BOB_PARTEAM-mysql",getenv("MYSQL_USER"),getenv("MYSQL_PASSWORD"),getenv("MYSQL_DATABASE"));
-        echo "1>".$conn->query("CREATE TABLE coucou (`COUCOU_ID` int(10) unsigned NOT NULL,`COUCOU_TEXT` char(10) NOT NULL);");
-        echo $conn->error;
-        echo "2>".$conn->query("INSERT INTO `coucou` VALUES(1,'TOTO');");
-        echo $conn->error;
+        $conn->query("DROP TABLE IF EXISTS `common_absences`;")
+        $conn->query("CREATE TABLE coucou (`COUCOU_ID` int(10) unsigned NOT NULL,`COUCOU_TEXT` char(10) NOT NULL);");
+        $conn->query("INSERT INTO `coucou` VALUES(1,'TOTO');");
         $res = $conn->query("SELECT * FROM coucou");
         while ($une_valeur = $res->fetch_array()) {
             echo $une_valeur["COUCOU_ID"]." ".$une_valeur["COUCOU_TEXT"];
