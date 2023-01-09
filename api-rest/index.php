@@ -1,5 +1,9 @@
  <?php
 
+
+    $conn = openConnexion("BOB_PARTEAM-mysql",getenv("MYSQL_USER_TOM"),getenv("MYSQL_PASSWORD_TOM"),getenv("MYSQL_DATABASE"));
+    exit;
+
     header('Access-Control-Allow-Origin: *');
     header('Access-Control-Allow-Methods: POST,GET,DELETE,PUT');
     /// Good to know :
