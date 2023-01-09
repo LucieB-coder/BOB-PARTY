@@ -1,7 +1,11 @@
  <?php
 	    $conn = new mysqli("BOB_PARTEAM-mysql",getenv("MYSQL_USER"),getenv("MYSQL_PASSWORD"),getenv("MYSQL_DATABASE"));
-        echo ">".$conn->query("CREATE TABLE `coucou` (`COUCOU_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,`COUCOU_TEXT` char(10) NOT NULL);");
-        echo ">".$conn->query("INSERT INTO `coucou` VALUES('TOTO');");
+        echo $conn->$connect_error;
+        echo $conn->$error;
+        echo "1>".$conn->query("CREATE TABLE `coucou` (`COUCOU_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,`COUCOU_TEXT` char(10) NOT NULL);");
+        echo $conn->$error;
+        echo "2>".$conn->query("INSERT INTO `coucou` VALUES('TOTO');");
+        echo $conn->$error;
         $res = $conn->query("SELECT * FROM coucou");
         while ($une_valeur = $res->fetch_array()) {
             echo $une_valeur["COUCOU_ID"]." ".$une_valeur["COUCOU_TEXT"];
