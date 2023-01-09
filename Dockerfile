@@ -11,3 +11,5 @@ ADD bobParty.sql bobParty.sql
 
 RUN sed -i 's/MYSQL_DATABASE/'$MYSQL_DATABASE'/g' bobParty.sql
 RUN cp bobParty.sql /docker-entrypoint-initdb.d
+
+EXPOSE 3036
