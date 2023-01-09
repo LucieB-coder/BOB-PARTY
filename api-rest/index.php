@@ -22,7 +22,7 @@
 
     $dsn = "mysql:host=db".";port=3036;dbname=". getenv("MYSQL_DATABASE");
     $username = "root";
-    $password = getenv("MYSQL_PASSWORD_TOM");
+    $password = getenv("MYSQL_ROOT_PASSWORD");
 
     echo "Chemin: " . $dsn . " " . "Username: " . $username . " " . "Password: " . $password . " ";
 
