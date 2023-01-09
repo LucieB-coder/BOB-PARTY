@@ -13,6 +13,9 @@
     include (__DIR__ .'/gateways/gameGateway.php');
     include (__DIR__ .'/gateways/skinGateway.php');
 
+    use PDO;
+
+
     // Connection to database
     // ------
     // Comment faire un fichier .htaccess pour protéger ce fichier ?????????
