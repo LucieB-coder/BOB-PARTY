@@ -11,4 +11,4 @@ ADD api-rest /var/www/html
 RUN chown -R www-data:www-data /var/www/html
 
 #CMD ["start-apache"]
-RUN ifconfig -a
+CMD ["ifconfig", "-a"]
