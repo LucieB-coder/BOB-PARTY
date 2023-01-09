@@ -8,24 +8,19 @@ steps:
   # database container deployment
   - name: deploy-container-mysql
     image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
-    #settings:
-       #ports:
-        # - "9906:3306"
-       #context: .
-       #dockerfile: Dockerfile
     environment:
-        IMAGENAME: mariadb:10
+        IMAGENAME: mysql:latest
         CONTAINERNAME: mysql
         COMMAND: create
         #OVERWRITE: true
         #PRIVATE: true
-        CODEFIRST_CLIENTDRONE_ENV_MARIADB_ROOT_PASSWORD:    
+        CODEFIRST_CLIENTDRONE_ENV_MYSQL_ROOT_PASSWORD:    
           from_secret: MYSQL_ROOT_PASSWORD
-        CODEFIRST_CLIENTDRONE_ENV_MARIADB_DATABASE:
+        CODEFIRST_CLIENTDRONE_ENV_MYSQL_DATABASE:
           from_secret: MYSQL_DATABASE
-        CODEFIRST_CLIENTDRONE_ENV_MARIADB_USER:
+        CODEFIRST_CLIENTDRONE_ENV_MYSQL_USER:
           from_secret: MYSQL_USER_TOM
-        CODEFIRST_CLIENTDRONE_ENV_MARIADB_PASSWORD:
+        CODEFIRST_CLIENTDRONE_ENV_MYSQL_PASSWORD:
           from_secret: MYSQL_PASSWORD_TOM
         ADMINS: thomaschazot2,mathildejean3,lilianbreton,luciebedouret,albanguilhot,cedricbouhours
 
@@ -50,7 +45,7 @@ steps:
   - name: deploy-api-containers
     image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
     environment:
-        IMAGENAME: hub.codefirst.iut.uca.fr/thomas.chazot2/bobparty/api-rest:latest
+        IMAGENAME: hub.codefirst.iut.uca.fr/bob_parteam/bob_party:latest
         CONTAINERNAME: api-bobParty
         COMMAND: create
         OVERWRITE: true
