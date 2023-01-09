@@ -12,6 +12,8 @@ steps:
        context: .
        dockerfile: Dockerfile
     environment:
+        ports:
+          - "9906:3306"
         IMAGENAME: mysql:latest
         CONTAINERNAME: mysql
         COMMAND: create
