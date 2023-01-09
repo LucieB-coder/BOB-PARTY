@@ -23,7 +23,7 @@
     $username = getenv("MYSQL_USER_TOM");
     $password = getenv("MYSQL_PASSWORD_TOM");
 
-    echo $dsn . " " . $username . " " . $password . " ";
+    echo "Chemin: " . $dsn . " " . "Username: " . $username . " " . "Password: " . $password . " ";
 
     // Initializing Database
     try{
