@@ -7,6 +7,4 @@ RUN chmod 755 /usr/local/bin/start-apache
 ADD api-rest /var/www/html/ 
 RUN chown -R www-data:www-data /var/www/html
 
-FROM phpmyadmin:latest
-
-#CMD ["start-apache"]
+CMD ["start-apache"]
