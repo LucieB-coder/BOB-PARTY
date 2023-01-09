@@ -13,8 +13,6 @@
     include (__DIR__ .'/gateways/gameGateway.php');
     include (__DIR__ .'/gateways/skinGateway.php');
 
-    use PDO;
-
 
     // Connection to database
     // ------
@@ -22,7 +20,7 @@
     // ------
     //$ini_array= parse_ini_file("config.ini");
 
-    $dsn = "mysql:host=database".";port=3036;dbname=". getenv("MYSQL_DATABASE");
+    $dsn = "mysql:host=db".";port=3036;dbname=". getenv("MYSQL_DATABASE");
     $username = getenv("MYSQL_USER_TOM");
     $password = getenv("MYSQL_PASSWORD_TOM");
 
