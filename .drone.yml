@@ -27,7 +27,7 @@ steps:
           from_secret: MYSQL_USER_TOM
         CODEFIRST_CLIENTDRONE_ENV_MYSQL_PASSWORD_TOM:
           from_secret: MYSQL_PASSWORD_TOM
-        ADMINS: thomaschazot2,mathildejean3,lilianbreton,luciebedouret,albanguilhot,cedricbouhours,thomasbellembois
+        ADMINS: thomaschazot2,mathildejean3,lilianbreton,luciebedouret,albanguilhot,cedricbouhours
 
 
 
@@ -38,11 +38,11 @@ steps:
       dockerfile: ./api-rest/Dockerfile
       context: .
       registry: hub.codefirst.iut.uca.fr
-      repo: hub.codefirst.iut.uca.fr/thomas.chazot2/bobparty/api-rest
+      repo: hub.codefirst.iut.uca.fr/bob_parteam/bob_party
       username:
-        from_secret: SECRET_REGISTRY_PASSWORD
-      password:
         from_secret: SECRET_REGISTRY_USERNAME
+      password:
+        from_secret: SECRET_REGISTRY_PASSWORD
       
 
 
@@ -65,7 +65,7 @@ steps:
           from_secret: MYSQL_ROOT_PASSWORD
         CODEFIRST_CLIENTDRONE_ENV_MYSQL_DATABASE:
           from_secret: MYSQL_DATABASE
-        ADMINS: thomaschazot2,mathildejean3,lilianbreton,luciebedouret,albanguilhot,cedricbouhours,thomasbellembois
+        ADMINS: thomaschazot2,mathildejean3,lilianbreton,luciebedouret,albanguilhot,cedricbouhours
     depends_on: [ deploy-container-mysql, container-api ]
 
 
