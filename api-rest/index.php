@@ -7,7 +7,7 @@
         $res = $conn->query("SELECT * FROM T_H_SKIN_SKI");
         while ($une_valeur = $res->fetch_array()) {
             //echo $une_valeur["COUCOU_ID"]." ".$une_valeur["COUCOU_TEXT"];
-            echo $une_valeur[0];
+            echo json_encode($une_valeur);
         }
     exit;
 
