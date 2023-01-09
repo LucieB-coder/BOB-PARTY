@@ -12,8 +12,8 @@
 
 
 
-    header('Access-Control-Allow-Origin: *');
-    header('Access-Control-Allow-Methods: POST,GET,DELETE,PUT');
+    //header('Access-Control-Allow-Origin: *');
+    //header('Access-Control-Allow-Methods: POST,GET,DELETE,PUT');
     /// Good to know :
     /// All the values must be cleaned on the application side before using this API
     ///
