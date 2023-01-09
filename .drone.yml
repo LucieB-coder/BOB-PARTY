@@ -84,5 +84,5 @@ steps:
 #         IMAGENAME: hub.codefirst.iut.uca.fr/thomas.chazot2/bobparty:latest
 #         CONTAINERNAME: bob_party_container
 #         COMMAND: create
-#         #OVERWRITE: true
+#         OVERWRITE: true
         # ADMINS: thomaschazot2,mathildejean3,lilianbreton,luciebedouret,albanguilhot,cedricbouhours,thomasbellembois
