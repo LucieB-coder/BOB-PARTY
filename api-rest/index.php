@@ -36,8 +36,6 @@
     $username = getenv("MYSQL_USER");
     $password = getenv("MYSQL_PASSWORD");
 
-    echo "Chemin: " . $dsn . " " . "Username: " . $username . " " . "Password: " . $password . " ";
-
     // Initializing Database
     try{
         $database = new DatabaseConnection($dsn,$username,$password);
