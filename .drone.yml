@@ -8,9 +8,9 @@ steps:
   # database container deployment
   - name: deploy-container-mysql
     image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
-    settings:
-       ports:
-         - "9906:3306"
+    #settings:
+       #ports:
+        # - "9906:3306"
        #context: .
        #dockerfile: Dockerfile
     environment:
