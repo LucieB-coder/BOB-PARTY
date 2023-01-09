@@ -71,7 +71,7 @@
     $url = explode('/', $url);
     $method_name = !empty($url[3]) ? (string)$url[3] : null;
     if($method_name == null){
-        header("HTTP/1.0 400 Request Name Empty");
+        //header("HTTP/1.0 400 Request Name Empty");
         http_response_code(400);
         
     }
@@ -162,7 +162,7 @@
                 } 
             }
             else{
-                header("HTTP/1.0 401 UNAUTHORIZED REQUEST");
+                //header("HTTP/1.0 401 UNAUTHORIZED REQUEST");
                 http_response_code(401); 
             }
             break;
