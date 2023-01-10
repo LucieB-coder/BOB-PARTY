@@ -128,7 +128,7 @@ class UserGateway{
 /// Returning TRUE if the user has been added succesfully, FALSE otherwise
     public function postUser(string $username, string $password, string $nationality, string $sex, string $dateOfBirth) {
         $insertUserQuery = "INSERT INTO T_S_USER_USR VALUES (NULL, :username, :password, :nationality, :sex, :dateOfBirth, 0, 0, 0, 1)";
-        $getLastIdQuery = "SELECT max(PK_ID) FROM T_S_USER_USR";
+        $getLastIdQuery = "SELECT max(PK_ID) id FROM T_S_USER_USR";
         $argUser=array('username' => array($username, PDO::PARAM_STR), 
                     'password' => array($password, PDO::PARAM_STR),
                     'nationality' => array($nationality, PDO::PARAM_STR), 
@@ -138,8 +138,7 @@ class UserGateway{
         $this->connection->execQuery($getLastIdQuery, array());
         $res=$this->connection->getRes();
         foreach($res as $row){
-            echo "la je met le premier";
-            $this->putSkinList($row['PK_ID'], 1);
+            $this->putSkinList($row['id'], 1);
         }
     }
 

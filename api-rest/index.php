@@ -182,7 +182,6 @@
             break;
         case 'POST':
             if($method_name === "postUser"){ // test : OK
-                echo count($url);
                 if (count($url)<7){
                     //header("HTTP/1.0 400 Invalid number of arguments");
                     http_response_code(400);
@@ -193,7 +192,6 @@
                 $sex = !empty($url[6]) ? (string) $url[6] : null;
                 $dateOfBirth = !empty($url[7]) ? (string) $url[7] : null;
                 $usergw->postUser($username,$password,$nationality,$sex,$dateOfBirth);
-                echo "je le met";
                 http_response_code(200);
             }
             elseif($method_name === "postMatch"){ // test : OK
