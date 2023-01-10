@@ -66,7 +66,7 @@ FC<{nav: any}> =
         getUsers();
         return(
             <View style={stylesScreen.bodyStartCenter}>
-                <Text style={style.text}>Match ID : {MANAGER_MATCH.getCurrentMatch()?.getCode()}</Text>
+                <Text style={style.text}>Match ID : {useMatchStore().match?.getCode()}</Text>
                 <FlatList 
                 data={useMatchStore().tabUser} 
                 keyExtractor={usr =>usr?.getUsername() || usr}

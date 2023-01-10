@@ -12,16 +12,16 @@ export default class LoaderGameApi implements ILoaderGame{
     
     async loadAllGames(): Promise<Game[]> {
         let tab: Game[]=[];
-        const url=this.baseUrl+"http://localhost:8888/api-rest/index.php/getGames";
+        const url=this.baseUrl+"getGames";
         await this.axios({
             method: 'get',
             url: url,
 
          })
          .then(function (response: any) {
-            if (response.data != null || response.data != undefined){
-
+            if (response.data != null && response.data != undefined){
                 response.data.forEach(game => {
+
                     switch(game.type){
                         case "GameSolo":
                             let mapSolo = new Map();
