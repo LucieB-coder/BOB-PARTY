@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar'
-import {View, FlatList, Text, Alert} from 'react-native'
+import {View, FlatList, Text, Alert, NativeSyntheticEvent, TextInputSubmitEditingEventData} from 'react-native'
 import React, { useState } from 'react';
 import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
@@ -10,23 +10,35 @@ import stylesScreen from './style/screens.style'
 import styles from './style/GameChoice.style'
 import { MANAGER_GAME, MANAGER_MATCH, MANAGER_USER } from '../../appManagers';
 import { GameList } from '../components/GameList';
+import { useMatchStore } from '../context/matchContext';
+import { socket } from '../../socketConfig';
 
 function GameChoice(props: { navigation: any}) {
     const { navigation} = props
 
     const [matchId, setMatchId] = useState('');
 
-    async function joinMatch(id:string){
-      const newId = parseInt(id);
+    const setMatch = useMatchStore((state) => state.setMatch);
+
+
+    async function joinMatch(id:NativeSyntheticEvent<TextInputSubmitEditingEventData>){
+      const newId = parseInt(id.nativeEvent.text);
       const tmp=MANAGER_USER.getCurrentUser();
       if (tmp !== null){
         await MANAGER_MATCH.getsaverMatch().joinMatch(tmp, newId).then((res) =>{
           if (res===null){
-            Alert.alert()
+            Alert.alert("L'id du match n'existe pas ou un jeu est déjà lancé ou il y a trop de joueurs");//changer ça avec d'autre codes de retour
+          }
+          else{
+            MANAGER_MATCH.setCurrentMatch(res);
+            setMatch(res);
+            socket.emit("joinMatch", res);
+            navigation.navigate("GameSolo");
           }
         });
       }
     }
+
     
     if(MANAGER_GAME.currentGameType === "solo" ){
       return (

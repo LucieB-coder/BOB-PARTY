@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react"
+import { FC, ReactNode, useState } from "react"
 import { Pressable, Image, ImageStyle, Text, View, Alert, ImageSourcePropType, TextStyle } from "react-native"
 import React from "react"
 import { Skin } from "../core/skin"
@@ -22,24 +22,33 @@ FC<{conv: Conversation, navigation: any}> =
 { 
 
     const setCurrentConv = useConversationStore((state) => state.setCurrentConv);
+    const [user,setUser]=useState(MANAGER_USER.getCurrentUser());
+    const [initVar,setInitVar]=useState(0);
 
-    const user1 = MANAGER_USER.getCurrentUser();
-    let tmp;
-    if (conv.getTabMessage().length<2){
-        tmp=conv.getTabUser()[0];
+
+    init();
+
+    function init(){
+        if (initVar===0){
+            setInitVar(1);
+            if (conv.getTabUser().length<2){
+                setUser(MANAGER_USER.getCurrentUser());
+            }
+            else if (MANAGER_USER.getCurrentUser()?.isEqual(conv.getLastMessage().getMessageSender())){
+                setUser(conv.getLastMessage().getMessageSender());
+            }
+            else{
+                setUser(conv.getTabUser()[1]);
+            }
+        }
     }
-    else if (user1?.isEqual(conv.getTabUser()[0])) tmp = conv.getTabUser()[1];
-    else tmp = conv.getTabUser()[0];
-
-    const user2 = tmp;
-
     
 
     return(
         <Pressable onPress={() => {MANAGER_CONVERSATION.setCurrentConv(conv); setCurrentConv(conv); navigation.navigate(Conversation)}}>
             <View style={styles.conv}>
                 <View>
-                    <SkinComponent skin={user2.getCurrentSkin()} state='icon' nav={navigation}/>
+                    <SkinComponent skin={user?.getCurrentSkin()} state='icon' nav={navigation}/>
                 </View>
                 <View style={{marginLeft: '5%', justifyContent: 'space-evenly'}}>
                     <Text style={styles.textNom}>{conv.getName()}</Text>

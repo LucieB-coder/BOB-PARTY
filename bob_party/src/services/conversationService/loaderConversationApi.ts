@@ -63,7 +63,10 @@ async function jsonToConversation(response:any) {
                     const sender:User | null= await MANAGER_USER.getLoaderUser().loadByID(message.idSender);
                     if (sender!=null){
                         
-                        tabMessage.push(new Message(message.id, message.content, sender, new Date(message.dateEnvoie)));
+                        const tab=message.dateEnvoie.split(' ');
+                        const tabDate=tab[0].split('-');
+                        const tabPrecis=tab[1].split(":");
+                        tabMessage.push(new Message(message.id, message.content, sender, new Date(tabDate[0],parseInt(tabDate[1])-1,tabDate[2],tabPrecis[0], tabPrecis[1], tabPrecis[2])));
                     }
                     if(conv.tabMessages.length===tabMessage.length){
                         resolve();

@@ -7,7 +7,7 @@ const { Server } = require("socket.io");
 const io = new Server(server);
 
 io.on('connection', (socket) => {
-  console.log(socket.id)  
+  console.log(socket.id);  
 
   socket.on('signIn', (id) => {
     socket.join("U"+id);
@@ -26,23 +26,28 @@ io.on('connection', (socket) => {
     console.log("Message envoyé");
   });
 
-  socket.on("createConversation", (tabId) =>{
+  socket.on("createConversation", (tabId, conv) =>{
     tabId.forEach(id => {
-      socket.to("U"+id).emit("messageReceived");
+      socket.to("U"+id).emit("addedToConv", conv);
     });
   });
 
 
   socket.on('joinMatch', (match) => {
-    socket.join("M" + match);
+    socket.join("M" + match.code);
+    socket.to("M"+ match.code).emit("matchUsersChanged");
+  });
+
+  socket.on('launchMatch', (match) => {
+    socket.to("M"+ match.code).emit("matchLaunched");
   });
 
   socket.on('quitMatch', (match) => {
-    socket.off("M" + match);
+    socket.to("M"+ match.code).emit("matchUsersChanged")
   });
 
   socket.on("playTicTacToe", (match, rowIndex, columnIndex, turn) =>{
-    socket.to("M"+match).emit("oppPlayTicTacToe", rowIndex, columnIndex, turn);
+    socket.to("M"+match.code).emit("oppPlayTicTacToe", rowIndex, columnIndex, turn);
   });
 });
 

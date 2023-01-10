@@ -66,7 +66,8 @@ export default function AddConversation(props: {navigation:any}){
                         (objA, objB) => objB.getLastMessage().getMessageDate().getTime() - objA.getLastMessage().getMessageDate().getTime(),
                     );
                     setTabConv(MANAGER_CONVERSATION.getTabConv());
-                    socket.emit("createConversation", tabId);
+                    socket.emit("createConversation", tabId, res);
+                    socket.emit("inConv", res);
                     navigation.goBack();
                 }
             });

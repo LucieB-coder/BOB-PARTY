@@ -10,8 +10,8 @@ export default class MatchMulti extends Match{
         super(code, inGame, tabUser, game);
     }
 
-    updatePostMatch(user:User, points: number): void {
+    async updatePostMatch(user:User, points: number): void {
         const manage= new UserCoinsModifier();
-        manage.addCoins(user, this.getGame().coinsCalculator(points));
+        await manage.addCoins(user, this.getGame().coinsCalculator(points));
     }
 }

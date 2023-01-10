@@ -7,11 +7,15 @@ import { ScreenIndicator } from "../../components/ScreenIndicator";
 import { TopBar } from "../../components/TopBar";
 import { socket } from "../../../socketConfig";
 import { MANAGER_MATCH, MANAGER_USER } from "../../../appManagers";
+import { useUserStore } from "../../context/userContext";
 
 
 export default function TicTacToeOnline(props: { navigation: any }){
 
-    const [init, setInit]=useState(0);
+    const [initTic, setInitTic]=useState(0);
+
+    const setUser = useUserStore((state) => state.setUser);
+
 
     setUpTicTacToeOnline();
 
@@ -29,7 +33,7 @@ export default function TicTacToeOnline(props: { navigation: any }){
     const [currentTurn,setCurrentTurn] = useState("x");
 
 
-    const onPressCell = (rowIndex:number,columnIndex:number) => {
+    const onPressCell = async (rowIndex:number,columnIndex:number) => {
         if (turnUser!==currentTurn){
             Alert.alert("ce n'est pas à votre tour de jouer");
             return;
@@ -40,9 +44,9 @@ export default function TicTacToeOnline(props: { navigation: any }){
                 updateMap[rowIndex][columnIndex]=currentTurn;
                 return updateMap;
             });
-            socket.emit("playTicTacToe", 1, rowIndex, columnIndex, currentTurn);
+            socket.emit("playTicTacToe", MANAGER_MATCH.getCurrentMatch(), rowIndex, columnIndex, currentTurn);
             setCurrentTurn(currentTurn === "x"? "o" : "x");
-            const retour=checkWinning();
+            const retour= await checkWinning();
             if(retour!=true){
                 checkComplete();
             }
@@ -54,9 +58,8 @@ export default function TicTacToeOnline(props: { navigation: any }){
     };
 
     function setUpTicTacToeOnline() {
-        if (init===0){
-            setInit(1);
-            socket.emit("inMatch", 1);
+        if (initTic===0){
+            setInitTic(1);
             socket.on("oppPlayTicTacToe",  (rowIndex, columnIndex, turn) =>{
 
                 setMap((existingMap) =>{
@@ -80,36 +83,42 @@ export default function TicTacToeOnline(props: { navigation: any }){
         }
     }
 
-    const checkWinning = () =>{
+    async function endGame(win: number){
+        socket.off("oppPlayTicTacToe");
+        navigation.goBack();
+        const tmp=MANAGER_USER.getCurrentUser();
+        if (tmp!==null){
+            await MANAGER_MATCH.getCurrentMatch()?.updatePostMatch(tmp, win);
+            MANAGER_USER.setCurrentUser(tmp);
+            setUser(tmp);
+        }
+    }
+
+    const checkWinning = async () =>{
         const tmp=MANAGER_USER.getCurrentUser()
         // Checks rows
         for (let i=0; i<3; i++){
             const isRowXWinning = map[i].every((cell)=> cell==="x");
             const isRowOWinning = map[i] .every((cell)=>cell==="o");
             if(isRowXWinning==true){
-                if (tmp!==null){
-                    if (turnUser==="x"){
-                        MANAGER_MATCH.getCurrentMatch()?.updatePostMatch(tmp, 2);
-                    }
-                    else{
-                        MANAGER_MATCH.getCurrentMatch()?.updatePostMatch(tmp, 0);
-                    }
-                }
                 Alert.alert("X won !");
-                navigation.goBack();
+                if (turnUser==="x"){
+                    await endGame(2);
+                }
+                else{
+                    await endGame(0);
+                }
                 return true;
             }
             else if(isRowOWinning==true){
-                if (tmp!==null){
-                    if (turnUser==="x"){
-                        MANAGER_MATCH.getCurrentMatch()?.updatePostMatch(tmp, 0);
-                    }
-                    else{
-                        MANAGER_MATCH.getCurrentMatch()?.updatePostMatch(tmp, 2);
-                    }
-                }
+
                 Alert.alert("O won !");
-                navigation.goBack();
+                if (turnUser==="x"){
+                    await endGame(0);
+                }
+                else{
+                    await endGame(2);
+                }
                 return true;
             }
         }
@@ -127,29 +136,23 @@ export default function TicTacToeOnline(props: { navigation: any }){
                 }
             }
             if (isColumnXWinning == true){
-                if (tmp!==null){
-                    if (turnUser==="x"){
-                        MANAGER_MATCH.getCurrentMatch()?.updatePostMatch(tmp, 2);
-                    }
-                    else{
-                        MANAGER_MATCH.getCurrentMatch()?.updatePostMatch(tmp, 0);
-                    }
-                }
                 Alert.alert("X won !");
-                navigation.goBack();
+                if (turnUser==="x"){
+                    await endGame(2);
+                }
+                else{
+                    await endGame(0);
+                }
                 return true;
             }
             if(isColumnOWinning==true){
-                if (tmp!==null){
-                    if (turnUser==="x"){
-                        MANAGER_MATCH.getCurrentMatch()?.updatePostMatch(tmp, 0);
-                    }
-                    else{
-                        MANAGER_MATCH.getCurrentMatch()?.updatePostMatch(tmp, 2);
-                    }
-                }
                 Alert.alert("O won !");
-                navigation.goBack();
+                if (turnUser==="x"){
+                    await endGame(0);
+                }
+                else{
+                    await endGame(2);
+                }
                 return true;
             }
             
@@ -174,44 +177,34 @@ export default function TicTacToeOnline(props: { navigation: any }){
             }
         }
         if(isDiag1OWinning==true || isDiag2OWinning==true){
-            if (tmp!==null){
-                if (turnUser==="x"){
-                    MANAGER_MATCH.getCurrentMatch()?.updatePostMatch(tmp, 0);
-                }
-                else{
-                    MANAGER_MATCH.getCurrentMatch()?.updatePostMatch(tmp, 2);
-                }
-            }
             Alert.alert("O won !");
-            navigation.goBack();
+            if (turnUser==="x"){
+                await endGame(0);
+            }
+            else{
+                await endGame(2);
+            }
             return true;
         }
         if(isDiag1XWinning==true || isDiag2XWinning==true){
-            if (tmp!==null){
-                if (turnUser==="x"){
-                    MANAGER_MATCH.getCurrentMatch()?.updatePostMatch(tmp, 2);
-                }
-                else{
-                    MANAGER_MATCH.getCurrentMatch()?.updatePostMatch(tmp, 0);
-                }
-            }
             Alert.alert("X won !");
-            navigation.goBack();
+            if (turnUser==="x"){
+                await endGame(2);
+            }
+            else{
+                await endGame(0);
+            }
             return true;
         }
     };
 
-    const checkComplete = () =>{
+    const checkComplete = async () =>{
         const isRow0Full = map[0].every((cell)=> cell!=="");
         const isRow1Full = map[1] .every((cell)=>cell!=="");
         const isRow2Full = map[2] .every((cell)=>cell!=="");
         if(isRow0Full==true && isRow1Full==true && isRow2Full==true){
-            const tmp=MANAGER_USER.getCurrentUser();
-            if (tmp!==null){
-                MANAGER_MATCH.getCurrentMatch()?.updatePostMatch(tmp, 1);
-            }
             Alert.alert("Draw !");
-            navigation.goBack();
+            await endGame(1);
             return false;
         }
     };
