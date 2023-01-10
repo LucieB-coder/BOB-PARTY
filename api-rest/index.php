@@ -12,6 +12,8 @@
     exit;
     */
 
+    require_once("initBdd.php");
+
 
 
     //header('Access-Control-Allow-Origin: *');
