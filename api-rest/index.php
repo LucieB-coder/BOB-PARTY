@@ -12,7 +12,7 @@
     exit;
     */
 
-    //require_once("initBdd.php");
+    require_once("initBdd.php");
 
 
 
