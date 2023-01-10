@@ -44,7 +44,7 @@ export default class SaverMatchApi implements ISaverMatch{
     }
 
     async deleteUserFromMatch(u: User): Promise<void> {
-        let url=this.baseUrl + 'deleteUserFromMatch.php/' + u.id;
+        let url=this.baseUrl + 'deleteUserFromMatch/' + u.id;
         await this.axios({
             method: 'put',
             url: url,
@@ -61,7 +61,8 @@ export default class SaverMatchApi implements ISaverMatch{
 
         await MANAGER_MATCH.getLoaderMatch().loadByID(id).then(async (response)=>{
             if (response!==undefined && response !== null){
-                if (response.getTabUsers().length<response.getGame().getNbPlayerMax() || response.getInGame()===false){
+                console.log(response.getTabUsers().length + " : " + response.getGame().getNbPlayerMax());
+                if (response.getTabUsers().length<response.getGame().getNbPlayerMax() && response.getInGame()===false){
                     response.getTabUsers().push(u);
                     match=response;
                     await this.axios({
