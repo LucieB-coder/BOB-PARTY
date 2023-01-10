@@ -16,6 +16,7 @@ FC<{ valueChange: any, title: string, donePress?: any, values?: any;}>
                   onDonePress={donePress}
                   items={values}
                   style={styles}
+                  
              />
         )
     }

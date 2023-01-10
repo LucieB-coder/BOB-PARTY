@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, View, ImageSourcePropType, Pressable, Text, Alert} from 'react-native'
+import { StyleSheet, View, ImageSourcePropType, Pressable, Text, Alert, Platform, Modal} from 'react-native'
 import React, { useState } from 'react';
 import stylesScreen from './style/screens.style'
 import { TextInput } from 'react-native-gesture-handler';
@@ -7,12 +7,13 @@ import { BigBlueButton } from '../components/BigBlueButton';
 import styles from "./style/SignUp.style";
 import { useDispatch, useSelector } from 'react-redux';
 import { checkNewUserValidity } from '../core/Auth/newUser';
-import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
+import { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import { PickerGreySmall } from '../components/PickerGreySmall';
 import { RootState } from '../redux/store';
 import { updateImpossibleBirthDate, updateInvalidPassword, updateInvalidPseudo, updateTooLongPseudo, updateTooShortPassword, updateUndefinedBirthDate, updateUndefinedNationality, updateUndefinedPassword, updateUndefinedPseudo, updateUndefinedSex } from '../redux/features/credentialErrorsSlice';
 import { getSystemErrorMap } from 'util';
-import RNDateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import DatePicker from '@dietime/react-native-date-picker';
 import { MANAGER_USER } from '../../appManagers';
 import { Dispatch, AnyAction } from '@reduxjs/toolkit';
 import { User } from '../core/User/user';
@@ -24,7 +25,8 @@ function SignUp(props: { navigation: any; }) {
 
     const [pseudo, setPseudo] = useState('');
     const [password, setPassword] = useState('');
-    const [date, setDate] = useState(new Date())
+    const [date, setDate] = useState(new Date());
+    const [visible, setVisible] = useState(true);
 
     const setUser = useUserStore((state) => state.setUser);
 
@@ -110,9 +112,31 @@ function SignUp(props: { navigation: any; }) {
             
             <View style={{width: '70%', alignItems: 'center'}}>
                 <Text style={styles.text}>Date de naissance</Text>
-                <View style={{width: 150, margin: 10}}>
-                    <RNDateTimePicker onChange={(event, value) => onDateSelected(event, value)} mode='date' value={date} themeVariant='dark'/>
-                </View>
+                
+                {   Platform.OS === 'ios' && (
+                    <View style={{width: 150, margin: 20}}>
+                        <DateTimePicker
+                            style= {{ width: '100%', height: 40, }}
+                            value={date}
+                            is24Hour={false}
+                            display="default"
+                            onChange={(event, value) => onDateSelected(event, value)}
+                        />
+                    </View>
+                )}
+                {   Platform.OS === 'android' && (
+                    <DatePicker
+                        value={date}
+                        onChange={(value) => setDate(value)}
+                        format="dd-mm-yyyy"
+                        width="100%"
+                        height={100}
+                        endYear={new Date().getFullYear()-13}
+                        fadeColor="#45444E"
+                    />
+                )}
+                            
+                
             </View>
 
             <View style={{width: '60%', alignItems: 'center'}}>

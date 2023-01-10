@@ -18,8 +18,8 @@ export default StyleSheet.create(
       placeholder: {
         color: 'white',
       },
-    },
-    {inputAndroid: {
+    
+    inputAndroid: {
         alignItems: 'center',
         justifyContent: 'center',
         padding: 3,
@@ -33,8 +33,6 @@ export default StyleSheet.create(
         textAlign: 'center',
         color: 'white',
       },
-      placeholder: {
-        color: 'white',
-      },
+      placeholderColor: 'white',
     }
 )
