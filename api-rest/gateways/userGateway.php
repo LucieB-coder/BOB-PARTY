@@ -115,7 +115,7 @@ class UserGateway{
         $this->connection->execQuery($userQuery,$argUsernamePassword);
         $res=$this->connection->getRes();
         foreach($res as $row){
-            if(!password_verify($password,$row["USR_USERNAME"])){
+            if(!password_verify($password,$row["USR_PASSWORD"])){
                 return null;
             }
         }
