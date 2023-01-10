@@ -178,9 +178,6 @@ ADD CONSTRAINT `t_j_play_match_plm_ibfk_2` FOREIGN KEY (`FK_MATCH`) REFERENCES `
 $conn->query("ALTER TABLE `T_S_USER_USR`
 ADD CONSTRAINT `t_s_user_usr_ibfk_1` FOREIGN KEY (`FK_CURRENT_SKIN`) REFERENCES `T_H_SKIN_SKI` (`PK_ID`);");
 
-
-$conn->query("");
-
 $conn->query("INSERT INTO `T_J_GAME_MAP_GMP` (`FK_GAME`, `GMP_KEY`, `GMP_VALUE`) VALUES
 (1, 0, 0),
 (1, 100, 25),
