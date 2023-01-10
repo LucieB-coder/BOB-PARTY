@@ -14,6 +14,5 @@ RUN yarn
 # Bundle app source
 COPY bob_party/server.js .
 
-EXPOSE 3000
+EXPOSE 8080
 CMD [ "node", "server.js" ]
-CMD [ "cat", "server.js" ]
