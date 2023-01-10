@@ -1,7 +1,6 @@
  <?php
  	    $conn = new mysqli("BOB_PARTEAM-mysql",getenv("MYSQL_USER"),getenv("MYSQL_PASSWORD"),getenv("MYSQL_DATABASE"));
         $conn->query("DROP TABLE IF EXISTS `common_absences`;");
-        $conn->query("INSERT INTO `T_H_SKIN_SKI` VALUES(NULL,'Bob Classic', 'https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/typescript/bob_party/assets/BobsSkins/BobClassic.png', 0);");
         $res = $conn->query("SELECT * FROM T_H_SKIN_SKI");
         while ($une_valeur = $res->fetch_array()) {
             echo $une_valeur["SKI_NAME"];
