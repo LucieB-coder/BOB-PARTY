@@ -66,6 +66,33 @@ steps:
         ADMINS: thomaschazot2,mathildejean3,lilianbreton,luciebedouret,albanguilhot,cedricbouhours
     depends_on: [ deploy-container-mysql, container-api ]
 
+    # docker image build
+  - name: container-server
+    image: plugins/docker
+    settings:
+      dockerfile: ./bob_party/Dockerfile
+      context: .
+      registry: hub.codefirst.iut.uca.fr
+      repo: hub.codefirst.iut.uca.fr/bob_parteam/bob_party
+      username:
+        from_secret: SECRET_REGISTRY_USERNAME
+      password:
+        from_secret: SECRET_REGISTRY_PASSWORD
+      
+
+
+#container deployment
+  - name: deploy-server-containers
+    image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
+    environment:
+        IMAGENAME: hub.codefirst.iut.uca.fr/bob_parteam/bob_party:latest
+        CONTAINERNAME: server-bobParty
+        COMMAND: create
+        OVERWRITE: true
+        #PRIVATE: true
+        ADMINS: thomaschazot2,mathildejean3,lilianbreton,luciebedouret,albanguilhot,cedricbouhours
+    depends_on: [ deploy-container-mysql, container-api ]
+
 
 
 
