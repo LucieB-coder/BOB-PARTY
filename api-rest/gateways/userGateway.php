@@ -138,6 +138,7 @@ class UserGateway{
         $this->connection->execQuery($getLastIdQuery, array());
         $res=$this->connection->getResults();
         foreach($res as $row){
+            echo "la je met le premier";
             $this->putSkinList($row['PK_ID'], 1);
         }
     }
