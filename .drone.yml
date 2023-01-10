@@ -9,9 +9,6 @@ steps:
   - name: deploy-container-mysql
     image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
     environment:
-        settings:
-          dockerfile: ./Dockerfile
-          context: .
         IMAGENAME: mysql:latest
         CONTAINERNAME: mysql
         COMMAND: create
