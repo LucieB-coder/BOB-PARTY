@@ -59,7 +59,7 @@ class UserGateway{
         $tabSkin=null;
         $skinsOfUserQuery="SELECT s.* 
                         FROM T_H_SKIN_SKI s, T_J_OWN_SKIN_OWN o
-                        WHERE o.FK_USER=:id AND S.PK_ID=o.FK_SKIN";
+                        WHERE o.FK_USER=:id AND s.PK_ID=o.FK_SKIN";
         $argIdUser=array('id'=>array($id,PDO::PARAM_INT));
         $this->connection->execQuery($skinsOfUserQuery,$argIdUser);
         $resSkin=$this->connection->getRes();
