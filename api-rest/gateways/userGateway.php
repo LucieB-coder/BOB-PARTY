@@ -64,8 +64,10 @@ class UserGateway{
         $this->connection->execQuery($skinsOfUserQuery,$argIdUser);
         $resSkin=$this->connection->getRes();
         foreach($resSkin as $row){
+            echo $row['PK_ID'];
             $tabSkin[]= new Skin($row['PK_ID'], $row['SKI_NAME'], $row['SKI_IMAGE'],$row['SKI_PRICE']);
         }
+        echo json_encode($tabSkin);
         return $tabSkin;
     }
 
