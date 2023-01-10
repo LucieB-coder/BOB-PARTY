@@ -16,4 +16,4 @@ COPY bob_party/server.js .
 
 EXPOSE 8080
 CMD [ "ls" ]
-CMD [ "node", "server.js" ]
+#CMD [ "node", "server.js" ]
