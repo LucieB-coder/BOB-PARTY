@@ -72,6 +72,8 @@ steps:
     settings:
       dockerfile: ./bob_party/Dockerfile
       context: .
+      ports:
+        -"3000:80"
       registry: hub.codefirst.iut.uca.fr
       repo: hub.codefirst.iut.uca.fr/bob_parteam/bob_party/server
       username:
