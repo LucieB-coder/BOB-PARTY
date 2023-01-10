@@ -83,7 +83,7 @@
 
     echo json_encode($url);
 
-    $method_name = !empty($url[3]) ? (string)$url[3] : null;
+    $method_name = !empty($url[2]) ? (string)$url[2] : null;
     if($method_name == null){
         //header("HTTP/1.0 400 Request Name Empty");
         http_response_code(400);
@@ -134,7 +134,6 @@
                 http_response_code(200);
             }
             elseif($method_name === "getGames"){ // test : OK
-                echo "salut";
                 $tabGame = $gamegw->getGames();
                 header('Content-Type: application/json');
                 echo json_encode($tabGame, JSON_PRETTY_PRINT);

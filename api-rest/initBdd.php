@@ -1,7 +1,5 @@
 <?php
 
-echo "cc";
-
 $conn = new mysqli("BOB_PARTEAM-mysql",getenv("MYSQL_USER"),getenv("MYSQL_PASSWORD"),getenv("MYSQL_DATABASE"));
 
 $conn->query("CREATE TABLE `T_J_OWN_SKIN_OWN` (
