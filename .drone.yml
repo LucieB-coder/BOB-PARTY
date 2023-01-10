@@ -12,7 +12,7 @@ steps:
       dockerfile: ./Dockerfile
       context: .
     volumes:
-      ./bobParty.sql
+      ./bobParty.sql:/docker-entrypoint-initdb.d/bobParty.sql
     environment:
         IMAGENAME: mysql:latest
         CONTAINERNAME: mysql
