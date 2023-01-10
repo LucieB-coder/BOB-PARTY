@@ -36,7 +36,7 @@ steps:
       dockerfile: ./api-rest/Dockerfile
       context: .
       registry: hub.codefirst.iut.uca.fr
-      repo: hub.codefirst.iut.uca.fr/bob_parteam/bob_party
+      repo: hub.codefirst.iut.uca.fr/bob_parteam/bob_party/api
       username:
         from_secret: SECRET_REGISTRY_USERNAME
       password:
@@ -48,7 +48,7 @@ steps:
   - name: deploy-api-containers
     image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
     environment:
-        IMAGENAME: hub.codefirst.iut.uca.fr/bob_parteam/bob_party:latest
+        IMAGENAME: hub.codefirst.iut.uca.fr/bob_parteam/bob_party/api:latest
         CONTAINERNAME: api-bobParty
         COMMAND: create
         OVERWRITE: true
