@@ -75,6 +75,10 @@
     $url = filter_var($url, FILTER_SANITIZE_URL);
     $url = explode('/', $url);
 
+    if (empty($url)){
+        exit;
+    }
+
     $i=0;
     while ($url[$i]!=="index.php"){
         unset($url[$i]);
