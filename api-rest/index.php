@@ -125,6 +125,7 @@
                 http_response_code(200);
             }
             elseif($method_name === "getGames"){ // test : OK
+                echo "salut";
                 $tabGame = $gamegw->getGames();
                 header('Content-Type: application/json');
                 echo json_encode($tabGame, JSON_PRETTY_PRINT);
