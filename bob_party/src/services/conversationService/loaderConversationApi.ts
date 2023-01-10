@@ -9,6 +9,8 @@ export class LoaderConversationApi implements ILoaderConversation{
 
     private axios = require('axios').default;
 
+    private baseUrl = "https://codefirst.iut.uca.fr/containers/BOB_PARTEAM-api-bobParty/index.php/"
+
     loadAllConversation(): Promise<Conversation[]> {
         throw new Error("Method not implemented.");
     }
@@ -18,7 +20,7 @@ export class LoaderConversationApi implements ILoaderConversation{
     async loadByUser(u: User): Promise<Conversation[]> {
 
         let tabConv:Conversation[]=[];
-        const url='http://localhost:8888/api-rest/index.php/getConversations/' +u.getId();
+        const url=this.baseUrl+'getConversations/' +u.getId();
         await this.axios({
             method: 'get',
             url: url,

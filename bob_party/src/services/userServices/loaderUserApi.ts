@@ -4,23 +4,12 @@ import { Skin } from "../../core/skin";
 import { User } from "../../core/User/user";
 import ILoaderUser from "./ILoaderUser";
 
-class Test{
-    public completed:boolean;
-    public id: number;
-    public title: String;
-    public userId: number;
-
-    constructor(completed: boolean, id:number, title:String, userId: number){
-        this.completed=completed;
-        this.id=id;
-        this.title=title;
-        this.userId=userId;
-    }
-}
 
 export default class LoaderUserApi implements ILoaderUser{
 
     private axios = require('axios').default;
+
+    private baseUrl = "https://codefirst.iut.uca.fr/containers/BOB_PARTEAM-api-bobParty/index.php/"
 
 
     async loadAllUser() : Promise<User[]> {
@@ -30,7 +19,7 @@ export default class LoaderUserApi implements ILoaderUser{
     
     async loadByID(id: number): Promise<User | null> {
         let us:User | null=null;
-        const url='http://localhost:8888/api-rest/index.php/getUserById/'+ id;
+        const url=this.baseUrl + 'getUserById/'+ id;
         await this.axios({
             method: 'get',
             url: url,
@@ -46,7 +35,7 @@ export default class LoaderUserApi implements ILoaderUser{
 
     async loadByUsername(username: string): Promise<User | null> {
         let us:User | null=null;
-        const url='http://localhost:8888/api-rest/index.php/getUserByUsername/'+ username;
+        const url=this.baseUrl + 'getUserByUsername/'+ username;
         await this.axios({
             method: 'get',
             url: url,
@@ -61,7 +50,7 @@ export default class LoaderUserApi implements ILoaderUser{
 
     async loadByUsernamePassword(username: string, password: string): Promise<User | null>{
         let us:User | null=null;
-        const url='http://localhost:8888/api-rest/index.php/getUserForConnection/'+ username + "/" + password;
+        const url=this.baseUrl + 'getUserForConnection/'+ username + "/" + password;
         await this.axios({
             method: 'get',
             url: url,

@@ -5,13 +5,16 @@ export default class LoaderSkinApi implements ILoaderSkin{
     
     private axios = require('axios').default;
 
+    private baseUrl = "https://codefirst.iut.uca.fr/containers/BOB_PARTEAM-api-bobParty/index.php/"
+    
+
     /**
      * loadAllSkin methode that load every Skin from the data management system
      * return an array of Skin
      */
     async loadAllSkin(): Promise<Skin[]>{
         let tabSkin: Skin[]=[];
-        const url='http://localhost:8888/api-rest/index.php/getSkins';
+        const url=this.baseUrl+'getSkins';
         await this.axios({
             method: 'get',
             url: url,
@@ -33,7 +36,7 @@ export default class LoaderSkinApi implements ILoaderSkin{
      */
     async loadByID(id:number): Promise<Skin | null>{
         let skin: Skin | null= null;
-        const url='http://localhost:8888/api-rest/index.php/getSkins';
+        const url=this.baseUrl + 'getSkins';
         await this.axios({
             method: 'get',
             url: url,

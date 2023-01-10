@@ -8,10 +8,11 @@ export default class LoaderGameApi implements ILoaderGame{
 
     private axios = require('axios').default;
 
+    private baseUrl = "https://codefirst.iut.uca.fr/containers/BOB_PARTEAM-api-bobParty/index.php/"
     
     async loadAllGames(): Promise<Game[]> {
         let tab: Game[]=[];
-        const url="http://localhost:8888/api-rest/index.php/getGames";
+        const url=this.baseUrl+"http://localhost:8888/api-rest/index.php/getGames";
         await this.axios({
             method: 'get',
             url: url,
@@ -48,7 +49,7 @@ export default class LoaderGameApi implements ILoaderGame{
     }
     async loadByID(id: number): Promise<Game | null> {
         let game: Game|null=null;
-        const url="http://localhost:8888/api-rest/index.php/getGameById/" + id;
+        const url=this.baseUrl + "getGameById/" + id;
         await this.axios({
             method: 'get',
             url: url,

@@ -12,6 +12,8 @@ export default class LoaderMatchApi implements ILoaderMatch{
 
     private axios = require('axios').default;
 
+    private baseUrl = "https://codefirst.iut.uca.fr/containers/BOB_PARTEAM-api-bobParty/index.php/"
+
     
     async loadAllMatch(): Promise<Match[]> {
         throw new Error("Method not implemented.");
@@ -19,7 +21,7 @@ export default class LoaderMatchApi implements ILoaderMatch{
 
     async loadByID(id: number): Promise<Match | null> {
         let match:Match|null=null;
-        const url='http://localhost:8888/api-rest/index.php/getMatchById/' + id;
+        const url=this.baseUrl + 'getMatchById/' + id;
         await this.axios({
             method: 'get',
             url: url,

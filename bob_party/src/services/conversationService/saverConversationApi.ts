@@ -9,10 +9,12 @@ export class SaverConversationApi implements ISaverConversation{
     
     private axios = require('axios').default;
 
+    private baseUrl = "https://codefirst.iut.uca.fr/containers/BOB_PARTEAM-api-bobParty/index.php/"
+
     async saveConversation(name: string, user:User, tabId:number[], firstMessage:string, messageDate:Date): Promise<Conversation | null>{
 
         let conv:Conversation | null=null;
-        let url='http://localhost:8888/api-rest/index.php/postConversation/' + name + "/" +user.getId();
+        let url= this.baseUrl + 'postConversation/' + name + "/" +user.getId();
         tabId.forEach(id => {
             url=url + "," + id; 
         });
@@ -47,7 +49,7 @@ export class SaverConversationApi implements ISaverConversation{
 
     async addMessage(idConv:number, content: string, messageDate:Date, user: User): Promise<Message | null> {
         let message:Message | null=null;
-        let url='http://localhost:8888/api-rest/index.php/addMessageToConversation/' + content + "/" + user.getId() + "/" + idConv + "/" + messageDate.toISOString().split('T')[0] + " " + messageDate.getHours() + ":" + messageDate.getMinutes() + ":" + messageDate.getSeconds();
+        let url=this.baseUrl+ 'addMessageToConversation/' + content + "/" + user.getId() + "/" + idConv + "/" + messageDate.toISOString().split('T')[0] + " " + messageDate.getHours() + ":" + messageDate.getMinutes() + ":" + messageDate.getSeconds();
         await this.axios({
             method: 'put',
             url: url,
@@ -63,7 +65,7 @@ export class SaverConversationApi implements ISaverConversation{
         throw new Error("Method not implemented.");
     }
     async deleteUserToConversation(c: Conversation, u: User): Promise<void> {
-        let url='http://localhost:8888/api-rest/index.php/deleteUserFromConversation/' + c.getId() + "/" +u.getId();
+        let url=this.baseUrl+'deleteUserFromConversation/' + c.getId() + "/" +u.getId();
         await this.axios({
             method: 'put',
             url: url,
@@ -72,7 +74,7 @@ export class SaverConversationApi implements ISaverConversation{
 
     
     async deleteConversation(c: Conversation): Promise<void> {
-        let url='http://localhost:8888/api-rest/index.php/deleteConversation/' + c.getId();
+        let url=this.baseUrl+'deleteConversation/' + c.getId();
         await this.axios({
             method: 'delete',
             url: url,

@@ -12,11 +12,15 @@ import { MANAGER_MATCH } from "../../../appManagers";
 
 export default class SaverMatchApi implements ISaverMatch{
 
+
     private axios = require('axios').default;
+
+    private baseUrl = "https://codefirst.iut.uca.fr/containers/BOB_PARTEAM-api-bobParty/index.php/"
+
 
     async saveMatch(u:User, g:Game): Promise<Match> {
         let id=0;
-        let url='http://localhost:8888/api-rest/index.php/postMatch/' + g.id + "/" + u.id;
+        let url=this.baseUrl + 'postMatch/' + g.id + "/" + u.id;
         await this.axios({
             method: 'post',
             url: url,
@@ -32,7 +36,7 @@ export default class SaverMatchApi implements ISaverMatch{
         
     }
     async deleteMatch(m: Match): Promise<void> {
-        let url='http://localhost:8888/api-rest/index.php/deleteMatch/' + m.getCode();
+        let url=this.baseUrl + 'deleteMatch/' + m.getCode();
         await this.axios({
             method: 'delete',
             url: url,
@@ -40,16 +44,20 @@ export default class SaverMatchApi implements ISaverMatch{
     }
 
     async deleteUserFromMatch(u: User): Promise<void> {
-        let url='http://localhost:8888/api-rest/deleteUserFromMatch.php/' + u.id;
+        let url=this.baseUrl + 'deleteUserFromMatch.php/' + u.id;
         await this.axios({
             method: 'put',
             url: url,
          });
     }
 
+    updateMatch(m: Match): Promise<void> {
+        throw new Error("Method not implemented.");
+    }
+
     async joinMatch(u:User, id:number): Promise<Match | null>{
         let match:Match|null=null;
-        let url='http://localhost:8888/api-rest/index.php/addUserToMatch/' + id + "/" + u.id;
+        let url=this.baseUrl + 'addUserToMatch/' + id + "/" + u.id;
 
         await MANAGER_MATCH.getLoaderMatch().loadByID(id).then(async (response)=>{
             if (response!==undefined && response !== null){
