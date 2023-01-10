@@ -81,6 +81,10 @@
         $i++;
     }
 
+    if (empty($url)){
+        exit;
+    }
+
     //echo json_encode($url);
 
     $method_name = !empty($url[2]) ? (string)$url[2] : null;
