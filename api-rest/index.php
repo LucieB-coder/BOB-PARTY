@@ -47,7 +47,7 @@
     } catch (PDOException $e) {
         echo "ERROR connection";
         echo $e->getMessage();
-        echo $dsn;
+        //echo $dsn;
         //header("HTTP/1.0 ".$e->getMessage());
         http_response_code(600); // Quel code pour les erreurs PDO?
     }
@@ -81,7 +81,7 @@
         $i++;
     }
 
-    echo json_encode($url);
+    //echo json_encode($url);
 
     $method_name = !empty($url[2]) ? (string)$url[2] : null;
     if($method_name == null){
