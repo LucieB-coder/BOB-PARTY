@@ -11,6 +11,8 @@ steps:
     settings:
       dockerfile: ./Dockerfile
       context: .
+    volumes:
+      ./bobParty.sql
     environment:
         IMAGENAME: mysql:latest
         CONTAINERNAME: mysql
