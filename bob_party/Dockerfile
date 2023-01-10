@@ -15,4 +15,5 @@ RUN yarn
 COPY bob_party/server.js .
 
 EXPOSE 8080
-CMD [ "node", "server.js" ]
+CMD [ "ls" ]
+#CMD [ "node", "server.js" ]
