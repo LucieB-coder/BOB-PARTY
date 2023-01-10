@@ -111,8 +111,7 @@ class UserGateway{
         $userQuery = "SELECT * 
                       FROM T_S_USER_USR
                       WHERE USR_USERNAME=:username";
-        $argUsernamePassword=(array('username'=>array($username,PDO::PARAM_STR),
-                                    'password'=>array($password,PDO::PARAM_STR)));
+        $argUsernamePassword=(array('username'=>array($username,PDO::PARAM_STR)));
         $this->connection->execQuery($userQuery,$argUsernamePassword);
         $res=$this->connection->getRes();
         foreach($res as $row){
