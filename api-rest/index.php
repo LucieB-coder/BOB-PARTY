@@ -1,11 +1,8 @@
  <?php
- 	    $conn = new mysqli("BOB_PARTEAM-mysql",getenv("MYSQL_USER"),getenv("MYSQL_PASSWORD"),getenv("MYSQL_DATABASE"));
-        $conn->query("DROP TABLE IF EXISTS `common_absences`;");
-        $res = $conn->query("SELECT * FROM T_H_SKIN_SKI");
-        while ($une_valeur = $res->fetch_array()) {
-            echo $une_valeur["SKI_NAME"];
-        }
+
  /*
+  	    $conn = new mysqli("BOB_PARTEAM-mysql",getenv("MYSQL_USER"),getenv("MYSQL_PASSWORD"),getenv("MYSQL_DATABASE"));
+        $conn->query("DROP TABLE IF EXISTS `common_absences`;");
         $conn->query("CREATE TABLE coucou (`COUCOU_ID` int(10) unsigned NOT NULL,`COUCOU_TEXT` char(10) NOT NULL);");
         $res = $conn->query("SELECT * FROM coucou");
 
