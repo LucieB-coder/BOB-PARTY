@@ -33,5 +33,5 @@ export default StyleSheet.create({
     RNPView: {
         alignSelf: 'center',
         padding: 20,
-    }
+    },
   });

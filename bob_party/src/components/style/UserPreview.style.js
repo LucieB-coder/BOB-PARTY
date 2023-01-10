@@ -26,7 +26,8 @@ export default StyleSheet.create(
         width:"80%",
         backgroundColor: "#2C2C34",
         marginVertical: 10,
-        borderRadius: 15
+        borderRadius: 15,
+        alignSelf: 'center',
     },
     undefinedView: {
         flexDirection: 'column',
@@ -37,6 +38,7 @@ export default StyleSheet.create(
         borderRadius: 15,
         justifyContent: 'center',
         alignItems:'center',
+        alignSelf: 'center',
 
     }
 })

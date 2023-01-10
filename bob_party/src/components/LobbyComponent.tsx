@@ -1,13 +1,14 @@
 import { FC, useState} from "react"
-import { Button, FlatList } from "react-native"
+import { Button, FlatList, Pressable } from "react-native"
 import React from "react"
 import { Game } from "../core/game"
 
 /*
     Importing the correct stylesheet
 */import { StatusBar } from 'expo-status-bar'
-import { View, Image} from 'react-native'
+import { View, Image, Text} from 'react-native'
 import stylesScreen from '../screens/style/screens.style'
+import style from './style/LobbyComponent.style'
 import { TopBar } from '../components/TopBar';
 import { BotBar } from '../components/BotBar';
 import { Conversation } from '../core/conversation';
@@ -54,7 +55,7 @@ FC<{nav: any}> =
                         onPress={() => nav.navigate(MANAGER_MATCH.getCurrentMatch()?.getGame().getName().replace(/\s/g, ''))}
                     />
                     <Image
-                            style={{height: '30%', width: '70%', alignSelf:'center', borderRadius: 25, marginTop: "15%"}}
+                            style={style.imageGameSolo}
                             source={{uri: MANAGER_MATCH.getCurrentMatch()?.getGame().getImageSource()}}
                     />
                 </View>
@@ -65,20 +66,21 @@ FC<{nav: any}> =
         getUsers();
         return(
             <View style={stylesScreen.bodyStartCenter}>
+                <Text style={style.text}>Match ID : {MANAGER_MATCH.getCurrentMatch()?.getCode()}</Text>
                 <FlatList 
                 data={useMatchStore().tabUser} 
                 keyExtractor={usr =>usr?.getUsername() || usr}
                 renderItem={({item}) => <UserPreview user={item}/>}
+                style = {{width: '100%',}}
                 />
-                <View style={stylesScreen.bodyCenter}>
-                <Button
-                    title='Lancer la partie'
-                    onPress={() => nav.navigate(MANAGER_MATCH.getCurrentMatch()?.getGame().getName().replace(/\s/g, ''))}
-                />
-                </View>
-
+                <Pressable
+                    style={style.pressable}
+                    onPress={() => nav.navigate(MANAGER_MATCH.getCurrentMatch()?.getGame().getName().replace(/\s/g, ''))}  
+                >
+                    <Text style={style.text}>Lancer la partie</Text>
+                </Pressable>
                 <Image
-                    style={{width:100, height:100}}
+                    style={style.imageGameMulti}
                     source={{uri: MANAGER_MATCH.getCurrentMatch()?.getGame().getImageSource()}}
                 />
             </View>
