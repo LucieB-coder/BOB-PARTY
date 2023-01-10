@@ -12,7 +12,7 @@
     exit;
     */
 
-    require_once("initBdd.php");
+    //require_once("initBdd.php");
 
 
 
@@ -74,6 +74,15 @@
     $url = rtrim($request_uri,"/");
     $url = filter_var($url, FILTER_SANITIZE_URL);
     $url = explode('/', $url);
+
+    $i=0;
+    while ($url[$i]!=="index.php"){
+        unset($url[$i]);
+        $i++;
+    }
+
+    echo json_encode($url);
+
     $method_name = !empty($url[3]) ? (string)$url[3] : null;
     if($method_name == null){
         //header("HTTP/1.0 400 Request Name Empty");
