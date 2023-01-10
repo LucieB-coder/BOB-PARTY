@@ -11,7 +11,7 @@ import { MANAGER_CONVERSATION, MANAGER_GAME, MANAGER_USER } from '../../appManag
 import { socket } from '../../socketConfig';
 import { useConversationStore } from '../context/conversationContext';
 import { Message } from '../core/message';
-import ManagerUser from '../services/userServices/managerUser';
+import ManagerUser from '../services/userServices/ManagerUser';
 
 
 
