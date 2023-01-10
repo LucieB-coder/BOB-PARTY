@@ -13,11 +13,15 @@ import { RootState } from '../redux/store';
 import { updateImpossibleBirthDate, updateInvalidPassword, updateInvalidPseudo, updateTooLongPseudo, updateTooShortPassword, updateUndefinedBirthDate, updateUndefinedNationality, updateUndefinedPassword, updateUndefinedPseudo, updateUndefinedSex } from '../redux/features/credentialErrorsSlice';
 import { getSystemErrorMap } from 'util';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
-import { MANAGER_USER } from '../../appManagers';
+import { MANAGER_CONVERSATION, MANAGER_GAME, MANAGER_SKIN, MANAGER_USER } from '../../appManagers';
 import { Dispatch, AnyAction } from '@reduxjs/toolkit';
 import { User } from '../core/User/user';
 import { useUserStore } from '../context/userContext';
 import { socket } from '../../socketConfig';
+import { useConversationStore } from '../context/conversationContext';
+import { useGameStore } from '../context/gameContext';
+import { Conversation } from '../core/conversation';
+import { useSkinStore } from '../context/storeContext'
 
 function SignUp(props: { navigation: any; }) {
     const { navigation } = props
@@ -27,6 +31,17 @@ function SignUp(props: { navigation: any; }) {
     const [date, setDate] = useState(new Date())
 
     const setUser = useUserStore((state) => state.setUser);
+
+
+    const setTabConv = useConversationStore((state) => state.setTabConv);
+    const setCurrentConv = useConversationStore((state) => state.setCurrentConv);
+    
+    const setTabGame = useGameStore((state) => state.setTabGame);
+    const setTabGameSolo = useGameStore((state) => state.setTabGameSolo);
+    const setTabGameMulti = useGameStore((state) => state.setTabGameMulti);
+
+    const setTabSkin = useSkinStore((state) => state.setTabSkin);
+
 
 
     function onDateSelected(event : DateTimePickerEvent, value : Date | undefined) {
@@ -141,14 +156,72 @@ function SignUp(props: { navigation: any; }) {
         if (tmp!=null){
             Alert.alert("Ce pseudo existe déjà");
         }
-        await MANAGER_USER.getsaverUser().saveUser(pseudo, password, selectedNationality, selectedSex, date).then((res)=>{
+        await MANAGER_USER.getsaverUser().saveUser(pseudo, password, selectedNationality, selectedSex, date).then(async (res)=>{
             MANAGER_USER.setCurrentUser(res);
             setUser(MANAGER_USER.getCurrentUser());
             socket.emit("signIn", res);
+            initSocket();
+            await handleSkinLoad();
+            await handleGameLoad();
             navigation.navigate('HomeTab');
         })
     }
   }
+
+  function initSocket(){
+        socket.emit("signIn", MANAGER_USER.getCurrentUser()?.id);
+        MANAGER_CONVERSATION.getTabConv()?.forEach( conv =>{
+            socket.emit("inConv", conv);
+        });
+        socket.on("messageReceived", async () =>{
+            await handleConversationLoad();
+        });
+        socket.on("addedToConv", async (conv) =>{
+            socket.emit("inConv", conv);
+            await handleConversationLoad();
+        });
+    }
+
+    async function handleSkinLoad(){
+        MANAGER_SKIN.setTabSkin(await MANAGER_SKIN.getLoaderSkin().loadAllSkin());
+        setTabSkin(MANAGER_SKIN.getTabSkin());
+    }
+
+    async function handleGameLoad(){
+        MANAGER_GAME.setTabGame(await MANAGER_GAME.getLoaderGame().loadAllGames());
+        MANAGER_GAME.getTabGame().forEach(game => {
+            if (game.getNbPlayerMin()>1){
+                MANAGER_GAME.getTabGameMulti().push(game);
+            }
+            else{
+                MANAGER_GAME.getTabGameSolo().push(game);
+            }
+        });
+        setTabGame(MANAGER_GAME.getTabGame());
+        setTabGameMulti(MANAGER_GAME.getTabGameMulti())
+        setTabGameSolo(MANAGER_GAME.getTabGameSolo());
+    }
+
+    async function handleConversationLoad(){
+        const tmp = MANAGER_USER.getCurrentUser();
+        if (tmp !== null) {
+            await MANAGER_CONVERSATION.getLoaderConversation().loadByUser(tmp).then((res) => {
+                const tmp=MANAGER_USER.getCurrentUser()
+                MANAGER_CONVERSATION.setTabConv(res);
+                if (tmp!==null){
+                  const tmpConv=MANAGER_CONVERSATION.getCurrentConv();
+                  if (tmpConv!==null){
+                    const trouveIndex = (element: Conversation) => element.getId()===tmpConv.getId();
+                    const index=MANAGER_CONVERSATION.getTabConv().findIndex(trouveIndex);
+                    MANAGER_CONVERSATION.setCurrentConv(MANAGER_CONVERSATION.getTabConv()[index]);
+                    setCurrentConv(MANAGER_CONVERSATION.getCurrentConv());
+                  }
+                  setTabConv(MANAGER_CONVERSATION.getTabConv());
+                }
+            });
+        }
+      }
 }
 
 export default SignUp
+
