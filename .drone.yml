@@ -1,23 +1,93 @@
-# database container deployment
+# This file creates our 2 docker containers 
 kind: pipeline
-name: BD
+name: Dockers_Builder
 
+
+# Creation of the DB docker
 steps:  
+  # database container deployment
   - name: deploy-container-mysql
     image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
     environment:
-        IMAGENAME: mysql
+        settings:
+          dockerfile: ./Dockerfile
+          context: .
+        IMAGENAME: mysql:latest
         CONTAINERNAME: mysql
         COMMAND: create
-        # OVERWRITE: false
+        #OVERWRITE: true
         PRIVATE: true
-        CODEFIRST_CLIENTDRONE_ENV_MYSQL_ROOT_PASSWORD:
-          from_secret: P@s$w0rd123
+        CODEFIRST_CLIENTDRONE_ENV_MYSQL_ROOT_PASSWORD:    
+          from_secret: MYSQL_ROOT_PASSWORD
         CODEFIRST_CLIENTDRONE_ENV_MYSQL_DATABASE:
-          from_secret: BDBOB
+          from_secret: MYSQL_DATABASE
         CODEFIRST_CLIENTDRONE_ENV_MYSQL_USER:
-          from_secret: bob
+          from_secret: MYSQL_USER_TOM
         CODEFIRST_CLIENTDRONE_ENV_MYSQL_PASSWORD:
-          from_secret: P@s$w0rd123
-    scripts:
-      - GRANT ALL PRIVILEGES ON *.* TO 'CODEFIRST_CLIENTDRONE_ENV_MYSQL_USER'@'localhost' IDENTIFIED BY 'CODEFIRST_CLIENTDRONE_ENV_MYSQL_PASSWORD';
+          from_secret: MYSQL_PASSWORD_TOM
+        ADMINS: thomaschazot2,mathildejean3,lilianbreton,luciebedouret,albanguilhot,cedricbouhours
+
+
+
+# docker image build
+  - name: container-api
+    image: plugins/docker
+    settings:
+      dockerfile: ./api-rest/Dockerfile
+      context: .
+      registry: hub.codefirst.iut.uca.fr
+      repo: hub.codefirst.iut.uca.fr/bob_parteam/bob_party
+      username:
+        from_secret: SECRET_REGISTRY_USERNAME
+      password:
+        from_secret: SECRET_REGISTRY_PASSWORD
+      
+
+
+#container deployment
+  - name: deploy-api-containers
+    image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
+    environment:
+        IMAGENAME: hub.codefirst.iut.uca.fr/bob_parteam/bob_party:latest
+        CONTAINERNAME: api-bobParty
+        COMMAND: create
+        OVERWRITE: true
+        #PRIVATE: true
+        CODEFIRST_CLIENTDRONE_ENV_DB_SERVER:
+          from_secret: db_server
+        CODEFIRST_CLIENTDRONE_ENV_MYSQL_USER:
+          from_secret: MYSQL_USER_TOM
+        CODEFIRST_CLIENTDRONE_ENV_MYSQL_PASSWORD:
+          from_secret: MYSQL_PASSWORD_TOM
+        CODEFIRST_CLIENTDRONE_ENV_MYSQL_ROOT_PASSWORD:    
+          from_secret: MYSQL_ROOT_PASSWORD
+        CODEFIRST_CLIENTDRONE_ENV_MYSQL_DATABASE:
+          from_secret: MYSQL_DATABASE
+        ADMINS: thomaschazot2,mathildejean3,lilianbreton,luciebedouret,albanguilhot,cedricbouhours
+    depends_on: [ deploy-container-mysql, container-api ]
+
+
+
+
+# # docker image build
+#   - name: docker-build-and-push
+#     image: plugins/docker
+#     settings:
+#       dockerfile: Dockerfile
+#       context: .
+#       registry: hub.codefirst.iut.uca.fr
+#       repo: hub.codefirst.iut.uca.fr/thomas.chazot2/bobparty
+#       username:
+#         from_secret: SECRET_REGISTRY_USERNAME_TOM
+#       password:
+#         from_secret: SECRET_REGISTRY_PASSWORD_TOM
+
+# #container deployment
+#   - name: deploy-bob_party-container
+#     image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
+#     environment:
+#         IMAGENAME: hub.codefirst.iut.uca.fr/thomas.chazot2/bobparty:latest
+#         CONTAINERNAME: bob_party_container
+#         COMMAND: create
+#         OVERWRITE: true
+        # ADMINS: thomaschazot2,mathildejean3,lilianbreton,luciebedouret,albanguilhot,cedricbouhours,thomasbellembois
