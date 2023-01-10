@@ -70,7 +70,7 @@ $conn->query("CREATE TABLE `T_J_PLAY_MATCH_PLM` (
 $conn->query("CREATE TABLE `T_S_USER_USR` (
     `PK_ID` int(11) NOT NULL,
     `USR_USERNAME` varchar(50) NOT NULL,
-    `USR_PASSWORD` varchar(50) NOT NULL,
+    `USR_PASSWORD` varchar(200) NOT NULL,
     `USR_NATIONALITY` varchar(20) NOT NULL,
     `USR_SEX` varchar(30) NOT NULL,
     `USR_DATE_OF_BIRTH` date DEFAULT NULL,
