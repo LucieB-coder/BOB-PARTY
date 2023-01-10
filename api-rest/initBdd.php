@@ -209,7 +209,7 @@ $conn->query("INSERT INTO `T_S_USER_USR` (`PK_ID`, `USR_USERNAME`, `USR_PASSWORD
 (1, 'to', 't', 'Anglais(e)', 'M', '2003-07-01', 105, 230, 12, 1);");
 
 $conn->query("INSERT INTO `T_J_OWN_SKIN_OWN` (`FK_USER`, `FK_SKIN`) VALUES
-(1, 1)
+(1, 1),
 (1, 2);");
 
 
