@@ -32,6 +32,8 @@ function SignIn(props: { navigation: any; }) {
 
     const setTabSkin = useSkinStore((state) => state.setTabSkin);
 
+    const [waitConnect, setWaitConnect] = useState(0);
+
 
 
     const errorList = useSelector((state: RootState) => state.credentialErrors.loginErrorList);
@@ -44,12 +46,11 @@ function SignIn(props: { navigation: any; }) {
             dispatch(updateIncorrectCredentials(true));
     }
 
-    let waitConnect=0;
 
     async function handleUserConnect(username: string, password: string){
         
         if (waitConnect==0){
-            waitConnect=1;
+            setWaitConnect(-1);
 
             await MANAGER_USER.getLoaderUser().loadByUsernamePassword(username, password).then(async (res) => { 
                 if (res!=null){
@@ -67,10 +68,10 @@ function SignIn(props: { navigation: any; }) {
                 }
                 else{
                     Alert.alert("Incorrect Username or Password");
+                    setWaitConnect(0);
                 }
 
             });
-            waitConnect=0;
         }
         return;      
     }
@@ -81,6 +82,10 @@ function SignIn(props: { navigation: any; }) {
             socket.emit("inConv", conv);
         });
         socket.on("messageReceived", async () =>{
+            await handleConversationLoad();
+        });
+        socket.on("addedToConv", async (conv) =>{
+            socket.emit("inConv", conv);
             await handleConversationLoad();
         });
     }
@@ -96,9 +101,6 @@ function SignIn(props: { navigation: any; }) {
                   if (tmpConv!==null){
                     const trouveIndex = (element: Conversation) => element.getId()===tmpConv.getId();
                     const index=MANAGER_CONVERSATION.getTabConv().findIndex(trouveIndex);
-                    MANAGER_CONVERSATION.getTabConv()?.sort(
-                        (objA, objB) => objB.getLastMessage().getMessageDate().getTime() - objA.getLastMessage().getMessageDate().getTime(),
-                    );
                     MANAGER_CONVERSATION.setCurrentConv(MANAGER_CONVERSATION.getTabConv()[index]);
                     setCurrentConv(MANAGER_CONVERSATION.getCurrentConv());
                   }

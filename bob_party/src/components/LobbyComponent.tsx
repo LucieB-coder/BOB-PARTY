@@ -17,6 +17,7 @@ import { useMatchStore } from '../context/matchContext';
 import { MANAGER_MATCH } from '../../appManagers';
 import { ScreenIndicator } from '../components/ScreenIndicator';
 import { UserPreview } from "./UserPreview"
+import { socket } from "../../socketConfig"
 
 export const LobbyComponent : 
 
@@ -24,8 +25,12 @@ FC<{nav: any}> =
 ({nav}) => 
 {
     const setTabUser = useMatchStore((state) => state.setTabUser);
+    const setMatch = useMatchStore((state) => state.setMatch);
+
 
     const [initUsers, setInitUsers] = useState(0);
+    const [init, setInit] = useState(0);
+
 
     function getUsers(){
         if (initUsers===0){
@@ -43,6 +48,36 @@ FC<{nav: any}> =
             setTabUser(tmp);
         }
     }
+
+
+    async function launchMatch(){
+
+    }
+    
+    
+    function initMatchSocket(){
+        if (init===0){
+            setInit(1);
+            socket.on("matchUsersChanged", async () =>{
+                const match=MANAGER_MATCH.getCurrentMatch();
+                if (match !==null){
+                    await MANAGER_MATCH.getLoaderMatch().loadByID(match.code).then((res) =>{
+                        MANAGER_MATCH.setCurrentMatch(res);
+                        setMatch(res);
+                        setInitUsers(0);
+                        getUsers();
+                    });
+                }
+          
+            });
+
+            socket.on("matchLaunched", async () =>{
+                nav.navigate(MANAGER_MATCH.getCurrentMatch()?.getGame().getName().replace(/\s/g, ''));
+            });
+        }
+    }
+
+    initMatchSocket();
 
 
     if(MANAGER_MATCH.getCurrentMatch()?.getGame().getNbPlayerMax()==1){
@@ -66,7 +101,7 @@ FC<{nav: any}> =
         getUsers();
         return(
             <View style={stylesScreen.bodyStartCenter}>
-                <Text style={style.text}>Match ID : {MANAGER_MATCH.getCurrentMatch()?.getCode()}</Text>
+                <Text style={style.text}>Match ID : {useMatchStore().match?.getCode()}</Text>
                 <FlatList 
                 data={useMatchStore().tabUser} 
                 keyExtractor={usr =>usr?.getUsername() || usr}
@@ -75,7 +110,7 @@ FC<{nav: any}> =
                 />
                 <Pressable
                     style={style.pressable}
-                    onPress={() => nav.navigate(MANAGER_MATCH.getCurrentMatch()?.getGame().getName().replace(/\s/g, ''))}  
+                    onPress={() => {socket.emit("launchMatch", MANAGER_MATCH.getCurrentMatch()); nav.navigate(MANAGER_MATCH.getCurrentMatch()?.getGame().getName().replace(/\s/g, ''))}}  
                 >
                     <Text style={style.text}>Lancer la partie</Text>
                 </Pressable>

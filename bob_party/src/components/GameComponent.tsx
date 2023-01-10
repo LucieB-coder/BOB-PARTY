@@ -41,6 +41,7 @@ FC<{game: Game, nav: any}> =
             nav.navigate("GameSolo");
         }
     }, []);
+    
 
     
     return (

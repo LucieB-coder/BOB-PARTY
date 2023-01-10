@@ -52,7 +52,7 @@ FC<{nav: any, state?: string}> =
             await MANAGER_CONVERSATION.getsaverConversation().deleteUserToConversation(tmpConv, tmp);
             const trouveIndex = (element: Conversation) => element.getId()===tmpConv.getId();
             const index=MANAGER_CONVERSATION.getTabConv().findIndex(trouveIndex);
-            MANAGER_CONVERSATION.getTabConv().splice(index);
+            MANAGER_CONVERSATION.getTabConv().splice(index, 1);
             if (tmpConv.getTabUser().length===1){
                 await MANAGER_CONVERSATION.getsaverConversation().deleteConversation(tmpConv);
             }
@@ -70,6 +70,7 @@ FC<{nav: any, state?: string}> =
         const m=new MatchModifier();
         if (tmp!==null && tmpMatch!==null){
             socket.emit("quitMatch", tmpMatch);
+            socket.off("M" + tmpMatch.code);
             await m.quitMatch(tmp, tmpMatch);
             resetMatch();
             resetTabUserMatch();
@@ -111,7 +112,7 @@ FC<{nav: any, state?: string}> =
         case 'conversation':
             return (
                 <View style={styles.header}>
-                    <Pressable onPress={() => { resetCurrentConv; MANAGER_CONVERSATION.setCurrentConv(null); nav.goBack()}}>
+                    <Pressable onPress={() => { resetCurrentConv(); MANAGER_CONVERSATION.setCurrentConv(null); nav.goBack()}}>
                         <Image source={cross} style={styles.icon}/>
                     </Pressable>
                     <Text style={styles.titre}>{useConversationStore().currentConv?.getName()}</Text>

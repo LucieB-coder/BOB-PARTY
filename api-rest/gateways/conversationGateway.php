@@ -155,8 +155,12 @@ public function deleteUserFromConversation(int $idConv, int $idUser){
     public function deleteConversation(int $id):void{
         $deleteConv = "DELETE FROM T_H_CONVERSATION_COV
                        WHERE PK_ID=:idConv";
+        $deleteMessages="DELETE FROM T_H_MESSAGE_MSG WHERE PK_ID = (SELECT FK_MESSAGE
+        FROM T_J_CONTAIN_MESSAGE_CMG
+        WHERE FK_CONVERSATION=:id)";
         $argIdConv = array('idConv'=>array($id,PDO::PARAM_INT));
         $this->connection->execQuery($deleteConv,$argIdConv);
+        $this->connection->execQuery($deleteMessages,$argIdConv);
     }
 }
 

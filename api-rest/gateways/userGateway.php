@@ -59,7 +59,7 @@ class UserGateway{
         $tabSkin=null;
         $skinsOfUserQuery="SELECT s.* 
                         FROM T_H_SKIN_SKI s, T_J_OWN_SKIN_OWN o
-                        WHERE o.FK_USER=:id AND S.PK_ID=o.FK_SKIN";
+                        WHERE o.FK_USER=:id AND s.PK_ID=o.FK_SKIN";
         $argIdUser=array('id'=>array($id,PDO::PARAM_INT));
         $this->connection->execQuery($skinsOfUserQuery,$argIdUser);
         $resSkin=$this->connection->getRes();
@@ -110,12 +110,15 @@ class UserGateway{
     public function getUserForConnection(string $username,string $password):?User{
         $userQuery = "SELECT * 
                       FROM T_S_USER_USR
-                      WHERE USR_USERNAME=:username
-                        AND USR_PASSWORD=:password";
-        $argUsernamePassword=(array('username'=>array($username,PDO::PARAM_STR),
-                                    'password'=>array($password,PDO::PARAM_STR)));
+                      WHERE USR_USERNAME=:username";
+        $argUsernamePassword=(array('username'=>array($username,PDO::PARAM_STR)));
         $this->connection->execQuery($userQuery,$argUsernamePassword);
         $res=$this->connection->getRes();
+        foreach($res as $row){
+            if(!password_verify($password,$row["USR_PASSWORD"])){
+                return null;
+            }
+        }
         $usr=$this->convertResToUser($res);
         if ($usr != null){
             $usr->tabSkin=$this->getSkinList($usr->id);
@@ -127,19 +130,27 @@ class UserGateway{
 /// Parameters : * $u (User): user we want to insert in database
 /// Returning TRUE if the user has been added succesfully, FALSE otherwise
     public function postUser(string $username, string $password, string $nationality, string $sex, string $dateOfBirth) {
+        $password=password_hash($password,PASSWORD_DEFAULT);
         $insertUserQuery = "INSERT INTO T_S_USER_USR VALUES (NULL, :username, :password, :nationality, :sex, :dateOfBirth, 0, 0, 0, 1)";
+        $getLastIdQuery = "SELECT max(PK_ID) id FROM T_S_USER_USR";
         $argUser=array('username' => array($username, PDO::PARAM_STR), 
                     'password' => array($password, PDO::PARAM_STR),
                     'nationality' => array($nationality, PDO::PARAM_STR), 
                     'sex' => array($sex, PDO::PARAM_STR),
                     'dateOfBirth' => array($dateOfBirth, PDO::PARAM_STR));
         $this->connection->execQuery($insertUserQuery, $argUser);
+        $this->connection->execQuery($getLastIdQuery, array());
+        $res=$this->connection->getRes();
+        foreach($res as $row){
+            $this->putSkinList($row['id'], 1);
+        }
     }
 
 /// Brief : Modifying an EXISTING user in database
 /// Parameters : * $u (User): user we want to update in database
 /// Returning TRUE if the modifications has been done succesfully, FALSE otherwise
     public function putUser(int $id,string $username, string $password, string $sex, string $nationality, int $currentBobCoins,int $totalBobCoins,int $nbGamesPlayed, int $currentSkin){
+        $password=password_hash($password,PASSWORD_DEFAULT);
         $updateUserQuery="UPDATE T_S_USER_USR 
                         SET USR_USERNAME = :username, 
                             USR_PASSWORD=:password,

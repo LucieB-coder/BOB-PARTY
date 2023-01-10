@@ -19,7 +19,6 @@ export const UserPreview :
 FC<{user: User | null}> = 
 ({user}) => 
 {      
-    console.log(user);
     if(user !== null){
         return (
             <View style= {styles.view}>

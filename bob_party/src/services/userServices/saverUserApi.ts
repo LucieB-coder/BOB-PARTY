@@ -27,6 +27,7 @@ export default class SaverUserApi implements ISaverUser{
     async updateUser(u: User): Promise<void> {
         let us:User|null=null;
         const url=this.baseUrl + 'putUser/'+ u.getId() + "/" + u.getUsername()  + "/" + u.getPassword() + "/" + u.getSexe() + "/" + u.getNationality() + "/" + u.getCurrentCoins() + "/" + u.getTotalCoins() + "/" + u.getGamesPlayed() + "/" + u.getCurrentSkin().getSkinId();
+        console.log(url);
         await this.axios({
             method: 'put',
             url: url,

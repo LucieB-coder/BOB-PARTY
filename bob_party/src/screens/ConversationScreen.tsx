@@ -26,7 +26,7 @@ function ConversationScreen(props: { navigation: any; }) {
 				await MANAGER_CONVERSATION.getsaverConversation().addMessage(tmpConv.getId(), e.nativeEvent.text, new Date(), tmpUs).then((res) => {
 					if (res!==null){
 						const trouveIndex = (element: Conversation) => element.getId()===tmpConv.getId();
-						MANAGER_CONVERSATION.getCurrentConv()?.getTabMessage().push(res);
+						MANAGER_CONVERSATION.getCurrentConv()?.ajouterMessage(res);
 						const index=MANAGER_CONVERSATION.getTabConv().findIndex(trouveIndex);
 						const tmp=MANAGER_CONVERSATION.getCurrentConv();
 						if (tmp!==null){

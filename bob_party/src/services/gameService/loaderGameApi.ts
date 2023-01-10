@@ -12,15 +12,14 @@ export default class LoaderGameApi implements ILoaderGame{
     
     async loadAllGames(): Promise<Game[]> {
         let tab: Game[]=[];
-        const url=this.baseUrl+"http://localhost:8888/api-rest/index.php/getGames";
+        const url=this.baseUrl+"getGames";
         await this.axios({
             method: 'get',
             url: url,
 
          })
          .then(function (response: any) {
-            if (response.data != null || response.data != undefined){
-
+            if (response.data != null && response.data != undefined){
                 response.data.forEach(game => {
                     switch(game.type){
                         case "GameSolo":
@@ -54,7 +53,7 @@ export default class LoaderGameApi implements ILoaderGame{
             method: 'get',
             url: url,
          }).then(function (response: any){
-            if (response.data!=undefined || response.data!==null){
+            if (response.data!=undefined && response.data!==null){
                 switch(response.data.type){
                     case "GameSolo":
                         let mapSolo = new Map();
@@ -62,14 +61,17 @@ export default class LoaderGameApi implements ILoaderGame{
                             mapSolo.set(new Number(response.data.keys[i]), new Number(response.data.values[i]))
                         }
                         game = new GameSolo(response.data.id, response.data.name, response.data.image, response.data.nbPlayerMin, response.data.nbPlayerMax, mapSolo);
+                        break;
                     case "GameMulti":
                         const mapMulti = new Map();
                         for (let i=0; i<response.data.keys.length; i++){
                             mapMulti.set(new Number(response.data.keys[i]), new Number(response.data.values[i]));
                         }
                         game = new GameMulti(response.data.id, response.data.name, response.data.image, response.data.nbPlayerMin, response.data.nbPlayerMax, mapMulti);
+                        break;
                     case "GameCasino":
                         game = new GameCasino(response.data.id, response.data.name, response.data.image, response.data.nbPlayerMin, response.data.nbPlayerMax);
+                        break;
                 }
             }
         });

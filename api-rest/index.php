@@ -12,7 +12,7 @@
     exit;
     */
 
-    //require_once("initBdd.php");
+    require_once("initBdd.php");
 
 
 
@@ -76,9 +76,13 @@
     $url = explode('/', $url);
 
     $i=0;
-    while ($url[$i]!=="index.php"){
+    while ($url[$i]!=="index.php" && count($url)>0){
         unset($url[$i]);
         $i++;
+    }
+
+    if (empty($url)){
+        exit;
     }
 
     //echo json_encode($url);
@@ -230,15 +234,15 @@
                     //header("HTTP/1.0 400 Invalid number of arguments");
                     http_response_code(400);
                 }
-                $id = !empty($url[4]) ? (int) $url[4] : null;
-                $username = !empty($url[5]) ? (string) $url[5] : null;
-                $password = !empty($url[6]) ? (string) $url[6] : null;
-                $sexe = !empty($url[7]) ? (string) $url[7] : null;
-                $nationality = !empty($url[8]) ? (string) $url[8] : null;
-                $nbCurrentCoins = (int) $url[9];
-                $totalnbCoins = (int) $url[10];
-                $nbGames = (int) $url[11];
-                $currentSkin = !empty($url[12]) ? (int) $url[12] : null;
+                $id = !empty($url[3]) ? (int) $url[3] : null;
+                $username = !empty($url[4]) ? (string) $url[4] : null;
+                $password = !empty($url[5]) ? (string) $url[5] : null;
+                $sexe = !empty($url[6]) ? (string) $url[6] : null;
+                $nationality = !empty($url[7]) ? (string) $url[7] : null;
+                $nbCurrentCoins = (int) $url[8];
+                $totalnbCoins = (int) $url[9];
+                $nbGames = (int) $url[10];
+                $currentSkin = !empty($url[11]) ? (int) $url[11] : null;
                 $usergw->putUser($id,$username,$password,$sexe, $nationality, $nbCurrentCoins,$totalnbCoins,$nbGames,$currentSkin);
                 http_response_code(200);
             }
