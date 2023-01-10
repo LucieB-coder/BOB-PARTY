@@ -12,7 +12,7 @@ RUN yarn
 # RUN npm ci --only=production
 
 # Bundle app source
-COPY bob_party/server.js .
+COPY bob_party/server.js ./
 
 EXPOSE 8080
 CMD [ "ls" ]
