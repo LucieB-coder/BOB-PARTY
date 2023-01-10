@@ -182,6 +182,7 @@
             break;
         case 'POST':
             if($method_name === "postUser"){ // test : OK
+                echo count($url);
                 if (count($url)<7){
                     //header("HTTP/1.0 400 Invalid number of arguments");
                     http_response_code(400);
