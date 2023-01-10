@@ -128,12 +128,18 @@ class UserGateway{
 /// Returning TRUE if the user has been added succesfully, FALSE otherwise
     public function postUser(string $username, string $password, string $nationality, string $sex, string $dateOfBirth) {
         $insertUserQuery = "INSERT INTO T_S_USER_USR VALUES (NULL, :username, :password, :nationality, :sex, :dateOfBirth, 0, 0, 0, 1)";
+        $getLastIdQuery = "SELECT max(PK_ID) FROM T_S_USER_USR";
         $argUser=array('username' => array($username, PDO::PARAM_STR), 
                     'password' => array($password, PDO::PARAM_STR),
                     'nationality' => array($nationality, PDO::PARAM_STR), 
                     'sex' => array($sex, PDO::PARAM_STR),
                     'dateOfBirth' => array($dateOfBirth, PDO::PARAM_STR));
         $this->connection->execQuery($insertUserQuery, $argUser);
+        $this->connection->execQuery($getLastIdQuery, array());
+        $res=$this->connection->getResults();
+        foreach($res as $row){
+            $this->putSkinList($row['PK_ID'], 1);
+        }
     }
 
 /// Brief : Modifying an EXISTING user in database

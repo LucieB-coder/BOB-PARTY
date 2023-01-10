@@ -84,9 +84,6 @@ $conn->query("CREATE TABLE `T_S_USER_USR` (
   );");
 
 
-$conn->query("CREATE TRIGGER `after_insert_user` AFTER INSERT ON `T_S_USER_USR` FOR EACH ROW INSERT INTO T_J_OWN_SKIN_OWN VALUES(NEW.PK_ID,1); END;");
-
-
 $conn->query("ALTER TABLE `T_E_GAME_GAM`
 ADD PRIMARY KEY (`PK_ID`),
 ADD UNIQUE KEY `GAM_NAME` (`GAM_NAME`);");
