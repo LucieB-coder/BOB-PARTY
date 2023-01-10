@@ -91,7 +91,7 @@ steps:
         OVERWRITE: true
         #PRIVATE: true
         ADMINS: thomaschazot2,mathildejean3,lilianbreton,luciebedouret,albanguilhot,cedricbouhours
-    depends_on: [ deploy-container-mysql, container-api ]
+    depends_on: [ container-server ]
 
 
 
