@@ -73,7 +73,7 @@ steps:
       dockerfile: ./bob_party/Dockerfile
       context: .
       registry: hub.codefirst.iut.uca.fr
-      repo: hub.codefirst.iut.uca.fr/bob_parteam/bob_party
+      repo: hub.codefirst.iut.uca.fr/bob_parteam/bob_party/server
       username:
         from_secret: SECRET_REGISTRY_USERNAME
       password:
@@ -85,7 +85,7 @@ steps:
   - name: deploy-server-containers
     image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
     environment:
-        IMAGENAME: hub.codefirst.iut.uca.fr/bob_parteam/bob_party:latest
+        IMAGENAME: hub.codefirst.iut.uca.fr/bob_parteam/bob_party/server:latest
         CONTAINERNAME: server-bobParty
         COMMAND: create
         OVERWRITE: true
