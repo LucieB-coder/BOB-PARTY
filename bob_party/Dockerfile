@@ -1,7 +1,6 @@
 FROM node:latest
 
 # Create app directory
-WORKDIR /bob_party
 
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
@@ -13,7 +12,8 @@ RUN yarn
 # RUN npm ci --only=production
 
 # Bundle app source
-COPY bob_party .
+COPY bob_party/server.js .
 
 EXPOSE 8080
+CMD [ "ls" ]
 CMD [ "node", "server.js" ]
