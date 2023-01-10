@@ -136,7 +136,7 @@ class UserGateway{
                     'dateOfBirth' => array($dateOfBirth, PDO::PARAM_STR));
         $this->connection->execQuery($insertUserQuery, $argUser);
         $this->connection->execQuery($getLastIdQuery, array());
-        $res=$this->connection->getResults();
+        $res=$this->connection->getRes();
         foreach($res as $row){
             echo "la je met le premier";
             $this->putSkinList($row['PK_ID'], 1);
