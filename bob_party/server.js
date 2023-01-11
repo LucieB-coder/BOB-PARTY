@@ -11,7 +11,7 @@ const io = new Server(server);
 
 
 app.get('/', function (req, res) {
-  res.send('it should work');
+  console.log("it should work");
 });
 
 while (1){
