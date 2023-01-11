@@ -9,9 +9,8 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-
 app.get('/', function (req, res) {
-  res.log("it should work");
+  res.send('it should work');
 });
 
 io.on('connection', (socket) => {
@@ -59,6 +58,6 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(3000, () => {
+server.listen("https://codefirst.iut.uca.fr/containers/BOB_PARTEAM-server-bobParty", 3000, () => {
   console.log('listening on *:3000');
 });
