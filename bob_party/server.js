@@ -1,6 +1,10 @@
 
-const httpServer = require("http").createServer();
-const io = require("socket.io")(httpServer, {});
+const express = require('express');
+const app = express();
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(server);
 
 io.on('connection', (socket) => {
   console.log(socket.id);  
@@ -47,5 +51,5 @@ io.on('connection', (socket) => {
   });
 });
 
-httpServer.listen(3000);
+server.listen(3000);
 
