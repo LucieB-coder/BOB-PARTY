@@ -14,6 +14,7 @@ RUN yarn install --frozen-lockfile
 
 # Bundle app source
 COPY bob_party/server.js .
+COPY bob_party/index.html .
 
 EXPOSE 3000
 

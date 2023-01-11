@@ -198,7 +198,6 @@ function SignUp(props: { navigation: any; }) {
             await handleConversationLoad();
         });
         socket.on("addedToConv", async (conv) =>{
-            console.log("HEY");
             socket.emit("inConv", conv);
             await handleConversationLoad();
         });
