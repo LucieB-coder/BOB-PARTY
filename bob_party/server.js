@@ -8,9 +8,9 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-app.get('/server', function (req, res) {
-    res.send('hello');
-})
+while(1){
+  console.log("wesh");
+}
 
 io.on('connection', (socket) => {
   console.log(socket.id);  
