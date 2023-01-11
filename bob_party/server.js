@@ -7,7 +7,14 @@ const { Server } = require("socket.io");
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server);
+//const io = new Server(server);
+
+const io = require("socket.io")(server, {
+  cors: {
+    origin: "https://codefirst.iut.uca.fr/containers/BOB_PARTEAM-server-bobParty",
+    methods: ["GET", "POST"]
+  }
+});
 
 io.on('connection', (socket) => {
   console.log(socket.id);  
