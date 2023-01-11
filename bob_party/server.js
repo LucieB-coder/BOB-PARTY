@@ -9,10 +9,6 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-app.get('/', function (req, res) {
-  res.send('it should work');
-});
-
 io.on('connection', (socket) => {
   console.log(socket.id);  
 
