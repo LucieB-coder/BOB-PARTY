@@ -2,8 +2,7 @@
 const express = require('express');
 const http = require('http');
 const { Server } = require("socket.io");
-const test = require('is-docker');
-
+import isDocker from 'is-docker';
 
 
 
@@ -11,7 +10,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-if (test.isDocker()) {
+if (isDocker()) {
 	console.log('Running inside a Docker container');
 }
 
