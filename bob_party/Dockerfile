@@ -7,7 +7,7 @@ FROM node:latest
 # where available (npm@5+)
 COPY bob_party/package*.json ./
 
-RUN yarn install --frozen-lockfile
+RUN yarn add socket.io socket.io-client express
 
 # If you are building your code for production
 # RUN npm ci --only=production
