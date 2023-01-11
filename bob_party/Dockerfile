@@ -7,8 +7,6 @@ FROM node:latest
 # where available (npm@5+)
 COPY bob_party/package*.json ./
 
-RUN hostname -I
-
 RUN yarn
 
 # If you are building your code for production
