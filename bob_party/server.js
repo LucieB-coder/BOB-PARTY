@@ -11,12 +11,8 @@ const io = new Server(server);
 
 
 app.get('/', function (req, res) {
-  console.log("it should work");
+  res.log("it should work");
 });
-
-while (1){
-  console.log("hey");
-}
 
 io.on('connection', (socket) => {
   console.log(socket.id);  
