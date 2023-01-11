@@ -54,6 +54,6 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(3000, () => {
+server.listen(3000, "https://codefirst.iut.uca.fr/containers/BOB_PARTEAM-server-bobParty", () => {
   console.log('listening on *:3000');
 });
