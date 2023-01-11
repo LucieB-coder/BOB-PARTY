@@ -6,7 +6,7 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 
-server.get('/server', function (req, res) {
+app.get('/server', function (req, res) {
     res.send('hello');
 })
 
