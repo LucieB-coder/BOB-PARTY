@@ -1,5 +1,5 @@
 import { FC, ReactNode } from "react"
-import { Pressable, Image, Text, View} from "react-native"
+import { Pressable, Image, Text, View, Platform} from "react-native"
 import { Skin } from "../core/Skin"
 import React from "react"
 import { SkinComponent } from "./SkinComponent"
@@ -16,6 +16,27 @@ import { useConversationStore } from "../context/conversationContext"
 import { socket } from "../../socketConfig"
 import { Conversation } from "../core/conversation"
 import MatchModifier from "../core/Match/matchModifier"
+import { getStatusBarHeight } from 'react-native-status-bar-height';
+ 
+// 44 - on iPhoneX
+// 20 - on iOS device
+// X - on Android platfrom (runtime value)
+// 0 - on all other platforms (default)
+
+function topBarTopDistance(){
+    if(Platform.OS === 'ios'){
+        return{
+            paddingTop : getStatusBarHeight(),
+            paddingBottom : getStatusBarHeight()/2.5,
+        }
+    }
+    return{
+        paddingTop : 20,
+        flex: 0.15,
+    }
+}
+
+
 
 /* 
     Images required
@@ -85,7 +106,7 @@ FC<{nav: any, state?: string}> =
     switch (state) {
         case 'settings':
             return (
-                <View style={styles.header}>
+                <View style={[styles.header,topBarTopDistance()]}>
                     <Pressable>
                         <Image source={msc} style={styles.icon}/>
                     </Pressable>
@@ -98,7 +119,7 @@ FC<{nav: any, state?: string}> =
 
         case 'matchmacking'|| 'game':
             return (
-                <View style={styles.header}>
+                <View style={[styles.header,topBarTopDistance()]}>
                     <Pressable>
                         <Image source={msc} style={styles.icon}/>
                     </Pressable>
@@ -111,7 +132,7 @@ FC<{nav: any, state?: string}> =
 
         case 'conversation':
             return (
-                <View style={styles.header}>
+                <View style={[styles.header,topBarTopDistance()]}>
                     <Pressable onPress={() => { resetCurrentConv(); MANAGER_CONVERSATION.setCurrentConv(null); nav.goBack()}}>
                         <Image source={cross} style={styles.icon}/>
                     </Pressable>
@@ -123,7 +144,7 @@ FC<{nav: any, state?: string}> =
             )
         case 'addConversation':
             return (
-                <View style={styles.header}>
+                <View style={[styles.header,topBarTopDistance()]}>
                     <Pressable onPress={() => {nav.goBack()}}>
                         <Image source={cross} style={styles.icon}/>
                     </Pressable>
@@ -136,7 +157,7 @@ FC<{nav: any, state?: string}> =
 
         default:
             return (
-                <View style={styles.header}>
+                <View style={[styles.header,topBarTopDistance()]}>
                     <Pressable onPress={() => nav.navigate('ProfileTab', {screen: 'Profile'})}>
                             <SkinComponent skin={useUserStore().user?.getCurrentSkin()} state='icon' nav={nav} />
                         </Pressable>
@@ -148,3 +169,8 @@ FC<{nav: any, state?: string}> =
             )
     }
 }
+
+
+// {   Platform.OS === 'ios' && (
+//     <View style={{paddingTop: "4%", width: "100%", backgroundColor:"#2E2C34"}}></View>
+//   )}

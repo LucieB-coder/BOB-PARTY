@@ -6,7 +6,6 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
     header: {
-        flex: 0.15,
         flexDirection: 'row',
         backgroundColor: '#2D2C33',
         width: '100%',
@@ -33,3 +32,4 @@ export default StyleSheet.create({
       color: 'white',
     },
 });
+
