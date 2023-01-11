@@ -194,13 +194,11 @@ function SignUp(props: { navigation: any; }) {
 
   function initSocket(){
         socket.emit("signIn", MANAGER_USER.getCurrentUser()?.id);
-        MANAGER_CONVERSATION.getTabConv()?.forEach( conv =>{
-            socket.emit("inConv", conv);
-        });
         socket.on("messageReceived", async () =>{
             await handleConversationLoad();
         });
         socket.on("addedToConv", async (conv) =>{
+            console.log("HEY");
             socket.emit("inConv", conv);
             await handleConversationLoad();
         });

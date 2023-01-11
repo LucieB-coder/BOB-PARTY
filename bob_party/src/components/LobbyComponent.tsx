@@ -1,5 +1,5 @@
 import { FC, useState} from "react"
-import { Button, FlatList, Pressable } from "react-native"
+import { Alert, Button, FlatList, Pressable } from "react-native"
 import React from "react"
 import { Game } from "../core/game"
 
@@ -51,7 +51,19 @@ FC<{nav: any}> =
 
 
     async function launchMatch(){
-
+        const tmpMatch=MANAGER_MATCH.getCurrentMatch();
+        if (tmpMatch!==undefined && tmpMatch!==null){
+            if (tmpMatch.getGame().getNbPlayerMin()>tmpMatch.getTabUsers().length){
+                Alert.alert("Wait until there is enough players!");
+                return;
+            }
+            else if(tmpMatch.getGame().getNbPlayerMin()<tmpMatch.getTabUsers().length){
+                Alert.alert("There is too much players!");
+                return;
+            }
+        }
+        socket.emit("launchMatch", MANAGER_MATCH.getCurrentMatch());
+        nav.navigate(MANAGER_MATCH.getCurrentMatch()?.getGame().getName().replace(/\s/g, ''));
     }
     
     
@@ -110,7 +122,7 @@ FC<{nav: any}> =
                 />
                 <Pressable
                     style={style.pressable}
-                    onPress={() => {socket.emit("launchMatch", MANAGER_MATCH.getCurrentMatch()); nav.navigate(MANAGER_MATCH.getCurrentMatch()?.getGame().getName().replace(/\s/g, ''))}}  
+                    onPress={() => {launchMatch()}}  
                 >
                     <Text style={style.text}>Lancer la partie</Text>
                 </Pressable>
