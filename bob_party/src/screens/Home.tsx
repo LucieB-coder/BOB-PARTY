@@ -23,6 +23,7 @@ function Home(props: { navigation: any; }) {
   const { navigation } = props
 
 
+  console.log(socket.connected);
 
   //It has to be in the home page that way the database will reload the conversations when the user receive a message een if he is in another page
 
