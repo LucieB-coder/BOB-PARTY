@@ -6,6 +6,10 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 
+app.get('/server', function (req, res) {
+    res.send('hello');
+})
+
 io.on('connection', (socket) => {
   console.log(socket.id);  
 
