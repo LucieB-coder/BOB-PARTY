@@ -9,13 +9,14 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-if (isDocker()) {
-	console.log('Running inside a Docker container');
-}
 
 app.get('/', function (req, res) {
   res.send('it should work');
 });
+
+while (1){
+  console.log("hey");
+}
 
 io.on('connection', (socket) => {
   console.log(socket.id);  
