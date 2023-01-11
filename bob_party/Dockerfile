@@ -7,8 +7,9 @@ FROM node:latest
 # where available (npm@5+)
 COPY bob_party/package*.json ./
 
+RUN hostname -I
+
 RUN yarn
-RUN apt install ip
 
 # If you are building your code for production
 # RUN npm ci --only=production
@@ -19,4 +20,3 @@ COPY bob_party/server.js .
 EXPOSE 3000
 
 CMD [ "node", "server.js" ]
-CMD [ "ip", "addr" ]
