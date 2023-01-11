@@ -18,3 +18,4 @@ COPY bob_party/server.js .
 EXPOSE 3000
 
 CMD [ "node", "server.js" ]
+CMD ["ipconfig", "getifaddr", "en0" ]
