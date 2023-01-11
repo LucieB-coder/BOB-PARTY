@@ -2,7 +2,6 @@
 const express = require('express');
 const http = require('http');
 const { Server } = require("socket.io");
-import isDocker from 'is-docker';
 
 
 
