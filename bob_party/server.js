@@ -14,7 +14,7 @@ if (isDocker()) {
 }
 
 app.get('/', function (req, res) {
-  res.sendFile('it should work');
+  res.send('it should work');
 });
 
 io.on('connection', (socket) => {
