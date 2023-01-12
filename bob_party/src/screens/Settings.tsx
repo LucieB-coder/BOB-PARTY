@@ -88,6 +88,7 @@ function Settings(props: { navigation: any; }) {
       resetTabSkin();
       resetMatch();
       resetTabUser();
+      navigation.popToTop();
       navigation.navigate("SignIn");
     }
 
