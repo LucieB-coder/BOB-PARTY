@@ -38,10 +38,7 @@ function SignIn(props: { navigation: any; }) {
 
     const errorList = useSelector((state: RootState) => state.credentialErrors.loginErrorList);
     const [pseudo, setPseudo] = useState('');
-    const [password, setPassword] = useState('');
-
-    console.log(MANAGER_USER.getCurrentUser());
-    
+    const [password, setPassword] = useState('');    
 
 
     async function handleUserConnect(username: string, password: string){
@@ -64,6 +61,7 @@ function SignIn(props: { navigation: any; }) {
                     setPseudo("");
                     setPassword("");
                     navigation.navigate('HomeTab');   
+                    setWaitConnect(0);
                 }
                 else{
                     Alert.alert("Incorrect Username or Password");
