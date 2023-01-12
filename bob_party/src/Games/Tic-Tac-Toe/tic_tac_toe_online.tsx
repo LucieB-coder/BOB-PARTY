@@ -60,14 +60,15 @@ export default function TicTacToeOnline(props: { navigation: any }){
     function setUpTicTacToeOnline() {
         if (initTic===0){
             setInitTic(1);
-            socket.on("oppPlayTicTacToe",  (rowIndex, columnIndex, turn) =>{
+            socket.on("oppPlayTicTacToe",  async (rowIndex, columnIndex, turn) =>{
 
                 setMap((existingMap) =>{
                     const updateMap = [...existingMap]
                     updateMap[rowIndex][columnIndex]=turn;
                     return updateMap;
                 });
-                if (!checkWinning()){
+                const retour= await checkWinning();
+                if(retour!=true){
                     checkComplete();
                 }
                 if (turn==="x"){

@@ -20,7 +20,7 @@ export default interface ISaverUser{
       * updateUser methode that update a User in the data management system
       * u the user we want to update
       */
-     updateUser(u:User | null): Promise<void>;
+    updateUser(u:User | null): Promise<void>;
 
     addSkinList(u: User, s:Skin): Promise<void>;
 
