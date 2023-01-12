@@ -33,6 +33,8 @@ export default function BlackJack(props){
 
   const navigation = useNavigation();
 
+	const setUser = useUserStore((state) => state.setUser);
+
     return(
       <>
         <ImageBackground 
@@ -95,7 +97,7 @@ export default function BlackJack(props){
       setAmount(money);
       if (tmp!=null){
         await modif.changeCurrentCoins(tmp, money);
-        useUserStore().setUser(MANAGER_USER.getCurrentUser());
+        setUser(MANAGER_USER.getCurrentUser());
       }
     }
 
@@ -160,7 +162,6 @@ export default function BlackJack(props){
 
       //who won
       if(playerPoints == 21 && playerHand.length == 2){
-        //multiplicar su apuesta x 1.5
         let newAmount = totalBet * 1.5;
         await modifAmount(newAmount);
         setTotalBet(0);
