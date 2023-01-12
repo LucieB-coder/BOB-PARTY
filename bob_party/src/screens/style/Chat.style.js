@@ -14,7 +14,7 @@ export default StyleSheet.create({
         zIndex: 2,
         position: 'absolute',
         alignSelf:'center',
-        marginTop: '145%'
+        marginTop: '135%'
     },
     pressablePlusButton: {
         alignItems:"center",
