@@ -64,11 +64,10 @@ function ConversationScreen(props: { navigation: any; }) {
 							keyExtractor={item => item.getMessageId().toString()}
 							inverted
 							/>
-						
 						<TextInput
-							style={{height: '7%',
+							style={{height: 40,
 							width: '90%',
-							borderRadius: '15%',
+							borderRadius: 50,
 							backgroundColor: 'white',
 							padding: 10,
 							marginBottom: '7%',
