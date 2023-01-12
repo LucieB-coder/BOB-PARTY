@@ -82,13 +82,13 @@ function Settings(props: { navigation: any; }) {
       
       resetTabConv();
       resetCurrentConv();
-      
       resetTabGame();
       resetTabGameMulti();
       resetTabGameSolo();
       resetTabSkin();
       resetMatch();
       resetTabUser();
+      navigation.navigate("SignIn");
     }
 
     return (
@@ -125,7 +125,7 @@ function Settings(props: { navigation: any; }) {
         
       </View>
       <View style={{alignSelf: "flex-end", padding: 50, alignItems: "center", width: "100%"}}>
-        <Pressable onPress={() => {disconnect(); navigation.navigate("SignIn");}} style={styles.button}>
+        <Pressable onPress={() => {disconnect();}} style={styles.button}>
           <Text style={styles.buttonText}>Se déconnecter</Text>    
         </Pressable>
           
