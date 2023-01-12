@@ -11,7 +11,7 @@ import LoaderSkinApi from "./src/services/skinService/loaderSkinApi";
 import ManagerSkin from "./src/services/skinService/managerSkin";
 import FakeSaverUser from "./src/services/userServices/fakeSaverUser";
 import LoaderUserApi from "./src/services/userServices/loaderUserApi";
-import ManagerUser from "./src/services/userServices/ManagerUser";
+import ManagerUser from "./src/services/userServices/managerUser";
 import SaverUserApi from "./src/services/userServices/saverUserApi";
 
 export const MANAGER_USER = new ManagerUser(new LoaderUserApi, new SaverUserApi);

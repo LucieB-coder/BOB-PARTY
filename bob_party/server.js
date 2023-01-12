@@ -1,11 +1,9 @@
 
 const express = require('express');
-const http = require('http');
-const { Server } = require("socket.io");
-
-
 const app = express();
+const http = require('http');
 const server = http.createServer(app);
+const { Server } = require("socket.io");
 const io = new Server(server);
 
 io.on('connection', (socket) => {
@@ -20,7 +18,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('quitConv', (conv) => {
-    socket.off("C" + conv);
+    socket.off("C" + conv.id);
   });
 
   socket.on("messageSent", (conv) =>{
@@ -53,6 +51,5 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(3000, () => {
-  console.log('listening on *:3000');
-});
+server.listen(3000);
+

@@ -61,7 +61,6 @@ export default class SaverMatchApi implements ISaverMatch{
 
         await MANAGER_MATCH.getLoaderMatch().loadByID(id).then(async (response)=>{
             if (response!==undefined && response !== null){
-                console.log(response.getTabUsers().length + " : " + response.getGame().getNbPlayerMax());
                 if (response.getTabUsers().length<response.getGame().getNbPlayerMax() && response.getInGame()===false){
                     response.getTabUsers().push(u);
                     match=response;
