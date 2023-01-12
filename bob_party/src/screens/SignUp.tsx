@@ -179,6 +179,7 @@ function SignUp(props: { navigation: any; }) {
         const tmp:User|null = await MANAGER_USER.getLoaderUser().loadByUsername(pseudo);
         if (tmp!=null){
             Alert.alert("Ce pseudo existe déjà");
+            return;
         }
         await MANAGER_USER.getsaverUser().saveUser(pseudo, password, selectedNationality, selectedSex, date).then(async (res)=>{
             MANAGER_USER.setCurrentUser(res);

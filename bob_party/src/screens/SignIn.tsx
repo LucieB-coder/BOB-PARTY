@@ -39,12 +39,9 @@ function SignIn(props: { navigation: any; }) {
     const errorList = useSelector((state: RootState) => state.credentialErrors.loginErrorList);
     const [pseudo, setPseudo] = useState('');
     const [password, setPassword] = useState('');
-    const dispatch=useDispatch();
 
-   if (errorList.incorrectCredentials){
-            Alert.alert("Pseudo ou Mot de passe incorrect");
-            dispatch(updateIncorrectCredentials(true));
-    }
+    console.log(MANAGER_USER.getCurrentUser());
+    
 
 
     async function handleUserConnect(username: string, password: string){
@@ -64,10 +61,15 @@ function SignIn(props: { navigation: any; }) {
                     socket.on("messageReceived", async () =>{
                         await handleConversationLoad();
                     });
+                    setPseudo("");
+                    setPassword("");
                     navigation.navigate('HomeTab');   
                 }
                 else{
                     Alert.alert("Incorrect Username or Password");
+                    setPseudo("");
+                    setPassword("");
+                    console.log(pseudo, password);
                     setWaitConnect(0);
                 }
 
@@ -140,8 +142,13 @@ function SignIn(props: { navigation: any; }) {
     return (
     <View style={stylesScreen.container}>
         <View style={stylesScreen.bodyCenter}>
-            <TextInput style={styles.textInput} placeholder='Login' onChangeText={(val) => setPseudo(val)} autoCapitalize='none' />
-            <TextInput style={styles.textInput} placeholder='Password' onChangeText={(val) => setPassword(val)} autoCapitalize='none' secureTextEntry={true}/>
+            <TextInput style={styles.textInput} placeholder='Login' 
+            value={pseudo}
+            onChangeText={(val) => setPseudo(val)} autoCapitalize='none' />
+            <TextInput style={styles.textInput} placeholder='Password' 
+            value={password}
+            onChangeText={(val) => setPassword(val)} autoCapitalize='none' 
+            secureTextEntry={true}/>
             <Pressable style={styles.button} onPress={() => handleUserConnect(pseudo, password)}>
                 <Text style={styles.text}>Se connecter</Text>
             </Pressable>

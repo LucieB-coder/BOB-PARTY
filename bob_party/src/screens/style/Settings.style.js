@@ -7,12 +7,14 @@ export default StyleSheet.create({
         letterSpacing: 0.25,
         color: 'white',
         textAlign: 'right',
+        paddingVertical: 5,
     },
     text: {
         fontSize: 16,
         lineHeight: 21,
         letterSpacing: 0.25,
         color: 'white',
+        paddingVertical: 5,
     },
     title: {
         fontSize: 20,
@@ -28,5 +30,19 @@ export default StyleSheet.create({
         width: '90%',
         margin: 15,
         padding: 15,
+    },
+    button: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 30,
+        borderRadius: 10,
+        backgroundColor: '#888898',
+    },
+    buttonText: {
+        fontSize: 20,
+        lineHeight: 21,
+        fontWeight: 'bold',
+        letterSpacing: 0.25,
+        color: 'white',
     },
 });

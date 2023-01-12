@@ -32,7 +32,7 @@ class UserControls extends Component{
 
     render(){
 
-        const {playerHand, dealerHand, newGame, hit, endgame, doubleGame, gameover, totalBet, moreMoney} = this.props;
+        const {playerHand, dealerHand, goBack, hit, endgame, doubleGame, gameover, totalBet, moreMoney} = this.props;
         const {playerPoints, dealerPoints} = this.state;
 
         return(
@@ -64,8 +64,8 @@ class UserControls extends Component{
                 {totalBet == false && (<View style={styles.absoluteBtnRight}>
                     <ActionButton 
                         direction={'left'}
-                        text={"NEW CARDS"}
-                        onPress={() => newGame()}
+                        text={"QUITER PARTIE"}
+                        onPress={() => goBack()}
                     />
                 </View>)}
 

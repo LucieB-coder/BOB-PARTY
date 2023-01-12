@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar'
-import { View, Text } from 'react-native'
+import { View, Text, Button, Pressable } from 'react-native'
 import React, { useState } from 'react';
 import stylesScreen from './style/screens.style';
 import styles from './style/Settings.style';
@@ -9,7 +9,11 @@ import { PickerGreySmall } from '../components/PickerGreySmall';
 import { useUserStore } from '../context/userContext';
 import DialogInput from 'react-native-dialog-input';
 import UserModificationManager from '../core/User/userModificationManager';
-import { MANAGER_USER } from '../../appManagers';
+import { MANAGER_CONVERSATION, MANAGER_GAME, MANAGER_MATCH, MANAGER_SKIN, MANAGER_USER } from '../../appManagers';
+import { useConversationStore } from '../context/conversationContext';
+import { useGameStore } from '../context/gameContext';
+import { useSkinStore } from '../context/storeContext';
+import { useMatchStore } from '../context/matchContext';
 
 function Settings(props: { navigation: any; }) {
     const { navigation } = props
@@ -23,7 +27,6 @@ function Settings(props: { navigation: any; }) {
 
     const [selectedSex, setSelectedSex] = useState("");
     const [selectedNationality, setSelectedNationality] = useState("");
-
 
     async function changeUsername(username:string){
       let userManager = new UserModificationManager();
@@ -65,6 +68,28 @@ function Settings(props: { navigation: any; }) {
       }
     }
 
+    const resetUser = useUserStore((state) => state.resetUser);
+    const resetTabConv = useConversationStore((state) => state.resetTabConv);
+    const resetCurrentConv = useConversationStore((state) => state.resetCurrentConv);
+    const resetTabGame = useGameStore((state) => state.resetTabGame);
+    const resetTabGameMulti = useGameStore((state) => state.resetTabGameMulti);
+    const resetTabGameSolo = useGameStore((state) => state.resetTabGameSolo);
+    const resetTabSkin = useSkinStore((state) => state.resetTabSkin);
+    const resetMatch = useMatchStore((state) => state.resetMatch);
+    const resetTabUser = useMatchStore((state) => state.resetTabUser);
+
+    function disconnect(){
+      
+      resetTabConv();
+      resetCurrentConv();
+      
+      resetTabGame();
+      resetTabGameMulti();
+      resetTabGameSolo();
+      resetTabSkin();
+      resetMatch();
+      resetTabUser();
+    }
 
     return (
     <View style={stylesScreen.container}>
@@ -82,7 +107,7 @@ function Settings(props: { navigation: any; }) {
                 <ButtonGreySmall onPress={() => {setDialogPseudoVisible(true)}} title='Changer le pseudo'/>
               </View>
               <View>
-                <Text style={styles.text}>Mot de passe: {useUserStore().user?.getPassword()}</Text>
+                <Text style={styles.text}>Mot de passe: *****</Text>
                 <ButtonGreySmall onPress={() => setDialogPasswordVisible(true) } title='Changer le mot de passe'/>
               </View>
               <View>
@@ -97,6 +122,13 @@ function Settings(props: { navigation: any; }) {
             <Text style={styles.textID}>ID: {useUserStore().user?.getId()}</Text>
           </View>
         </View>
+        
+      </View>
+      <View style={{alignSelf: "flex-end", padding: 50, alignItems: "center", width: "100%"}}>
+        <Pressable onPress={() => {disconnect(); navigation.navigate("SignIn");}} style={styles.button}>
+          <Text style={styles.buttonText}>Se déconnecter</Text>    
+        </Pressable>
+          
       </View>
 
       <DialogInput
@@ -121,3 +153,5 @@ function Settings(props: { navigation: any; }) {
 }
 
 export default Settings
+
+//{useUserStore().user?.getPassword()}

@@ -15,9 +15,11 @@ import {Overlay,ChipSelector, UserControls,FloatingText} from './source/componen
 import boardBg from './source/assets/board.png';
 import { MANAGER_USER } from '../../../appManagers';
 import { UserCoinsModifier } from '../../core/User/userCoinsModifier';
+import { useNavigation } from '@react-navigation/native';
+import { useUserStore } from '../../context/userContext';
 
 
-export default function BlackJack(){
+export default function BlackJack(props){
 
   const [totalBet, setTotalBet] = useState(0);
   const [amount, setAmount] = useState(MANAGER_USER.getCurrentUser()?.getCurrentCoins());
@@ -29,7 +31,7 @@ export default function BlackJack(){
   const [gameStarted, setGameStarted] = useState(false);
   const [startGame, setStartGame] = useState(false);
 
-
+  const navigation = useNavigation();
 
     return(
       <>
@@ -44,7 +46,7 @@ export default function BlackJack(){
             <UserControls 
               playerHand={playerHand}
               dealerHand={dealerHand}
-              newGame={() => newGame()}
+              goBack={() => navigation.goBack()}
               hit={() => hit()}
               doubleGame={() => doubleGame()}
               endgame={() => endgame()}
@@ -93,6 +95,7 @@ export default function BlackJack(){
       setAmount(money);
       if (tmp!=null){
         await modif.changeCurrentCoins(tmp, money);
+        useUserStore().setUser(MANAGER_USER.getCurrentUser());
       }
     }
 
@@ -102,7 +105,7 @@ export default function BlackJack(){
       
       let playerHand = [],
       dealerHand = [];
-  
+
       for(let i = 0; i < 2; i++){
         playerHand.push(cardsDeck[cardCount]);
         cardCount++;
