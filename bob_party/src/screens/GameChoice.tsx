@@ -67,13 +67,21 @@ function GameChoice(props: { navigation: any}) {
           />
           <View style={stylesScreen.bodyStart}>
             <ScreenIndicator title='Game Choice'/>
+            <View style={{backgroundColor: '#2D2C33', flexDirection: 'row', alignContent: 'flex-start', margin: '2%', borderRadius: 15, marginTop: 20}}>
+              <Text style={styles.text}>Rejoindre un match</Text>
+              <TextInput 
+                style={styles.textInput} 
+                placeholder='Id' 
+                onChangeText={(val) => setMatchId(val)} 
+                onSubmitEditing={(val) => {joinMatch(val)}} 
+                autoCapitalize='none'
+                returnKeyType="send"
+               />
+            </View>
             <GameList
               nav={navigation}
             />
-            <View style={{backgroundColor: '#2D2C33', flexDirection: 'row', alignContent: 'flex-start', margin: '2%', borderRadius: 15}}>
-              <Text style={styles.text}>Rejoindre un match</Text>
-              <TextInput style={styles.textInput} placeholder='Id' onChangeText={(val) => setMatchId(val)} onSubmitEditing={(val) => {joinMatch(val)}} autoCapitalize='none' />
-            </View>
+            
           </View>
           <BotBar 
               nav={navigation}

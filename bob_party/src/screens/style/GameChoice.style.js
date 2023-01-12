@@ -13,7 +13,7 @@ export default StyleSheet.create({
         backgroundColor: 'white',
         flex: 1,
         margin: '2%',
-        paddingLeft: 5,
+        paddingLeft: 10,
         borderRadius: 15,
       }
   });
