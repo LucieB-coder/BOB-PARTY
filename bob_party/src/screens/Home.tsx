@@ -11,7 +11,7 @@ import { MANAGER_CONVERSATION, MANAGER_GAME, MANAGER_USER } from '../../appManag
 import { socket } from '../../socketConfig';
 import { useConversationStore } from '../context/conversationContext';
 import { Message } from '../core/message';
-import ManagerUser from '../services/userServices/ManagerUser';
+import ManagerUser from '../services/userServices/managerUser';
 
 
 
@@ -21,9 +21,6 @@ let tabConv: Conversation[] = [];
 function Home(props: { navigation: any; }) {
 
   const { navigation } = props
-
-
-  console.log(socket.connected);
 
   //It has to be in the home page that way the database will reload the conversations when the user receive a message een if he is in another page
 

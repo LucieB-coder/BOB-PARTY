@@ -67,7 +67,6 @@ function SignIn(props: { navigation: any; }) {
                     Alert.alert("Incorrect Username or Password");
                     setPseudo("");
                     setPassword("");
-                    console.log(pseudo, password);
                     setWaitConnect(0);
                 }
 
