@@ -174,11 +174,11 @@ ADD CONSTRAINT `t_s_user_usr_ibfk_1` FOREIGN KEY (`FK_CURRENT_SKIN`) REFERENCES 
 
 $conn->query("INSERT INTO `T_J_GAME_MAP_GMP` (`FK_GAME`, `GMP_KEY`, `GMP_VALUE`) VALUES
 (1, 0, 0),
-(1, 100, 25),
-(1, 1000, 30),
-(1, 10000, 40),
-(1, 100000, 50),
-(1, 1000000, 75),
+(1, 1000, 25),
+(1, 10000, 30),
+(1, 100000, 40),
+(1, 1000000, 50),
+(1, 10000000, 75),
 (2, 0, 5),
 (3, 0, 0),
 (3, 1, 25),
@@ -195,16 +195,6 @@ $conn->query("INSERT INTO `T_E_GAME_GAM` (`PK_ID`, `GAM_NAME`, `GAM_IMAGE`, `GAM
 (2, 'TicTacToe', 'https://is3-ssl.mzstatic.com/image/thumb/Purple123/v4/f2/06/ef/f206ef53-7206-ffae-af6b-52460ba5636f/source/256x256bb.jpg', 1, 1, 'GameSolo'),
 (3, 'TicTacToe Online', 'https://is3-ssl.mzstatic.com/image/thumb/Purple123/v4/f2/06/ef/f206ef53-7206-ffae-af6b-52460ba5636f/source/256x256bb.jpg', 2, 2, 'GameMulti'),
 (4, 'BlackJack', 'https://codefirst.iut.uca.fr/git/BOB_PARTEAM/BOB_PARTY/raw/branch/peristanceBDD/bob_party/assets/ImagesJeux/blackjack.jpg', 1, 1, 'GameCasino');");
-
-$conn->query("INSERT INTO `T_S_USER_USR` (`PK_ID`, `USR_USERNAME`, `USR_PASSWORD`, `USR_NATIONALITY`, `USR_SEX`, `USR_DATE_OF_BIRTH`, `USR_CURRENT_NB_COINS`, `USR_TOTAL_NB_COINS`, `USR_NB_GAMES_PLAYED`, `FK_CURRENT_SKIN`) VALUES
-(1, 'to', 't', 'Anglais(e)', 'M', '2003-07-01', 105, 230, 12, 2);");
-
-$conn->query("INSERT INTO `T_S_USER_USR` (`PK_ID`, `USR_USERNAME`, `USR_PASSWORD`, `USR_NATIONALITY`, `USR_SEX`, `USR_DATE_OF_BIRTH`, `USR_CURRENT_NB_COINS`, `USR_TOTAL_NB_COINS`, `USR_NB_GAMES_PLAYED`, `FK_CURRENT_SKIN`) VALUES
-(1, 'to', 't', 'Anglais(e)', 'M', '2003-07-01', 105, 230, 12, 1);");
-
-$conn->query("INSERT INTO `T_J_OWN_SKIN_OWN` (`FK_USER`, `FK_SKIN`) VALUES
-(1, 1),
-(1, 2);");
 
 
 
