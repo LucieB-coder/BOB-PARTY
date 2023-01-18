@@ -95,7 +95,7 @@ export const BotBar:
         */
         return (
             <View style={styles.footer}>
-                <Pressable onPress={() => {  nav.navigate('ChatTab') }}>
+                <Pressable onPress={() => { nav.navigate('ChatTab') }}>
                     <Image
                         style={styles.icon}
                         source={imgLeft}
