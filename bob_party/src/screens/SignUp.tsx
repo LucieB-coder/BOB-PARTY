@@ -104,7 +104,7 @@ function SignUp(props: { navigation: any; }) {
             break;
         
         case (errorList.invalidPassword):
-            Alert.alert("Votre Password doit contenir au moins une majuscule, une majuscule, un chiffre et un caractère spécial (#?!@$%^&*-)");
+            Alert.alert("Votre mot de passe doit contenir au moins une minuscule, une majuscule, un chiffre et un caractère spécial (#?!@$%^&*-)");
             dispatch(updateInvalidPassword(false));
             break;
 
@@ -165,7 +165,7 @@ function SignUp(props: { navigation: any; }) {
                 <PickerGreySmall title='Choisir le sexe' valueChange={(value:string) => setSelectedSex(value)} values={[ { label: 'Homme', value: 'Homme' }, { label: 'Femme', value: 'Femme' }, {label: 'Autre', value: 'Autre' } ]} />
             </View>
             <Pressable style={styles.button} onPress={() => createAccount(pseudo,password,date,selectedNationality,selectedSex, dispatch, navigation)}>
-                <Text style={styles.text}>S'inscrire</Text>
+                <Text style={styles.buttonText}>S'inscrire</Text>
             </Pressable>
             <Pressable onPress={() => navigation.navigate('SignIn')}>
                 <Text style={styles.textLink}>J'ai déjà un compte</Text>

@@ -40,7 +40,6 @@ function Profile(props: { navigation: any; }) {
         </View>
         <View style={styles.infoView}>
             <Text style={styles.infoText}>Total de BobCoin gagnés: {useUserStore().user?.getTotalCoins()}</Text>
-            <Text style={styles.infoText}>Total de BobCoin gagnés: </Text>
         </View>
       </View>
       <BotBar

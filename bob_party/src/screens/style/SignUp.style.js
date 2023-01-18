@@ -25,6 +25,15 @@ export default StyleSheet.create({
         fontWeight: 'bold',
         letterSpacing: 0.25,
         color: 'white',
+        marginTop: 20,
+      },
+      buttonText: {
+        fontSize: 16,
+        lineHeight: 21,
+        fontWeight: 'bold',
+        letterSpacing: 0.25,
+        color: 'white',
+        marginVertical: 10,
       },
       textLink:{
         fontSize:15,

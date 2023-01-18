@@ -8,7 +8,7 @@ export default StyleSheet.create({
         flex:1,
         backgroundColor:"#45444E",
         alignItems:"center",
-        justifyContent:"center"
+        justifyContent:"center",
     },
     grid:{
         width:375,

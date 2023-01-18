@@ -44,7 +44,7 @@ function topBarTopDistance(){
 const engrenage = require('../../assets/Icons/UnSelected/Cogs.png');
 const cross = require('../../assets/Icons/UnSelected/Cross.png');
 const msc = require('../../assets/Icons/FondGris.png');
-const door = require('../../assets/Icons/UnSelected/Door.png');
+const door = require('../../assets/Icons/UnSelected/LeaveConv.png');
 
 export const TopBar : 
 /* Parameters: 
