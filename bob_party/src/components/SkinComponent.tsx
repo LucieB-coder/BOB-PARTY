@@ -15,7 +15,7 @@ import { useSkinStore } from "../context/storeContext"
 import { MANAGER_SKIN, MANAGER_USER } from "../../appManagers"
 
 
-
+const coinImage = require('../../assets/Icons/Coin.png')
 
 export const SkinComponent:
 
@@ -105,7 +105,13 @@ export const SkinComponent:
                             style={styles.imageSkin}
                             source={{ uri: skin.getSkinSource() }}
                         />
-                        <Text style={styles.nomSkin}>100€</Text>
+                        <View style={styles.shopNameView}>
+                            <Text style={styles.nomSkin}>{skin.getSkinCost()}</Text>
+                            <Image
+                                style={styles.coinStyle}
+                                source={coinImage}
+                            />
+                        </View>
                     </Pressable>
                 )
             case 'liste':

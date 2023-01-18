@@ -33,4 +33,13 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
   },
+  coinStyle:{
+    height: 25,
+    width: 25,
+  },
+  shopNameView:{
+    alignSelf: 'center',
+    flexDirection:'row',
+    alignItems: 'center'
+  }
 });

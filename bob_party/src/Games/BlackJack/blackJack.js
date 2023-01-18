@@ -58,7 +58,7 @@ export default function BlackJack(props){
 
             <View style={styles.center}>
               <FloatingText 
-                text={`Total Bet $ ${totalBet}`}
+                text={`Total Bet ${totalBet} BobCoins`}
               />
             </View>
             <ChipSelector 
@@ -80,7 +80,7 @@ export default function BlackJack(props){
             />
             <View style={styles.center}>
               <FloatingText 
-                text={`Available $ ${amount}`}
+                text={`Available ${amount} BobCoins`}
               />
             </View>
 
@@ -178,7 +178,7 @@ export default function BlackJack(props){
 
         setTotalBet(0);
         setGameover(true);
-        setGameMessage("You Win $ "+ betValue);
+        setGameMessage("You Win "+ betValue+" BobCoins");
         
       }
       else if(playerPoints > 21 && dealerPoints <= 21){

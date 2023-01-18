@@ -30,5 +30,6 @@ export default StyleSheet.create({
         backgroundColor: 'white',
         padding: 10,
         marginVertical: 10,
+        borderRadius: 15
       }
   });
