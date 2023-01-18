@@ -8,9 +8,10 @@ export default StyleSheet.create({
         backgroundColor: 'white',
         marginTop: 10,
         paddingLeft: 15,
+        borderRadius: 15
       },
       textInputPassword: {
-        width: '70%',
+        width: '100%',
         height: '100%',
         backgroundColor: 'white',
       },
@@ -20,6 +21,7 @@ export default StyleSheet.create({
         backgroundColor: 'white',
         paddingHorizontal: 15,
         marginTop: 10,
+        borderRadius: 15
       },
       viewIndicator: {
         flex: 1,
