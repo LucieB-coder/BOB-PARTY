@@ -113,16 +113,38 @@ function SignUp(props: { navigation: any; }) {
             dispatch(updateImpossibleBirthDate(false));
             break;
     }
+
+    function indicatorStatus(){
+        let passwordRegex : RegExp = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])(?!.*?[.\n\\{}[\],]).{8,}$/;
+        
+        if(passwordRegex.test(password)){
+            return{
+                backgroundColor:"green",
+            }
+        }
+        return{
+            backgroundColor:"red",
+        }
+    }
     
     return (
     <View style={stylesScreen.container}>
         <View style={stylesScreen.bodyCenter}>
             
             <Text style={styles.text}>Login</Text>
-            <TextInput style={styles.textInput} placeholder='Login' onChangeText={(val) => setPseudo(val) } autoCapitalize='none' />
+            <TextInput style={styles.textInputLogin} placeholder='Login' onChangeText={(val) => setPseudo(val) } autoCapitalize='none' />
             
             <Text style={styles.text}>Password</Text>
-            <TextInput style={styles.textInput} placeholder='Password' onChangeText={(val) => setPassword(val)} autoCapitalize='none' secureTextEntry={true}/>
+            <View style={[styles.viewTextInputPassword, {flexDirection: 'row'}]}>
+                <TextInput style={styles.textInputPassword} placeholder='Password' onChangeText={(val) => setPassword(val)} autoCapitalize='none' secureTextEntry={true}/>
+                <View style={styles.viewIndicator}>
+                    {
+                        
+                        <View style={[styles.indicator, indicatorStatus()]}></View>
+                    }
+                
+                </View>
+            </View>
             
             
             <View style={{width: '70%', alignItems: 'center'}}>

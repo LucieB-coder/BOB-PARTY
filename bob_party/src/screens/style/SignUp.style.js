@@ -2,12 +2,34 @@ import { StyleSheet } from "react-native";
 
 
 export default StyleSheet.create({
-      textInput: {
+      textInputLogin: {
         width: '70%',
-        height: '5%',
+        height:  60,
         backgroundColor: 'white',
-        padding: 10,
         marginTop: 10,
+        paddingLeft: 15,
+      },
+      textInputPassword: {
+        width: '70%',
+        height: '100%',
+        backgroundColor: 'white',
+      },
+      viewTextInputPassword: {
+        width: '70%',
+        height: 60,
+        backgroundColor: 'white',
+        paddingHorizontal: 15,
+        marginTop: 10,
+      },
+      viewIndicator: {
+        flex: 1,
+        alignSelf: 'center'
+      },
+      indicator: {
+        width: 20,
+        height: 20,
+        alignSelf: 'flex-end',
+        borderRadius: 50,
       },
       button: {
         alignItems: 'center',
