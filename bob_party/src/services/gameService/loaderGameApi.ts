@@ -20,7 +20,7 @@ export default class LoaderGameApi implements ILoaderGame{
          })
          .then(function (response: any) {
             if (response.data != null && response.data != undefined){
-                response.data.forEach(game => {
+                response.data.forEach((game: { type: any; keys: string | any[]; values: any[]; id: number; name: string; image: string; nbPlayerMin: number; nbPlayerMax: number; }) => {
                     switch(game.type){
                         case "GameSolo":
                             let mapSolo = new Map();

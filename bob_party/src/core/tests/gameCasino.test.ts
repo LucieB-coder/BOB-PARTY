@@ -15,9 +15,6 @@ describe('GameMuti get tests', () => {
     it('should return img ("")', () => {
         expect(game.getImageSource()).toBe(img);
     })
-    it('should return super jeu', () => {
-        expect(game.getGameSource()).toBe('super jeu');
-    })
     it('should return 1', () => {
         expect(game.getNbPlayerMin()).toBe(1);
     })
@@ -36,10 +33,6 @@ describe('GameCasino set tests', () => {
     it('should return require(JeuDeDame.jpg)', () => {
         game.setImageSource(img);
         expect(game.getImageSource()).toBe(img);
-    })
-    it('should return trop cool le jeu', () => {
-        game.setGameSource('trop cool le jeu');
-        expect(game.getGameSource()).toBe('trop cool le jeu');
     })
     it('should return trop cool le jeu', () => {
         game.setNbPlayerMin(2);

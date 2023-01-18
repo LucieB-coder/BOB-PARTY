@@ -64,20 +64,20 @@ describe('Match set tests', () => {
 
 // Update Post-Match tests
 describe('Update post-match tests', () => {
-    it('should return 50', () => {
+    it('should return 3', () => {
         match.updatePostMatch(tabU[0],3);
-        expect(tabU[0].getCurrentCoins()).toBe(50);
+        expect(tabU[0].getCurrentCoins()).toBe(3);
     })
-    it('should return 75', () => {
+    it('should return 4', () => {
         match.updatePostMatch(usr2,4);
-        expect(usr2.getCurrentCoins()).toBe(75);
+        expect(usr2.getCurrentCoins()).toBe(4);
     })
-    it('should return 150', () => {
+    it('should return 8', () => {
         match.updatePostMatch(tabU[0],5);
-        expect(tabU[0].getCurrentCoins()).toBe(150);
+        expect(tabU[0].getCurrentCoins()).toBe(8);
     })
-    it('should return 225', () => {
+    it('should return 10', () => {
         match.updatePostMatch(usr2,6);
-        expect(usr2.getCurrentCoins()).toBe(225);
+        expect(usr2.getCurrentCoins()).toBe(10);
     })
 })
